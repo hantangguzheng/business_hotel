@@ -24,4 +24,59 @@ model User {
   password   String   @db.VarChar(255)
   role       Role     @default(MERCHANT)
   created_at DateTime @default(now())
+  hotels Hotel[]
+}
+
+model Hotel {
+  id           Int      @id @default(autoincrement())
+  merchantId   Int      @map("merchant_id")
+  merchant     User     @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+
+  nameCn       String   @db.VarChar(128) @map("name_cn")
+  nameEn       String?  @db.VarChar(128) @map("name_en")
+
+  address      String   @db.VarChar(255)
+  starRating   Int      @map("star_rating")
+
+  openingDate  DateTime? @db.Date @map("opening_date")
+
+  tags         Json?    // JSON 快捷标签：["亲子","免费停车"]
+  cityCode     String   @db.VarChar(32) @map("city_code")
+
+  /**
+   * status: TINYINT
+   * 0: 草稿/待审核
+   * 1: 审核通过(已发布)
+   * 2: 审核不通过
+   * 3: 下线
+   */
+  status       Int      @default(0) @db.TinyInt
+  auditReason  String?  @db.VarChar(255) @map("audit_reason")
+  imageUrl     String?  @db.VarChar(512) @map("image_url")
+  latitude     Decimal? @db.Decimal(9, 6)
+  longitude    Decimal? @db.Decimal(9, 6)
+  rooms        Room[]
+
+  @@index([merchantId])
+  @@index([cityCode])
+  @@index([status])
+  @@map("hotel")
+}
+
+model Room {
+  id            Int     @id @default(autoincrement())
+
+  hotelId       Int     @map("hotel_id")
+  hotel         Hotel   @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  roomName      String  @db.VarChar(64) @map("room_name")
+
+  price         Decimal @db.Decimal(10, 2)
+  originalPrice Decimal @db.Decimal(10, 2) @map("original_price")
+
+  stock         Int     @default(0)
+
+  @@index([hotelId])
+  @@index([price])
+  @@map("room")
 }
