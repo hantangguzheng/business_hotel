@@ -4,6 +4,7 @@ export default {
   cardSubtitle: "Up to 30% Off",
   locationLabel: "City",
   locationPlaceholder: "Select city",
+  cityDefault: "City",
   keywordLabel: "Keyword",
   keywordPlaceholder: "Location/Brand/Hotel",
   myLocationText: "My location",

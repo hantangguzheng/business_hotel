@@ -33,6 +33,44 @@
   font-size: 14px;
 }
 
+.city-locate {
+  padding: 8px 16px 12px;
+  border-bottom: 1px solid #eef1f6;
+}
+
+.city-locate__title {
+  font-size: 12px;
+  color: #7b8798;
+  margin-bottom: 8px;
+}
+
+.city-locate__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5ff;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.city-locate__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2b64f2;
+}
+
+.city-locate__text {
+  flex: 1;
+  font-size: 14px;
+  color: #1b2a4e;
+}
+
+.city-locate__action {
+  font-size: 12px;
+  color: #2b64f2;
+}
+
 .city-tabs {
   display: flex;
   gap: 20px;
