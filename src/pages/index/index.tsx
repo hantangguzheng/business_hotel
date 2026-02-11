@@ -18,14 +18,31 @@ function Index() {
   const [lang, setLang] = useState<"zh" | "en">("zh");
   const copy = useMemo(() => (lang === "zh" ? zh : en), [lang]);
 
-  const [location, setLocation] = useState("");
-  const [locationKey, setLocationKey] = useState("");
+  const [location, setLocation] = useState("上海");
+  const [locationKey, setLocationKey] = useState("CITY");
   const [keyword, setKeyword] = useState("");
   const [locationNotice, setLocationNotice] = useState("");
   const [showLocationNotice, setShowLocationNotice] = useState(false);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [dateRange, setDateRange] = useState<string[]>([]);
+  const buildDefaultDates = () => {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    const toValue = (date: Date) => {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    };
+    return { checkIn: toValue(today), checkOut: toValue(tomorrow) };
+  };
+
+  const defaultDates = buildDefaultDates();
+  const [checkIn, setCheckIn] = useState(defaultDates.checkIn);
+  const [checkOut, setCheckOut] = useState(defaultDates.checkOut);
+  const [dateRange, setDateRange] = useState<string[]>([
+    defaultDates.checkIn,
+    defaultDates.checkOut,
+  ]);
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [roomCount, setRoomCount] = useState(1);
   const [adultCount, setAdultCount] = useState(1);
@@ -117,7 +134,50 @@ function Index() {
     });
   };
 
+  const buildSearchUrl = (nextKeyword?: string) => {
+    const params = {
+      city: location,
+      keyword: nextKeyword ?? keyword,
+      checkIn,
+      checkOut,
+      room: String(roomCount),
+      adult: String(adultCount),
+      child: String(childCount),
+    };
+    const query = Object.entries(params)
+      .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+      .join("&");
+    return `/pages/list/index?${query}`;
+  };
+
+  const showMissingField = (message: string) => {
+    Taro.showModal({
+      title: "提示",
+      content: message,
+      showCancel: false,
+    });
+  };
+
+  const validateSearch = () => {
+    if (!location) {
+      showMissingField("请选择酒店位置");
+      return false;
+    }
+    if (!checkIn || !checkOut) {
+      showMissingField("请选择入住和离开日期");
+      return false;
+    }
+    if (!roomCount || roomCount < 1) {
+      showMissingField("请选择客房数量");
+      return false;
+    }
+    return true;
+  };
+
   const handleSearch = (nextKeyword?: string) => {
+    if (!validateSearch()) {
+      return;
+    }
     const payload = {
       location,
       checkIn,
@@ -128,6 +188,7 @@ function Index() {
       keyword: nextKeyword ?? keyword,
     };
     console.log("search", payload);
+    Taro.navigateTo({ url: buildSearchUrl(nextKeyword) });
   };
 
   const handleTagClick = (tag: string) => {
