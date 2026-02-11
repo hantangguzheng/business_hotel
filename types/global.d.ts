@@ -10,6 +10,10 @@ declare module '*.less';
 declare module '*.scss';
 declare module '*.sass';
 declare module '*.styl';
+declare module '*qqmap-wx-jssdk' {
+  const QQMapWX: any;
+  export default QQMapWX;
+}
 
 declare namespace NodeJS {
   interface ProcessEnv {
