@@ -61,16 +61,23 @@
 }
 
 .filter-panel {
-  padding: 18px 18px 24px;
+  // padding: 18px 18px 24px;
+  padding: 0 18px;
   background: #ffffff;
   border-radius: 22px 22px 0 0;
+  max-height: 82vh;
+  overflow-y: auto;
 }
 
 .filter-panel__header {
+  padding: 18px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #ffffff;
   margin-bottom: 16px;
 }
 
@@ -144,9 +151,9 @@
   gap: 6px;
 }
 
-.filter-chip--wide {
-  width: 100%;
-}
+// .filter-chip--wide {
+//   width: 100%;
+// }
 
 .filter-stepper {
   display: flex;

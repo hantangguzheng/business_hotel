@@ -3,8 +3,10 @@ import { Image, Input, View } from "@tarojs/components";
 import { Button, Calendar, Cell, Popup } from "@nutui/nutui-react-taro";
 import Taro, { useDidShow } from "@tarojs/taro";
 import { ArrowDown, Close } from "@nutui/icons-react-taro";
-import zh from "../../../locales/zh";
-import en from "../../../locales/en";
+import GuestSelector from "../../components/guest-selector";
+import { useSharedFilter } from "../../store/filter-context";
+import zh from "../../locales/zh";
+import en from "../../locales/en";
 import logo from "../../../assets/imgs/logo.png";
 import md5 from "../../../utils/md5.js";
 import "./index.scss";
@@ -17,36 +19,22 @@ function Index() {
   const MY_LOCATION_KEY = "__MY_LOCATION__";
   const [lang, setLang] = useState<"zh" | "en">("zh");
   const copy = useMemo(() => (lang === "zh" ? zh : en), [lang]);
+  const { filter, setFilter } = useSharedFilter();
+  const {
+    city,
+    keyword,
+    checkIn,
+    checkOut,
+    roomCount,
+    adultCount,
+    childCount,
+  } = filter;
 
-  const [location, setLocation] = useState("上海");
   const [locationKey, setLocationKey] = useState("CITY");
-  const [keyword, setKeyword] = useState("");
   const [locationNotice, setLocationNotice] = useState("");
   const [showLocationNotice, setShowLocationNotice] = useState(false);
-  const buildDefaultDates = () => {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    const toValue = (date: Date) => {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
-    };
-    return { checkIn: toValue(today), checkOut: toValue(tomorrow) };
-  };
-
-  const defaultDates = buildDefaultDates();
-  const [checkIn, setCheckIn] = useState(defaultDates.checkIn);
-  const [checkOut, setCheckOut] = useState(defaultDates.checkOut);
-  const [dateRange, setDateRange] = useState<string[]>([
-    defaultDates.checkIn,
-    defaultDates.checkOut,
-  ]);
+  const [dateRange, setDateRange] = useState<string[]>([checkIn, checkOut]);
   const [calendarVisible, setCalendarVisible] = useState(false);
-  const [roomCount, setRoomCount] = useState(1);
-  const [adultCount, setAdultCount] = useState(1);
-  const [childCount, setChildCount] = useState(0);
   const [guestVisible, setGuestVisible] = useState(false);
   const keywordTags = ["适合情侣", "上海浦东国际机场", "上榜酒店", "国家会展"];
 
@@ -59,20 +47,23 @@ function Index() {
     if (storedCity) {
       if (storedCity === MY_LOCATION_KEY) {
         setLocationKey(MY_LOCATION_KEY);
-        setLocation(copy.myLocationText);
+        setFilter({ city: copy.myLocationText });
       } else {
         setLocationKey("CITY");
-        setLocation(storedCity);
+        setFilter({ city: storedCity });
       }
     }
   });
 
   useEffect(() => {
     if (locationKey === MY_LOCATION_KEY) {
-      setLocation(copy.myLocationText);
+      setFilter({ city: copy.myLocationText });
     }
-  }, [copy.myLocationText, locationKey]);
+  }, [copy.myLocationText, locationKey, setFilter]);
 
+  useEffect(() => {
+    setDateRange([checkIn, checkOut]);
+  }, [checkIn, checkOut]);
   const handleToggleLang = () => {
     setLang((current) => {
       const next = current === "zh" ? "en" : "zh";
@@ -110,7 +101,7 @@ function Index() {
               ? `${copy.myLocationText}：${address}`
               : `${copy.myLocationText}：${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
             setLocationKey(MY_LOCATION_KEY);
-            setLocation(copy.myLocationText);
+            setFilter({ city: copy.myLocationText });
             setLocationNotice(text);
             setShowLocationNotice(true);
             Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
@@ -119,7 +110,7 @@ function Index() {
           fail: () => {
             const text = `${copy.myLocationText}：${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
             setLocationKey(MY_LOCATION_KEY);
-            setLocation(copy.myLocationText);
+            setFilter({ city: copy.myLocationText });
             setLocationNotice(text);
             setShowLocationNotice(true);
             Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
@@ -136,7 +127,7 @@ function Index() {
 
   const buildSearchUrl = (nextKeyword?: string) => {
     const params = {
-      city: location,
+      city,
       keyword: nextKeyword ?? keyword,
       checkIn,
       checkOut,
@@ -159,7 +150,7 @@ function Index() {
   };
 
   const validateSearch = () => {
-    if (!location) {
+    if (!city) {
       showMissingField("请选择酒店位置");
       return false;
     }
@@ -179,7 +170,7 @@ function Index() {
       return;
     }
     const payload = {
-      location,
+      location: city,
       checkIn,
       checkOut,
       room: roomCount,
@@ -192,7 +183,7 @@ function Index() {
   };
 
   const handleTagClick = (tag: string) => {
-    setKeyword(tag);
+    setFilter({ keyword: tag });
     handleSearch(tag);
   };
 
@@ -244,8 +235,7 @@ function Index() {
     const startValue = normalizeDate(startRaw);
     const endValue = normalizeDate(endRaw);
     setDateRange([startValue, endValue]);
-    setCheckIn(startValue);
-    setCheckOut(endValue);
+    setFilter({ checkIn: startValue, checkOut: endValue });
     setCalendarVisible(false);
   };
 
@@ -303,10 +293,10 @@ function Index() {
             <View className="location-col__main">
               <View
                 className={
-                  location ? "location-col__value" : "location-col__placeholder"
+                  city ? "location-col__value" : "location-col__placeholder"
                 }
               >
-                {location || copy.cityDefault}
+                {city || copy.cityDefault}
               </View>
               <ArrowDown color="grey" width="10px" />
               <View className="location-col__locate" onClick={handleLocate}>
@@ -320,7 +310,7 @@ function Index() {
             <View className="keyword-col__input">
               <Input
                 value={keyword}
-                onInput={(event) => setKeyword(event.detail.value)}
+                onInput={(event) => setFilter({ keyword: event.detail.value })}
                 placeholder={copy.keywordPlaceholder}
                 placeholderClass="input-placeholder"
               />
@@ -375,87 +365,26 @@ function Index() {
             <View className="guest-popup__tips">
               入住人数较多时，试试增加间数
             </View>
-            <View className="guest-popup__item">
-              <View className="guest-popup__item-label">间数</View>
-              <View className="guest-stepper">
-                <View
-                  className={
-                    roomCount <= 1
-                      ? "guest-stepper__btn is-disabled"
-                      : "guest-stepper__btn"
-                  }
-                  onClick={() =>
-                    updateGuestCount(roomCount - 1, 1, 99, setRoomCount)
-                  }
-                >
-                  -
-                </View>
-                <View className="guest-stepper__value">{roomCount}</View>
-                <View
-                  className="guest-stepper__btn"
-                  onClick={() =>
-                    updateGuestCount(roomCount + 1, 1, 99, setRoomCount)
-                  }
-                >
-                  +
-                </View>
-              </View>
-            </View>
-            <View className="guest-popup__item">
-              <View className="guest-popup__item-label">成人数</View>
-              <View className="guest-stepper">
-                <View
-                  className={
-                    adultCount <= 1
-                      ? "guest-stepper__btn is-disabled"
-                      : "guest-stepper__btn"
-                  }
-                  onClick={() =>
-                    updateGuestCount(adultCount - 1, 1, 99, setAdultCount)
-                  }
-                >
-                  -
-                </View>
-                <View className="guest-stepper__value">{adultCount}</View>
-                <View
-                  className="guest-stepper__btn"
-                  onClick={() =>
-                    updateGuestCount(adultCount + 1, 1, 99, setAdultCount)
-                  }
-                >
-                  +
-                </View>
-              </View>
-            </View>
-            <View className="guest-popup__item">
-              <View className="guest-popup__item-label">
-                儿童数
-                <View className="guest-popup__item-sub">0-17岁</View>
-              </View>
-              <View className="guest-stepper">
-                <View
-                  className={
-                    childCount <= 0
-                      ? "guest-stepper__btn is-disabled"
-                      : "guest-stepper__btn"
-                  }
-                  onClick={() =>
-                    updateGuestCount(childCount - 1, 0, 99, setChildCount)
-                  }
-                >
-                  -
-                </View>
-                <View className="guest-stepper__value">{childCount}</View>
-                <View
-                  className="guest-stepper__btn"
-                  onClick={() =>
-                    updateGuestCount(childCount + 1, 0, 99, setChildCount)
-                  }
-                >
-                  +
-                </View>
-              </View>
-            </View>
+            <GuestSelector
+              roomCount={roomCount}
+              adultCount={adultCount}
+              childCount={childCount}
+              onChangeRoom={(next) =>
+                updateGuestCount(next, 1, 99, (value) =>
+                  setFilter({ roomCount: value }),
+                )
+              }
+              onChangeAdult={(next) =>
+                updateGuestCount(next, 1, 99, (value) =>
+                  setFilter({ adultCount: value }),
+                )
+              }
+              onChangeChild={(next) =>
+                updateGuestCount(next, 0, 99, (value) =>
+                  setFilter({ childCount: value }),
+                )
+              }
+            />
             <Button
               className="guest-popup__confirm"
               type="primary"

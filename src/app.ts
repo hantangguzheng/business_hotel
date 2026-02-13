@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Taro, { useDidShow, useDidHide } from '@tarojs/taro'
+import { SharedFilterProvider } from './store/filter-context'
 // 全局样式
 import './app.scss'
 
@@ -21,7 +22,7 @@ function App(props) {
   // 对应 onHide
   useDidHide(() => {})
 
-  return props.children
+  return React.createElement(SharedFilterProvider, null, props.children)
 }
 
 export default App

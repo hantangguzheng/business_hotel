@@ -1,8 +1,10 @@
 import { Image, Input, View } from "@tarojs/components";
 import Taro from "@tarojs/taro";
-import { useMemo, useState } from "react";
-import { Button, Popup } from "@nutui/nutui-react-taro";
+import { useEffect, useMemo, useState } from "react";
+import { Button, Calendar, Popup } from "@nutui/nutui-react-taro";
 import { ArrowDown, Close } from "@nutui/icons-react-taro";
+import GuestSelector from "../../components/guest-selector";
+import { useSharedFilter } from "../../store/filter-context";
 import quanjiImage from "../../../assets/imgs/quanji.png";
 import rujiaImage from "../../../assets/imgs/rujia.png";
 import "./index.scss";
@@ -32,6 +34,17 @@ const mockHotels = [
 
 function ListPage() {
   const params = Taro.getCurrentInstance().router?.params || {};
+  const { filter, setFilter } = useSharedFilter();
+  const {
+    city,
+    keyword,
+    checkIn,
+    checkOut,
+    roomCount,
+    adultCount,
+    childCount,
+  } = filter;
+
   const decodeParam = (value?: string) => {
     if (!value) return "";
     try {
@@ -40,20 +53,34 @@ function ListPage() {
       return value;
     }
   };
-  const [keyword, setKeyword] = useState(decodeParam(params.keyword));
   const [filterVisible, setFilterVisible] = useState(false);
-  const [roomCount, setRoomCount] = useState(Number(params.room) || 1);
-  const [adultCount, setAdultCount] = useState(Number(params.adult) || 1);
-  const [childCount, setChildCount] = useState(Number(params.child) || 0);
-  const [selectedCity, setSelectedCity] = useState(
-    decodeParam(params.city) || "上海",
-  );
+  const [calendarVisible, setCalendarVisible] = useState(false);
+  const [dateRange, setDateRange] = useState<string[]>([checkIn, checkOut]);
   const [activeFacilityTab, setActiveFacilityTab] = useState("酒店设施");
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([
     "免费WIFI",
     "停车场",
   ]);
   const [selectedStar, setSelectedStar] = useState(4);
+
+  useEffect(() => {
+    const nextKeyword = decodeParam(params.keyword);
+    const nextCity = decodeParam(params.city);
+    const nextRoomCount = Number(params.room) || 1;
+    const nextAdultCount = Number(params.adult) || 1;
+    const nextChildCount = Number(params.child) || 0;
+
+    setFilter({
+      keyword: nextKeyword || keyword,
+      city: nextCity || city,
+      checkIn: params.checkIn || checkIn,
+      checkOut: params.checkOut || checkOut,
+      roomCount: nextRoomCount,
+      adultCount: nextAdultCount,
+      childCount: nextChildCount,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const filterTabs = ["酒店设施", "客房设施", "房间面积", "评分"];
   const facilityMap = {
@@ -63,6 +90,43 @@ function ListPage() {
     评分: ["4.5以上", "4.0以上", "3.5以上"],
   };
 
+  useEffect(() => {
+    setDateRange([checkIn, checkOut]);
+  }, [checkIn, checkOut]);
+
+  const normalizeDate = (value) => {
+    if (!value) return "";
+    if (typeof value === "string") return value;
+    const dateValue = typeof value === "number" ? new Date(value) : value;
+    if (typeof dateValue.getFullYear !== "function") return "";
+    const year = dateValue.getFullYear();
+    const month = String(dateValue.getMonth() + 1).padStart(2, "0");
+    const day = String(dateValue.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  const resolveRange = (param) => {
+    if (Array.isArray(param) && Array.isArray(param[0])) {
+      return [param[0][3], param[1][3]];
+    }
+    if (Array.isArray(param)) {
+      return [param[0], param[1]];
+    }
+    if (Array.isArray(param?.value)) {
+      return [param.value[0], param.value[1]];
+    }
+    return ["", ""];
+  };
+
+  const handleCalendarConfirm = (param) => {
+    const [startRaw, endRaw] = resolveRange(param);
+    const startValue = normalizeDate(startRaw);
+    const endValue = normalizeDate(endRaw);
+    setDateRange([startValue, endValue]);
+    setFilter({ checkIn: startValue, checkOut: endValue });
+    setCalendarVisible(false);
+  };
+
   const dateLabel = useMemo(() => {
     const formatDate = (value?: string) => {
       if (!value) return "";
@@ -70,15 +134,31 @@ function ListPage() {
       if (parts.length !== 3) return value;
       return `${parts[1]}-${parts[2]}`;
     };
-    const start = formatDate(params.checkIn);
-    const end = formatDate(params.checkOut);
+
+    const calcNights = (startDate?: string, endDate?: string) => {
+      if (!startDate || !endDate) return 0;
+      const startTime = new Date(startDate.replace(/-/g, "/")).getTime();
+      const endTime = new Date(endDate.replace(/-/g, "/")).getTime();
+      if (
+        Number.isNaN(startTime) ||
+        Number.isNaN(endTime) ||
+        endTime <= startTime
+      ) {
+        return 0;
+      }
+      return Math.round((endTime - startTime) / (24 * 60 * 60 * 1000));
+    };
+
+    const start = formatDate(checkIn);
+    const end = formatDate(checkOut);
+    const nights = calcNights(checkIn, checkOut);
     if (start && end) {
-      return `${start} - ${end} 1晚`;
+      return `${start} - ${end} ${nights}晚`;
     }
     return "选择日期";
-  }, [params.checkIn, params.checkOut]);
+  }, [checkIn, checkOut]);
 
-  const cityLabel = decodeParam(params.city) || "城市";
+  const cityLabel = city || "城市";
   const priceLabel = "￥0 ~ ￥400";
 
   const updateGuestCount = (nextValue, minValue, maxValue, setter) => {
@@ -109,7 +189,7 @@ function ListPage() {
           <Input
             className="list-search__input"
             value={keyword}
-            onInput={(event) => setKeyword(event.detail.value)}
+            onInput={(event) => setFilter({ keyword: event.detail.value })}
             placeholder="搜索..."
             placeholderClass="list-search__placeholder"
           />
@@ -198,114 +278,10 @@ function ListPage() {
             <View className="filter-section__input">
               <Input
                 value={keyword}
-                onInput={(event) => setKeyword(event.detail.value)}
+                onInput={(event) => setFilter({ keyword: event.detail.value })}
                 placeholder="位置/品牌/酒店"
                 placeholderClass="filter-input__placeholder"
               />
-            </View>
-          </View>
-
-          <View className="filter-section">
-            <View className="filter-section__title">入住日期</View>
-            <View className="filter-chip filter-chip--wide">
-              <View>{dateLabel}</View>
-              <ArrowDown color="#9aa4b2" width="12px" />
-            </View>
-          </View>
-
-          <View className="filter-section">
-            <View className="filter-section__title">选择客房和入住人数</View>
-            <View className="filter-guest">
-              <View className="filter-chip">
-                <View>{roomCount}间房</View>
-                <ArrowDown color="#9aa4b2" width="12px" />
-              </View>
-              <View className="filter-chip">
-                <View>{adultCount}成人</View>
-                <ArrowDown color="#9aa4b2" width="12px" />
-              </View>
-              <View className="filter-chip">
-                <View>{childCount}儿童</View>
-                <ArrowDown color="#9aa4b2" width="12px" />
-              </View>
-            </View>
-            <View className="filter-stepper">
-              <View className="filter-stepper__label">房间</View>
-              <View className="filter-stepper__controls">
-                <View
-                  className={
-                    roomCount <= 1
-                      ? "filter-stepper__btn is-disabled"
-                      : "filter-stepper__btn"
-                  }
-                  onClick={() =>
-                    updateGuestCount(roomCount - 1, 1, 99, setRoomCount)
-                  }
-                >
-                  -
-                </View>
-                <View className="filter-stepper__value">{roomCount}</View>
-                <View
-                  className="filter-stepper__btn"
-                  onClick={() =>
-                    updateGuestCount(roomCount + 1, 1, 99, setRoomCount)
-                  }
-                >
-                  +
-                </View>
-              </View>
-            </View>
-            <View className="filter-stepper">
-              <View className="filter-stepper__label">成人</View>
-              <View className="filter-stepper__controls">
-                <View
-                  className={
-                    adultCount <= 1
-                      ? "filter-stepper__btn is-disabled"
-                      : "filter-stepper__btn"
-                  }
-                  onClick={() =>
-                    updateGuestCount(adultCount - 1, 1, 99, setAdultCount)
-                  }
-                >
-                  -
-                </View>
-                <View className="filter-stepper__value">{adultCount}</View>
-                <View
-                  className="filter-stepper__btn"
-                  onClick={() =>
-                    updateGuestCount(adultCount + 1, 1, 99, setAdultCount)
-                  }
-                >
-                  +
-                </View>
-              </View>
-            </View>
-            <View className="filter-stepper">
-              <View className="filter-stepper__label">儿童</View>
-              <View className="filter-stepper__controls">
-                <View
-                  className={
-                    childCount <= 0
-                      ? "filter-stepper__btn is-disabled"
-                      : "filter-stepper__btn"
-                  }
-                  onClick={() =>
-                    updateGuestCount(childCount - 1, 0, 99, setChildCount)
-                  }
-                >
-                  -
-                </View>
-                <View className="filter-stepper__value">{childCount}</View>
-                <View
-                  className="filter-stepper__btn"
-                  onClick={() =>
-                    updateGuestCount(childCount + 1, 0, 99, setChildCount)
-                  }
-                >
-                  +
-                </View>
-              </View>
             </View>
           </View>
 
@@ -323,19 +299,61 @@ function ListPage() {
           </View>
 
           <View className="filter-section">
+            <View className="filter-section__title">入住日期</View>
+            <View
+              className="filter-chip filter-chip--wide"
+              onClick={() => setCalendarVisible(true)}
+            >
+              <View>{dateLabel}</View>
+              <ArrowDown color="#9aa4b2" width="12px" />
+            </View>
+            <Calendar
+              visible={calendarVisible}
+              defaultValue={dateRange}
+              type="range"
+              onClose={() => setCalendarVisible(false)}
+              onConfirm={handleCalendarConfirm}
+            />
+          </View>
+
+          <View className="filter-section">
+            <View className="filter-section__title">选择客房和入住人数</View>
+            <GuestSelector
+              roomCount={roomCount}
+              adultCount={adultCount}
+              childCount={childCount}
+              onChangeRoom={(next) =>
+                updateGuestCount(next, 1, 99, (value) =>
+                  setFilter({ roomCount: value }),
+                )
+              }
+              onChangeAdult={(next) =>
+                updateGuestCount(next, 1, 99, (value) =>
+                  setFilter({ adultCount: value }),
+                )
+              }
+              onChangeChild={(next) =>
+                updateGuestCount(next, 0, 99, (value) =>
+                  setFilter({ childCount: value }),
+                )
+              }
+            />
+          </View>
+
+          <View className="filter-section">
             <View className="filter-section__title">城市</View>
             <View className="filter-city">
-              {["上海", "苏州", "北京"].map((city) => (
+              {["上海", "苏州", "北京"].map((cityItem) => (
                 <View
-                  key={city}
+                  key={cityItem}
                   className={
-                    city === selectedCity
+                    cityItem === city
                       ? "filter-city__item is-active"
                       : "filter-city__item"
                   }
-                  onClick={() => setSelectedCity(city)}
+                  onClick={() => setFilter({ city: cityItem })}
                 >
-                  {city}
+                  {cityItem}
                 </View>
               ))}
             </View>

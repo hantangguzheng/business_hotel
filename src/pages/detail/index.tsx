@@ -1,9 +1,11 @@
-import { Image, View } from "@tarojs/components";
+import { Image, Map, View } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import { useMemo } from "react";
 import quanjiImage from "../../../assets/imgs/quanji.png";
 import rujiaImage from "../../../assets/imgs/rujia.png";
 import "./index.scss";
+
+const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
 
 const hotelMap = {
   "1": {
@@ -29,13 +31,47 @@ const hotelMap = {
       "全季酒店位于长寿路商圈，交通便利，周边美食与购物选择丰富，适合商务和休闲出行。",
   },
 };
+// 引入SDK核心类
+const QQMapWX = require("../../../utils/qqmap-wx-jssdk");
+
+// 实例化API核心类
+const qqmapsdk = new QQMapWX({
+  key: QQ_MAP_KEY, // 必填
+});
 
 function DetailPage() {
+  void qqmapsdk;
   const params = Taro.getCurrentInstance().router?.params || {};
   const hotel = useMemo(() => {
     const fallback = hotelMap["1"];
     return hotelMap[params.id as keyof typeof hotelMap] || fallback;
   }, [params.id]);
+
+  const centerLongitude = 116.313972;
+  const centerLatitude = 39.980014;
+  const markers = useMemo(
+    () => [
+      {
+        id: 1,
+        longitude: centerLongitude,
+        latitude: centerLatitude,
+        width: 24,
+        height: 24,
+        iconPath: hotel.image,
+      },
+    ],
+    [hotel.image],
+  );
+
+  const openFullscreenMap = () => {
+    Taro.openLocation({
+      longitude: centerLongitude,
+      latitude: centerLatitude,
+      name: hotel.name,
+      address: hotel.address,
+      scale: 16,
+    });
+  };
 
   return (
     <View className="detail-page">
@@ -45,15 +81,6 @@ function DetailPage() {
           src={hotel.image}
           mode="aspectFill"
         />
-        <View className="detail-hero__actions">
-          <View
-            className="detail-hero__icon"
-            onClick={() => Taro.navigateBack()}
-          >
-            ←
-          </View>
-          <View className="detail-hero__icon">⋯</View>
-        </View>
       </View>
 
       <View className="detail-card">
@@ -96,9 +123,23 @@ function DetailPage() {
         <View className="detail-section">
           <View className="detail-section__row">
             <View className="detail-section__title">位置</View>
-            <View className="detail-section__action">打开地图</View>
+            <View
+              className="detail-section__action"
+              onClick={openFullscreenMap}
+            >
+              打开地图
+            </View>
           </View>
-          <View className="detail-map" />
+          <Map
+            id="myMap"
+            className="detail-map"
+            markers={markers}
+            longitude={centerLongitude}
+            latitude={centerLatitude}
+            scale={16}
+            onTap={openFullscreenMap}
+            onError={() => {}}
+          />
         </View>
       </View>
 
