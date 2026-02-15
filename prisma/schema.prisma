@@ -18,6 +18,148 @@ enum Role {
   ADMIN
 }
 
+enum HotelTag {
+  BUFFET_BREAKFAST      // 自助早餐
+  CHESS_ROOM           // 棋牌室
+  MEMBER_BENEFITS      // 享会员权益
+  CHARGING_PILE        // 充电桩
+  FREE_WIFI            // 免费客房WiFi
+  INSTAGRAMMABLE       // 拍照出片
+  GYM                  // 健身室
+  BUTLER_SERVICE       // 管家服务
+  COFFEE_MACHINE       // 咖啡机
+  SELF_CHECKIN         // 自助入住
+  MEETING_HALL         // 会议厅
+  VINTAGE_STYLE        // 复古风
+  CINEMA_ROOM          // 影音房
+  ROBOT_SERVICE        // 机器人服务
+  SMART_CONTROL        // 智能客控
+  FAMILY_ROOM          // 家庭房
+  LAUNDRY_ROOM         // 洗衣房
+  FREE_LUGGAGE         // 免费行李寄存
+  FREE_PARKING         // 免费停车
+  DRYER                // 干衣机
+  KTV                  // KTV
+  FREE_LAUNDRY        // 免费洗衣服务
+  SUITE                // 套房
+  HEATING              // 全屋暖气
+  DELIVERY_ROBOT       // 送餐机器人
+  NON_SMOKING_FLOOR    // 无烟楼层
+}
+
+enum CleaningFacility { 
+  IRONING
+  CLEANING_TOOLS
+  DAILY_CLEANING 
+}
+enum BathingFacility   { 
+  TOOTHBRUSH
+  TOOTHPASTE 
+  CONDITIONER 
+  SHOWER_GEL 
+  COMB 
+  RAZOR 
+  SOAP 
+  SHOWER_CAP 
+  SHAMPOO 
+}
+enum LayoutFacility {
+  LOUNGE_CHAIR
+  SOFA
+  DECORATIVE_PAINTING
+  WARDROBE
+  DESK
+  COFFEE_TABLE
+}
+
+enum AccessibleFacility {
+  DOORBELL_PROMPT
+  BATHTUB_HANDRAILS
+}
+
+enum NetworkFacility {
+  TELEPHONE
+  ROOM_WIFI
+  INT_CALL
+}
+
+enum BathroomFacility {
+  PRIVATE_BATHROOM
+  SLIPPERS
+  SMART_TOILET
+  BATHTUB
+  HOT_WATER_24H
+  TOWEL
+  RAIN_SHOWER
+  MIRROR
+  BATH_TOWEL
+  HAIR_DRYER
+  PRIVATE_TOILET
+  BATHROBE
+  SHOWER
+}
+
+enum FoodFacility {
+  KETTLE
+  TEA_BAGS
+  FRUIT
+  WATER
+  MINI_BAR
+  SOFT_DRINK
+  ALCOHOL
+}
+
+enum ChildFacility {
+  TOYS
+  TOILET_SEAT
+  CRIB
+  SLIPPERS
+  TOILETRIES
+}
+
+enum MediaFacility {
+  CABLE
+  SMART_CONTROL
+  LCD_TV
+  SMART_LOCK
+}
+
+enum RoomSpecFacility {
+  BLACKOUT_CURTAINS
+  DUCK_DOWN
+  BLANKET
+  EXTRA_LONG_BED
+  SPARE_BEDDING
+  AC
+  AUTO_CURTAINS
+  AIR_PURIFIER
+}
+
+enum KitchenFacility {
+  REFRIGERATOR
+}
+
+enum AmenityFacility {
+  VOLTAGE_220V
+  BUTLER
+  HANGERS
+  SAFE_BOX
+  SOCKET_MULTI
+  UMBRELLA
+  WELCOME_GIFT
+  SEWING_KIT
+  TURN_DOWN
+  VOLTAGE_110V
+  SCALE
+}
+
+enum ViewFacility {
+  RIVER_VIEW
+  LANDMARK_VIEW
+  CITY_VIEW
+}
+
+
 model User {
   id         Int      @id @default(autoincrement())
   username   String   @unique @db.VarChar(64)
@@ -28,34 +170,45 @@ model User {
 }
 
 model Hotel {
-  id           Int      @id @default(autoincrement())
-  merchantId   Int      @map("merchant_id")
-  merchant     User     @relation(fields: [merchantId], references: [id], onDelete: Cascade)
+  id              Int      @id @default(autoincrement())
+  merchantId      Int      @map("merchant_id")
+  merchant        User     @relation(fields: [merchantId], references: [id], onDelete: Cascade)
 
-  nameCn       String   @db.VarChar(128) @map("name_cn")
-  nameEn       String?  @db.VarChar(128) @map("name_en")
+  // 1. 名称信息 (Base)
+  nameCn          String   @db.VarChar(128) @map("name_cn")
+  nameEn          String   @db.VarChar(128) @map("name_en")
 
-  address      String   @db.VarChar(255)
-  starRating   Int      @map("star_rating")
+  // 2. 图片信息 (Images)
+  // 存储多张图片 URL 数组，对应你说的左右移动
+  imageUrls       Json     @map("image_urls") 
 
-  openingDate  DateTime? @db.Date @map("opening_date")
+  // 3. 星级与评分 (Level & Comment)
+  starRating      Int      @default(2) @map("star_rating")
+  score           Decimal  @default(0.0) @db.Decimal(2, 1)
+  totalReviews    Int      @default(0) @map("total_reviews")
 
-  tags         Json?    // JSON 快捷标签：["亲子","免费停车"]
-  cityCode     String   @db.VarChar(32) @map("city_code")
+  // 4. 价格与货币 (Money)
+  // 这里的 price 通常作为酒店起步价展示
+  price           Decimal  @db.Decimal(10, 2)
+  crossLinePrice  Decimal? @db.Decimal(10, 2) @map("cross_line_price")
+  currency        String   @default("RMB") @db.VarChar(10)
 
-  /**
-   * status: TINYINT
-   * 0: 草稿/待审核
-   * 1: 审核通过(已发布)
-   * 2: 审核不通过
-   * 3: 下线
-   */
-  status       Int      @default(0) @db.TinyInt
-  auditReason  String?  @db.VarChar(255) @map("audit_reason")
-  imageUrl     String?  @db.VarChar(512) @map("image_url")
-  latitude     Decimal? @db.Decimal(9, 6)
-  longitude    Decimal? @db.Decimal(9, 6)
-  rooms        Room[]
+  // 5. 标签与位置 (Tags & Position)
+  // 存储 HotelTag 枚举数组: ["FREE_WIFI", "GYM"]
+  shortTags       Json?    @map("short_tags") 
+  latitude        Decimal  @db.Decimal(9, 6)
+  longitude       Decimal  @db.Decimal(9, 6)
+  address         String   @db.VarChar(255)
+  cityCode        String   @db.VarChar(32) @map("city_code")
+
+  // 6. 管理状态
+  status          Int      @default(0) @db.TinyInt
+  auditReason     String?  @db.VarChar(255) @map("audit_reason")
+  openingDate     DateTime @db.Date @map("opening_date")
+  created_at      DateTime @default(now())
+
+  // 关联
+  rooms           Room[]
 
   @@index([merchantId])
   @@index([cityCode])
@@ -64,19 +217,56 @@ model Hotel {
 }
 
 model Room {
-  id            Int     @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
+  hotelId       Int      @map("hotel_id")
+  hotel         Hotel    @relation(fields: [hotelId], references: [id], onDelete: Cascade)
 
-  hotelId       Int     @map("hotel_id")
-  hotel         Hotel   @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  // 1. 房型基础描述
+  name          String   @db.VarChar(64)
+  areaTitle     String   @db.VarChar(32) @map("area_title")
+  bedTitle      String   @db.VarChar(64) @map("bed_title")
+  windowTitle   String   @db.VarChar(32) @map("window_title")
+  floorTitle    String   @db.VarChar(32) @map("floor_title")
+  smokeTitle    String   @db.VarChar(32) @map("smoke_title")
+  wifiInfo      String?  @db.VarChar(64) @map("wifi_info")
+  pictureUrl    String   @db.VarChar(255) @map("picture_url")
 
-  roomName      String  @db.VarChar(64) @map("room_name")
+  // 2. 分组设施字段 (使用 Json 存储对应的枚举数组)
+  cleaningFacilities   Json? @map("cleaning_facilities")   // 清洁服务
+  bathingFacilities    Json? @map("bathing_facilities")    // 洗浴用品
+  layoutFacilities     Json? @map("layout_facilities")     // 客房布局
+  accessibleFacilities Json? @map("accessible_facilities") // 无障碍
+  networkFacilities    Json? @map("network_facilities")    // 网络通讯
+  bathroomFacilities   Json? @map("bathroom_facilities")   // 卫浴设施
+  foodFacilities       Json? @map("food_facilities")       // 食品饮品
+  childFacilities      Json? @map("child_facilities")      // 儿童设施
+  mediaFacilities      Json? @map("media_facilities")      // 媒体科技
+  roomSpecFacilities   Json? @map("room_spec_facilities")  // 客房设施
+  kitchenFacilities    Json? @map("kitchen_facilities")    // 厨房用品
+  amenityFacilities    Json? @map("amenity_facilities")    // 便利设施
+  viewFacilities       Json? @map("view_facilities")       // 室外景观
 
-  price         Decimal @db.Decimal(10, 2)
-  originalPrice Decimal @db.Decimal(10, 2) @map("original_price")
+  // 3. 销售核心
+  capacity      Int      @default(2)
+  price         Decimal  @db.Decimal(10, 2)
+  totalStock    Int      @default(0) @map("total_stock")
 
-  stock         Int     @default(0)
+  inventories   RoomInventory[]
 
   @@index([hotelId])
-  @@index([price])
   @@map("room")
+}
+
+model RoomInventory {
+  id             Int      @id @default(autoincrement())
+  roomId         Int      @map("room_id")
+  room           Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  
+  date           DateTime @db.Date
+  availableCount Int      @default(0) @map("available_count")
+  price          Decimal  @db.Decimal(10, 2) // 每日动态价格
+
+  @@unique([roomId, date])
+  @@index([date])
+  @@map("room_inventory")
 }

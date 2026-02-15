@@ -1,14 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import {
-  IsArray,
-  IsEnum,
-  IsInt,
-  IsNumberString,
-  IsOptional,
-  IsString,
-  Min,
-} from 'class-validator';
-import {
+  AccessibleFacility,
   AmenityFacility,
   BathroomFacility,
   BathingFacility,
@@ -19,37 +11,58 @@ import {
   LayoutFacility,
   MediaFacility,
   NetworkFacility,
-  AccessibleFacility,
   RoomSpecFacility,
   ViewFacility,
 } from '@prisma/client';
+import {
+  IsArray,
+  IsEnum,
+  IsIn,
+  IsInt,
+  IsOptional,
+  Max,
+  Min,
+  ValidateNested,
+} from 'class-validator';
+import { Type } from 'class-transformer';
 
-export class CreateRoomDto {
-  @IsString()
-  name: string;
+const AREA_TITLES = ['小于35', '35-50', '50以上'] as const;
+const BED_TITLES = [
+  '单人床',
+  '双人床',
+  '双单人床',
+  '双双人床',
+  '其他',
+] as const;
+const WINDOW_TITLES = ['有', '无'] as const;
+const SMOKE_TITLES = ['可吸烟', '禁烟'] as const;
+const WIFI_OPTIONS = ['有', '无'] as const;
 
-  @IsString()
-  areaTitle: string;
-
-  @IsString()
-  bedTitle: string;
-
-  @IsString()
-  windowTitle: string;
-
-  @IsString()
-  floorTitle: string;
-
-  @IsString()
-  smokeTitle: string;
+export class RoomTagFiltersDto {
+  @IsOptional()
+  @IsArray()
+  @IsIn(AREA_TITLES, { each: true })
+  areaTitles?: string[];
 
   @IsOptional()
-  @IsString()
-  wifiInfo?: string;
+  @IsArray()
+  @IsIn(BED_TITLES, { each: true })
+  bedTitles?: string[];
 
-  @IsString()
-  pictureUrl: string;
+  @IsOptional()
+  @IsIn(WINDOW_TITLES)
+  window?: string;
 
+  @IsOptional()
+  @IsIn(SMOKE_TITLES)
+  smoke?: string;
+
+  @IsOptional()
+  @IsIn(WIFI_OPTIONS)
+  wifi?: string;
+}
+
+export class RoomFacilityFiltersDto {
   @IsOptional()
   @IsArray()
   @IsEnum(CleaningFacility, { each: true })
@@ -114,16 +127,33 @@ export class CreateRoomDto {
   @IsArray()
   @IsEnum(ViewFacility, { each: true })
   viewFacilities?: ViewFacility[];
+}
+
+export class SearchRoomsDto {
+  @Type(() => Number)
+  @IsInt()
+  hotelId: number;
 
   @IsOptional()
+  @ValidateNested()
+  @Type(() => RoomTagFiltersDto)
+  tags?: RoomTagFiltersDto;
+
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => RoomFacilityFiltersDto)
+  facilities?: RoomFacilityFiltersDto;
+
+  @IsOptional()
+  @Type(() => Number)
   @IsInt()
   @Min(1)
-  capacity?: number;
+  @Max(200)
+  pageSize?: number;
 
-  @IsNumberString()
-  price: string;
-
+  @IsOptional()
+  @Type(() => Number)
   @IsInt()
   @Min(1)
-  totalStock: number;
+  page?: number;
 }

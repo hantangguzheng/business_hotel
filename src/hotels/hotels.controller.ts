@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -14,6 +15,8 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { HotelsService } from './hotels.service';
 import { CreateHotelDto } from './dto/create-hotel.dto';
 import { UpdateHotelDto } from './dto/update-hotel.dto';
+import { SearchHotelsDto } from './dto/search-hotels.dto';
+import { HotelDetailQueryDto } from './dto/hotel-detail-query.dto';
 
 @Controller('hotels')
 @UseGuards(JwtAuthGuard)
@@ -23,6 +26,16 @@ export class HotelsController {
   @Post()
   create(@Req() req: any, @Body() dto: CreateHotelDto) {
     return this.hotelsService.create(req.user.userId, dto);
+  }
+
+  @Get('search')
+  search(@Query() query: SearchHotelsDto) {
+    return this.hotelsService.search(query);
+  }
+
+  @Get(':id/detail')
+  detail(@Param('id') id: string, @Query() query: HotelDetailQueryDto) {
+    return this.hotelsService.getHotelDetail(Number(id), query);
   }
 
   @Get('mine')
