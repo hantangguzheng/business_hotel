@@ -125,7 +125,9 @@ export class HotelsService {
       this.prisma.$queryRaw<{ total: number }[]>(countQuery),
     ]);
 
-    const total = countRows[0]?.total ?? 0;
+    const rawTotal = countRows[0]?.total ?? 0;
+    const total =
+      typeof rawTotal === 'bigint' ? Number(rawTotal) : Number(rawTotal);
     return {
       total,
       data: rows.map((row) => this.mapHotelSearchRow(row)),
@@ -555,6 +557,14 @@ export class HotelsService {
       status: 1,
       auditReason: null,
     });
+  }
+
+  async approveAllPending() {
+    const result = await this.prisma.hotel.updateMany({
+      where: { status: 0 },
+      data: { status: 1, auditReason: null },
+    });
+    return { updated: result.count };
   }
 
   async rejectHotel(hotelId: number, auditReason: string) {

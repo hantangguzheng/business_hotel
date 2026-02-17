@@ -159,6 +159,11 @@ enum ViewFacility {
   CITY_VIEW
 }
 
+enum BookingStatus {
+  CONFIRMED
+  CANCELLED
+}
+
 
 model User {
   id         Int      @id @default(autoincrement())
@@ -167,6 +172,7 @@ model User {
   role       Role     @default(MERCHANT)
   created_at DateTime @default(now())
   hotels Hotel[]
+  bookings Booking[]
 }
 
 model Hotel {
@@ -209,6 +215,7 @@ model Hotel {
 
   // 关联
   rooms           Room[]
+  bookings        Booking[]
 
   @@index([merchantId])
   @@index([cityCode])
@@ -252,6 +259,7 @@ model Room {
   totalStock    Int      @default(0) @map("total_stock")
 
   inventories   RoomInventory[]
+  bookings      Booking[]
 
   @@index([hotelId])
   @@map("room")
@@ -269,4 +277,27 @@ model RoomInventory {
   @@unique([roomId, date])
   @@index([date])
   @@map("room_inventory")
+}
+
+model Booking {
+  id         Int            @id @default(autoincrement())
+  userId     Int?           @map("user_id")
+  user       User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hotelId    Int            @map("hotel_id")
+  hotel      Hotel          @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  roomId     Int            @map("room_id")
+  room       Room           @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  checkIn    DateTime       @db.Date @map("check_in")
+  checkOut   DateTime       @db.Date @map("check_out")
+  rooms      Int            @default(1)
+  people     Int            @default(1)
+  totalPrice Decimal        @db.Decimal(12, 2) @map("total_price")
+  status     BookingStatus  @default(CONFIRMED)
+  createdAt  DateTime       @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@index([hotelId])
+  @@index([roomId])
+  @@index([checkIn, checkOut])
+  @@map("booking")
 }

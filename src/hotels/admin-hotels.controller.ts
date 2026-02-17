@@ -23,6 +23,11 @@ export class AdminHotelsController {
     return this.hotelsService.listAllForAdmin(query);
   }
 
+  @Post('approve-all')
+  approveAllPending() {
+    return this.hotelsService.approveAllPending();
+  }
+
   @Post(':id/approve')
   approve(@Param('id') id: string) {
     return this.hotelsService.approveHotel(Number(id));

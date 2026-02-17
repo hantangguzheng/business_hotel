@@ -1,0 +1,29 @@
+[
+    {
+        "nameCn": "布丁严选酒店(上海环球港金沙江路店)",
+        "nameEn": "Pod Choice Hotel (Shanghai Huanqiugang Jinshajiang Lu Road)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc1h12000bxcxszr0C43_R_640_440_R5_D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1h12000bxcxszr0C43_C_400_600_R5_Q70.jpg"
+        ],
+        "starRating": 2,
+        "score": "4.6",
+        "totalReviews": 1032,
+        "price": "117.0",
+        "crossLinePrice": "128.0",
+        "currency": "RMB",
+        "shortTags": [
+            "DELIVERY_ROBOT",
+            "FREE_LAUNDRY",
+            "SUITE",
+            "NON_SMOKING_FLOOR",
+            "HEATING",
+            "FREE_LUGGAGE"
+        ],
+        "latitude": 31.242719,
+        "longitude": 121.407987,
+        "address": "近华东师范大学(普陀校区)",
+        "cityCode": "2",
+        "openingDate": "2020-01-01T00:00:00.000Z"
+    }
+]

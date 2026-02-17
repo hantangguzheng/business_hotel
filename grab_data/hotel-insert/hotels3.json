@@ -1,0 +1,797 @@
+[
+    {
+        "id": "768226",
+        "nameCn": "99旅馆连锁(上海剑川路店)",
+        "nameEn": "99 Inn (Shanghai Jianchuan Road)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc0z12000bo1xi6u5D42_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc0z12000bo1xi6u5D42_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.3",
+        "totalReviews": 44,
+        "price": 81.0,
+        "crossLinePrice": 119.0,
+        "currency": "RMB",
+        "shortTags": [
+            "宠物友好",
+            "充电桩",
+            "家庭房",
+            "免费停车",
+            "免费客房WiFi"
+        ],
+        "latitude": 31.048768,
+        "longitude": 121.479207,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "5266732",
+        "nameCn": "维也纳国际酒店(上海交大沪闵路店)",
+        "nameEn": "Vienna International Hotel (Shanghai Jiaotong University Humin Road)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/02039120009wcwqyd9499_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/02039120009wcwqyd9499_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.5",
+        "totalReviews": 1730,
+        "price": 185.0,
+        "crossLinePrice": 203.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "棋牌室",
+            "洗衣房",
+            "KTV",
+            "套房",
+            "充电桩"
+        ],
+        "latitude": 31.013785,
+        "longitude": 121.428148,
+        "address": "近江川路地铁站",
+        "cityCode": 2
+    },
+    {
+        "id": "1569574",
+        "nameCn": "如家酒店·neo(上海闵行开发区北桥地铁站店)",
+        "nameEn": "Homeinns.neo shnghaiminhangdevelopmentzonenorthbridgesubwaystationstore",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0202x1200087hacc8E018_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0202x1200087hacc8E018_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.6",
+        "totalReviews": 794,
+        "price": 147.0,
+        "crossLinePrice": 160.0,
+        "currency": "RMB",
+        "shortTags": [
+            "家庭房",
+            "免费行李寄存",
+            "免费客房WiFi"
+        ],
+        "latitude": 31.052474,
+        "longitude": 121.415295,
+        "address": "近北桥地铁站",
+        "cityCode": 2
+    },
+    {
+        "id": "896422",
+        "nameCn": "贵萍宾馆",
+        "nameEn": "Guiping Hotel",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/02054120003ikgvd9CEF6_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/02054120003ikgvd9CEF6_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.6",
+        "totalReviews": 201,
+        "price": 137.0,
+        "crossLinePrice": 139.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费客房WiFi"
+        ],
+        "latitude": 31.048334,
+        "longitude": 121.476077,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "2096514",
+        "nameCn": "易佰良品酒店(上海闵行华师大店)",
+        "nameEn": "100 Inn Liangpin Hotel (Shanghai Minhang East China Normal University)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0201d12000kzkr8sdFFEB_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0201d12000kzkr8sdFFEB_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.6",
+        "totalReviews": 471,
+        "price": 127.0,
+        "crossLinePrice": 174.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费停车",
+            "无烟楼层",
+            "免费客房WiFi",
+            "充电桩",
+            "全屋暖气",
+            "免费行李寄存"
+        ],
+        "latitude": 31.047744,
+        "longitude": 121.460975,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "112762730",
+        "nameCn": "NiceHotel智慧轻奢酒店(闵行交大华师大店)",
+        "nameEn": "NiceHotel Smart Light Luxury Hotel (Minhang China Normal University)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc6m12000mpjfo1vA517_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc6m12000mpjfo1vA517_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.7",
+        "totalReviews": 587,
+        "price": 174.0,
+        "crossLinePrice": 340.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "智能客控",
+            "免费客房WiFi",
+            "洗衣房",
+            "棋牌室",
+            "窗外好景"
+        ],
+        "latitude": 31.041928,
+        "longitude": 121.465829,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "2833107",
+        "nameCn": "IU酒店(上海交大江川路地铁站店)",
+        "nameEn": "IU Hotel",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc3712000b8fg0jk87E5_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc3712000b8fg0jk87E5_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.6",
+        "totalReviews": 1076,
+        "price": 116.0,
+        "crossLinePrice": 127.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费停车",
+            "充电桩",
+            "免费客房WiFi",
+            "咖啡厅",
+            "洗衣房",
+            "套房"
+        ],
+        "latitude": 31.014833,
+        "longitude": 121.429425,
+        "address": "近上海交通大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "130294471",
+        "nameCn": "如元朗诗酒店式公寓(闵行交通大学店)",
+        "nameEn": "Ruyuanlangshi Serviced Apartment (Minhang Jiaotong University)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc7312000pqkq8jo55AB_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc7312000pqkq8jo55AB_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.1",
+        "totalReviews": 37,
+        "price": 105.0,
+        "crossLinePrice": 159.0,
+        "currency": "RMB",
+        "shortTags": [
+            "复式loft房",
+            "新开业",
+            "免费行李寄存",
+            "免费客房WiFi"
+        ],
+        "latitude": 31.017914,
+        "longitude": 121.440356,
+        "address": "近上海交通大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "4535660",
+        "nameCn": "如家派柏·云酒店(上海闵行华师大店)",
+        "nameEn": "Pebble Motel (Shanghai Minhang Huashi University Hongmei South Road store)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0206d120008bjvduoC488_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0206d120008bjvduoC488_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.2",
+        "totalReviews": 222,
+        "price": 144.0,
+        "crossLinePrice": 163.0,
+        "currency": "RMB",
+        "shortTags": [
+            "洗衣房",
+            "充电桩",
+            "免费停车",
+            "免费行李寄存",
+            "免费客房WiFi"
+        ],
+        "latitude": 31.054382,
+        "longitude": 121.458133,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "18437126",
+        "nameCn": "苹果商务酒店(上海交大金悦乐方店)",
+        "nameEn": "Apple Hotel (Shanghai Bijiang Plaza)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/2B061g000001h71rvC82A_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/2B061g000001h71rvC82A_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.6",
+        "totalReviews": 932,
+        "price": 132.0,
+        "crossLinePrice": 170.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "免费停车",
+            "洗衣房",
+            "免费行李寄存",
+            "无烟楼层",
+            "免费客房WiFi"
+        ],
+        "latitude": 31.012846,
+        "longitude": 121.411933,
+        "address": "近金平路地铁站",
+        "cityCode": 2
+    },
+    {
+        "id": "127361058",
+        "nameCn": "育田公寓",
+        "nameEn": "Yutian B&B",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc1112000jct7n2bA35E_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc1112000jct7n2bA35E_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.6",
+        "totalReviews": 48,
+        "price": 168.0,
+        "crossLinePrice": 228.0,
+        "currency": "RMB",
+        "shortTags": [
+            "新开业",
+            "宠物友好",
+            "免费洗衣服务",
+            "管家服务",
+            "自助入住",
+            "可做饭"
+        ],
+        "latitude": 31.085081,
+        "longitude": 120.988329,
+        "address": "近600号皮划艇俱乐部",
+        "cityCode": 2
+    },
+    {
+        "id": "85240760",
+        "nameCn": "云庭酒店(上海青浦朱家角古镇店)",
+        "nameEn": "Yunting Hotel (Shanghai Qingpu Zhujiajiao Ancient Town)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc0412000elz17daCDEF_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc0412000elz17daCDEF_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.6",
+        "totalReviews": 419,
+        "price": 206.0,
+        "crossLinePrice": 350.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "免费停车",
+            "棋牌室",
+            "会议厅",
+            "复式loft房",
+            "家庭影院"
+        ],
+        "latitude": 31.11519,
+        "longitude": 121.058412,
+        "address": "近朱家角古镇景区",
+        "cityCode": 2
+    },
+    {
+        "id": "66663276",
+        "nameCn": "淀山湖·留夏拾光民宿(蔡浜村店)",
+        "nameEn": "Dianshan Lake Liuxia Shiguang Homestay(Cai Bang Cun Store )",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc7212000o1bxbyyF5FA_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc7212000o1bxbyyF5FA_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.8",
+        "totalReviews": 76,
+        "price": 269.0,
+        "crossLinePrice": 359.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "江河景房",
+            "管家服务",
+            "棋牌室",
+            "可携带宠物",
+            "亲近动物"
+        ],
+        "latitude": 31.123103,
+        "longitude": 120.954251,
+        "address": "近蔡浜村",
+        "cityCode": 2
+    },
+    {
+        "id": "124979385",
+        "nameCn": "上海柒分田舍",
+        "nameEn": "Shanghai Qifen farmhouse",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0205712000hasghgw5D6E_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0205712000hasghgw5D6E_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.8",
+        "totalReviews": 41,
+        "price": 217.0,
+        "crossLinePrice": 250.0,
+        "currency": "RMB",
+        "shortTags": [
+            "游戏室",
+            "棋牌房",
+            "洗衣房",
+            "家庭房",
+            "免费停车",
+            "花园"
+        ],
+        "latitude": 31.0866,
+        "longitude": 120.98658,
+        "address": "近600号皮划艇俱乐部",
+        "cityCode": 2
+    },
+    {
+        "id": "7052276",
+        "nameCn": "上海岑卜村源来客栈",
+        "nameEn": "Shanghai Yuanlai Chinese Inn Cenbocun",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/200n0f0000007hpes9564_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/200n0f0000007hpes9564_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.6",
+        "totalReviews": 44,
+        "price": 277.0,
+        "crossLinePrice": 302.0,
+        "currency": "RMB",
+        "shortTags": [
+            "湖景房",
+            "复式loft房",
+            "榻榻米房",
+            "宠物友好",
+            "租车服务",
+            "免费停车"
+        ],
+        "latitude": 31.063006,
+        "longitude": 120.949583,
+        "address": "近岑卜村",
+        "cityCode": 2
+    },
+    {
+        "id": "102446336",
+        "nameCn": "淀山湖道甜农庄",
+        "nameEn": "Dianshanhu Road Tiantian Farm",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc0p12000o1bwqbzB140_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc0p12000o1bwqbzB140_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.8",
+        "totalReviews": 24,
+        "price": 278.0,
+        "crossLinePrice": 379.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费停车",
+            "烧烤",
+            "KTV",
+            "儿童秋千滑梯",
+            "湖景房",
+            "影音房"
+        ],
+        "latitude": 31.123408,
+        "longitude": 120.952032,
+        "address": "近蔡浜村",
+        "cityCode": 2
+    },
+    {
+        "id": "3292141",
+        "nameCn": "上海漫乡居民宿",
+        "nameEn": "Manxiangju Hostel",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0203x120008wa16wc43A6_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0203x120008wa16wc43A6_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.6",
+        "totalReviews": 18,
+        "price": 292.0,
+        "crossLinePrice": 318.0,
+        "currency": "RMB",
+        "shortTags": [
+            "复式loft房",
+            "独栋别墅",
+            "榻榻米房",
+            "江河景房",
+            "家庭影院",
+            "茶室"
+        ],
+        "latitude": 31.062315,
+        "longitude": 120.94463,
+        "address": "近岑卜村",
+        "cityCode": 2
+    },
+    {
+        "id": "111365612",
+        "nameCn": "上海星火鎏营精品民宿",
+        "nameEn": "Shanghai Xinghuo Lioying Boutique B&B",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0206y12000btp8ekt8A41_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0206y12000btp8ekt8A41_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.6",
+        "totalReviews": 33,
+        "price": 366.0,
+        "crossLinePrice": 431.0,
+        "currency": "RMB",
+        "shortTags": [
+            "咖啡厅",
+            "家庭房",
+            "管家服务",
+            "轰趴",
+            "免费送站",
+            "KTV"
+        ],
+        "latitude": 31.063417,
+        "longitude": 120.947507,
+        "address": "近岑卜村",
+        "cityCode": 2
+    },
+    {
+        "id": "88952074",
+        "nameCn": "上海淀湖壹号民宿",
+        "nameEn": "Shanghai Dianhu No.1 B&B",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc3812000cok05x134E4_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc3812000cok05x134E4_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.8",
+        "totalReviews": 14,
+        "price": 328.0,
+        "crossLinePrice": null,
+        "currency": "RMB",
+        "shortTags": [
+            "儿童乐园",
+            "亲近动物",
+            "KTV",
+            "茶室",
+            "棋牌室",
+            "套房"
+        ],
+        "latitude": 31.122349,
+        "longitude": 120.952582,
+        "address": "近蔡浜村",
+        "cityCode": 2
+    },
+    {
+        "id": "89812243",
+        "nameCn": "上海悦见悠然民宿(莲谢路店)",
+        "nameEn": "Shanghai Yuejian Youran Homestay (Lianxie Road)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc5a12000eh72lv7C360_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc5a12000eh72lv7C360_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.9",
+        "totalReviews": 21,
+        "price": 179.0,
+        "crossLinePrice": 230.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "宠物友好",
+            "可做饭",
+            "家庭房",
+            "免费停车",
+            "全屋暖气"
+        ],
+        "latitude": 31.064986,
+        "longitude": 121.01206,
+        "address": "近上海青西郊野公园",
+        "cityCode": 2
+    },
+    {
+        "id": "6729843",
+        "nameCn": "中国石化上海会议中心",
+        "nameEn": "Sinopec Shanghai Conference Center",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/200p1f000001gaz3f438A_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/200p1f000001gaz3f438A_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.6",
+        "totalReviews": 119,
+        "price": 205.0,
+        "crossLinePrice": 223.0,
+        "currency": "RMB",
+        "shortTags": [
+            "KTV",
+            "乒乓球室",
+            "棋牌室",
+            "租车服务",
+            "窗外好景",
+            "花园"
+        ],
+        "latitude": 31.065962,
+        "longitude": 120.922276,
+        "address": "近淀山湖日月岛度假村",
+        "cityCode": 2
+    },
+    {
+        "id": "118970508",
+        "nameCn": "临湖小院",
+        "nameEn": "Linhuxiaoyuan Courtyard",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc4n12000dqptjelB8A8_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc4n12000dqptjelB8A8_C_400_600_R5_Q70.jpg",
+        "starRating": 0,
+        "score": "5.0",
+        "totalReviews": 30,
+        "price": 300.0,
+        "crossLinePrice": null,
+        "currency": "RMB",
+        "shortTags": [
+            "亲近动物",
+            "免费洗衣服务",
+            "狗狗友好",
+            "自助早餐",
+            "家庭房",
+            "可做饭"
+        ],
+        "latitude": 31.123444,
+        "longitude": 120.953985,
+        "address": "近蔡浜村",
+        "cityCode": 2
+    },
+    {
+        "id": "106528961",
+        "nameCn": "美丽家园民宿(蔡浜村店)",
+        "nameEn": "Beautiful House",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0202u12000b2kdew1269A_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0202u12000b2kdew1269A_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.7",
+        "totalReviews": 42,
+        "price": 265.0,
+        "crossLinePrice": 500.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "私汤房",
+            "壁球室",
+            "高尔夫球场",
+            "供氧设施",
+            "行政酒廊"
+        ],
+        "latitude": 31.122402,
+        "longitude": 120.954022,
+        "address": "近蔡浜村",
+        "cityCode": 2
+    },
+    {
+        "id": "56166704",
+        "nameCn": "全季酒店(上海青浦朱家角地铁站店)",
+        "nameEn": "JI Hotel (Shanghai Qingpu Zhujiajiao Subway Station)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/20091e000001fn9i7EE46_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/20091e000001fn9i7EE46_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.9",
+        "totalReviews": 1763,
+        "price": 316.0,
+        "crossLinePrice": 344.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费停车",
+            "机器人服务",
+            "智能客控",
+            "干衣机",
+            "健身室",
+            "自助早餐"
+        ],
+        "latitude": 31.109694,
+        "longitude": 121.06083,
+        "address": "近朱家角地铁站",
+        "cityCode": 2
+    },
+    {
+        "id": "85043491",
+        "nameCn": "青西花间名宿度假别墅(莲谢路分店)",
+        "nameEn": "Qingxi Huajian Boutique Resort Villa (Lianxie Road)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0224e12000badcw8y015C_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0224e12000badcw8y015C_C_400_600_R5_Q70.jpg",
+        "starRating": 0,
+        "score": "4.6",
+        "totalReviews": 13,
+        "price": 308.0,
+        "crossLinePrice": 335.0,
+        "currency": "RMB",
+        "shortTags": [
+            "可做饭",
+            "充电桩",
+            "全屋暖气",
+            "免费客房WiFi"
+        ],
+        "latitude": 31.068974,
+        "longitude": 121.01273,
+        "address": "近上海青西郊野公园",
+        "cityCode": 2
+    },
+    {
+        "id": "123303059",
+        "nameCn": "上海·九如巷·中式文化体验禅院(龙星村店)",
+        "nameEn": "Shanghai Jiuruxiang Chinese Cultural Experience Zen Retreat (Longxing Village)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc4412000fq1k7595B20_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc4412000fq1k7595B20_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.8",
+        "totalReviews": 14,
+        "price": 281.0,
+        "crossLinePrice": 488.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "影音房",
+            "宠物友好",
+            "榻榻米房",
+            "独栋别墅",
+            "茶室"
+        ],
+        "latitude": 31.091962,
+        "longitude": 121.029245,
+        "address": "近东方绿舟景区",
+        "cityCode": 2
+    },
+    {
+        "id": "127960032",
+        "nameCn": "乡里墅",
+        "nameEn": "XiangLiShu",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0200e12000r8iw86k0F47_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0200e12000r8iw86k0F47_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.9",
+        "totalReviews": 31,
+        "price": 441.0,
+        "crossLinePrice": 480.0,
+        "currency": "RMB",
+        "shortTags": [
+            "江河景房",
+            "免费停车",
+            "水上乐园",
+            "免费班车",
+            "智能客控",
+            "自助入住"
+        ],
+        "latitude": 31.057285,
+        "longitude": 121.003983,
+        "address": "近上海青西郊野公园",
+        "cityCode": 2
+    },
+    {
+        "id": "105453395",
+        "nameCn": "一米阳光民宿(蔡浜村路店)",
+        "nameEn": "Yimiyangguang Homestay (Caibangcun Road)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0221412000chsugkbF02F_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0221412000chsugkbF02F_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.4",
+        "totalReviews": 24,
+        "price": 280.0,
+        "crossLinePrice": null,
+        "currency": "RMB",
+        "shortTags": [
+            "宠物友好",
+            "套房",
+            "花园",
+            "全屋暖气",
+            "免费客房WiFi"
+        ],
+        "latitude": 31.122651,
+        "longitude": 120.951214,
+        "address": "近蔡浜村",
+        "cityCode": 2
+    },
+    {
+        "id": "106269907",
+        "nameCn": "上海度假公寓(朱家角工业园店)",
+        "nameEn": "chengcheng hotel",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc1g12000atd4nji17FC_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc1g12000atd4nji17FC_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.5",
+        "totalReviews": 114,
+        "price": 190.0,
+        "crossLinePrice": 339.0,
+        "currency": "RMB",
+        "shortTags": [
+            "亲子主题房",
+            "影音房",
+            "儿童乐园",
+            "棋牌房",
+            "可携带宠物",
+            "免费洗衣服务"
+        ],
+        "latitude": 31.091259,
+        "longitude": 121.058955,
+        "address": "近朱家角地铁站",
+        "cityCode": 2
+    },
+    {
+        "id": "81299200",
+        "nameCn": "乡里宿民宿",
+        "nameEn": "VILLAGE  STAY",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0206112000930gikyC1A9_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0206112000930gikyC1A9_C_400_600_R5_Q70.jpg",
+        "starRating": 4,
+        "score": "4.8",
+        "totalReviews": 114,
+        "price": 502.0,
+        "crossLinePrice": 650.0,
+        "currency": "RMB",
+        "shortTags": [
+            "小而美",
+            "果蔬采摘",
+            "复式loft房",
+            "管家服务",
+            "可携带宠物",
+            "江河景房"
+        ],
+        "latitude": 31.067199,
+        "longitude": 121.011047,
+        "address": "近上海青西郊野公园",
+        "cityCode": 2
+    }
+]

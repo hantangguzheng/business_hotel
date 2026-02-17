@@ -9,9 +9,9 @@ import {
   Put,
   Query,
   Req,
-  UseGuards,
+  //UseGuards,
 } from '@nestjs/common';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+//import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { HotelsService } from './hotels.service';
 import { CreateHotelDto } from './dto/create-hotel.dto';
 import { UpdateHotelDto } from './dto/update-hotel.dto';
@@ -19,7 +19,7 @@ import { SearchHotelsDto } from './dto/search-hotels.dto';
 import { HotelDetailQueryDto } from './dto/hotel-detail-query.dto';
 
 @Controller('hotels')
-@UseGuards(JwtAuthGuard)
+//@UseGuards(JwtAuthGuard)
 export class HotelsController {
   constructor(private readonly hotelsService: HotelsService) {}
 
