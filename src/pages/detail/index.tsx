@@ -32,7 +32,7 @@ const hotelMap = {
   },
 };
 // 引入SDK核心类
-const QQMapWX = require("../../../utils/qqmap-wx-jssdk");
+const QQMapWX = require("../../utils/qqmap-wx-jssdk");
 
 // 实例化API核心类
 const qqmapsdk = new QQMapWX({

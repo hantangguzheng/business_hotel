@@ -81,11 +81,11 @@
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "postcss": "^8.4.18",
-    "react-refresh": "^0.11.0",
+    "react-refresh": "^0.14.0",
     "stylelint": "^14.4.0",
     "ts-node": "^10.9.1",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
     "typescript": "^5.1.0",
-    "webpack": "5.78.0"
+    "webpack": "5.91.0"
   }
 }

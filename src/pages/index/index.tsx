@@ -8,7 +8,7 @@ import { useSharedFilter } from "../../store/filter-context";
 import zh from "../../locales/zh";
 import en from "../../locales/en";
 import logo from "../../../assets/imgs/logo.png";
-import md5 from "../../../utils/md5.js";
+import md5 from "../../utils/md5.js";
 import "./index.scss";
 const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
 const QQ_MAP_SK = "eReOMGZUU9rMnVbYphtudUST6EfMC7MC";

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Input, ScrollView, View } from "@tarojs/components";
 import Taro, { useDidShow } from "@tarojs/taro";
-import md5 from "../../../utils/md5.js";
+import md5 from "../../utils/md5.js";
 import "./index.scss";
 
 const CITY_STORAGE_KEY = "city_selected";
@@ -9,7 +9,7 @@ const CITY_ADDRESS_KEY = "city_address";
 const MY_LOCATION_KEY = "__MY_LOCATION__";
 const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
 const QQ_MAP_SK = "eReOMGZUU9rMnVbYphtudUST6EfMC7MC";
-const { cities } = require("../../../utils/city");
+const { cities } = require("../../utils/city");
 
 const HOT_CITIES = (cities.热门 || []).map((item) => item.name);
 const CITY_GROUPS = Object.keys(cities)

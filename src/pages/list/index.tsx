@@ -5,32 +5,10 @@ import { Button, Calendar, Popup } from "@nutui/nutui-react-taro";
 import { ArrowDown, Close } from "@nutui/icons-react-taro";
 import GuestSelector from "../../components/guest-selector";
 import { useSharedFilter } from "../../store/filter-context";
-import quanjiImage from "../../../assets/imgs/quanji.png";
-import rujiaImage from "../../../assets/imgs/rujia.png";
+import { searchHotels } from "../../apis/hotels";
+import type { HotelListItem } from "../../apis/type";
+const { cities } = require("../../utils/city");
 import "./index.scss";
-
-const mockHotels = [
-  {
-    id: "1",
-    name: "全季酒店(上海长寿路地铁站店)",
-    distance: "距您直线距离4.1公里",
-    price: 340,
-    nights: 1,
-    rating: 4.9,
-    tags: ["洗衣房", "免费停车", "自助早餐"],
-    image: quanjiImage,
-  },
-  {
-    id: "2",
-    name: "如家酒店",
-    distance: "距您直线距离3.9公里",
-    price: 276,
-    nights: 1,
-    rating: 4.9,
-    tags: ["免费停车", "健身房"],
-    image: rujiaImage,
-  },
-];
 
 function ListPage() {
   const params = Taro.getCurrentInstance().router?.params || {};
@@ -53,15 +31,34 @@ function ListPage() {
       return value;
     }
   };
+
+  const getCityCodeByName = (cityName?: string) => {
+    if (!cityName) return undefined;
+    const normalizedCity = cityName.replace(/市$/, "").trim();
+    if (/^[A-Z]{3}$/.test(normalizedCity)) {
+      return normalizedCity;
+    }
+
+    const groupKeys = Object.keys(cities || {});
+    for (let index = 0; index < groupKeys.length; index += 1) {
+      const group = cities[groupKeys[index]] || [];
+      const matched = group.find(
+        (item) => item?.name === normalizedCity || item?.name === cityName,
+      );
+      if (matched?.cityCode) {
+        return matched.cityCode;
+      }
+    }
+    return undefined;
+  };
   const [filterVisible, setFilterVisible] = useState(false);
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [dateRange, setDateRange] = useState<string[]>([checkIn, checkOut]);
   const [activeFacilityTab, setActiveFacilityTab] = useState("酒店设施");
-  const [selectedFacilities, setSelectedFacilities] = useState<string[]>([
-    "免费WIFI",
-    "停车场",
-  ]);
-  const [selectedStar, setSelectedStar] = useState(4);
+  const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
+  const [selectedStar, setSelectedStar] = useState(0);
+  const [hotels, setHotels] = useState<HotelListItem[]>([]);
+  const [loadingHotels, setLoadingHotels] = useState(false);
 
   useEffect(() => {
     const nextKeyword = decodeParam(params.keyword);
@@ -82,6 +79,40 @@ function ListPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const fetchHotelList = async () => {
+    const cityCode = getCityCodeByName(city);
+    const peopleNeeded = adultCount + childCount;
+    const keywordValue = keyword.trim();
+
+    setLoadingHotels(true);
+
+    try {
+      const response = await searchHotels({
+        cityCode,
+        keyword: keywordValue || undefined,
+        checkIn,
+        checkOut,
+        roomsNeeded: roomCount,
+        peopleNeeded,
+        minStar: selectedStar > 0 ? selectedStar : undefined,
+        tags: selectedFacilities.length > 0 ? selectedFacilities : undefined,
+        page: 1,
+        pageSize: 20,
+      });
+
+      setHotels(response.data || []);
+    } catch (error) {
+      setHotels([]);
+      Taro.showToast({
+        title: "获取酒店列表失败",
+        icon: "none",
+        duration: 1500,
+      });
+    } finally {
+      setLoadingHotels(false);
+    }
+  };
+
   const filterTabs = ["酒店设施", "客房设施", "房间面积", "评分"];
   const facilityMap = {
     酒店设施: ["免费WIFI", "健身房", "电视", "停车场"],
@@ -93,6 +124,24 @@ function ListPage() {
   useEffect(() => {
     setDateRange([checkIn, checkOut]);
   }, [checkIn, checkOut]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      void fetchHotelList();
+    }, 250);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    city,
+    keyword,
+    checkIn,
+    checkOut,
+    roomCount,
+    adultCount,
+    childCount,
+    selectedStar,
+    selectedFacilities,
+  ]);
 
   const normalizeDate = (value) => {
     if (!value) return "";
@@ -161,6 +210,30 @@ function ListPage() {
   const cityLabel = city || "城市";
   const priceLabel = "￥0 ~ ￥400";
 
+  const nights = useMemo(() => {
+    if (!checkIn || !checkOut) return 0;
+    const startTime = new Date(checkIn.replace(/-/g, "/")).getTime();
+    const endTime = new Date(checkOut.replace(/-/g, "/")).getTime();
+    if (
+      Number.isNaN(startTime) ||
+      Number.isNaN(endTime) ||
+      endTime <= startTime
+    ) {
+      return 0;
+    }
+    return Math.round((endTime - startTime) / (24 * 60 * 60 * 1000));
+  }, [checkIn, checkOut]);
+
+  const formatDistance = (distance?: number) => {
+    if (typeof distance !== "number" || Number.isNaN(distance)) {
+      return "暂无距离信息";
+    }
+    if (distance >= 1000) {
+      return `距您直线距离${(distance / 1000).toFixed(1)}公里`;
+    }
+    return `距您直线距离${Math.round(distance)}米`;
+  };
+
   const updateGuestCount = (nextValue, minValue, maxValue, setter) => {
     const max = typeof maxValue === "number" ? maxValue : 99;
     const min = typeof minValue === "number" ? minValue : 0;
@@ -177,7 +250,7 @@ function ListPage() {
     });
   };
 
-  const handleOpenDetail = (hotelId: string) => {
+  const handleOpenDetail = (hotelId: string | number) => {
     Taro.navigateTo({ url: `/pages/detail/index?id=${hotelId}` });
   };
 
@@ -218,43 +291,61 @@ function ListPage() {
       </View>
 
       <View className="hotel-list">
-        {mockHotels.map((hotel) => (
-          <View
-            className="hotel-card"
-            key={hotel.id}
-            onClick={() => handleOpenDetail(hotel.id)}
-          >
-            <View className="hotel-card__media">
-              <Image
-                className="hotel-card__image"
-                src={hotel.image}
-                mode="aspectFill"
-              />
-              <View className="hotel-card__rating">
-                <View className="hotel-card__rating-icon" />
-                <View>{hotel.rating}</View>
-              </View>
-              <View className="hotel-card__fav">Fav</View>
-            </View>
-            <View className="hotel-card__body">
-              <View className="hotel-card__title">{hotel.name}</View>
-              <View className="hotel-card__row">
-                <View className="hotel-card__distance">{hotel.distance}</View>
-                <View className="hotel-card__price">¥ {hotel.price}起</View>
-              </View>
-              <View className="hotel-card__row">
-                <View className="hotel-card__tags">
-                  {hotel.tags.map((tag) => (
-                    <View className="hotel-card__tag" key={tag}>
-                      {tag}
-                    </View>
-                  ))}
+        {loadingHotels && <View className="hotel-list__empty">加载中...</View>}
+        {!loadingHotels && hotels.length === 0 && (
+          <View className="hotel-list__empty">暂无符合条件的酒店</View>
+        )}
+        {!loadingHotels &&
+          hotels.map((hotel) => (
+            <View
+              className="hotel-card"
+              key={hotel.id}
+              onClick={() => handleOpenDetail(hotel.id)}
+            >
+              <View className="hotel-card__media">
+                <Image
+                  className="hotel-card__image"
+                  src={
+                    hotel.imageUrls?.[0] ||
+                    "https://dummyimage.com/600x400/f0f2f5/999999&text=Hotel"
+                  }
+                  mode="aspectFill"
+                />
+                <View className="hotel-card__rating">
+                  <View className="hotel-card__rating-icon" />
+                  <View>
+                    {typeof hotel.score === "number"
+                      ? hotel.score.toFixed(1)
+                      : "--"}
+                  </View>
                 </View>
-                <View className="hotel-card__nights">{hotel.nights}晚</View>
+                <View className="hotel-card__fav">Fav</View>
+              </View>
+              <View className="hotel-card__body">
+                <View className="hotel-card__title">
+                  {hotel.nameCn || hotel.nameEn}
+                </View>
+                <View className="hotel-card__row">
+                  <View className="hotel-card__distance">
+                    {formatDistance(hotel.distance)}
+                  </View>
+                  <View className="hotel-card__price">
+                    ¥ {hotel.price || 0}起
+                  </View>
+                </View>
+                <View className="hotel-card__row">
+                  <View className="hotel-card__tags">
+                    {(hotel.shortTags || []).slice(0, 3).map((tag) => (
+                      <View className="hotel-card__tag" key={tag}>
+                        {tag}
+                      </View>
+                    ))}
+                  </View>
+                  <View className="hotel-card__nights">{nights}晚</View>
+                </View>
               </View>
             </View>
-          </View>
-        ))}
+          ))}
       </View>
 
       <Popup
@@ -416,7 +507,10 @@ function ListPage() {
           <Button
             className="filter-panel__confirm"
             type="primary"
-            onClick={() => setFilterVisible(false)}
+            onClick={() => {
+              setFilterVisible(false);
+              void fetchHotelList();
+            }}
           >
             确定
           </Button>
