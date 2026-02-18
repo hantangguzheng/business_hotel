@@ -1,0 +1,76 @@
+[
+  {
+    "hotelId": "110386987",
+    "name": "尊享大床房",
+    "areaTitle": "less35",
+    "bedTitle": "king",
+    "windowTitle": "y",
+    "floorTitle": "2",
+    "smokeTitle": "n",
+    "wifiInfo": "y",
+    "pictureUrl": [
+      "https://dimg04.c-ctrip.com/images/1mc6s12000bxcxr6iE74D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc3p12000bxcxpnk9D9E.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc2w12000bxcxrfc243A.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc3p12000bxcxre1E921.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc4d12000bxcxrac888A.jpg"
+    ],
+    "capacity": 2,
+    "price": "153",
+    "totalStock": 5,
+    "bathingFacilities": [
+      "TOOTHBRUSH",
+      "TOOTHPASTE",
+      "SHOWER_GEL",
+      "SHAMPOO",
+      "CONDITIONER",
+      "SOAP",
+      "SHOWER_CAP",
+      "COMB",
+      "RAZOR"
+    ],
+    "cleaningFacilities": [
+      "DAILY_CLEANING",
+      "CLEANING_TOOLS"
+    ],
+    "layoutFacilities": [
+      "DESK"
+    ],
+    "networkFacilities": [
+      "ROOM_WIFI"
+    ],
+    "bathroomFacilities": [
+      "PRIVATE_BATHROOM",
+      "PRIVATE_TOILET",
+      "HAIR_DRYER",
+      "SHOWER",
+      "MIRROR",
+      "TOWEL",
+      "BATH_TOWEL",
+      "HOT_WATER_24H",
+      "SLIPPERS",
+      "RAIN_SHOWER"
+    ],
+    "roomSpecFacilities": [
+      "AC",
+      "HEATING",
+      "AUTO_CURTAINS",
+      "BLACKOUT_CURTAINS",
+      "EXTRA_LONG_BED"
+    ],
+    "mediaFacilities": [
+      "LCD_TV",
+      "CABLE",
+      "SMART_LOCK"
+    ],
+    "amenityFacilities": [
+      "HANGERS",
+      "SOCKET_MULTI"
+    ],
+    "accessibleFacilities": [],
+    "foodFacilities": [],
+    "childFacilities": [],
+    "kitchenFacilities": [],
+    "viewFacilities": []
+  }
+]

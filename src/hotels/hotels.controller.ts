@@ -33,6 +33,11 @@ export class HotelsController {
     return this.hotelsService.search(query);
   }
 
+  @Post('search')
+  searchWithBody(@Body() body: SearchHotelsDto) {
+    return this.hotelsService.search(body);
+  }
+
   @Get(':id/detail')
   detail(@Param('id') id: string, @Query() query: HotelDetailQueryDto) {
     return this.hotelsService.getHotelDetail(Number(id), query);
@@ -43,8 +48,13 @@ export class HotelsController {
     return this.hotelsService.findMine(req.user.userId);
   }
 
-  @Get(':id')
-  findOne(@Req() req: any, @Param('id') id: string) {
+  @Get(':id/public')
+  findPublic(@Param('id') id: string) {
+    return this.hotelsService.findByIdForUser(0, 'ADMIN', Number(id));
+  }
+
+  @Get(':id/private')
+  findPrivate(@Req() req: any, @Param('id') id: string) {
     return this.hotelsService.findByIdForUser(
       req.user.userId,
       req.user.role,

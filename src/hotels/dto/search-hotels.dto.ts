@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-import { Type } from 'class-transformer';
+import { Type, Transform } from 'class-transformer';
 import {
   IsArray,
   IsDateString,
@@ -25,6 +26,11 @@ const BED_TITLES = ['single', 'double', 'twin', 'king', 'others'] as const;
 const WINDOW_TITLES = ['y', 'n'] as const;
 const SMOKE_TITLES = ['y', 'n'] as const;
 const WIFI_OPTIONS = ['y', 'n'] as const;
+
+const transformToArray = ({ value }: { value: unknown }) => {
+  if (value === undefined || value === null) return undefined;
+  return Array.isArray(value) ? value : [value];
+};
 
 class HotelRoomTagFiltersDto {
   @IsOptional()
@@ -164,6 +170,7 @@ export class SearchHotelsDto {
   minScore?: number;
 
   @IsOptional()
+  @Transform(transformToArray, { toClassOnly: true })
   @IsArray()
   @IsString({ each: true })
   tags?: string[];
