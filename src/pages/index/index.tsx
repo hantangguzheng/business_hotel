@@ -234,9 +234,9 @@ function Index() {
       city,
       cityCode,
       keyword: nextKeyword ?? keyword,
-      minPrice: typeof minPrice === "number" ? String(minPrice) : "",
-      maxPrice: typeof maxPrice === "number" ? String(maxPrice) : "",
-      minStar: typeof minStar === "number" ? String(minStar) : "",
+      minPrice: typeof minPrice === "number" ? minPrice : undefined,
+      maxPrice: typeof maxPrice === "number" ? maxPrice : undefined,
+      minStar: typeof minStar === "number" ? minStar : undefined,
       checkIn,
       checkOut,
       room: String(roomCount),
@@ -244,10 +244,8 @@ function Index() {
       child: String(childCount),
     };
     const query = Object.entries(params)
-      .filter(
-        ([, value]) => value !== undefined && value !== null && value !== "",
-      )
-      .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+      .filter(([, value]) => value !== undefined && value !== null)
+      .map(([key, value]) => `${key}=${encodeURIComponent(String(value))}`)
       .join("&");
     return `/pages/list/index?${query}`;
   };
@@ -473,10 +471,7 @@ function Index() {
         />
 
         <View className="guest-and-star">
-          <View
-            className="guest-row"
-            onClick={() => setGuestVisible(true)}
-          >
+          <View className="guest-row" onClick={() => setGuestVisible(true)}>
             <View className="guest-row__main">
               <View className="guest-row__value">
                 {roomCount}间房 {adultCount}成人 {childCount}儿童
@@ -485,15 +480,10 @@ function Index() {
             </View>
           </View>
           <View className="guest-star-divider" />
-          <View
-            className="star-row"
-            onClick={() => setPriceStarVisible(true)}
-          >
+          <View className="star-row" onClick={() => setPriceStarVisible(true)}>
             <View className="star-row__label">{copy.starLabel}</View>
             <View className="star-row__main">
-              <View className="star-row__value">
-                {priceStarDescription}
-              </View>
+              <View className="star-row__value">{priceStarDescription}</View>
               <ArrowDown color="#9aa4b2" width="10px" />
             </View>
           </View>

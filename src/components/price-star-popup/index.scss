@@ -34,7 +34,10 @@
 }
 
 .price-star-popup__section {
-  margin-bottom: 18px;
+  margin-bottom: 36rpx;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .price-star-popup__section-title {
@@ -44,18 +47,11 @@
   margin-bottom: 12px;
 }
 
-.price-star-popup__bar {
-  height: 4px;
-  border-radius: 999px;
-  background: #2b64f2;
-  margin-bottom: 14px;
-}
-
 .price-star-popup__range {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .price-star-popup__range-box {
@@ -82,11 +78,37 @@
   color: #c0c7d4;
   font-size: 18px;
 }
+.price-star-popup__sliderhint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.price-star-popup__slider {
+  padding: 6px 2px 0;
+  width: 95%;
+  --nutui-range-active-color: #2b64f2;
+  --nutui-range-inactive-color: #d6e4ff;
+  --nutui-range-height: 6px;
+  --nutui-range-button-width: 20px;
+  --nutui-range-button-height: 20px;
+  --nutui-range-button-border: 2px solid #2b64f2;
+  --nutui-range-button-background: #ffffff;
+}
+
+.price-star-popup__slider .nut-range {
+  margin: 0;
+}
+
+.price-star-popup__slider .nut-range-button {
+  box-shadow: 0 2px 8px rgba(43, 100, 242, 0.24);
+}
 
 .price-star-popup__chips {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
+  margin-top: 14px;
 }
 
 .price-star-popup__chip {
@@ -159,4 +181,9 @@
   background: #2b64f2;
   border-color: #2b64f2;
   color: #ffffff;
+}
+
+.nut-range-container .nut-range-button {
+  width: 20px !important;
+  height: 20px !important;
 }

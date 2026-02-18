@@ -7,7 +7,7 @@ import GuestSelector from "../../components/guest-selector";
 import PriceStarPopup from "../../components/price-star-popup";
 import { useSharedFilter } from "../../store/filter-context";
 import { searchHotels } from "../../apis/hotels";
-import type { HotelListItem } from "../../apis/type";
+import type { HotelListItem, SearchHotelsParams } from "../../apis/type";
 import "./index.scss";
 
 const DEFAULT_CITY = "上海";
@@ -115,27 +115,36 @@ function ListPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const fetchHotelList = async () => {
-    const peopleNeeded = adultCount + childCount;
+  const buildSearchHotelsParams = (): SearchHotelsParams => {
     const keywordValue = keyword.trim();
+    const safeRoomCount = roomCount > 0 ? roomCount : 1;
+    const safeAdultCount = adultCount > 0 ? adultCount : 1;
+    const safeChildCount = childCount >= 0 ? childCount : 0;
+    const peopleNeeded = safeAdultCount + safeChildCount;
+
+    return {
+      cityCode: cityCode || undefined,
+      keyword: keywordValue || undefined,
+      minPrice: selectedMinPrice,
+      maxPrice: selectedMaxPrice,
+      minStar: selectedStar > 0 ? selectedStar : undefined,
+      checkIn: checkIn || defaultDates.checkIn,
+      checkOut: checkOut || defaultDates.checkOut,
+      roomsNeeded: safeRoomCount,
+      peopleNeeded,
+      tags: selectedFacilities.length > 0 ? selectedFacilities : undefined,
+      page: 1,
+      pageSize: 20,
+    };
+  };
+
+  const fetchHotelList = async () => {
+    const searchParams = buildSearchHotelsParams();
 
     setLoadingHotels(true);
 
     try {
-      const response = await searchHotels({
-        cityCode,
-        keyword: keywordValue || undefined,
-        minPrice: selectedMinPrice,
-        maxPrice: selectedMaxPrice,
-        checkIn,
-        checkOut,
-        roomsNeeded: roomCount,
-        peopleNeeded,
-        minStar: selectedStar > 0 ? selectedStar : undefined,
-        tags: selectedFacilities.length > 0 ? selectedFacilities : undefined,
-        page: 1,
-        pageSize: 20,
-      });
+      const response = await searchHotels(searchParams);
 
       setHotels(response.data || []);
     } catch (error) {

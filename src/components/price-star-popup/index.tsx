@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { View } from "@tarojs/components";
-import { Button, Popup } from "@nutui/nutui-react-taro";
+import { Button, Popup, Range } from "@nutui/nutui-react-taro";
 import { Close } from "@nutui/icons-react-taro";
 import "./index.scss";
 
@@ -24,6 +24,11 @@ type PriceStarPopupProps = {
   title?: string;
 };
 
+const PRICE_MIN = 0;
+const PRICE_MAX = 550;
+const PRICE_MAX_EXTENDED = 580;
+const PRICE_STEP = 10;
+
 const PRICE_OPTIONS: PriceOption[] = [
   { label: "¥150以下", min: 0, max: 150 },
   { label: "¥150-¥200", min: 150, max: 200 },
@@ -44,11 +49,38 @@ function PriceStarPopup({
   initialValue,
   title = "选择价格/星级",
 }: PriceStarPopupProps) {
-  const [selectedMinPrice, setSelectedMinPrice] = useState<number | undefined>(
-    initialValue?.minPrice,
-  );
-  const [selectedMaxPrice, setSelectedMaxPrice] = useState<number | undefined>(
-    initialValue?.maxPrice,
+  const optionToRange = (option: PriceOption): [number, number] => {
+    const minValue =
+      typeof option.min === "number"
+        ? Math.max(PRICE_MIN, Math.min(PRICE_MAX, option.min))
+        : PRICE_MIN;
+    const maxValue =
+      typeof option.max === "number"
+        ? Math.max(PRICE_MIN, Math.min(PRICE_MAX_EXTENDED, option.max))
+        : PRICE_MAX_EXTENDED;
+
+    return minValue > maxValue ? [maxValue, maxValue] : [minValue, maxValue];
+  };
+
+  const normalizePriceRange = (
+    minValue?: number,
+    maxValue?: number,
+  ): [number, number] => {
+    const safeMin =
+      typeof minValue === "number"
+        ? Math.max(PRICE_MIN, Math.min(PRICE_MAX_EXTENDED, minValue))
+        : PRICE_MIN;
+    const safeMax =
+      typeof maxValue === "number"
+        ? Math.max(PRICE_MIN, Math.min(PRICE_MAX_EXTENDED, maxValue))
+        : PRICE_MAX_EXTENDED;
+
+    if (safeMin > safeMax) return [safeMax, safeMax];
+    return [safeMin, safeMax];
+  };
+
+  const [priceRange, setPriceRange] = useState<[number, number]>(
+    normalizePriceRange(initialValue?.minPrice, initialValue?.maxPrice),
   );
   const [selectedMinStar, setSelectedMinStar] = useState<number | undefined>(
     initialValue?.minStar,
@@ -56,8 +88,9 @@ function PriceStarPopup({
 
   useEffect(() => {
     if (!visible) return;
-    setSelectedMinPrice(initialValue?.minPrice);
-    setSelectedMaxPrice(initialValue?.maxPrice);
+    setPriceRange(
+      normalizePriceRange(initialValue?.minPrice, initialValue?.maxPrice),
+    );
     setSelectedMinStar(initialValue?.minStar);
   }, [
     initialValue?.maxPrice,
@@ -67,38 +100,51 @@ function PriceStarPopup({
   ]);
 
   const minPriceLabel = useMemo(() => {
-    if (typeof selectedMinPrice !== "number") return "¥0";
-    return `¥${selectedMinPrice}`;
-  }, [selectedMinPrice]);
+    return `¥${priceRange[0]}`;
+  }, [priceRange]);
 
   const maxPriceLabel = useMemo(() => {
-    if (typeof selectedMaxPrice === "number") return `¥${selectedMaxPrice}`;
-    if (typeof selectedMinPrice === "number") return `¥${selectedMinPrice}以上`;
-    return "¥550以上";
-  }, [selectedMaxPrice, selectedMinPrice]);
+    if (priceRange[1] > PRICE_MAX) {
+      return `¥${PRICE_MAX}以上`;
+    }
+    return `¥${priceRange[1]}`;
+  }, [priceRange]);
 
-  const handleSelectPrice = (option: PriceOption) => {
-    const isActive =
-      selectedMinPrice === option.min && selectedMaxPrice === option.max;
+  const selectedPriceOptionLabel = useMemo(() => {
+    const matchedOption = PRICE_OPTIONS.find((option) => {
+      const [optionMin, optionMax] = optionToRange(option);
+      return optionMin === priceRange[0] && optionMax === priceRange[1];
+    });
+    return matchedOption?.label;
+  }, [priceRange]);
+
+  const handlePriceRangeChange = (value: number | number[]) => {
+    if (!Array.isArray(value) || value.length < 2) return;
+    const nextMin = Number(value[0]);
+    const nextMax = Number(value[1]);
+    setPriceRange(normalizePriceRange(nextMin, nextMax));
+  };
+
+  const handleSelectPriceOption = (option: PriceOption) => {
+    const [optionMin, optionMax] = optionToRange(option);
+    const isActive = optionMin === priceRange[0] && optionMax === priceRange[1];
     if (isActive) {
-      setSelectedMinPrice(undefined);
-      setSelectedMaxPrice(undefined);
+      setPriceRange([PRICE_MIN, PRICE_MAX_EXTENDED]);
       return;
     }
-    setSelectedMinPrice(option.min);
-    setSelectedMaxPrice(option.max);
+    setPriceRange([optionMin, optionMax]);
   };
 
   const handleClear = () => {
-    setSelectedMinPrice(undefined);
-    setSelectedMaxPrice(undefined);
+    setPriceRange([PRICE_MIN, PRICE_MAX_EXTENDED]);
     setSelectedMinStar(undefined);
   };
 
   const handleConfirm = () => {
+    const [rangeMin, rangeMax] = priceRange;
     onConfirm({
-      minPrice: selectedMinPrice,
-      maxPrice: selectedMaxPrice,
+      minPrice: rangeMin > PRICE_MIN ? rangeMin : undefined,
+      maxPrice: rangeMax <= PRICE_MAX ? rangeMax : undefined,
       minStar: selectedMinStar,
     });
     onClose();
@@ -116,7 +162,6 @@ function PriceStarPopup({
 
         <View className="price-star-popup__section">
           <View className="price-star-popup__section-title">价格</View>
-          <View className="price-star-popup__bar" />
           <View className="price-star-popup__range">
             <View className="price-star-popup__range-box">
               <View className="price-star-popup__range-label">最低</View>
@@ -133,11 +178,25 @@ function PriceStarPopup({
             </View>
           </View>
 
+          <View className="price-star-popup__sliderhint">
+            <View className="price-star-popup__slider">
+              <Range
+                range
+                min={PRICE_MIN}
+                max={PRICE_MAX_EXTENDED}
+                step={PRICE_STEP}
+                value={priceRange}
+                currentDescription={null}
+                minDescription={null}
+                maxDescription={null}
+                onChange={handlePriceRangeChange}
+              />
+            </View>
+          </View>
+
           <View className="price-star-popup__chips">
             {PRICE_OPTIONS.map((option) => {
-              const active =
-                selectedMinPrice === option.min &&
-                selectedMaxPrice === option.max;
+              const active = selectedPriceOptionLabel === option.label;
               return (
                 <View
                   key={option.label}
@@ -146,7 +205,7 @@ function PriceStarPopup({
                       ? "price-star-popup__chip is-active"
                       : "price-star-popup__chip"
                   }
-                  onClick={() => handleSelectPrice(option)}
+                  onClick={() => handleSelectPriceOption(option)}
                 >
                   {option.label}
                 </View>
