@@ -52,6 +52,7 @@
 }
 
 .card {
+  --filter-row-height: 42px;
   background: #ffffff;
   border-radius: 20px;
   margin: -70px 20px 0;
@@ -109,8 +110,8 @@
   background: #ffffff;
   border: 1px solid #eef1f6;
   border-radius: 14px;
+  min-height: var(--filter-row-height);
   padding: 10px 12px;
-  margin-bottom: 16px;
 }
 
 .location-col {
@@ -183,18 +184,18 @@
   margin-left: auto;
   width: 22px;
   height: 22px;
-  border-radius: 50%;
-  border: 2px solid #2b64f2;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .location-col__locate-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #2b64f2;
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1024 1024' xmlns='http://www.w3.org/2000/svg'><path d='M512 415.185455c-53.527273 0-96.814545 43.287273-96.814545 96.814545s43.287273 96.814545 96.814545 96.814545 96.814545-43.287273 96.814545-96.814545-43.287273-96.814545-96.814545-96.814545z' fill='%232b64f2'/><path d='M936.96 480.349091h-59.578182c-14.894545-177.803636-156.392727-318.836364-334.196363-334.196364V87.04c0-17.221818-13.963636-31.650909-31.65091-31.650909s-31.185455 13.963636-31.185454 31.650909v59.578182c-177.803636 14.894545-318.836364 156.392727-334.196364 334.196363H87.04c-17.221818 0-31.650909 13.963636-31.650909 31.185455s13.963636 31.650909 31.650909 31.650909h59.578182c14.894545 177.803636 156.392727 318.836364 334.196363 334.196364v59.578182c0 17.221818 13.963636 31.185455 31.185455 31.185454s31.650909-13.963636 31.650909-31.185454v-59.578182c177.803636-14.894545 318.836364-156.392727 334.196364-334.196364h59.578182c17.221818 0 31.185455-13.963636 31.185454-31.650909s-13.963636-31.185455-31.185454-31.185455z m-393.774545 334.196364v-39.098182c0-17.221818-13.963636-31.185455-31.65091-31.185455s-31.185455 13.963636-31.185454 31.185455v39.098182a305.152 305.152 0 0 1-271.36-271.36h39.098182c17.221818 0 31.650909-13.963636 31.650909-31.65091s-13.963636-31.185455-31.650909-31.185454h-39.098182a305.152 305.152 0 0 1 271.36-271.36v39.098182c0 17.221818 13.963636 31.650909 31.185454 31.650909s31.650909-13.963636 31.65091-31.650909v-39.098182c142.894545 14.894545 256.465455 128.465455 271.36 271.36h-39.098182c-17.221818 0-31.185455 13.963636-31.185455 31.185454s13.963636 31.650909 31.185455 31.65091h39.098182a305.152 305.152 0 0 1-271.36 271.36z' fill='%232b64f2'/></svg>");
 }
 
 .location-divider {
@@ -301,28 +302,68 @@
   min-height: 40px;
 }
 
-.guest-row {
+.guest-and-star {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: stretch;
   background: #ffffff;
   border: 1px solid #eef1f6;
   border-radius: 8px;
-  padding: 12px 14px;
+  min-height: var(--filter-row-height);
+  padding: 10px 12px;
   margin-bottom: 16px;
 }
 
-.guest-row__label {
-  font-size: 12px;
-  color: #9aa4b2;
-  flex: 0 0 auto;
+.guest-row {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  // align-items: center;
+  justify-content: center;
+}
+
+.guest-row__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
 }
 
 .guest-row__value {
   font-size: 14px;
   color: #1b2a4e;
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.star-row {
   flex: 1;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.star-row__main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.star-row__value {
+  font-size: 14px;
+  color: #a1adbd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.guest-star-divider {
+  width: 1px;
+  background: #eef1f6;
+  margin: 2px 12px;
 }
 
 .guest-popup {
@@ -454,11 +495,14 @@
 }
 
 .date-range-cell {
+  display: flex;
+  flex-direction: column;
   background: #ffffff;
   border: 1px solid #eef1f6;
   border-radius: 14px;
+  min-height: var(--filter-row-height);
   padding: 10px 12px;
-  margin-bottom: 16px;
+  gap: 12px;
   box-shadow: none;
 }
 
@@ -496,6 +540,7 @@
 .date-range-cell__title {
   font-size: 11px;
   color: #9aa4b2;
+  margin-bottom: 12rpx;
 }
 
 .date-range-cell__description {

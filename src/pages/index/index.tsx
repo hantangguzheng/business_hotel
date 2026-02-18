@@ -1,17 +1,46 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Image, Input, View } from "@tarojs/components";
 import { Button, Calendar, Cell, Popup } from "@nutui/nutui-react-taro";
 import Taro, { useDidShow } from "@tarojs/taro";
 import { ArrowDown, Close } from "@nutui/icons-react-taro";
 import GuestSelector from "../../components/guest-selector";
+import PriceStarPopup from "../../components/price-star-popup";
 import { useSharedFilter } from "../../store/filter-context";
 import zh from "../../locales/zh";
 import en from "../../locales/en";
 import logo from "../../../assets/imgs/logo.png";
 import md5 from "../../utils/md5.js";
 import "./index.scss";
+const { cities } = require("../../utils/city");
 const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
 const QQ_MAP_SK = "eReOMGZUU9rMnVbYphtudUST6EfMC7MC";
+
+const DEFAULT_CITY_INFO = {
+  name: "上海",
+  cityCode: "2",
+};
+
+const collectCityOptions = () => {
+  const groups = Object.keys(cities || {});
+  const dedupe = new Map();
+
+  groups.forEach((groupKey) => {
+    const groupCities = cities[groupKey] || [];
+    groupCities.forEach((item) => {
+      const name = item?.name;
+      if (!name || dedupe.has(name)) return;
+      dedupe.set(name, {
+        name,
+        key: item?.key,
+        cityCode: String(item?.cityCode || ""),
+      });
+    });
+  });
+
+  return Array.from(dedupe.values());
+};
+
+const ALL_CITY_OPTIONS = collectCityOptions();
 function Index() {
   const LANG_STORAGE_KEY = "app_lang";
   const CITY_STORAGE_KEY = "city_selected";
@@ -22,6 +51,7 @@ function Index() {
   const { filter, setFilter } = useSharedFilter();
   const {
     city,
+    cityCode,
     keyword,
     checkIn,
     checkOut,
@@ -36,7 +66,50 @@ function Index() {
   const [dateRange, setDateRange] = useState<string[]>([checkIn, checkOut]);
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [guestVisible, setGuestVisible] = useState(false);
+  const [priceStarVisible, setPriceStarVisible] = useState(false);
+  const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
+  const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
+  const [minStar, setMinStar] = useState<number | undefined>(undefined);
+  const hasAutoLocatedRef = useRef(false);
   const keywordTags = ["适合情侣", "上海浦东国际机场", "上榜酒店", "国家会展"];
+
+  const resolveCityInfoByName = (name?: string) => {
+    if (!name) return undefined;
+    const normalizedName = name.replace(/市$/, "").trim();
+    const matched = ALL_CITY_OPTIONS.find((item) => {
+      const optionName = String(item.name || "")
+        .replace(/市$/, "")
+        .trim();
+      return optionName === normalizedName;
+    });
+    if (!matched) return undefined;
+    return {
+      name: matched.name,
+      cityCode: String(matched.cityCode || ""),
+    };
+  };
+
+  const parseStoredCityInfo = (storedValue: unknown) => {
+    if (!storedValue) return undefined;
+
+    if (typeof storedValue === "string") {
+      if (storedValue === MY_LOCATION_KEY) return undefined;
+      const fromName = resolveCityInfoByName(storedValue);
+      if (fromName) return fromName;
+      return { name: storedValue, cityCode: "" };
+    }
+
+    if (typeof storedValue === "object") {
+      const maybeCity = storedValue as { name?: string; cityCode?: string };
+      if (!maybeCity?.name) return undefined;
+      return {
+        name: maybeCity.name,
+        cityCode: String(maybeCity.cityCode || ""),
+      };
+    }
+
+    return undefined;
+  };
 
   useDidShow(() => {
     const storedLang = Taro.getStorageSync(LANG_STORAGE_KEY);
@@ -44,22 +117,35 @@ function Index() {
       setLang(storedLang);
     }
     const storedCity = Taro.getStorageSync(CITY_STORAGE_KEY);
-    if (storedCity) {
-      if (storedCity === MY_LOCATION_KEY) {
-        setLocationKey(MY_LOCATION_KEY);
-        setFilter({ city: copy.myLocationText });
-      } else {
-        setLocationKey("CITY");
-        setFilter({ city: storedCity });
-      }
+    const storedCityInfo = parseStoredCityInfo(storedCity);
+
+    if (storedCityInfo) {
+      setLocationKey("CITY");
+      setFilter({
+        city: storedCityInfo.name,
+        cityCode: storedCityInfo.cityCode,
+      });
+    } else if (!city) {
+      setFilter({
+        city: DEFAULT_CITY_INFO.name,
+        cityCode: DEFAULT_CITY_INFO.cityCode,
+      });
+    }
+
+    if (!hasAutoLocatedRef.current) {
+      hasAutoLocatedRef.current = true;
+      locateUser();
     }
   });
 
   useEffect(() => {
-    if (locationKey === MY_LOCATION_KEY) {
-      setFilter({ city: copy.myLocationText });
+    if (locationKey === MY_LOCATION_KEY && !city) {
+      setFilter({
+        city: DEFAULT_CITY_INFO.name,
+        cityCode: DEFAULT_CITY_INFO.cityCode,
+      });
     }
-  }, [copy.myLocationText, locationKey, setFilter]);
+  }, [city, locationKey, setFilter]);
 
   useEffect(() => {
     setDateRange([checkIn, checkOut]);
@@ -76,8 +162,7 @@ function Index() {
     Taro.navigateTo({ url: "/pages/city/index" });
   };
 
-  const handleLocate = (event) => {
-    event.stopPropagation();
+  const locateUser = () => {
     Taro.getLocation({
       type: "gcj02",
       success: (res) => {
@@ -95,25 +180,39 @@ function Index() {
           success: (response) => {
             console.log(response);
             const result = response?.data?.result;
+            const geocoderCity =
+              result?.address_component?.city ||
+              result?.ad_info?.city ||
+              result?.address_component?.district ||
+              "";
+            const resolvedCityInfo =
+              resolveCityInfoByName(geocoderCity) || DEFAULT_CITY_INFO;
             const address =
               result?.formatted_addresses?.recommend || result?.address;
             const text = address
               ? `${copy.myLocationText}：${address}`
               : `${copy.myLocationText}：${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
             setLocationKey(MY_LOCATION_KEY);
-            setFilter({ city: copy.myLocationText });
+            setFilter({
+              city: resolvedCityInfo.name,
+              cityCode: resolvedCityInfo.cityCode,
+            });
             setLocationNotice(text);
             setShowLocationNotice(true);
-            Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
+            Taro.setStorageSync(CITY_STORAGE_KEY, resolvedCityInfo);
             Taro.setStorageSync(CITY_ADDRESS_KEY, text);
           },
           fail: () => {
             const text = `${copy.myLocationText}：${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
+            const fallbackCityInfo = DEFAULT_CITY_INFO;
             setLocationKey(MY_LOCATION_KEY);
-            setFilter({ city: copy.myLocationText });
+            setFilter({
+              city: fallbackCityInfo.name,
+              cityCode: fallbackCityInfo.cityCode,
+            });
             setLocationNotice(text);
             setShowLocationNotice(true);
-            Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
+            Taro.setStorageSync(CITY_STORAGE_KEY, fallbackCityInfo);
             Taro.setStorageSync(CITY_ADDRESS_KEY, text);
           },
         });
@@ -125,10 +224,19 @@ function Index() {
     });
   };
 
+  const handleLocate = (event) => {
+    event.stopPropagation();
+    locateUser();
+  };
+
   const buildSearchUrl = (nextKeyword?: string) => {
     const params = {
       city,
+      cityCode,
       keyword: nextKeyword ?? keyword,
+      minPrice: typeof minPrice === "number" ? String(minPrice) : "",
+      maxPrice: typeof maxPrice === "number" ? String(maxPrice) : "",
+      minStar: typeof minStar === "number" ? String(minStar) : "",
       checkIn,
       checkOut,
       room: String(roomCount),
@@ -136,6 +244,9 @@ function Index() {
       child: String(childCount),
     };
     const query = Object.entries(params)
+      .filter(
+        ([, value]) => value !== undefined && value !== null && value !== "",
+      )
       .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join("&");
     return `/pages/list/index?${query}`;
@@ -176,6 +287,9 @@ function Index() {
       room: roomCount,
       adult: adultCount,
       child: childCount,
+      minPrice,
+      maxPrice,
+      minStar,
       keyword: nextKeyword ?? keyword,
     };
     console.log("search", payload);
@@ -185,6 +299,10 @@ function Index() {
   const handleTagClick = (tag: string) => {
     setFilter({ keyword: tag });
     handleSearch(tag);
+  };
+
+  const resolveInputValue = (event) => {
+    return event?.detail?.value ?? event?.target?.value ?? "";
   };
 
   const normalizeDate = (value) => {
@@ -251,6 +369,18 @@ function Index() {
       ? `${formatDate(dateRange[0])}至${formatDate(dateRange[1])}`
       : buildDefaultDatePlaceholder();
 
+  const priceStarDescription = useMemo(() => {
+    const priceText =
+      typeof minPrice === "number"
+        ? typeof maxPrice === "number"
+          ? `¥${minPrice}-¥${maxPrice}`
+          : `¥${minPrice}以上`
+        : "价格/星级";
+
+    const starText = typeof minStar === "number" ? `${minStar}钻/星起` : "";
+    return starText ? `${priceText} ${starText}` : priceText;
+  }, [maxPrice, minPrice, minStar]);
+
   return (
     <View className="hotel-page">
       <View className="lang-toggle" onClick={handleToggleLang}>
@@ -299,6 +429,7 @@ function Index() {
                 {city || copy.cityDefault}
               </View>
               <ArrowDown color="grey" width="10px" />
+
               <View className="location-col__locate" onClick={handleLocate}>
                 <View className="location-col__locate-dot" />
               </View>
@@ -310,7 +441,9 @@ function Index() {
             <View className="keyword-col__input">
               <Input
                 value={keyword}
-                onInput={(event) => setFilter({ keyword: event.detail.value })}
+                onInput={(event) =>
+                  setFilter({ keyword: resolveInputValue(event) })
+                }
                 placeholder={copy.keywordPlaceholder}
                 placeholderClass="input-placeholder"
               />
@@ -339,13 +472,43 @@ function Index() {
           onConfirm={handleCalendarConfirm}
         />
 
-        <View className="guest-row" onClick={() => setGuestVisible(true)}>
-          <View className="guest-row__label">{copy.guestLabel}</View>
-          <View className="guest-row__value">
-            {roomCount}间房 {adultCount}成人 {childCount}儿童
+        <View className="guest-and-star">
+          <View
+            className="guest-row"
+            onClick={() => setGuestVisible(true)}
+          >
+            <View className="guest-row__main">
+              <View className="guest-row__value">
+                {roomCount}间房 {adultCount}成人 {childCount}儿童
+              </View>
+              <ArrowDown color="#9aa4b2" width="10px" />
+            </View>
           </View>
-          <ArrowDown color="#9aa4b2" width="10px" />
+          <View className="guest-star-divider" />
+          <View
+            className="star-row"
+            onClick={() => setPriceStarVisible(true)}
+          >
+            <View className="star-row__label">{copy.starLabel}</View>
+            <View className="star-row__main">
+              <View className="star-row__value">
+                {priceStarDescription}
+              </View>
+              <ArrowDown color="#9aa4b2" width="10px" />
+            </View>
+          </View>
         </View>
+
+        <PriceStarPopup
+          visible={priceStarVisible}
+          onClose={() => setPriceStarVisible(false)}
+          initialValue={{ minPrice, maxPrice, minStar }}
+          onConfirm={(value) => {
+            setMinPrice(value.minPrice);
+            setMaxPrice(value.maxPrice);
+            setMinStar(value.minStar);
+          }}
+        />
 
         <Popup
           visible={guestVisible}

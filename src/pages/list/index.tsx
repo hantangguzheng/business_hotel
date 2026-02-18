@@ -4,17 +4,40 @@ import { useEffect, useMemo, useState } from "react";
 import { Button, Calendar, Popup } from "@nutui/nutui-react-taro";
 import { ArrowDown, Close } from "@nutui/icons-react-taro";
 import GuestSelector from "../../components/guest-selector";
+import PriceStarPopup from "../../components/price-star-popup";
 import { useSharedFilter } from "../../store/filter-context";
 import { searchHotels } from "../../apis/hotels";
 import type { HotelListItem } from "../../apis/type";
-const { cities } = require("../../utils/city");
 import "./index.scss";
+
+const DEFAULT_CITY = "上海";
+
+const buildDefaultDates = () => {
+  const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1);
+
+  const toValue = (date: Date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  };
+
+  return {
+    checkIn: toValue(today),
+    checkOut: toValue(tomorrow),
+  };
+};
+
+const defaultDates = buildDefaultDates();
 
 function ListPage() {
   const params = Taro.getCurrentInstance().router?.params || {};
   const { filter, setFilter } = useSharedFilter();
   const {
     city,
+    cityCode,
     keyword,
     checkIn,
     checkOut,
@@ -32,55 +55,67 @@ function ListPage() {
     }
   };
 
-  const getCityCodeByName = (cityName?: string) => {
-    if (!cityName) return undefined;
-    const normalizedCity = cityName.replace(/市$/, "").trim();
-    if (/^[A-Z]{3}$/.test(normalizedCity)) {
-      return normalizedCity;
+  const normalizeParam = (value?: string) => {
+    const decoded = decodeParam(value).trim();
+    if (!decoded || decoded === "undefined" || decoded === "null") {
+      return "";
     }
-
-    const groupKeys = Object.keys(cities || {});
-    for (let index = 0; index < groupKeys.length; index += 1) {
-      const group = cities[groupKeys[index]] || [];
-      const matched = group.find(
-        (item) => item?.name === normalizedCity || item?.name === cityName,
-      );
-      if (matched?.cityCode) {
-        return matched.cityCode;
-      }
-    }
-    return undefined;
+    return decoded;
   };
+
   const [filterVisible, setFilterVisible] = useState(false);
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [dateRange, setDateRange] = useState<string[]>([checkIn, checkOut]);
   const [activeFacilityTab, setActiveFacilityTab] = useState("酒店设施");
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
   const [selectedStar, setSelectedStar] = useState(0);
+  const [selectedMinPrice, setSelectedMinPrice] = useState<number | undefined>(
+    undefined,
+  );
+  const [selectedMaxPrice, setSelectedMaxPrice] = useState<number | undefined>(
+    undefined,
+  );
+  const [priceStarVisible, setPriceStarVisible] = useState(false);
   const [hotels, setHotels] = useState<HotelListItem[]>([]);
   const [loadingHotels, setLoadingHotels] = useState(false);
 
   useEffect(() => {
-    const nextKeyword = decodeParam(params.keyword);
-    const nextCity = decodeParam(params.city);
+    const nextKeyword = normalizeParam(params.keyword);
+    const nextCity = normalizeParam(params.city);
+    const nextCityCode = normalizeParam(params.cityCode);
+    const nextCheckIn = normalizeParam(params.checkIn);
+    const nextCheckOut = normalizeParam(params.checkOut);
+    const nextMinPrice = Number(normalizeParam(params.minPrice));
+    const nextMaxPrice = Number(normalizeParam(params.maxPrice));
+    const nextMinStar = Number(normalizeParam(params.minStar));
     const nextRoomCount = Number(params.room) || 1;
     const nextAdultCount = Number(params.adult) || 1;
     const nextChildCount = Number(params.child) || 0;
 
     setFilter({
       keyword: nextKeyword || keyword,
-      city: nextCity || city,
-      checkIn: params.checkIn || checkIn,
-      checkOut: params.checkOut || checkOut,
+      city: nextCity || city || DEFAULT_CITY,
+      cityCode: nextCityCode || cityCode,
+      checkIn: nextCheckIn || checkIn || defaultDates.checkIn,
+      checkOut: nextCheckOut || checkOut || defaultDates.checkOut,
       roomCount: nextRoomCount,
       adultCount: nextAdultCount,
       childCount: nextChildCount,
     });
+
+    if (!Number.isNaN(nextMinPrice) && nextMinPrice > 0) {
+      setSelectedMinPrice(nextMinPrice);
+    }
+    if (!Number.isNaN(nextMaxPrice) && nextMaxPrice > 0) {
+      setSelectedMaxPrice(nextMaxPrice);
+    }
+    if (!Number.isNaN(nextMinStar) && nextMinStar > 0) {
+      setSelectedStar(nextMinStar);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchHotelList = async () => {
-    const cityCode = getCityCodeByName(city);
     const peopleNeeded = adultCount + childCount;
     const keywordValue = keyword.trim();
 
@@ -90,6 +125,8 @@ function ListPage() {
       const response = await searchHotels({
         cityCode,
         keyword: keywordValue || undefined,
+        minPrice: selectedMinPrice,
+        maxPrice: selectedMaxPrice,
         checkIn,
         checkOut,
         roomsNeeded: roomCount,
@@ -133,6 +170,7 @@ function ListPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     city,
+    cityCode,
     keyword,
     checkIn,
     checkOut,
@@ -140,6 +178,8 @@ function ListPage() {
     adultCount,
     childCount,
     selectedStar,
+    selectedMinPrice,
+    selectedMaxPrice,
     selectedFacilities,
   ]);
 
@@ -207,13 +247,24 @@ function ListPage() {
     return "选择日期";
   }, [checkIn, checkOut]);
 
-  const cityLabel = city || "城市";
-  const priceLabel = "￥0 ~ ￥400";
+  const cityLabel = city || DEFAULT_CITY;
+  const priceStarLabel = useMemo(() => {
+    const priceText =
+      typeof selectedMinPrice === "number"
+        ? typeof selectedMaxPrice === "number"
+          ? `¥${selectedMinPrice}-¥${selectedMaxPrice}`
+          : `¥${selectedMinPrice}以上`
+        : "价格/星级";
+
+    const starText = selectedStar > 0 ? `${selectedStar}钻/星起` : "";
+    return starText ? `${priceText} ${starText}` : priceText;
+  }, [selectedMaxPrice, selectedMinPrice, selectedStar]);
 
   const nights = useMemo(() => {
-    if (!checkIn || !checkOut) return 0;
-    const startTime = new Date(checkIn.replace(/-/g, "/")).getTime();
-    const endTime = new Date(checkOut.replace(/-/g, "/")).getTime();
+    const safeCheckIn = checkIn || defaultDates.checkIn;
+    const safeCheckOut = checkOut || defaultDates.checkOut;
+    const startTime = new Date(safeCheckIn.replace(/-/g, "/")).getTime();
+    const endTime = new Date(safeCheckOut.replace(/-/g, "/")).getTime();
     if (
       Number.isNaN(startTime) ||
       Number.isNaN(endTime) ||
@@ -284,9 +335,9 @@ function ListPage() {
           <View className="list-filter__icon is-calendar" />
           <View className="list-filter__text">{dateLabel}</View>
         </View>
-        <View className="list-filter">
+        <View className="list-filter" onClick={() => setPriceStarVisible(true)}>
           <View className="list-filter__icon is-star">*</View>
-          <View className="list-filter__text">评分</View>
+          <View className="list-filter__text">{priceStarLabel}</View>
         </View>
       </View>
 
@@ -377,15 +428,13 @@ function ListPage() {
           </View>
 
           <View className="filter-section">
-            <View className="filter-section__header">
-              <View className="filter-section__title">价格</View>
-              <View className="filter-section__hint">{priceLabel}</View>
-            </View>
-            <View className="filter-price">
-              <View className="filter-price__track" />
-              <View className="filter-price__range" />
-              <View className="filter-price__thumb filter-price__thumb--left" />
-              <View className="filter-price__thumb filter-price__thumb--right" />
+            <View className="filter-section__title">价格/星级</View>
+            <View
+              className="filter-chip filter-chip--wide"
+              onClick={() => setPriceStarVisible(true)}
+            >
+              <View>{priceStarLabel}</View>
+              <ArrowDown color="#9aa4b2" width="12px" />
             </View>
           </View>
 
@@ -484,26 +533,6 @@ function ListPage() {
             ))}
           </View>
 
-          <View className="filter-section">
-            <View className="filter-section__title">星级/钻级</View>
-            <View className="filter-stars">
-              {[5, 4, 3, 2, 1].map((level) => (
-                <View
-                  key={level}
-                  className={
-                    level === selectedStar
-                      ? "filter-star is-active"
-                      : "filter-star"
-                  }
-                  onClick={() => setSelectedStar(level)}
-                >
-                  <View className="filter-star__icon">★</View>
-                  <View>{level}</View>
-                </View>
-              ))}
-            </View>
-          </View>
-
           <Button
             className="filter-panel__confirm"
             type="primary"
@@ -516,6 +545,21 @@ function ListPage() {
           </Button>
         </View>
       </Popup>
+
+      <PriceStarPopup
+        visible={priceStarVisible}
+        onClose={() => setPriceStarVisible(false)}
+        initialValue={{
+          minPrice: selectedMinPrice,
+          maxPrice: selectedMaxPrice,
+          minStar: selectedStar > 0 ? selectedStar : undefined,
+        }}
+        onConfirm={(value) => {
+          setSelectedMinPrice(value.minPrice);
+          setSelectedMaxPrice(value.maxPrice);
+          setSelectedStar(value.minStar || 0);
+        }}
+      />
     </View>
   );
 }

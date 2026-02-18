@@ -102,10 +102,12 @@
 
 .city-scroll {
   flex: 1;
+  background: #ffffff;
 }
 
 .city-section {
   padding: 16px;
+  background: #ffffff;
 }
 
 .city-section__title {
@@ -132,6 +134,25 @@
 
 .city-list {
   padding: 0 16px 20px;
+  background: #ffffff;
+}
+
+.city-list .nut-elevator-list {
+  background: #ffffff;
+}
+
+.city-list .nut-elevator-bars {
+  right: 2px;
+}
+
+.city-list .nut-elevator-bars-inner {
+  padding: 4px 2px;
+}
+
+.city-list .nut-elevator-bars-inner-item {
+  padding: 1px 2px;
+  font-size: 11px;
+  line-height: 1.2;
 }
 
 .city-group__title {
@@ -145,4 +166,8 @@
   border-bottom: 1px solid #eef1f6;
   font-size: 14px;
   color: #1b2a4e;
+}
+
+.nut-elevator-bars-inner-item-active {
+  color: #2b64f2 !important;
 }

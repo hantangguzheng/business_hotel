@@ -2,6 +2,7 @@ import React, { createContext, useContext, useMemo, useState } from "react";
 
 export type SharedFilterState = {
   city: string;
+  cityCode: string;
   keyword: string;
   checkIn: string;
   checkOut: string;
@@ -35,6 +36,7 @@ const defaultDates = buildDefaultDates();
 
 const defaultFilterState: SharedFilterState = {
   city: "上海",
+  cityCode: "2",
   keyword: "",
   checkIn: defaultDates.checkIn,
   checkOut: defaultDates.checkOut,

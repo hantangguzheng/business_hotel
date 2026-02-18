@@ -2,7 +2,8 @@ import Taro from "@tarojs/taro";
 import type { SearchHotelsParams, SearchHotelsResponse } from "./type";
 
 const API_BASE_URL =
-  process.env.TARO_APP_API_BASE_URL || "http://localhost:3000";
+  (typeof process !== "undefined" && process.env?.TARO_APP_API_BASE_URL) ||
+  "http://localhost:3000";
 
 export async function searchHotels(
   params: SearchHotelsParams,
