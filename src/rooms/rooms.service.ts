@@ -524,9 +524,12 @@ export class RoomsService {
       viewFacilities,
       ...rest
     } = room;
+    const priceNumber = Number(price);
     return {
       ...rest,
-      price: Number(price),
+      price: priceNumber,
+      priceOriginal: priceNumber,
+      priceDiscounted: priceNumber,
       cleaningFacilities: this.normalizeJson(cleaningFacilities),
       bathingFacilities: this.normalizeJson(bathingFacilities),
       layoutFacilities: this.normalizeJson(layoutFacilities),
@@ -544,6 +547,7 @@ export class RoomsService {
   }
 
   private mapRoomRaw(row: RoomRaw) {
+    const priceNumber = Number(row.price);
     return {
       id: row.id,
       hotelId: row.hotel_id,
@@ -569,7 +573,9 @@ export class RoomsService {
       amenityFacilities: this.normalizeJson(row.amenity_facilities),
       viewFacilities: this.normalizeJson(row.view_facilities),
       capacity: row.capacity,
-      price: Number(row.price),
+      price: priceNumber,
+      priceOriginal: priceNumber,
+      priceDiscounted: priceNumber,
     };
   }
 

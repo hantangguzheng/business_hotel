@@ -9,6 +9,8 @@ export class RoomListItemDto {
   wifiInfo?: string | null;
   pictureUrl!: string;
   price!: number;
+  priceOriginal!: number;
+  priceDiscounted!: number;
   availableCount!: number;
 
   constructor(partial: Partial<RoomListItemDto>) {

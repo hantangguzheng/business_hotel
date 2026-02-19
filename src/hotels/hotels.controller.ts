@@ -9,8 +9,10 @@ import {
   Put,
   Query,
   Req,
+  ParseEnumPipe,
   //UseGuards,
 } from '@nestjs/common';
+import { PromotionType } from '@prisma/client';
 //import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { HotelsService } from './hotels.service';
 import { CreateHotelDto } from './dto/create-hotel.dto';
@@ -36,6 +38,13 @@ export class HotelsController {
   @Post('search')
   searchWithBody(@Body() body: SearchHotelsDto) {
     return this.hotelsService.search(body);
+  }
+
+  @Get('promotions')
+  findByPromotion(
+    @Query('type', new ParseEnumPipe(PromotionType)) type: PromotionType,
+  ) {
+    return this.hotelsService.listHotelsByPromotion(type);
   }
 
   @Get(':id/detail')

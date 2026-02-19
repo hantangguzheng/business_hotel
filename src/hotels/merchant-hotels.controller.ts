@@ -5,6 +5,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Post,
@@ -25,6 +26,8 @@ import { HotelsService } from './hotels.service';
 import { UpdateHotelDto } from './dto/update-hotel.dto';
 import { CreateHotelWithRoomsDto } from './dto/create-hotel-with-rooms.dto';
 import { HOTEL_IMAGE_DIR, HOTEL_IMAGE_MAX_COUNT } from './hotel-media.config';
+import { CreateHotelPromotionDto } from './dto/create-hotel-promotion.dto';
+import { UpdateHotelPromotionDto } from './dto/update-hotel-promotion.dto';
 
 @Controller('api/merchant/hotels')
 @UseGuards(JwtAuthGuard)
@@ -81,5 +84,54 @@ export class MerchantHotelsController {
   @Get()
   listMine(@Req() req: any) {
     return this.hotelsService.listMine(req.user.userId);
+  }
+
+  @Get(':hotelId/promotions')
+  listPromotions(@Req() req: any, @Param('hotelId') hotelId: string) {
+    return this.hotelsService.listPromotionsForMerchant(
+      req.user.userId,
+      Number(hotelId),
+    );
+  }
+
+  @Post(':hotelId/promotions')
+  createPromotion(
+    @Req() req: any,
+    @Param('hotelId') hotelId: string,
+    @Body() dto: CreateHotelPromotionDto,
+  ) {
+    return this.hotelsService.createPromotionForMerchant(
+      req.user.userId,
+      Number(hotelId),
+      dto,
+    );
+  }
+
+  @Put(':hotelId/promotions/:promotionId')
+  updatePromotion(
+    @Req() req: any,
+    @Param('hotelId') hotelId: string,
+    @Param('promotionId') promotionId: string,
+    @Body() dto: UpdateHotelPromotionDto,
+  ) {
+    return this.hotelsService.updatePromotionForMerchant(
+      req.user.userId,
+      Number(hotelId),
+      Number(promotionId),
+      dto,
+    );
+  }
+
+  @Delete(':hotelId/promotions/:promotionId')
+  removePromotion(
+    @Req() req: any,
+    @Param('hotelId') hotelId: string,
+    @Param('promotionId') promotionId: string,
+  ) {
+    return this.hotelsService.deletePromotionForMerchant(
+      req.user.userId,
+      Number(hotelId),
+      Number(promotionId),
+    );
   }
 }

@@ -18,6 +18,16 @@ enum Role {
   ADMIN
 }
 
+enum PromotionType {
+  FLASH_SALE        // 限时特卖
+  HOLIDAY_SPECIAL   // 节假日特惠
+  WEEKEND_DEAL      // 周末特惠
+  NEW_OPEN          // 开业特惠
+  SEASONAL          // 季节性优惠
+  MEMBER_EXCLUSIVE  // 会员专享
+}
+
+
 enum HotelTag {
   BUFFET_BREAKFAST      // 自助早餐
   CHESS_ROOM           // 棋牌室
@@ -175,6 +185,23 @@ model User {
   bookings Booking[]
 }
 
+model HotelPromotion {
+  id            Int           @id @default(autoincrement())
+  hotelId       Int           @map("hotel_id")
+  hotel         Hotel         @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+
+  promotionType PromotionType @map("promotion_type")
+  discount      Decimal       @db.Decimal(3, 2) // 0.01 ~ 1.00，例如 0.85 = 八五折
+  startDate     DateTime      @db.Date @map("start_date")
+  endDate       DateTime      @db.Date @map("end_date")
+
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+
+  @@index([hotelId])
+  @@map("hotel_promotion")
+}
+
 model Hotel {
   id              Int      @id @default(autoincrement())
   merchantId      Int      @map("merchant_id")
@@ -216,6 +243,7 @@ model Hotel {
   // 关联
   rooms           Room[]
   bookings        Booking[]
+  promotions      HotelPromotion[]
 
   @@index([merchantId])
   @@index([cityCode])

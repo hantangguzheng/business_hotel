@@ -8,7 +8,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Prisma } from '@prisma/client';
+import { Prisma, PromotionType } from '@prisma/client';
 import { Express } from 'express';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateHotelDto } from './dto/create-hotel.dto';
@@ -16,9 +16,15 @@ import { UpdateHotelDto } from './dto/update-hotel.dto';
 import { CreateHotelWithRoomsDto } from './dto/create-hotel-with-rooms.dto';
 import { HotelSearchSort, SearchHotelsDto } from './dto/search-hotels.dto';
 import { HOTEL_IMAGE_URL_PREFIX } from './hotel-media.config';
-import { HotelDetailDto, HotelListItemDto } from './dto/hotel-response.dto';
+import {
+  HotelDetailDto,
+  HotelListItemDto,
+  HotelPromotionDto,
+} from './dto/hotel-response.dto';
 import { HotelDetailQueryDto } from './dto/hotel-detail-query.dto';
 import { RoomListItemDto } from '../rooms/dto/room-response.dto';
+import { CreateHotelPromotionDto } from './dto/create-hotel-promotion.dto';
+import { UpdateHotelPromotionDto } from './dto/update-hotel-promotion.dto';
 import * as path from 'path';
 
 @Injectable()
@@ -206,6 +212,32 @@ export class HotelsService {
       }
     }
 
+    const promotions = await this.prisma.hotelPromotion.findMany({
+      where: {
+        hotelId,
+        startDate: { lte: checkOutDate },
+        endDate: { gte: checkInDate },
+      },
+      orderBy: { startDate: 'asc' },
+    });
+    const promotionDtos = promotions.map(
+      (promotion) =>
+        new HotelPromotionDto({
+          id: promotion.id,
+          promotionType: promotion.promotionType,
+          discount: Number(promotion.discount),
+          startDate: promotion.startDate,
+          endDate: promotion.endDate,
+        }),
+    );
+    let bestDiscount = new Prisma.Decimal(1);
+    if (promotions.length > 0) {
+      bestDiscount = promotions.reduce(
+        (min, promo) => (promo.discount.lt(min) ? promo.discount : min),
+        promotions[0].discount,
+      );
+    }
+
     const roomDtos = rooms.map(
       (room) =>
         new RoomListItemDto({
@@ -218,7 +250,9 @@ export class HotelsService {
           smokeTitle: room.smokeTitle,
           wifiInfo: room.wifiInfo,
           pictureUrl: room.pictureUrl,
-          price: Number(room.price),
+          priceOriginal: Number(room.price),
+          priceDiscounted: Number(room.price.mul(bestDiscount)),
+          price: Number(room.price.mul(bestDiscount)),
           availableCount: availabilityMap.get(room.id) ?? 0,
         }),
     );
@@ -243,6 +277,7 @@ export class HotelsService {
       openingDate: hotel.openingDate,
       latitude: hotel.latitude ? Number(hotel.latitude) : undefined,
       longitude: hotel.longitude ? Number(hotel.longitude) : undefined,
+      promotions: promotionDtos,
       rooms: roomDtos,
     });
   }
@@ -552,6 +587,151 @@ export class HotelsService {
     });
   }
 
+  async listHotelsByPromotion(type: PromotionType) {
+    const now = new Date();
+    const hotels = await this.prisma.hotel.findMany({
+      where: {
+        status: 1,
+        promotions: {
+          some: {
+            promotionType: type,
+            startDate: { lte: now },
+            endDate: { gte: now },
+          },
+        },
+      },
+      orderBy: { id: 'desc' },
+      include: {
+        promotions: {
+          where: {
+            promotionType: type,
+            startDate: { lte: now },
+            endDate: { gte: now },
+          },
+          orderBy: { startDate: 'asc' },
+        },
+      },
+    });
+
+    return hotels.map(
+      (hotel) =>
+        new HotelListItemDto({
+          id: hotel.id,
+          merchantId: hotel.merchantId,
+          nameCn: hotel.nameCn,
+          nameEn: hotel.nameEn,
+          imageUrls: this.ensureStringArray(hotel.imageUrls),
+          starRating: hotel.starRating,
+          score: hotel.score ? Number(hotel.score) : 0,
+          totalReviews: hotel.totalReviews,
+          price: Number(hotel.price),
+          crossLinePrice: hotel.crossLinePrice
+            ? Number(hotel.crossLinePrice)
+            : null,
+          currency: hotel.currency,
+          shortTags: this.ensureStringArray(hotel.shortTags),
+          address: hotel.address,
+          cityCode: hotel.cityCode,
+          openingDate: hotel.openingDate,
+          latitude: hotel.latitude ? Number(hotel.latitude) : undefined,
+          longitude: hotel.longitude ? Number(hotel.longitude) : undefined,
+          promotions: hotel.promotions.map(
+            (promotion) =>
+              new HotelPromotionDto({
+                id: promotion.id,
+                promotionType: promotion.promotionType,
+                discount: Number(promotion.discount),
+                startDate: promotion.startDate,
+                endDate: promotion.endDate,
+              }),
+          ),
+        }),
+    );
+  }
+
+  async listPromotionsForMerchant(merchantId: number, hotelId: number) {
+    await this.ensureHotelOwnedByMerchant(merchantId, hotelId);
+    return this.prisma.hotelPromotion.findMany({
+      where: { hotelId },
+      orderBy: { startDate: 'asc' },
+    });
+  }
+
+  async createPromotionForMerchant(
+    merchantId: number,
+    hotelId: number,
+    dto: CreateHotelPromotionDto,
+  ) {
+    await this.ensureHotelOwnedByMerchant(merchantId, hotelId);
+    const { startDate, endDate } = this.resolvePromotionDates(
+      dto.startDate,
+      dto.endDate,
+    );
+    const discount = this.parseDiscount(dto.discount);
+
+    return this.prisma.hotelPromotion.create({
+      data: {
+        hotelId,
+        promotionType: dto.promotionType,
+        discount,
+        startDate,
+        endDate,
+      },
+    });
+  }
+
+  async updatePromotionForMerchant(
+    merchantId: number,
+    hotelId: number,
+    promotionId: number,
+    dto: UpdateHotelPromotionDto,
+  ) {
+    await this.ensureHotelOwnedByMerchant(merchantId, hotelId);
+    const promotion = await this.prisma.hotelPromotion.findUnique({
+      where: { id: promotionId },
+    });
+    if (!promotion || promotion.hotelId !== hotelId) {
+      throw new NotFoundException('promotion not found');
+    }
+
+    const start = dto.startDate
+      ? this.parseDate(dto.startDate, 'startDate')
+      : promotion.startDate;
+    const end = dto.endDate
+      ? this.parseDate(dto.endDate, 'endDate')
+      : promotion.endDate;
+    this.ensureDateOrder(start, end);
+
+    const data: Prisma.HotelPromotionUpdateInput = {};
+    if (dto.promotionType) data.promotionType = dto.promotionType;
+    if (dto.discount) data.discount = this.parseDiscount(dto.discount);
+    data.startDate = start;
+    data.endDate = end;
+
+    return this.prisma.hotelPromotion.update({
+      where: { id: promotionId },
+      data,
+    });
+  }
+
+  async deletePromotionForMerchant(
+    merchantId: number,
+    hotelId: number,
+    promotionId: number,
+  ) {
+    await this.ensureHotelOwnedByMerchant(merchantId, hotelId);
+    const promotion = await this.prisma.hotelPromotion.findUnique({
+      where: { id: promotionId },
+    });
+    if (!promotion || promotion.hotelId !== hotelId) {
+      throw new NotFoundException('promotion not found');
+    }
+    await this.prisma.hotelPromotion.delete({
+      where: { id: promotionId },
+    });
+    return { deleted: true };
+  }
+
   async approveHotel(hotelId: number) {
     return this.updateHotelStatus(hotelId, {
       status: 1,
@@ -606,6 +786,53 @@ export class HotelsService {
         merchantId: true,
       },
     });
+  }
+
+  private async ensureHotelOwnedByMerchant(
+    merchantId: number,
+    hotelId: number,
+  ) {
+    const hotel = await this.prisma.hotel.findUnique({
+      where: { id: hotelId },
+      select: { merchantId: true },
+    });
+    if (!hotel) throw new NotFoundException('hotel not found');
+    if (hotel.merchantId !== merchantId)
+      throw new ForbiddenException('no permission');
+  }
+
+  private resolvePromotionDates(startStr: string, endStr: string) {
+    const start = this.parseDate(startStr, 'startDate');
+    const end = this.parseDate(endStr, 'endDate');
+    this.ensureDateOrder(start, end);
+    return { startDate: start, endDate: end };
+  }
+
+  private parseDate(value: string, field: string) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      throw new BadRequestException(`${field} is invalid date`);
+    }
+    return date;
+  }
+
+  private ensureDateOrder(start: Date, end: Date) {
+    if (end <= start) {
+      throw new BadRequestException('endDate must be after startDate');
+    }
+  }
+
+  private parseDiscount(value: string) {
+    let discount: Prisma.Decimal;
+    try {
+      discount = new Prisma.Decimal(value);
+    } catch {
+      throw new BadRequestException('invalid discount');
+    }
+    if (discount.lte(0) || discount.gt(1)) {
+      throw new BadRequestException('discount must be between 0 and 1');
+    }
+    return discount;
   }
 
   private buildSearchOrderClause(

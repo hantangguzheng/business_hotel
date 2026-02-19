@@ -34,7 +34,7 @@ from pathlib import Path
 import requests
 
 API_BASE = "http://localhost:3000"
-TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsInVzZXJuYW1lIjoiZXJpbiIsInJvbGUiOiJNRVJDSEFOVCIsImlhdCI6MTc3MTI0MzU5OCwiZXhwIjoxNzcxMjUwNzk4fQ.xvfwtI40mxwGAWpY1dWjlJpqKa0MUV2t8j7e9u8oy34"  # 或用 os.environ['TOKEN']
+TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIsInVzZXJuYW1lIjoieXVqaW4iLCJyb2xlIjoiTUVSQ0hBTlQiLCJpYXQiOjE3NzE0OTU1NzQsImV4cCI6MTc3MTUwMjc3NH0.S3qwfwhRf2GJiL7zIJCEoA2q2RD_vtQaxlJZ87nfey0"  # 或用 os.environ['TOKEN']
 
 def merge_images(item):
     images = list(item.get("imageUrls") or [])

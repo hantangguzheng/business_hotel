@@ -1,6 +1,19 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Type } from 'class-transformer';
+import { PromotionType } from '@prisma/client';
 import { RoomListItemDto } from '../../rooms/dto/room-response.dto';
+
+export class HotelPromotionDto {
+  id!: number;
+  promotionType!: PromotionType;
+  discount!: number;
+  startDate!: Date;
+  endDate!: Date;
+
+  constructor(partial: Partial<HotelPromotionDto>) {
+    Object.assign(this, partial);
+  }
+}
 
 export class HotelListItemDto {
   id!: number;
@@ -22,6 +35,7 @@ export class HotelListItemDto {
   openingDate?: Date | string;
   shortTags?: string[];
   distance?: number | null;
+  promotions?: HotelPromotionDto[];
 
   constructor(partial: Partial<HotelListItemDto>) {
     Object.assign(this, partial);
@@ -29,6 +43,9 @@ export class HotelListItemDto {
 }
 
 export class HotelDetailDto extends HotelListItemDto {
+  @Type(() => HotelPromotionDto)
+  declare promotions: HotelPromotionDto[];
+
   @Type(() => RoomListItemDto)
   rooms!: RoomListItemDto[];
 
