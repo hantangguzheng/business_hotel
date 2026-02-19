@@ -1,5 +1,5 @@
 import { Image, Input, View } from "@tarojs/components";
-import Taro from "@tarojs/taro";
+import Taro, { useReachBottom } from "@tarojs/taro";
 import { useEffect, useMemo, useState } from "react";
 import { Button, Calendar, Popup } from "@nutui/nutui-react-taro";
 import { ArrowDown, Close } from "@nutui/icons-react-taro";
@@ -7,10 +7,24 @@ import GuestSelector from "../../components/guest-selector";
 import PriceStarPopup from "../../components/price-star-popup";
 import { useSharedFilter } from "../../store/filter-context";
 import { searchHotels } from "../../apis/hotels";
-import type { HotelListItem, SearchHotelsParams } from "../../apis/type";
+import {
+  HOTEL_CN_TO_DB_TAG_MAP,
+  ROOM_CN_TO_DB_TAG_MAP,
+  ROOM_TAG_VALUE_MAP,
+} from "../../apis/tag_map";
+import type {
+  HotelListItem,
+  SearchHotelsParams,
+  SearchRoomFacilityFilters,
+} from "../../apis/type";
 import "./index.scss";
 
 const DEFAULT_CITY = "上海";
+const DEFAULT_MIN_PRICE = 0;
+const DEFAULT_MAX_PRICE = 1000000;
+const DEFAULT_MIN_STAR = 2;
+const DEFAULT_MAX_STAR = 5;
+const PAGE_SIZE = 20;
 
 const buildDefaultDates = () => {
   const today = new Date();
@@ -69,6 +83,9 @@ function ListPage() {
   const [activeFacilityTab, setActiveFacilityTab] = useState("酒店设施");
   const [selectedFacilities, setSelectedFacilities] = useState<string[]>([]);
   const [selectedStar, setSelectedStar] = useState(0);
+  const [selectedMaxStar, setSelectedMaxStar] = useState<number | undefined>(
+    undefined,
+  );
   const [selectedMinPrice, setSelectedMinPrice] = useState<number | undefined>(
     undefined,
   );
@@ -78,6 +95,10 @@ function ListPage() {
   const [priceStarVisible, setPriceStarVisible] = useState(false);
   const [hotels, setHotels] = useState<HotelListItem[]>([]);
   const [loadingHotels, setLoadingHotels] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     const nextKeyword = normalizeParam(params.keyword);
@@ -88,8 +109,15 @@ function ListPage() {
     const nextMinPrice = Number(normalizeParam(params.minPrice));
     const nextMaxPrice = Number(normalizeParam(params.maxPrice));
     const nextMinStar = Number(normalizeParam(params.minStar));
-    const nextRoomCount = Number(params.room) || 1;
-    const nextAdultCount = Number(params.adult) || 1;
+    const nextMaxStar = Number(normalizeParam(params.maxStar));
+    const nextRoomsNeeded = Number(normalizeParam(params.roomsNeeded));
+    const nextPeopleNeeded = Number(normalizeParam(params.peopleNeeded));
+    const nextRoomCount = Number(params.room) || nextRoomsNeeded || 1;
+    const nextAdultCount =
+      Number(params.adult) ||
+      (Number.isFinite(nextPeopleNeeded) && nextPeopleNeeded > 0
+        ? nextPeopleNeeded
+        : 1);
     const nextChildCount = Number(params.child) || 0;
 
     setFilter({
@@ -112,50 +140,158 @@ function ListPage() {
     if (!Number.isNaN(nextMinStar) && nextMinStar > 0) {
       setSelectedStar(nextMinStar);
     }
+    if (!Number.isNaN(nextMaxStar) && nextMaxStar > 0) {
+      setSelectedMaxStar(nextMaxStar);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const buildSearchHotelsParams = (): SearchHotelsParams => {
+  const buildSearchHotelsParams = (page: number): SearchHotelsParams => {
     const keywordValue = keyword.trim();
     const safeRoomCount = roomCount > 0 ? roomCount : 1;
     const safeAdultCount = adultCount > 0 ? adultCount : 1;
     const safeChildCount = childCount >= 0 ? childCount : 0;
     const peopleNeeded = safeAdultCount + safeChildCount;
 
+    const selectedSet = new Set(selectedFacilities);
+
+    const hotelLabels = facilityMap.酒店设施 || [];
+    const roomLabels = facilityMap.客房设施 || [];
+    const areaLabels = facilityMap.房间面积 || [];
+    const scoreLabels = facilityMap.评分 || [];
+
+    const hotelTags = Array.from(
+      new Set(
+        hotelLabels
+          .filter((label) => selectedSet.has(label))
+          .flatMap((label) => HOTEL_CN_TO_DB_TAG_MAP[label] || []),
+      ),
+    );
+
+    const areaTitles = Array.from(
+      new Set(
+        areaLabels
+          .filter((label) => selectedSet.has(label))
+          .map((label) => ROOM_TAG_VALUE_MAP.areaTitles[label])
+          .filter((value): value is string => Boolean(value)),
+      ),
+    );
+
+    const minScoreBySelection = scoreLabels.reduce<number | undefined>(
+      (current, label) => {
+        if (!selectedSet.has(label)) return current;
+        const scoreValue = Number(label.replace("以上", ""));
+        if (!Number.isFinite(scoreValue)) return current;
+        if (typeof current !== "number") return scoreValue;
+        return Math.max(current, scoreValue);
+      },
+      undefined,
+    );
+
+    const roomFacilities: SearchRoomFacilityFilters = {};
+    roomLabels
+      .filter((label) => selectedSet.has(label))
+      .forEach((label) => {
+        const mappedFields = ROOM_CN_TO_DB_TAG_MAP[label];
+        if (!mappedFields) return;
+
+        (
+          Object.keys(mappedFields) as (keyof SearchRoomFacilityFilters)[]
+        ).forEach((field) => {
+          const nextValues = mappedFields[field] || [];
+          if (nextValues.length === 0) return;
+          const existing = roomFacilities[field] || [];
+          roomFacilities[field] = Array.from(
+            new Set([...existing, ...nextValues]),
+          );
+        });
+      });
+
+    const hasRoomFacilities = Object.keys(roomFacilities).length > 0;
+    const hasRoomTags = areaTitles.length > 0;
+    const safeMinPrice =
+      typeof selectedMinPrice === "number"
+        ? selectedMinPrice
+        : DEFAULT_MIN_PRICE;
+    const safeMaxPrice =
+      typeof selectedMaxPrice === "number"
+        ? selectedMaxPrice
+        : DEFAULT_MAX_PRICE;
+    const normalizedMaxPrice =
+      safeMaxPrice < safeMinPrice ? DEFAULT_MAX_PRICE : safeMaxPrice;
+
+    const safeMinStar = selectedStar > 0 ? selectedStar : DEFAULT_MIN_STAR;
+    const safeMaxStar =
+      typeof selectedMaxStar === "number" && selectedMaxStar > 0
+        ? selectedMaxStar
+        : DEFAULT_MAX_STAR;
+    const normalizedMaxStar =
+      safeMaxStar < safeMinStar ? DEFAULT_MAX_STAR : safeMaxStar;
+
     return {
       cityCode: cityCode || undefined,
       keyword: keywordValue || undefined,
-      minPrice: selectedMinPrice,
-      maxPrice: selectedMaxPrice,
-      minStar: selectedStar > 0 ? selectedStar : undefined,
+      minPrice: safeMinPrice,
+      maxPrice: normalizedMaxPrice,
+      minStar: safeMinStar,
+      maxStar: normalizedMaxStar,
+      minScore: minScoreBySelection,
       checkIn: checkIn || defaultDates.checkIn,
       checkOut: checkOut || defaultDates.checkOut,
       roomsNeeded: safeRoomCount,
       peopleNeeded,
-      tags: selectedFacilities.length > 0 ? selectedFacilities : undefined,
-      page: 1,
-      pageSize: 20,
+      tags: hotelTags.length > 0 ? hotelTags : undefined,
+      room:
+        hasRoomTags || hasRoomFacilities
+          ? {
+              tags: hasRoomTags ? { areaTitles } : undefined,
+              facilities: hasRoomFacilities ? roomFacilities : undefined,
+            }
+          : undefined,
+      page,
+      pageSize: PAGE_SIZE,
     };
   };
 
-  const fetchHotelList = async () => {
-    const searchParams = buildSearchHotelsParams();
+  const fetchHotelList = async ({
+    page,
+    append,
+  }: {
+    page: number;
+    append: boolean;
+  }) => {
+    const searchParams = buildSearchHotelsParams(page);
 
-    setLoadingHotels(true);
+    if (append) {
+      setLoadingMore(true);
+    } else {
+      setLoadingHotels(true);
+    }
 
     try {
       const response = await searchHotels(searchParams);
+      const nextList = response.data || [];
+      const nextTotal = Number(response.total || 0);
 
-      setHotels(response.data || []);
+      setTotalCount(nextTotal);
+      setCurrentPage(page);
+      setHasMore(page * PAGE_SIZE < nextTotal);
+      setHotels((current) => (append ? [...current, ...nextList] : nextList));
     } catch (error) {
-      setHotels([]);
+      if (!append) {
+        setHotels([]);
+      }
       Taro.showToast({
         title: "获取酒店列表失败",
         icon: "none",
         duration: 1500,
       });
     } finally {
-      setLoadingHotels(false);
+      if (append) {
+        setLoadingMore(false);
+      } else {
+        setLoadingHotels(false);
+      }
     }
   };
 
@@ -173,7 +309,7 @@ function ListPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      void fetchHotelList();
+      void fetchHotelList({ page: 1, append: false });
     }, 250);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -187,10 +323,16 @@ function ListPage() {
     adultCount,
     childCount,
     selectedStar,
+    selectedMaxStar,
     selectedMinPrice,
     selectedMaxPrice,
     selectedFacilities,
   ]);
+
+  useReachBottom(() => {
+    if (loadingHotels || loadingMore || !hasMore) return;
+    void fetchHotelList({ page: currentPage + 1, append: true });
+  });
 
   const normalizeDate = (value) => {
     if (!value) return "";
@@ -547,13 +689,23 @@ function ListPage() {
             type="primary"
             onClick={() => {
               setFilterVisible(false);
-              void fetchHotelList();
+              void fetchHotelList({ page: 1, append: false });
             }}
           >
             确定
           </Button>
         </View>
       </Popup>
+
+      {!loadingHotels && hotels.length > 0 && (
+        <View className="hotel-list__footer">
+          {loadingMore
+            ? "加载更多中..."
+            : hasMore
+              ? `已加载${hotels.length}/${totalCount}，上拉加载更多`
+              : `已加载全部${totalCount}条`}
+        </View>
+      )}
 
       <PriceStarPopup
         visible={priceStarVisible}

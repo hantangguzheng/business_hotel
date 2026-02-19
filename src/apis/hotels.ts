@@ -8,7 +8,24 @@ const API_BASE_URL =
 export async function searchHotels(
   params: SearchHotelsParams,
 ): Promise<SearchHotelsResponse> {
-  const cleanParams: Record<string, string | number | string[]> = {};
+  const cleanParams: SearchHotelsParams = {};
+
+  const toIsoDateTime = (value?: string) => {
+    if (typeof value !== "string") return undefined;
+    const trimmed = value.trim();
+    if (!trimmed) return undefined;
+
+    if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) {
+      return `${trimmed}T00:00:00.000Z`;
+    }
+
+    const parsed = new Date(trimmed);
+    if (Number.isNaN(parsed.getTime())) {
+      return undefined;
+    }
+
+    return parsed.toISOString();
+  };
 
   const keyword = typeof params.keyword === "string" ? params.keyword.trim() : "";
   if (keyword) {
@@ -40,6 +57,21 @@ export async function searchHotels(
     }
   }
 
+  if (typeof params.maxStar === "number" && Number.isFinite(params.maxStar)) {
+    const safeMaxStar = Math.floor(params.maxStar);
+    if (safeMaxStar >= 1 && safeMaxStar <= 5) {
+      cleanParams.maxStar = safeMaxStar;
+    }
+  }
+
+  if (
+    typeof cleanParams.minStar === "number" &&
+    typeof cleanParams.maxStar === "number" &&
+    cleanParams.maxStar < cleanParams.minStar
+  ) {
+    delete cleanParams.maxStar;
+  }
+
   if (Array.isArray(params.tags)) {
     const safeTags = params.tags
       .map((item) => String(item).trim())
@@ -49,12 +81,18 @@ export async function searchHotels(
     }
   }
 
-  if (typeof params.checkIn === "string" && params.checkIn.trim()) {
-    cleanParams.checkIn = params.checkIn.trim();
+  if (typeof params.cityCode === "string" && params.cityCode.trim()) {
+    cleanParams.cityCode = params.cityCode.trim();
   }
 
-  if (typeof params.checkOut === "string" && params.checkOut.trim()) {
-    cleanParams.checkOut = params.checkOut.trim();
+  const safeCheckIn = toIsoDateTime(params.checkIn);
+  if (safeCheckIn) {
+    cleanParams.checkIn = safeCheckIn;
+  }
+
+  const safeCheckOut = toIsoDateTime(params.checkOut);
+  if (safeCheckOut) {
+    cleanParams.checkOut = safeCheckOut;
   }
 
   if (
@@ -85,6 +123,10 @@ export async function searchHotels(
     cleanParams.minScore = params.minScore;
   }
 
+  if (params.sortBy === "distance" || params.sortBy === "price" || params.sortBy === "score") {
+    cleanParams.sortBy = params.sortBy;
+  }
+
   if (typeof params.page === "number" && Number.isFinite(params.page) && params.page >= 1) {
     cleanParams.page = Math.floor(params.page);
   }
@@ -97,10 +139,49 @@ export async function searchHotels(
     cleanParams.pageSize = Math.floor(params.pageSize);
   }
 
+  if (params.room?.tags || params.room?.facilities) {
+    cleanParams.room = {
+      tags: params.room?.tags,
+      facilities: params.room?.facilities,
+    };
+  }
+
+  const removeEmptyFields = (value: unknown): unknown => {
+    if (Array.isArray(value)) {
+      const compact = value
+        .map((item) => removeEmptyFields(item))
+        .filter((item) => item !== undefined && item !== null);
+      return compact.length > 0 ? compact : undefined;
+    }
+
+    if (value && typeof value === "object") {
+      const nextObject = Object.entries(value as Record<string, unknown>).reduce<
+        Record<string, unknown>
+      >((acc, [key, item]) => {
+        const normalized = removeEmptyFields(item);
+        if (normalized !== undefined && normalized !== null) {
+          acc[key] = normalized;
+        }
+        return acc;
+      }, {});
+
+      return Object.keys(nextObject).length > 0 ? nextObject : undefined;
+    }
+
+    if (typeof value === "string") {
+      const trimmed = value.trim();
+      return trimmed ? trimmed : undefined;
+    }
+
+    return value;
+  };
+
+  const requestBody = (removeEmptyFields(cleanParams) || {}) as SearchHotelsParams;
+
   const response = await Taro.request<SearchHotelsResponse>({
     url: `${API_BASE_URL}/hotels/search`,
-    method: "GET",
-    data: cleanParams,
+    method: "POST",
+    data: requestBody,
     header: {
       "content-type": "application/json",
     },

@@ -11,17 +11,22 @@ backend program for easyhotel with typescript
 
 ## 酒店与房型查询 API
 
-### 1. GET /hotels/search
+以下查询接口均可匿名访问；仅当需要「我的酒店」「创建/修改」等写操作时才需要携带 `Authorization: Bearer <token>`。
 
-- 控制器：`HotelsController.search` → `HotelsService.search`
+### 1. GET /hotels/search / POST /hotels/search
+
+- 控制器：`HotelsController.search` / `HotelsController.searchWithBody` → `HotelsService.search`
 - 作用：综合酒店字段、房型标签、可用库存、经纬度排序等条件，分页返回酒店列表。
-- 请求 Query（`SearchHotelsDto`）主要字段：
+- **GET 版本**：通过 query string 传参，适合简单筛选（例如 `?keyword=布丁&page=1&pageSize=10`）。
+- **POST 版本**：通过 JSON Body 传入 `SearchHotelsDto`，方便包含嵌套的 `room.tags.*`、`room.facilities.*` 等结构。
+- 请求字段与含义：
 
 | 字段                    | 类型                               | 说明                                                                                            |
 | ----------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `keyword`               | string?                            | 模糊匹配 `nameCn`                                                                               |
+| `cityCode`              | string?                            | 城市三字码精确匹配（如 `BJS`）                                                                  |
 | `minPrice` / `maxPrice` | number?                            | 起步价区间，单位与 `currency` 一致                                                              |
-| `minStar`               | number?                            | 最小星级（1~5）                                                                                 |
+| `minStar` / `maxStar`   | number?                            | 星级区间（1~5）                                                                                 |
 | `minScore`              | number?                            | 最小评分                                                                                        |
 | `tags`                  | string[]?                          | 设施/亮点标签，后台通过 `JSON_CONTAINS` 匹配                                                    |
 | `userLat` / `userLng`   | number?                            | 传入后可计算距离排序                                                                            |

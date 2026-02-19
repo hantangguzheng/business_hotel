@@ -1,8 +1,8 @@
 import { Image, Map, View } from "@tarojs/components";
 import Taro from "@tarojs/taro";
 import { useMemo } from "react";
-import quanjiImage from "../../../assets/imgs/quanji.png";
-import rujiaImage from "../../../assets/imgs/rujia.png";
+import quanjiImage from "../../assets/imgs/quanji.png";
+import rujiaImage from "../../assets/imgs/rujia.png";
 import "./index.scss";
 
 const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";

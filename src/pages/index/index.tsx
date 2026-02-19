@@ -8,12 +8,16 @@ import PriceStarPopup from "../../components/price-star-popup";
 import { useSharedFilter } from "../../store/filter-context";
 import zh from "../../locales/zh";
 import en from "../../locales/en";
-import logo from "../../../assets/imgs/logo.png";
+import logo from "../../assets/imgs/logo.png";
 import md5 from "../../utils/md5.js";
 import "./index.scss";
 const { cities } = require("../../utils/city");
 const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
 const QQ_MAP_SK = "eReOMGZUU9rMnVbYphtudUST6EfMC7MC";
+const DEFAULT_MIN_PRICE = 0;
+const DEFAULT_MAX_PRICE = 1000000;
+const DEFAULT_MIN_STAR = 2;
+const DEFAULT_MAX_STAR = 5;
 
 const DEFAULT_CITY_INFO = {
   name: "上海",
@@ -230,15 +234,20 @@ function Index() {
   };
 
   const buildSearchUrl = (nextKeyword?: string) => {
+    const safeRoomsNeeded = roomCount > 0 ? roomCount : 1;
+    const safePeopleNeeded = Math.max(1, adultCount + childCount);
     const params = {
       city,
       cityCode,
       keyword: nextKeyword ?? keyword,
-      minPrice: typeof minPrice === "number" ? minPrice : undefined,
-      maxPrice: typeof maxPrice === "number" ? maxPrice : undefined,
-      minStar: typeof minStar === "number" ? minStar : undefined,
+      minPrice: typeof minPrice === "number" ? minPrice : DEFAULT_MIN_PRICE,
+      maxPrice: typeof maxPrice === "number" ? maxPrice : DEFAULT_MAX_PRICE,
+      minStar: typeof minStar === "number" ? minStar : DEFAULT_MIN_STAR,
+      maxStar: DEFAULT_MAX_STAR,
       checkIn,
       checkOut,
+      roomsNeeded: String(safeRoomsNeeded),
+      peopleNeeded: String(safePeopleNeeded),
       room: String(roomCount),
       adult: String(adultCount),
       child: String(childCount),
@@ -278,16 +287,19 @@ function Index() {
     if (!validateSearch()) {
       return;
     }
+    const safeRoomsNeeded = roomCount > 0 ? roomCount : 1;
+    const safePeopleNeeded = Math.max(1, adultCount + childCount);
     const payload = {
       location: city,
+      cityCode,
       checkIn,
       checkOut,
-      room: roomCount,
-      adult: adultCount,
-      child: childCount,
-      minPrice,
-      maxPrice,
-      minStar,
+      roomsNeeded: safeRoomsNeeded,
+      peopleNeeded: safePeopleNeeded,
+      minPrice: typeof minPrice === "number" ? minPrice : DEFAULT_MIN_PRICE,
+      maxPrice: typeof maxPrice === "number" ? maxPrice : DEFAULT_MAX_PRICE,
+      minStar: typeof minStar === "number" ? minStar : DEFAULT_MIN_STAR,
+      maxStar: DEFAULT_MAX_STAR,
       keyword: nextKeyword ?? keyword,
     };
     console.log("search", payload);
