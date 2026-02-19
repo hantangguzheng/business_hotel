@@ -146,6 +146,10 @@ export class SearchHotelsDto {
   keyword?: string;
 
   @IsOptional()
+  @IsString()
+  cityCode?: string;
+
+  @IsOptional()
   @Type(() => Number)
   @IsNumber()
   minPrice?: number;
@@ -161,6 +165,13 @@ export class SearchHotelsDto {
   @Min(1)
   @Max(5)
   minStar?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  @Min(1)
+  @Max(5)
+  maxStar?: number;
 
   @IsOptional()
   @Type(() => Number)

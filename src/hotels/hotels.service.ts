@@ -873,6 +873,9 @@ export class HotelsService {
         Prisma.sql`h.name_cn LIKE ${'%' + dto.keyword.trim() + '%'}`,
       );
     }
+    if (dto.cityCode) {
+      conditions.push(Prisma.sql`h.city_code = ${dto.cityCode}`);
+    }
     if (typeof dto.minPrice === 'number') {
       conditions.push(Prisma.sql`h.price >= ${dto.minPrice}`);
     }
@@ -881,6 +884,9 @@ export class HotelsService {
     }
     if (typeof dto.minStar === 'number') {
       conditions.push(Prisma.sql`h.star_rating >= ${dto.minStar}`);
+    }
+    if (typeof dto.maxStar === 'number') {
+      conditions.push(Prisma.sql`h.star_rating <= ${dto.maxStar}`);
     }
     if (typeof dto.minScore === 'number') {
       conditions.push(Prisma.sql`h.score >= ${dto.minScore}`);
