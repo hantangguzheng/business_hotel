@@ -50,6 +50,7 @@ const ALL_CITY_OPTIONS = collectCityOptions();
 function Index() {
   const LANG_STORAGE_KEY = "app_lang";
   const CITY_STORAGE_KEY = "city_selected";
+  const CITY_LOCATION_INFO_KEY = "city_location_info";
   const CITY_ADDRESS_KEY = "city_address";
   const MY_LOCATION_KEY = "__MY_LOCATION__";
   const [lang, setLang] = useState<"zh" | "en">("zh");
@@ -76,6 +77,7 @@ function Index() {
   const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
   const [minStar, setMinStar] = useState<number | undefined>(undefined);
+  const [maxStar, setMaxStar] = useState<number | undefined>(undefined);
   const hasAutoLocatedRef = useRef(false);
   const keywordTags = ["适合情侣", "上海浦东国际机场", "上榜酒店", "国家会展"];
 
@@ -124,8 +126,20 @@ function Index() {
     }
     const storedCity = Taro.getStorageSync(CITY_STORAGE_KEY);
     const storedCityInfo = parseStoredCityInfo(storedCity);
+    const storedLocationCityInfo = parseStoredCityInfo(
+      Taro.getStorageSync(CITY_LOCATION_INFO_KEY),
+    );
 
-    if (storedCityInfo) {
+    if (storedCity === MY_LOCATION_KEY) {
+      setLocationKey(MY_LOCATION_KEY);
+      const fallbackCityInfo =
+        storedLocationCityInfo ||
+        (city ? { name: city, cityCode: cityCode || "" } : DEFAULT_CITY_INFO);
+      setFilter({
+        city: fallbackCityInfo.name,
+        cityCode: fallbackCityInfo.cityCode,
+      });
+    } else if (storedCityInfo) {
       setLocationKey("CITY");
       setFilter({
         city: storedCityInfo.name,
@@ -195,31 +209,39 @@ function Index() {
               resolveCityInfoByName(geocoderCity) || DEFAULT_CITY_INFO;
             const address =
               result?.formatted_addresses?.recommend || result?.address;
-            const text = address
-              ? `${copy.myLocationText}：${address}`
-              : `${copy.myLocationText}：${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
+            const rawAddress = address
+              ? String(address)
+              : `${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
+            const text = `${copy.myLocationText}：${rawAddress}`;
             setLocationKey(MY_LOCATION_KEY);
             setFilter({
               city: resolvedCityInfo.name,
               cityCode: resolvedCityInfo.cityCode,
+              userLat: res.latitude,
+              userLng: res.longitude,
             });
             setLocationNotice(text);
             setShowLocationNotice(true);
-            Taro.setStorageSync(CITY_STORAGE_KEY, resolvedCityInfo);
-            Taro.setStorageSync(CITY_ADDRESS_KEY, text);
+            Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
+            Taro.setStorageSync(CITY_LOCATION_INFO_KEY, resolvedCityInfo);
+            Taro.setStorageSync(CITY_ADDRESS_KEY, rawAddress);
           },
           fail: () => {
-            const text = `${copy.myLocationText}：${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
+            const rawAddress = `${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
+            const text = `${copy.myLocationText}：${rawAddress}`;
             const fallbackCityInfo = DEFAULT_CITY_INFO;
             setLocationKey(MY_LOCATION_KEY);
             setFilter({
               city: fallbackCityInfo.name,
               cityCode: fallbackCityInfo.cityCode,
+              userLat: res.latitude,
+              userLng: res.longitude,
             });
             setLocationNotice(text);
             setShowLocationNotice(true);
-            Taro.setStorageSync(CITY_STORAGE_KEY, fallbackCityInfo);
-            Taro.setStorageSync(CITY_ADDRESS_KEY, text);
+            Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
+            Taro.setStorageSync(CITY_LOCATION_INFO_KEY, fallbackCityInfo);
+            Taro.setStorageSync(CITY_ADDRESS_KEY, rawAddress);
           },
         });
       },
@@ -245,7 +267,7 @@ function Index() {
       minPrice: typeof minPrice === "number" ? minPrice : DEFAULT_MIN_PRICE,
       maxPrice: typeof maxPrice === "number" ? maxPrice : DEFAULT_MAX_PRICE,
       minStar: typeof minStar === "number" ? minStar : DEFAULT_MIN_STAR,
-      maxStar: DEFAULT_MAX_STAR,
+      maxStar: typeof maxStar === "number" ? maxStar : DEFAULT_MAX_STAR,
       checkIn,
       checkOut,
       roomsNeeded: String(safeRoomsNeeded),
@@ -301,7 +323,7 @@ function Index() {
       minPrice: typeof minPrice === "number" ? minPrice : DEFAULT_MIN_PRICE,
       maxPrice: typeof maxPrice === "number" ? maxPrice : DEFAULT_MAX_PRICE,
       minStar: typeof minStar === "number" ? minStar : DEFAULT_MIN_STAR,
-      maxStar: DEFAULT_MAX_STAR,
+      maxStar: typeof maxStar === "number" ? maxStar : DEFAULT_MAX_STAR,
       keyword: nextKeyword ?? keyword,
     };
     console.log("search", payload);
@@ -389,9 +411,21 @@ function Index() {
           : `¥${minPrice}以上`
         : "价格/星级";
 
-    const starText = typeof minStar === "number" ? `${minStar}钻/星起` : "";
+    const starText =
+      typeof minStar === "number"
+        ? typeof maxStar === "number" && maxStar >= minStar
+          ? minStar === maxStar
+            ? `${minStar}钻/星`
+            : `${minStar}-${maxStar}钻/星`
+          : `${minStar}钻/星起`
+        : "";
     return starText ? `${priceText} ${starText}` : priceText;
-  }, [maxPrice, minPrice, minStar]);
+  }, [maxPrice, maxStar, minPrice, minStar]);
+
+  const locationDisplayText =
+    locationKey === MY_LOCATION_KEY
+      ? copy.myLocationText
+      : city || copy.cityDefault;
 
   return (
     <View className="hotel-page">
@@ -435,10 +469,12 @@ function Index() {
             <View className="location-col__main">
               <View
                 className={
-                  city ? "location-col__value" : "location-col__placeholder"
+                  locationDisplayText
+                    ? "location-col__value"
+                    : "location-col__placeholder"
                 }
               >
-                {city || copy.cityDefault}
+                {locationDisplayText || copy.cityDefault}
               </View>
               <ArrowDown color="grey" width="10px" />
 
@@ -503,16 +539,35 @@ function Index() {
           </View>
         </View>
 
-        <PriceStarPopup
+        <Popup
           visible={priceStarVisible}
+          position="bottom"
           onClose={() => setPriceStarVisible(false)}
-          initialValue={{ minPrice, maxPrice, minStar }}
-          onConfirm={(value) => {
-            setMinPrice(value.minPrice);
-            setMaxPrice(value.maxPrice);
-            setMinStar(value.minStar);
-          }}
-        />
+        >
+          <View className="home-price-star-popup">
+            <View className="home-price-star-popup__header">
+              <View
+                className="home-price-star-popup__close"
+                onClick={() => setPriceStarVisible(false)}
+              >
+                <Close color="#1b2a4e" width="16px" />
+              </View>
+              <View className="home-price-star-popup__title">
+                选择价格/星级
+              </View>
+            </View>
+            <PriceStarPopup
+              initialValue={{ minPrice, maxPrice, minStar, maxStar }}
+              onConfirm={(value) => {
+                setMinPrice(value.minPrice);
+                setMaxPrice(value.maxPrice);
+                setMinStar(value.minStar);
+                setMaxStar(value.maxStar);
+                setPriceStarVisible(false);
+              }}
+            />
+          </View>
+        </Popup>
 
         <Popup
           visible={guestVisible}

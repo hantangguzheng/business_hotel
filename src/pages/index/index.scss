@@ -370,6 +370,39 @@
   padding: 16px 16px 20px;
 }
 
+.home-price-star-popup {
+  background: #ffffff;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+}
+
+.home-price-star-popup__header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.home-price-star-popup__close {
+  position: absolute;
+  left: 12px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-price-star-popup__title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1b2a4e;
+}
+
 .guest-popup__header {
   display: flex;
   align-items: center;

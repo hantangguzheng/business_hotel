@@ -9,6 +9,8 @@ export type SharedFilterState = {
   roomCount: number;
   adultCount: number;
   childCount: number;
+  userLat?: number;
+  userLng?: number;
 };
 
 type SharedFilterContextValue = {
@@ -43,6 +45,8 @@ const defaultFilterState: SharedFilterState = {
   roomCount: 1,
   adultCount: 1,
   childCount: 0,
+  userLat: undefined,
+  userLng: undefined,
 };
 
 const SharedFilterContext = createContext<SharedFilterContextValue | null>(

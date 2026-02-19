@@ -5,6 +5,7 @@ import { Elevator } from "@nutui/nutui-react-taro";
 import "./index.scss";
 
 const CITY_STORAGE_KEY = "city_selected";
+const CITY_LOCATION_INFO_KEY = "city_location_info";
 const CITY_ADDRESS_KEY = "city_address";
 const MY_LOCATION_KEY = "__MY_LOCATION__";
 const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
@@ -79,10 +80,20 @@ function CityIndex() {
     };
   };
 
+  const normalizeLocationAddress = (value?: string) => {
+    const text = String(value || "").trim();
+    return text.replace(/^我的位置[：:]\s*/, "");
+  };
+
   useDidShow(() => {
     const storedCity = Taro.getStorageSync(CITY_STORAGE_KEY);
-    const storedAddress = Taro.getStorageSync(CITY_ADDRESS_KEY);
+    const storedAddress = normalizeLocationAddress(
+      Taro.getStorageSync(CITY_ADDRESS_KEY),
+    );
     const storedCityInfo = parseStoredCityInfo(storedCity);
+    const storedLocationCityInfo = parseStoredCityInfo(
+      Taro.getStorageSync(CITY_LOCATION_INFO_KEY),
+    );
     if (storedCityInfo) {
       setHasLocated(true);
       setLocatedCityInfo(storedCityInfo);
@@ -92,6 +103,7 @@ function CityIndex() {
 
     if (storedCity === MY_LOCATION_KEY) {
       setHasLocated(true);
+      setLocatedCityInfo(storedLocationCityInfo);
       setLocatedText(storedAddress || "我的位置");
       return;
     }
@@ -163,12 +175,14 @@ function CityIndex() {
 
   const handleSelect = (cityInfo) => {
     Taro.setStorageSync(CITY_STORAGE_KEY, cityInfo);
+    Taro.setStorageSync(CITY_LOCATION_INFO_KEY, cityInfo);
     Taro.navigateBack();
   };
 
   const handleUseMyLocation = () => {
+    Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
     if (locatedCityInfo) {
-      Taro.setStorageSync(CITY_STORAGE_KEY, locatedCityInfo);
+      Taro.setStorageSync(CITY_LOCATION_INFO_KEY, locatedCityInfo);
     }
     Taro.navigateBack();
   };
@@ -221,10 +235,11 @@ function CityIndex() {
                 cityCode: String(matchedCityInfo.cityCode || ""),
               };
               setLocatedCityInfo(cityInfo);
-              Taro.setStorageSync(CITY_STORAGE_KEY, cityInfo);
+              Taro.setStorageSync(CITY_LOCATION_INFO_KEY, cityInfo);
             } else {
               setLocatedCityInfo(null);
             }
+            Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
             Taro.setStorageSync(CITY_ADDRESS_KEY, text);
             Taro.showToast({
               title: "定位成功",

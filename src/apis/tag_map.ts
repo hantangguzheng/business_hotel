@@ -49,7 +49,6 @@ export type HotelDbTag = (typeof HOTEL_DB_TAGS)[number];
 
 export const HOTEL_CN_TO_DB_TAG_MAP: Record<string, HotelDbTag[]> = {
   免费WiFi: ["FREE_WIFI"],
-  免费WIFI: ["FREE_WIFI"],
   健身房: ["GYM"],
   免费停车: ["FREE_PARKING"],
   充电桩: ["CHARGING_PILE"],
@@ -76,6 +75,19 @@ export const HOTEL_CN_TO_DB_TAG_MAP: Record<string, HotelDbTag[]> = {
   会员权益: ["MEMBER_BENEFITS"],
   管家服务: ["BUTLER_SERVICE"],
 };
+
+export const HOTEL_DB_TO_CN_TAG_MAP: Partial<Record<HotelDbTag, string>> =
+  Object.entries(HOTEL_CN_TO_DB_TAG_MAP).reduce(
+    (result, [cnName, dbTags]) => {
+      dbTags.forEach((dbTag) => {
+        if (!result[dbTag]) {
+          result[dbTag] = cnName;
+        }
+      });
+      return result;
+    },
+    {} as Partial<Record<HotelDbTag, string>>,
+  );
 
 export const ROOM_TAG_VALUE_MAP = {
   areaTitles: {
