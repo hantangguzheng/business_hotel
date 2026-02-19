@@ -9,9 +9,11 @@ import { useSharedFilter } from "../../store/filter-context";
 import zh from "../../locales/zh";
 import en from "../../locales/en";
 import logo from "../../assets/imgs/logo.png";
-import md5 from "../../utils/md5.js";
 import "./index.scss";
 const { cities } = require("../../utils/city");
+const md5Module = require("../../utils/md5.js");
+const md5: (input: string, key?: string, raw?: boolean) => string =
+  typeof md5Module === "function" ? md5Module : md5Module?.default;
 const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
 const QQ_MAP_SK = "eReOMGZUU9rMnVbYphtudUST6EfMC7MC";
 const DEFAULT_MIN_PRICE = 0;

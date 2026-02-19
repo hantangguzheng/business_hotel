@@ -3,7 +3,7 @@ import type { SearchHotelsParams, SearchHotelsResponse } from "./type";
 
 const API_BASE_URL =
   (typeof process !== "undefined" && process.env?.TARO_APP_API_BASE_URL) ||
-  "http://localhost:3000";
+  "http://192.168.0.101:3000";
 
 export async function searchHotels(
   params: SearchHotelsParams,

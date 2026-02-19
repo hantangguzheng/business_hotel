@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from "react";
 import { Input, View } from "@tarojs/components";
 import Taro, { useDidShow } from "@tarojs/taro";
 import { Elevator } from "@nutui/nutui-react-taro";
-import md5 from "../../utils/md5.js";
 import "./index.scss";
 
 const CITY_STORAGE_KEY = "city_selected";
@@ -10,6 +9,9 @@ const CITY_ADDRESS_KEY = "city_address";
 const MY_LOCATION_KEY = "__MY_LOCATION__";
 const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
 const QQ_MAP_SK = "eReOMGZUU9rMnVbYphtudUST6EfMC7MC";
+const md5Module = require("../../utils/md5.js");
+const md5: (input: string, key?: string, raw?: boolean) => string =
+  typeof md5Module === "function" ? md5Module : md5Module?.default;
 const { cities } = require("../../utils/city");
 
 const toCityOption = (item) => ({
