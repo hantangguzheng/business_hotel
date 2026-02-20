@@ -73,18 +73,51 @@ export type SearchHotelsResponse = {
   data: HotelListItem[];
 };
 
+export type SearchRoomsParams = {
+  hotelId: number;
+  tags?: SearchRoomTagFilters;
+  facilities?: SearchRoomFacilityFilters;
+  checkIn?: string;
+  checkOut?: string;
+  roomsNeeded?: number;
+  peopleNeeded?: number;
+  page?: number;
+  pageSize?: number;
+};
+
+export type SearchRoomsResponse = {
+  total: number;
+  data: HotelRoomItem[];
+};
+
 export type HotelRoomItem = {
   id: number;
   hotelId: number;
   name: string;
+  price?: number;
+  capacity?: number;
+  availableCount?: number;
+  floorTitle?: string;
   areaTitle?: string;
   bedTitle?: string;
   windowTitle?: string;
   smokeTitle?: string;
   wifiInfo?: string;
+  cleaningFacilities?: string[];
+  bathingFacilities?: string[];
+  layoutFacilities?: string[];
+  accessibleFacilities?: string[];
+  networkFacilities?: string[];
+  bathroomFacilities?: string[];
+  foodFacilities?: string[];
+  childFacilities?: string[];
+  mediaFacilities?: string[];
+  roomSpecFacilities?: string[];
+  kitchenFacilities?: string[];
+  amenityFacilities?: string[];
+  viewFacilities?: string[];
   pictureUrl?: string;
-  price?: number;
-  availableCount?: number;
+  
 };
 
 export type HotelDetailItem = {
@@ -103,5 +136,4 @@ export type HotelDetailItem = {
   openingDate?: string;
   latitude?: number;
   longitude?: number;
-  rooms?: HotelRoomItem[];
 };

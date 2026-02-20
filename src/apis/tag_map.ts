@@ -158,7 +158,7 @@ export const ROOM_DB_TAGS_BY_FIELD: Record<RoomFacilityField, string[]> = {
     "ALCOHOL",
     "KETTLE",
   ],
-  childFacilities: ["CRIB", "TOYS", "TOILET_SEAT"],
+  childFacilities: ["CRIB", "TOYS", "SLIPPERS", "TOILETRIES", "TOILET_SEAT"],
   mediaFacilities: ["LCD_TV", "CABLE", "SMART_LOCK", "SMART_CONTROL"],
   roomSpecFacilities: [
     "AC",
@@ -194,16 +194,200 @@ export const ROOM_DB_TAGS_BY_FIELD: Record<RoomFacilityField, string[]> = {
     "RAZOR",
     "TOILETRIES",
   ],
-  viewFacilities: ["CITY_VIEW", "LANDMARK_VIEW", "RIVER_VIEW"],
+  viewFacilities: ["CITY_VIEW", "LANDMARK_VIEW", "RIVER_VIEW", "GARDEN_VIEW"],
 };
 
+export const LAYOUT_FACILITY_META = [
+  {
+    tag: "DESK",
+    cn: "书桌 / 办公桌",
+    description: "房间内提供的办公或书写区域",
+  },
+  {
+    tag: "SOFA",
+    cn: "沙发",
+    description: "休息区的各类沙发座椅",
+  },
+  {
+    tag: "WARDROBE",
+    cn: "衣柜",
+    description: "用于存放衣物的柜子",
+  },
+  {
+    tag: "COFFEE_TABLE",
+    cn: "茶几 / 咖啡桌",
+    description: "通常摆放在沙发前的矮桌",
+  },
+  {
+    tag: "LOUNGE_CHAIR",
+    cn: "休闲椅 / 躺椅",
+    description: "单人使用的舒适靠椅",
+  },
+  {
+    tag: "DECORATIVE_PAINTING",
+    cn: "装饰画",
+    description: "墙面上的挂画、艺术装饰",
+  },
+] as const;
+
+export const CHILD_FACILITY_META = [
+  {
+    tag: "CRIB",
+    cn: "婴儿床",
+    description: "可移动或固定的围栏婴儿床",
+  },
+  {
+    tag: "TOYS",
+    cn: "儿童玩具",
+    description: "房间内提供的益智玩具或毛绒公仔",
+  },
+  {
+    tag: "SLIPPERS",
+    cn: "儿童拖鞋",
+    description: "专为儿童设计的小尺寸一次性或防滑拖鞋",
+  },
+  {
+    tag: "TOILETRIES",
+    cn: "儿童洗漱用品",
+    description: "包括儿童牙刷、牙膏、温和沐浴露等配套",
+  },
+  {
+    tag: "TOILET_SEAT",
+    cn: "儿童马桶座圈",
+    description: "放置在成人马桶上的缩小版辅助座圈",
+  },
+] as const;
+
+export const ROOM_SPEC_FACILITY_META = [
+  {
+    tag: "AC",
+    cn: "空调",
+    description: "指客房独立空调或中央空调控制",
+  },
+  {
+    tag: "AUTO_CURTAINS",
+    cn: "自动窗帘",
+    description: "智能客控系统，可通过面板或语音控制开关",
+  },
+  {
+    tag: "BLACKOUT_CURTAINS",
+    cn: "遮光窗帘",
+    description: "具有高度遮光效果的窗帘，适合白天休息",
+  },
+  {
+    tag: "EXTRA_LONG_BED",
+    cn: "加长床 (>2m)",
+    description: "适合高大身材客人的加长尺寸睡床",
+  },
+  {
+    tag: "DUCK_DOWN",
+    cn: "鸭绒/羽绒被",
+    description: "高品质羽绒填充物，强调保暖与舒适感",
+  },
+  {
+    tag: "BLANKET",
+    cn: "毛毯",
+    description: "额外的保暖毯子",
+  },
+  {
+    tag: "SPARE_BEDDING",
+    cn: "备用床具",
+    description: "柜内备用的被褥、枕头等",
+  },
+  {
+    tag: "AIR_PURIFIER",
+    cn: "空气净化器",
+    description: "针对过敏体质或对空气质量有要求的客人",
+  },
+] as const;
+
 export const ROOM_CN_TO_DB_TAG_MAP: Record<string, Partial<Record<RoomFacilityField, string[]>>> = {
-  浴缸: { bathingFacilities: ["BATHTUB"] },
-  淋浴: { bathingFacilities: ["SHOWER", "RAIN_SHOWER"] },
-  吹风机: { bathroomFacilities: ["HAIR_DRYER"] },
-  独立卫浴: { bathroomFacilities: ["PRIVATE_BATHROOM"] },
-  智能马桶: { bathroomFacilities: ["SMART_TOILET"] },
+  牙刷: { amenityFacilities: ["TOOTHBRUSH"] },
+  牙膏: { amenityFacilities: ["TOOTHPASTE"] },
+  沐浴露: { amenityFacilities: ["SHOWER_GEL"] },
+  洗发露: { amenityFacilities: ["SHAMPOO"] },
+  洗发水: { amenityFacilities: ["SHAMPOO"] },
+  护发素: { amenityFacilities: ["CONDITIONER"] },
+  香皂: { amenityFacilities: ["SOAP"] },
+  浴帽: { amenityFacilities: ["SHOWER_CAP"] },
+  梳子: { amenityFacilities: ["COMB"] },
+  剃须刀: { amenityFacilities: ["RAZOR"] },
+
+  每日打扫: { cleaningFacilities: ["DAILY_CLEANING"] },
+  打扫工具: { cleaningFacilities: ["CLEANING_TOOLS"] },
+  熨烫设备: { cleaningFacilities: ["IRONING"] },
+  熨衣设备: { cleaningFacilities: ["IRONING"] },
+
+  "衣柜/衣橱": { layoutFacilities: ["WARDROBE"] },
+  办公桌: { layoutFacilities: ["DESK"] },
   书桌: { layoutFacilities: ["DESK"] },
+  "书桌/办公桌": { layoutFacilities: ["DESK"] },
+  茶几: { layoutFacilities: ["COFFEE_TABLE"] },
+  咖啡桌: { layoutFacilities: ["COFFEE_TABLE"] },
+  休闲椅: { layoutFacilities: ["LOUNGE_CHAIR"] },
+  躺椅: { layoutFacilities: ["LOUNGE_CHAIR"] },
+  装饰画: { layoutFacilities: ["DECORATIVE_PAINTING"] },
+
+  客房WIFI: { networkFacilities: ["ROOM_WIFI"] },
+  "房间内置 WiFi": { networkFacilities: ["ROOM_WIFI"] },
+  房间内置WiFi: { networkFacilities: ["ROOM_WIFI"] },
+  "客房WIFI (免费)": { networkFacilities: ["ROOM_WIFI"] },
+  客房WIFI免费: { networkFacilities: ["ROOM_WIFI"] },
+  电话: { networkFacilities: ["TELEPHONE"] },
+  国际直拨电话: { networkFacilities: ["INT_CALL"] },
+
+  私人浴室: { bathroomFacilities: ["PRIVATE_BATHROOM"] },
+  独立卫浴: { bathroomFacilities: ["PRIVATE_BATHROOM"] },
+  私人卫生间: { bathroomFacilities: ["PRIVATE_TOILET"] },
+  独立卫生间: { bathroomFacilities: ["PRIVATE_TOILET"] },
+  浴室化妆放大镜: { bathroomFacilities: ["MIRROR"] },
+  梳妆镜: { bathroomFacilities: ["MIRROR"] },
+  毛巾: { bathroomFacilities: ["TOWEL"] },
+  浴巾: { bathroomFacilities: ["BATH_TOWEL"] },
+  "24小时热水": { bathroomFacilities: ["HOT_WATER_24H"] },
+  拖鞋: { bathroomFacilities: ["SLIPPERS"] },
+  吹风机: { bathroomFacilities: ["HAIR_DRYER"] },
+  淋浴: { bathroomFacilities: ["SHOWER"] },
+  热带雨林花洒: { bathroomFacilities: ["RAIN_SHOWER"] },
+  浴缸: { bathroomFacilities: ["BATHTUB"] },
+  雨淋花洒喷头: { bathroomFacilities: ["RAIN_SHOWER"] },
+
+  空调: { roomSpecFacilities: ["AC"] },
+  自动窗帘: { roomSpecFacilities: ["AUTO_CURTAINS"] },
+  手动窗帘: { roomSpecFacilities: ["AUTO_CURTAINS"] },
+  遮光窗帘: { roomSpecFacilities: ["BLACKOUT_CURTAINS"] },
+  "特长睡床(超过两米)": { roomSpecFacilities: ["EXTRA_LONG_BED"] },
+  "加长床 (>2m)": { roomSpecFacilities: ["EXTRA_LONG_BED"] },
+  鸭绒被: { roomSpecFacilities: ["DUCK_DOWN"] },
+  羽绒被: { roomSpecFacilities: ["DUCK_DOWN"] },
+  "鸭绒/羽绒被": { roomSpecFacilities: ["DUCK_DOWN"] },
+  毛毯: { roomSpecFacilities: ["BLANKET"] },
+  备用床具: { roomSpecFacilities: ["SPARE_BEDDING"] },
+  空气净化器: { roomSpecFacilities: ["AIR_PURIFIER"] },
+
+  液晶电视机: { mediaFacilities: ["LCD_TV"] },
+  液晶电视: { mediaFacilities: ["LCD_TV"] },
+  有线频道: { mediaFacilities: ["CABLE"] },
+  有线电视: { mediaFacilities: ["CABLE"] },
+  智能门锁: { mediaFacilities: ["SMART_LOCK"] },
+  智能客控: { mediaFacilities: ["SMART_CONTROL"], roomSpecFacilities: ["SMART_CONTROL"] },
+
+  衣架: { amenityFacilities: ["HANGERS"] },
+  免费瓶装水: { foodFacilities: ["WATER"] },
+  茶包: { foodFacilities: ["TEA_BAGS"] },
+  软饮: { foodFacilities: ["SOFT_DRINK"] },
+  欢迎水果: { foodFacilities: ["FRUIT"] },
+  多种规格电源插座: { amenityFacilities: ["SOCKET_MULTI"] },
+  多功能插座: { amenityFacilities: ["SOCKET_MULTI"] },
+  熨衣服务: { cleaningFacilities: ["IRONING"] },
+
+  市景: { viewFacilities: ["CITY_VIEW"] },
+  江景: { viewFacilities: ["RIVER_VIEW"] },
+  河景: { viewFacilities: ["RIVER_VIEW"] },
+  "江景/河景": { viewFacilities: ["RIVER_VIEW"] },
+  花园景观: { viewFacilities: ["GARDEN_VIEW"] },
+
+  智能马桶: { bathroomFacilities: ["SMART_TOILET"] },
   沙发: { layoutFacilities: ["SOFA"] },
   衣柜: { layoutFacilities: ["WARDROBE"] },
   无障碍设施: { accessibleFacilities: ["BATHTUB_HANDRAILS", "DOORBELL_PROMPT"] },
@@ -213,10 +397,13 @@ export const ROOM_CN_TO_DB_TAG_MAP: Record<string, Partial<Record<RoomFacilityFi
   迷你吧: { foodFacilities: ["MINI_BAR"] },
   冰箱: { kitchenFacilities: ["REFRIGERATOR"] },
   儿童床: { childFacilities: ["CRIB"] },
+  儿童玩具: { childFacilities: ["TOYS"] },
+  儿童拖鞋: { childFacilities: ["SLIPPERS"] },
+  儿童洗漱用品: { childFacilities: ["TOILETRIES"] },
+  儿童马桶座圈: { childFacilities: ["TOILET_SEAT"] },
   清洁服务: { cleaningFacilities: ["DAILY_CLEANING", "CLEANING_TOOLS"] },
   熨烫: { cleaningFacilities: ["IRONING"] },
   城景: { viewFacilities: ["CITY_VIEW"] },
-  江景: { viewFacilities: ["RIVER_VIEW"] },
   地标景观: { viewFacilities: ["LANDMARK_VIEW"] },
 };
 

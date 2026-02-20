@@ -1,12 +1,27 @@
 import { Image, Map, Swiper, SwiperItem, View } from "@tarojs/components";
 import Taro from "@tarojs/taro";
-import { ArrowRight, Check, Close, Location } from "@nutui/icons-react-taro";
+import {
+  ArrowDown,
+  ArrowRight,
+  Check,
+  Close,
+  Location,
+} from "@nutui/icons-react-taro";
 import { useEffect, useMemo, useState } from "react";
-import { Button, Calendar, Popup } from "@nutui/nutui-react-taro";
-import { getHotelDetail } from "../../apis/hotels";
-import type { HotelDetailItem } from "../../apis/type";
+import {
+  Button,
+  Calendar,
+  Popup,
+  SideNavBarItem,
+} from "@nutui/nutui-react-taro";
+import { getHotelDetail, searchRooms } from "../../apis/hotels";
+import type { HotelDetailItem, HotelRoomItem } from "../../apis/type";
 import { useSharedFilter } from "../../store/filter-context";
-import { mapRoomTagValueToCn, mapTagToCn } from "../../apis/tag_map";
+import {
+  ROOM_FACILITY_FIELDS,
+  mapRoomTagValueToCn,
+  mapTagToCn,
+} from "../../apis/tag_map";
 import GuestSelector from "../../components/guest-selector";
 import "./index.scss";
 import highlightIcon from "../../assets/imgs/highlight.svg";
@@ -36,6 +51,12 @@ type NearbySection = {
 type BookingState = {
   roomId: number;
   unitPrice: number;
+};
+
+type TagGroup = {
+  key: string;
+  label: string;
+  tags: string[];
 };
 
 const buildTencentSig = (
@@ -105,13 +126,18 @@ function DetailPage() {
   const { filter, setFilter } = useSharedFilter();
   const params = Taro.getCurrentInstance().router?.params || {};
   const defaultDates = useMemo(() => buildDefaultDates(), []);
+  const hotelId = Number(params.id || 1);
   const [hotel, setHotel] = useState<HotelDetailItem | null>(null);
+  const [rooms, setRooms] = useState<HotelRoomItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const [roomLoading, setRoomLoading] = useState(false);
   const [geoAddress, setGeoAddress] = useState("");
   const [, setNearbySections] = useState<NearbySection[]>([]);
   const [bookingState, setBookingState] = useState<BookingState | null>(null);
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [guestVisible, setGuestVisible] = useState(false);
+  const [tagFilterVisible, setTagFilterVisible] = useState(false);
+  const [activeTagGroupKey, setActiveTagGroupKey] = useState("");
   const [dateRange, setDateRange] = useState<string[]>([
     filter.checkIn || defaultDates.checkIn,
     filter.checkOut || defaultDates.checkOut,
@@ -128,8 +154,6 @@ function DetailPage() {
   const [selectedRoomTags, setSelectedRoomTags] = useState<string[]>([]);
 
   useEffect(() => {
-    // const hotelId = params.id;
-    const hotelId = 1;
     if (!hotelId) {
       Taro.showToast({
         title: "缺少酒店ID",
@@ -166,7 +190,46 @@ function DetailPage() {
     defaultDates.checkOut,
     filter.checkIn,
     filter.checkOut,
-    params.id,
+    hotelId,
+  ]);
+
+  useEffect(() => {
+    if (!hotelId) return;
+
+    const run = async () => {
+      setRoomLoading(true);
+      try {
+        const response = await searchRooms({
+          hotelId,
+          checkIn: filter.checkIn || defaultDates.checkIn,
+          checkOut: filter.checkOut || defaultDates.checkOut,
+          roomsNeeded: Math.max(1, filter.roomCount || 1),
+          peopleNeeded: Math.max(1, filter.adultCount || 1),
+          page: 1,
+          pageSize: 50,
+        });
+        setRooms(response.data || []);
+      } catch (error) {
+        setRooms([]);
+        Taro.showToast({
+          title: "获取房型失败",
+          icon: "none",
+          duration: 1500,
+        });
+      } finally {
+        setRoomLoading(false);
+      }
+    };
+
+    void run();
+  }, [
+    defaultDates.checkIn,
+    defaultDates.checkOut,
+    filter.adultCount,
+    filter.checkIn,
+    filter.checkOut,
+    filter.roomCount,
+    hotelId,
   ]);
 
   const centerLongitude =
@@ -390,12 +453,8 @@ function DetailPage() {
     typeof hotel?.price === "number" && Number.isFinite(hotel.price)
       ? hotel.price
       : 0;
-  const roomList = (hotel?.rooms || []).filter((room) => {
-    if (typeof room.availableCount !== "number") return true;
-    return room.availableCount > 0;
-  });
 
-  const getRoomTags = (room: (typeof roomList)[number]) =>
+  const getRoomCardTags = (room: HotelRoomItem) =>
     [
       mapRoomTagValueToCn("areaTitles", room.areaTitle),
       mapRoomTagValueToCn("bedTitles", room.bedTitle),
@@ -404,22 +463,146 @@ function DetailPage() {
       mapRoomTagValueToCn("wifi", room.wifiInfo),
     ].filter(Boolean) as string[];
 
-  const roomTagOptions = useMemo(
+  const normalizeTagText = (value?: string) => {
+    const text = String(value || "").trim();
+    return text || "";
+  };
+
+  const mapFacilityTag = (value: unknown) => {
+    const raw = normalizeTagText(String(value || ""));
+    if (!raw) return "";
+    const mapped = normalizeTagText(mapTagToCn(raw));
+    return mapped || raw;
+  };
+
+  const roomTagGroups = useMemo<TagGroup[]>(() => {
+    const groups: Array<{ key: keyof HotelRoomItem | string; label: string }> =
+      [
+        { key: "floorTitle", label: "楼层" },
+        { key: "areaTitle", label: "面积" },
+        { key: "bedTitle", label: "床型" },
+        { key: "windowTitle", label: "窗型" },
+        { key: "smokeTitle", label: "吸烟" },
+        { key: "wifiInfo", label: "网络" },
+        { key: "cleaningFacilities", label: "清洁设施" },
+        { key: "bathingFacilities", label: "沐浴设施" },
+        { key: "layoutFacilities", label: "布局设施" },
+        { key: "accessibleFacilities", label: "无障碍设施" },
+        { key: "networkFacilities", label: "网络设施" },
+        { key: "bathroomFacilities", label: "卫浴设施" },
+        { key: "foodFacilities", label: "餐饮设施" },
+        { key: "childFacilities", label: "儿童设施" },
+        { key: "mediaFacilities", label: "媒体设施" },
+        { key: "roomSpecFacilities", label: "房间特色" },
+        { key: "kitchenFacilities", label: "厨房设施" },
+        { key: "amenityFacilities", label: "洗护用品" },
+        { key: "viewFacilities", label: "景观" },
+      ];
+
+    return groups
+      .map((group) => {
+        const values = new Set<string>();
+        rooms.forEach((room) => {
+          const value = (room as Record<string, unknown>)[group.key];
+          if (group.key === "areaTitle") {
+            const text = normalizeTagText(
+              mapRoomTagValueToCn("areaTitles", String(value || "")),
+            );
+            if (text) values.add(text);
+            return;
+          }
+          if (group.key === "bedTitle") {
+            const text = normalizeTagText(
+              mapRoomTagValueToCn("bedTitles", String(value || "")),
+            );
+            if (text) values.add(text);
+            return;
+          }
+          if (group.key === "windowTitle") {
+            const text = normalizeTagText(
+              mapRoomTagValueToCn("window", String(value || "")),
+            );
+            if (text) values.add(text);
+            return;
+          }
+          if (group.key === "smokeTitle") {
+            const text = normalizeTagText(
+              mapRoomTagValueToCn("smoke", String(value || "")),
+            );
+            if (text) values.add(text);
+            return;
+          }
+          if (group.key === "wifiInfo") {
+            const text = normalizeTagText(
+              mapRoomTagValueToCn("wifi", String(value || "")),
+            );
+            if (text) values.add(text);
+            return;
+          }
+          if (Array.isArray(value)) {
+            value.forEach((item) => {
+              const text = mapFacilityTag(item);
+              if (text) values.add(text);
+            });
+            return;
+          }
+          const text = normalizeTagText(String(value || ""));
+          if (text) values.add(text);
+        });
+
+        return {
+          key: String(group.key),
+          label: group.label,
+          tags: Array.from(values),
+        };
+      })
+      .filter((group) => group.tags.length > 0);
+  }, [rooms]);
+
+  useEffect(() => {
+    if (roomTagGroups.length === 0) {
+      setActiveTagGroupKey("");
+      return;
+    }
+
+    setActiveTagGroupKey((current) => {
+      if (current && roomTagGroups.some((group) => group.key === current)) {
+        return current;
+      }
+      return roomTagGroups[0].key;
+    });
+  }, [roomTagGroups]);
+
+  const activeTagGroup = useMemo(
     () =>
-      Array.from(new Set(roomList.flatMap((room) => getRoomTags(room)))).slice(
-        0,
-        20,
-      ),
-    [roomList],
+      roomTagGroups.find((group) => group.key === activeTagGroupKey) || null,
+    [activeTagGroupKey, roomTagGroups],
   );
 
+  const getRoomFilterTags = (room: HotelRoomItem) => {
+    const valueTags = [
+      ...getRoomCardTags(room),
+      normalizeTagText(room.floorTitle),
+    ].filter(Boolean) as string[];
+
+    const facilityTags: string[] = ROOM_FACILITY_FIELDS.flatMap((field) => {
+      const list = (room as Record<string, unknown>)[field];
+      if (!Array.isArray(list)) return [];
+      return list.map((item) => mapFacilityTag(item)).filter(Boolean);
+    });
+
+    return Array.from(new Set([...valueTags, ...facilityTags]));
+  };
+
+  const roomTagOptions = useMemo(() => selectedRoomTags, [selectedRoomTags]);
+
   const filteredRoomList = useMemo(() => {
-    if (selectedRoomTags.length === 0) return roomList;
-    return roomList.filter((room) => {
-      const tags = getRoomTags(room);
+    if (selectedRoomTags.length === 0) return rooms;
+    return rooms.filter((room) => {
+      const tags = getRoomFilterTags(room);
       return selectedRoomTags.every((tag) => tags.includes(tag));
     });
-  }, [roomList, selectedRoomTags]);
+  }, [rooms, selectedRoomTags]);
   const hotelTags = (hotel?.shortTags || []).map((tag) => mapTagToCn(tag));
   const starCount = Math.max(0, Math.floor(Number(hotel?.starRating || 0)));
 
@@ -574,6 +757,10 @@ function DetailPage() {
     );
   };
 
+  const clearRoomTags = () => {
+    setSelectedRoomTags([]);
+  };
+
   const openFullscreenMap = () => {
     Taro.openLocation({
       longitude: centerLongitude,
@@ -684,21 +871,28 @@ function DetailPage() {
           </View>
           <View className="detail-stay-card__tags-container">
             <View className="detail-stay-card__tags">
-              {roomTagOptions.map((tag) => (
-                <View
-                  key={tag}
-                  className={
-                    selectedRoomTags.includes(tag)
-                      ? "detail-room-tags__item is-active"
-                      : "detail-room-tags__item"
-                  }
-                  onClick={() => toggleRoomTag(tag)}
-                >
-                  {tag}
-                </View>
-              ))}
+              {roomTagOptions.length > 0 ? (
+                roomTagOptions.map((tag) => (
+                  <View key={tag} className="detail-room-tags__item is-active">
+                    {tag}
+                  </View>
+                ))
+              ) : (
+                <View className="detail-room-tags__item">全部房型</View>
+              )}
             </View>
-            <ArrowRight width="12px" color="#6B7A90" />
+            <View
+              className="detail-stay-card__filter-btn"
+              onClick={() => {
+                if (roomTagGroups.length > 0) {
+                  setActiveTagGroupKey(roomTagGroups[0].key);
+                }
+                setTagFilterVisible(true);
+              }}
+            >
+              <View className="detail-stay-card__filter-btn-text">筛选</View>
+              <ArrowDown width="12px" color="#6B7A90" />
+            </View>
           </View>
         </View>
 
@@ -714,15 +908,7 @@ function DetailPage() {
                 <View className="detail-room__content">
                   <View className="detail-room__name">{room.name}</View>
                   <View className="detail-room__meta">
-                    {[
-                      mapRoomTagValueToCn("areaTitles", room.areaTitle),
-                      mapRoomTagValueToCn("bedTitles", room.bedTitle),
-                      mapRoomTagValueToCn("window", room.windowTitle),
-                      mapRoomTagValueToCn("smoke", room.smokeTitle),
-                      mapRoomTagValueToCn("wifi", room.wifiInfo),
-                    ]
-                      .filter(Boolean)
-                      .join(" · ") || "暂无房型信息"}
+                    {getRoomCardTags(room).join(" · ") || "暂无房型信息"}
                   </View>
                   <View className="detail-room__bottom">
                     <View className="detail-room__stock">
@@ -749,7 +935,7 @@ function DetailPage() {
             ))}
             {filteredRoomList.length === 0 ? (
               <View className="detail-empty">
-                {loading ? "加载中..." : "暂无房型信息"}
+                {loading || roomLoading ? "加载中..." : "暂无房型信息"}
               </View>
             ) : null}
           </View>
@@ -846,6 +1032,81 @@ function DetailPage() {
         onClose={() => setCalendarVisible(false)}
         onConfirm={handleCalendarConfirm}
       />
+
+      <Popup
+        visible={tagFilterVisible}
+        position="bottom"
+        onClose={() => setTagFilterVisible(false)}
+      >
+        <View className="detail-tag-filter-popup">
+          <View className="list-top__filter-header">
+            <View
+              className="list-top__filter-close"
+              onClick={() => setTagFilterVisible(false)}
+            >
+              <Close color="grey" width="12px" />
+            </View>
+            <View className="list-top__filter-title">房型筛选</View>
+          </View>
+
+          <View className="list-top__filter-content">
+            <View className="list-top__filter-sidebar">
+              {roomTagGroups.map((group) => (
+                <View
+                  key={group.key}
+                  className={
+                    group.key === activeTagGroupKey
+                      ? "list-top__filter-field is-active"
+                      : "list-top__filter-field"
+                  }
+                  onClick={() => setActiveTagGroupKey(group.key)}
+                >
+                  <SideNavBarItem title={group.label} value={group.key} />
+                </View>
+              ))}
+            </View>
+
+            <View className="list-top__filter-tags-wrap">
+              <View className="list-top__filter-tags-title">
+                {activeTagGroup?.label || "全部"}
+              </View>
+              <View className="list-top__filter-tags">
+                {(activeTagGroup?.tags || []).map((tag) => (
+                  <View
+                    key={`${activeTagGroup?.key || "default"}-${tag}`}
+                    className={
+                      selectedRoomTags.includes(tag)
+                        ? "list-top__filter-tag is-active"
+                        : "list-top__filter-tag"
+                    }
+                    onClick={() => toggleRoomTag(tag)}
+                  >
+                    {tag}
+                  </View>
+                ))}
+                {activeTagGroup && activeTagGroup.tags.length === 0 ? (
+                  <View className="detail-tag-filter-popup__empty">
+                    暂无可选标签
+                  </View>
+                ) : null}
+              </View>
+            </View>
+          </View>
+
+          <View className="list-top__filter-footer">
+            <Button className="list-top__filter-reset" onClick={clearRoomTags}>
+              重置
+            </Button>
+            <Button
+              className="list-top__filter-submit"
+              type="primary"
+              onClick={() => setTagFilterVisible(false)}
+            >
+              确定
+            </Button>
+          </View>
+        </View>
+      </Popup>
 
       <Popup
         visible={guestVisible}

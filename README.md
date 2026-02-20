@@ -336,11 +336,11 @@ GET /hotels/promotions?type=FLASH_SALE
 | `price` / `originalPrice` | string          | ✅      | 建议用字符串表示 Decimal     |
 | `bedType`                 | `BedType`       | ✅      | 例如 `LARGE_BED`、`TWIN_BED` |
 | `areaRange`               | `RoomAreaRange` | ✅      | 例如 `UNDER_25`、`GTE_30`    |
-| `totalStock`              | int ≥ 1         | ✅      | 用于初始化 60 天房量         |
+| `availableCount`          | int ≥ 1         | ✅      | 用于初始化 60 天房量         |
 | `mealType`                | `MealType`      | ⛔ 可选 | 默认 `NONE`                  |
 | `capacity`                | int ≥ 1         | ⛔ 可选 | 默认 `2`                     |
 
-> 提交该接口时请使用 `multipart/form-data`，文本字段与 `images`（多文件）一并上传。后台会把图片保存到 `/static/hotels/<filename>` 并写入 `imageUrls`。创建房型后，后端会自动生成未来 60 天的 `RoomInventory`，将 `availableCount` 设为 `totalStock`，`price` 设为房型 `price`。
+> 提交该接口时请使用 `multipart/form-data`，文本字段与 `images`（多文件）一并上传。后台会把图片保存到 `/static/hotels/<filename>` 并写入 `imageUrls`。创建房型后，后端会自动生成未来 60 天的 `RoomInventory`，将 `availableCount` 设为 `availableCount`，`price` 设为房型 `price`。
 
 ### POST /api/merchant/hotels/from-url
 
@@ -377,7 +377,7 @@ GET /hotels/promotions?type=FLASH_SALE
       "areaRange": "GTE_30",
       "mealType": "BREAKFAST",
       "capacity": 3,
-      "totalStock": 10
+      "availableCount": 10
     }
   ]
 }
@@ -417,7 +417,7 @@ GET /hotels/promotions?type=FLASH_SALE
       "areaRange": "GTE_30",
       "mealType": "BREAKFAST",
       "capacity": 3,
-      "totalStock": 10
+      "availableCount": 10
     }
   ]
 }
@@ -426,7 +426,7 @@ GET /hotels/promotions?type=FLASH_SALE
 ### POST /api/merchant/hotels/:hotelId/rooms
 
 - 方法：`create`
-- 作用：为指定酒店追加房型。提交 `multipart/form-data`，文本字段遵循上文 `CreateRoomDto`，图片文件放在 `image` 字段；若不上传 `image`，则需提供 `pictureUrl`。创建后自动生成未来 60 天库存 (`availableCount = totalStock`)。
+- 作用：为指定酒店追加房型。提交 `multipart/form-data`，文本字段遵循上文 `CreateRoomDto`，图片文件放在 `image` 字段；若不上传 `image`，则需提供 `pictureUrl`。创建后自动生成未来 60 天库存 (`availableCount = availableCount`)。
 
 ### POST /api/merchant/hotels/:hotelId/rooms/from-url
 
@@ -438,7 +438,7 @@ GET /hotels/promotions?type=FLASH_SALE
 - 方法：`update`
 - 作用：修改房型属性或未来库存。提交 `multipart/form-data`，若上传新的 `image` 会覆盖现有封面；若不上传则可通过 `pictureUrl` 保持/更新。
 - Body Schema：`UpdateRoomDto`（全部字段可选）。如传入：
-  - `totalStock`：后台将所有未到期的 `RoomInventory.availableCount` 重置为该值。
+  - `availableCount`：后台将所有未到期的 `RoomInventory.availableCount` 重置为该值。
   - `price`：同步更新未来库存的 `price`。
   - 其他字段（设施数组、`capacity` 等）只影响房型表本身。
 
