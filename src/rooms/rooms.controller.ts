@@ -28,7 +28,6 @@ import { ROOM_IMAGE_DIR } from '../hotels/hotel-media.config';
 import { RoomDetailQueryDto } from './dto/room-detail-query.dto';
 
 @Controller()
-@UseGuards(JwtAuthGuard)
 export class RoomsController {
   constructor(private readonly roomsService: RoomsService) {}
 
@@ -48,6 +47,7 @@ export class RoomsController {
   });
 
   @Post('hotels/:hotelId/rooms')
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileInterceptor('image', {
       storage: RoomsController.storage,
@@ -68,6 +68,7 @@ export class RoomsController {
   }
 
   @Post('hotels/:hotelId/rooms/from-url')
+  @UseGuards(JwtAuthGuard)
   createFromUrl(
     @Req() req: any,
     @Param('hotelId') hotelId: string,
@@ -82,6 +83,7 @@ export class RoomsController {
   }
 
   @Get('hotels/:hotelId/rooms')
+  @UseGuards(JwtAuthGuard)
   list(@Req() req: any, @Param('hotelId') hotelId: string) {
     return this.roomsService.listByHotel(
       req.user.userId,
@@ -96,6 +98,7 @@ export class RoomsController {
   }
 
   @Put('rooms/:id')
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileInterceptor('image', {
       storage: RoomsController.storage,
@@ -111,6 +114,7 @@ export class RoomsController {
   }
 
   @Delete('rooms/:id')
+  @UseGuards(JwtAuthGuard)
   remove(@Req() req: any, @Param('id') id: string) {
     return this.roomsService.remove(req.user.userId, Number(id));
   }
