@@ -134,6 +134,8 @@ backend program for easyhotel with typescript
 
 > 说明：`checkIn`、`checkOut`、`roomsNeeded`、`peopleNeeded` 需同时传入；若只传部分字段，接口将返回 400。
 
+> 返回规则：接口最终会过滤掉 `available_count = 0` 的房型。
+
 响应：
 
 ```jsonc
@@ -151,6 +153,7 @@ backend program for easyhotel with typescript
       "wifiInfo": "有",
       "pictureUrl": "https://.../room101.jpg",
       "price": 688,
+      "available_count": 4,
       "cleaningFacilities": ["DAILY_CLEANING"],
       "bathingFacilities": ["BATHTUB"],
       "...": "...",

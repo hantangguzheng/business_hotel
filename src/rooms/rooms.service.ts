@@ -414,9 +414,18 @@ export class RoomsService {
       }),
     ]);
 
+    const availabilityMap = await this.getAvailabilityByRoomIds(
+      dto,
+      rooms.map((room) => room.id),
+    );
+
+    const data = rooms
+      .map((room) => this.mapRoomEntity(room, availabilityMap.get(room.id)))
+      .filter((room) => room.available_count !== 0);
+
     return {
       total,
-      data: rooms.map((room) => this.mapRoomEntity(room)),
+      data,
     };
   }
 
@@ -518,10 +527,19 @@ export class RoomsService {
       this.prisma.$queryRaw<{ total: number }[]>(countQuery),
     ]);
 
+    const availabilityMap = await this.getAvailabilityByRoomIds(
+      dto,
+      rows.map((row) => row.id),
+    );
+
+    const data = rows
+      .map((row) => this.mapRoomRaw(row, availabilityMap.get(row.id)))
+      .filter((room) => room.available_count !== 0);
+
     const total = countRows[0]?.total ?? 0;
     return {
       total,
-      data: rows.map((row) => this.mapRoomRaw(row)),
+      data,
     };
   }
 
@@ -584,7 +602,7 @@ export class RoomsService {
       .map((row) => row.roomId);
   }
 
-  private mapRoomEntity(room: Room) {
+  private mapRoomEntity(room: Room, availableCount?: number) {
     const {
       totalStock,
       price,
@@ -609,6 +627,7 @@ export class RoomsService {
       price: priceNumber,
       priceOriginal: priceNumber,
       priceDiscounted: priceNumber,
+      available_count: typeof availableCount === 'number' ? availableCount : null,
       cleaningFacilities: this.normalizeJson(cleaningFacilities),
       bathingFacilities: this.normalizeJson(bathingFacilities),
       layoutFacilities: this.normalizeJson(layoutFacilities),
@@ -625,7 +644,7 @@ export class RoomsService {
     };
   }
 
-  private mapRoomRaw(row: RoomRaw) {
+  private mapRoomRaw(row: RoomRaw, availableCount?: number) {
     const priceNumber = Number(row.price);
     return {
       id: row.id,
@@ -655,7 +674,39 @@ export class RoomsService {
       price: priceNumber,
       priceOriginal: priceNumber,
       priceDiscounted: priceNumber,
+      available_count: typeof availableCount === 'number' ? availableCount : null,
     };
+  }
+
+  private async getAvailabilityByRoomIds(dto: SearchRoomsDto, roomIds: number[]) {
+    const result = new Map<number, number>();
+    if (!roomIds.length || !dto.checkIn || !dto.checkOut) {
+      return result;
+    }
+
+    const { checkInDate, checkOutDate } = this.ensureValidDateRange(
+      dto.checkIn,
+      dto.checkOut,
+    );
+
+    const rows = await this.prisma.roomInventory.groupBy({
+      by: ['roomId'],
+      where: {
+        roomId: { in: roomIds },
+        date: {
+          gte: checkInDate,
+          lt: checkOutDate,
+        },
+      },
+      _min: {
+        availableCount: true,
+      },
+    });
+
+    for (const row of rows) {
+      result.set(row.roomId, row._min.availableCount ?? 0);
+    }
+    return result;
   }
 
   private normalizeJson(value: unknown): string[] {
