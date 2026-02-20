@@ -499,7 +499,8 @@ function ListPage() {
   };
 
   const sortHotelsByMode = (list: HotelListItem[], mode: SortMode) => {
-    const actualMode = !isMyLocationMode && mode === "distance" ? "smart" : mode;
+    const actualMode =
+      !isMyLocationMode && mode === "distance" ? "smart" : mode;
     const sortedList = [...list];
 
     if (actualMode === "distance") {

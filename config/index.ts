@@ -54,6 +54,15 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
       },
       webpackChain(chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+        chain.plugin('miniCssExtractPlugin').tap((args) => {
+          const nextArgs = Array.isArray(args) ? [...args] : [{}]
+          const firstArg = nextArgs[0] || {}
+          nextArgs[0] = {
+            ...firstArg,
+            ignoreOrder: true
+          }
+          return nextArgs
+        })
       }
     },
     h5: {

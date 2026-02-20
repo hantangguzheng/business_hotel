@@ -91,14 +91,14 @@ export const HOTEL_DB_TO_CN_TAG_MAP: Partial<Record<HotelDbTag, string>> =
 
 export const ROOM_TAG_VALUE_MAP = {
   areaTitles: {
-    小于35: "less35",
-    "20-25m2": "less35",
-    "25-30m2": "less35",
-    "35-50": "35-50",
-    "50以上": "50above",
-    "50m2+": "50above",
-    "30m2+": "35-50",
-  },
+    "小于35m²": "less35",
+    "20-25m²": "less35",
+    "25-30m²": "less35",
+    "35-50m²": "35-50",
+    "50m²以上": "50above",
+    "≥50m²": "50above",
+    "≥30m²": "35-50",
+},
   bedTitles: {
     单人床: "single",
     双床: "twin",
@@ -107,22 +107,16 @@ export const ROOM_TAG_VALUE_MAP = {
     其他: "others",
   },
   window: {
-    有: "y",
-    无: "n",
-    y: "y",
-    n: "n",
+    有窗: "y",
+    无窗: "n",
   },
   smoke: {
     可吸烟: "y",
     禁烟: "n",
-    y: "y",
-    n: "n",
   },
   wifi: {
-    有: "y",
-    无: "n",
-    y: "y",
-    n: "n",
+    有WIFI: "y",
+    无WIFI: "n",
   },
 } as const;
 
@@ -224,4 +218,80 @@ export const ROOM_CN_TO_DB_TAG_MAP: Record<string, Partial<Record<RoomFacilityFi
   城景: { viewFacilities: ["CITY_VIEW"] },
   江景: { viewFacilities: ["RIVER_VIEW"] },
   地标景观: { viewFacilities: ["LANDMARK_VIEW"] },
+};
+
+export const ROOM_DB_TO_CN_TAG_MAP: Record<string, string> =
+  Object.entries(ROOM_CN_TO_DB_TAG_MAP).reduce(
+    (result, [cnName, fieldMap]) => {
+      Object.values(fieldMap || {}).forEach((dbTags) => {
+        (dbTags || []).forEach((dbTag) => {
+          if (!result[dbTag]) {
+            result[dbTag] = cnName;
+          }
+        });
+      });
+      return result;
+    },
+    {} as Record<string, string>,
+  );
+
+export const ROOM_VALUE_DB_TO_CN_MAP = {
+  areaTitles: Object.entries(ROOM_TAG_VALUE_MAP.areaTitles).reduce(
+    (result, [cnName, dbValue]) => {
+      if (!result[dbValue]) {
+        result[dbValue] = cnName;
+      }
+      return result;
+    },
+    {} as Record<string, string>,
+  ),
+  bedTitles: Object.entries(ROOM_TAG_VALUE_MAP.bedTitles).reduce(
+    (result, [cnName, dbValue]) => {
+      if (!result[dbValue]) {
+        result[dbValue] = cnName;
+      }
+      return result;
+    },
+    {} as Record<string, string>,
+  ),
+  window: Object.entries(ROOM_TAG_VALUE_MAP.window).reduce(
+    (result, [cnName, dbValue]) => {
+      if (!result[dbValue]) {
+        result[dbValue] = cnName;
+      }
+      return result;
+    },
+    {} as Record<string, string>,
+  ),
+  smoke: Object.entries(ROOM_TAG_VALUE_MAP.smoke).reduce(
+    (result, [cnName, dbValue]) => {
+      if (!result[dbValue]) {
+        result[dbValue] = cnName;
+      }
+      return result;
+    },
+    {} as Record<string, string>,
+  ),
+  wifi: Object.entries(ROOM_TAG_VALUE_MAP.wifi).reduce(
+    (result, [cnName, dbValue]) => {
+      if (!result[dbValue]) {
+        result[dbValue] = cnName;
+      }
+      return result;
+    },
+    {} as Record<string, string>,
+  ),
+} as const;
+
+export const mapTagToCn = (tag?: string) => {
+  if (!tag) return "";
+  return HOTEL_DB_TO_CN_TAG_MAP[tag as HotelDbTag] || ROOM_DB_TO_CN_TAG_MAP[tag] || tag;
+};
+
+export const mapRoomTagValueToCn = (
+  field: keyof typeof ROOM_VALUE_DB_TO_CN_MAP,
+  value?: string,
+) => {
+  if (!value) return "";
+  return ROOM_VALUE_DB_TO_CN_MAP[field][value] || value;
 };

@@ -730,7 +730,6 @@ class QQMapWX {
       throw Error("key值不能为空");
     }
     this.key = options.key;
-    this.sigKey = options.sigKey || '';
     this.sigKey = options.sigKey || "";
   }
 
@@ -820,11 +819,11 @@ class QQMapWX {
         },
         "search",
       );
-      if (this.sigKey) {
+      if (that.sigKey) {
         requestConfig.data.sig = buildSig(
           getPathFromUrl(URL_SEARCH),
           requestConfig.data,
-          this.sigKey,
+          that.sigKey,
         );
       }
       wx.request(requestConfig);
@@ -880,11 +879,11 @@ class QQMapWX {
           },
           "suggest",
         );
-        if (this.sigKey) {
+        if (that.sigKey) {
           requestConfig.data.sig = buildSig(
             getPathFromUrl(URL_SUGGESTION),
             requestConfig.data,
-            this.sigKey,
+            that.sigKey,
           );
         }
         wx.request(requestConfig);
@@ -899,11 +898,11 @@ class QQMapWX {
         },
         "suggest",
       );
-      if (this.sigKey) {
+      if (that.sigKey) {
         requestConfig.data.sig = buildSig(
           getPathFromUrl(URL_SUGGESTION),
           requestConfig.data,
-          this.sigKey,
+          that.sigKey,
         );
       }
       wx.request(requestConfig);
@@ -990,11 +989,11 @@ class QQMapWX {
       },
       "geocoder",
     );
-    if (this.sigKey) {
+    if (that.sigKey) {
       requestConfig.data.sig = buildSig(
         getPathFromUrl(URL_GET_GEOCODER),
         requestConfig.data,
-        this.sigKey,
+        that.sigKey,
       );
     }
     wx.request(requestConfig);
@@ -1025,11 +1024,11 @@ class QQMapWX {
       },
       "getCityList",
     );
-    if (this.sigKey) {
+    if (that.sigKey) {
       requestConfig.data.sig = buildSig(
         getPathFromUrl(URL_CITY_LIST),
         requestConfig.data,
-        this.sigKey,
+        that.sigKey,
       );
     }
     wx.request(requestConfig);
@@ -1066,11 +1065,11 @@ class QQMapWX {
       },
       "getDistrictByCityId",
     );
-    if (this.sigKey) {
+    if (that.sigKey) {
       requestConfig.data.sig = buildSig(
         getPathFromUrl(URL_AREA_LIST),
         requestConfig.data,
-        this.sigKey,
+        that.sigKey,
       );
     }
     wx.request(requestConfig);
@@ -1162,11 +1161,11 @@ class QQMapWX {
           },
           "calculateDistance",
         );
-        if (this.sigKey) {
+        if (that.sigKey) {
           requestConfig.data.sig = buildSig(
             getPathFromUrl(URL_DISTANCE),
             requestConfig.data,
-            this.sigKey,
+            that.sigKey,
           );
         }
         wx.request(requestConfig);

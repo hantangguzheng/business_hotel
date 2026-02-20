@@ -1,9 +1,13 @@
 import Taro from "@tarojs/taro";
-import type { SearchHotelsParams, SearchHotelsResponse } from "./type";
+import type {
+  HotelDetailItem,
+  SearchHotelsParams,
+  SearchHotelsResponse,
+} from "./type";
 
 const API_BASE_URL =
   (typeof process !== "undefined" && process.env?.TARO_APP_API_BASE_URL) ||
-  "http://192.168.0.101:3000";
+  "http://localhost:3000";
 
 export async function searchHotels(
   params: SearchHotelsParams,
@@ -192,4 +196,47 @@ export async function searchHotels(
   }
 
   throw new Error("获取酒店列表失败");
+}
+
+const normalizeDateParam = (value?: string) => {
+  if (typeof value !== "string") return "";
+  const trimmed = value.trim();
+  if (!trimmed) return "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) return trimmed;
+
+  const parsed = new Date(trimmed);
+  if (Number.isNaN(parsed.getTime())) return "";
+  const year = parsed.getFullYear();
+  const month = String(parsed.getMonth() + 1).padStart(2, "0");
+  const day = String(parsed.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+export async function getHotelDetail(
+  hotelId: string | number,
+  checkIn?: string,
+  checkOut?: string,
+): Promise<HotelDetailItem> {
+  const safeCheckIn = normalizeDateParam(checkIn);
+  const safeCheckOut = normalizeDateParam(checkOut);
+  const queryParams: string[] = [];
+
+  if (safeCheckIn) {
+    queryParams.push(`checkIn=${encodeURIComponent(safeCheckIn)}`);
+  }
+  if (safeCheckOut) {
+    queryParams.push(`checkOut=${encodeURIComponent(safeCheckOut)}`);
+  }
+
+  const queryString = queryParams.length > 0 ? `?${queryParams.join("&")}` : "";
+  const response = await Taro.request<HotelDetailItem>({
+    url: `${API_BASE_URL}/hotels/${hotelId}/detail${queryString}`,
+    method: "GET",
+  });
+
+  if (response.statusCode >= 200 && response.statusCode < 300 && response.data) {
+    return response.data;
+  }
+
+  throw new Error("获取酒店详情失败");
 }

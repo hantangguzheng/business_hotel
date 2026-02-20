@@ -15,6 +15,21 @@ const md5: (input: string, key?: string, raw?: boolean) => string =
   typeof md5Module === "function" ? md5Module : md5Module?.default;
 const { cities } = require("../../utils/city");
 
+const buildTencentSig = (
+  path: string,
+  params: Record<string, string | number>,
+) => {
+  const query = Object.keys(params)
+    .filter(
+      (key) =>
+        key !== "sig" && params[key] !== undefined && params[key] !== null,
+    )
+    .sort()
+    .map((key) => `${key}=${String(params[key])}`)
+    .join("&");
+  return md5(`${path}?${query}${QQ_MAP_SK}`);
+};
+
 const toCityOption = (item) => ({
   name: item?.name || "",
   key: item?.key || "",
@@ -205,14 +220,15 @@ function CityIndex() {
       type: "gcj02",
       success: (res) => {
         const locationParam = `${res.latitude},${res.longitude}`;
-        const sig = md5(
-          `/ws/geocoder/v1?key=${QQ_MAP_KEY}&location=${locationParam}${QQ_MAP_SK}`,
-        );
+        const geocoderData = {
+          key: QQ_MAP_KEY,
+          location: locationParam,
+        };
+        const sig = buildTencentSig("/ws/geocoder/v1", geocoderData);
         Taro.request({
           url: "https://apis.map.qq.com/ws/geocoder/v1",
           data: {
-            key: QQ_MAP_KEY,
-            location: locationParam,
+            ...geocoderData,
             sig,
           },
           success: (response) => {

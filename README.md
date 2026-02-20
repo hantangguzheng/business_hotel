@@ -184,6 +184,53 @@ backend program for easyhotel with typescript
 
 > 小贴士：前端可通过 `/hotels/search` -> `/hotels/:id/detail` -> `/rooms/:id/detail` 的链式调用，在同一份查询条件（入住日期、人房数量、标签）下获取酒店列表、酒店详情（含房型库存）以及具体房型详情。
 
+### 5. GET /hotels/promotions?type=FLASH_SALE
+
+- 控制器：`HotelsController.findByPromotion`
+- 作用：按促销类型查询**当前生效**（`startDate <= now <= endDate`）且状态为已发布（`status = 1`）的酒店列表。
+- Query 参数：
+
+| 字段   | 类型            | 必填 | 说明                   |
+| ------ | --------------- | ---- | ---------------------- |
+| `type` | `PromotionType` | ✅   | 促销类型，必须是枚举值 |
+
+`PromotionType` 可选值（来自 Prisma 枚举）：
+
+- `FLASH_SALE`（限时特卖）
+- `HOLIDAY_SPECIAL`（节假日特惠）
+- `WEEKEND_DEAL`（周末特惠）
+- `NEW_OPEN`（开业特惠）
+- `SEASONAL`（季节性优惠）
+- `MEMBER_EXCLUSIVE`（会员专享）
+
+请求示例：
+
+```http
+GET /hotels/promotions?type=FLASH_SALE
+```
+
+响应示例（`HotelListItemDto[]`，每个酒店会带命中的 `promotions`）：
+
+```jsonc
+[
+  {
+    "id": 12,
+    "nameCn": "易宿大酒店",
+    "price": 688,
+    "currency": "RMB",
+    "promotions": [
+      {
+        "id": 5,
+        "promotionType": "FLASH_SALE",
+        "discount": 0.85,
+        "startDate": "2026-02-01T00:00:00.000Z",
+        "endDate": "2026-02-28T00:00:00.000Z",
+      },
+    ],
+  },
+]
+```
+
 ## 认证 (AuthController)
 
 ### POST /auth/register
@@ -485,6 +532,90 @@ backend program for easyhotel with typescript
   }
 ]
 ```
+
+### GET /api/merchant/hotels/:hotelId/promotions
+
+- 方法：`listPromotions`
+- 作用：查询当前商户某酒店下的全部促销（按 `startDate` 升序）。
+- 权限：商户 JWT，且酒店必须属于当前商户。
+
+响应示例：
+
+```json
+[
+  {
+    "id": 5,
+    "hotelId": 12,
+    "promotionType": "FLASH_SALE",
+    "discount": "0.85",
+    "startDate": "2026-02-01T00:00:00.000Z",
+    "endDate": "2026-02-28T00:00:00.000Z",
+    "createdAt": "2026-02-10T08:00:00.000Z",
+    "updatedAt": "2026-02-10T08:00:00.000Z"
+  }
+]
+```
+
+### POST /api/merchant/hotels/:hotelId/promotions
+
+- 方法：`createPromotion`
+- 作用：为指定酒店新增促销。
+
+Body（`CreateHotelPromotionDto`）：
+
+| 字段            | 类型              | 必填 | 说明                                                      |
+| --------------- | ----------------- | ---- | --------------------------------------------------------- |
+| `promotionType` | `PromotionType`   | ✅   | 促销类型枚举                                              |
+| `discount`      | string            | ✅   | 折扣系数，`0 < discount <= 1`（例如 `"0.85"` 表示 85 折） |
+| `startDate`     | string (ISO Date) | ✅   | 开始日期                                                  |
+| `endDate`       | string (ISO Date) | ✅   | 结束日期，必须晚于 `startDate`                            |
+
+请求示例：
+
+```json
+{
+  "promotionType": "FLASH_SALE",
+  "discount": "0.85",
+  "startDate": "2026-02-20",
+  "endDate": "2026-02-28"
+}
+```
+
+### PUT /api/merchant/hotels/:hotelId/promotions/:promotionId
+
+- 方法：`updatePromotion`
+- 作用：更新促销，字段均可选（`UpdateHotelPromotionDto`）。
+- 规则：若更新日期，仍需满足 `endDate > startDate`。
+
+请求示例：
+
+```json
+{
+  "discount": "0.80",
+  "endDate": "2026-03-03"
+}
+```
+
+### DELETE /api/merchant/hotels/:hotelId/promotions/:promotionId
+
+- 方法：`removePromotion`
+- 作用：删除指定促销。
+
+成功响应：
+
+```json
+{
+  "deleted": true
+}
+```
+
+### hotel_promotion 常见错误
+
+- `404 hotel not found`：酒店不存在。
+- `403 no permission`：酒店不属于当前商户。
+- `404 promotion not found`：促销不存在，或不属于该酒店。
+- `400 endDate must be after startDate`：结束日期不合法。
+- `400 invalid discount` / `400 discount must be between 0 and 1`：折扣格式或取值不合法。
 
 ## 管理员审核
 

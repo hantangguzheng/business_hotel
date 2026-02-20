@@ -72,3 +72,36 @@ export type SearchHotelsResponse = {
   total: number;
   data: HotelListItem[];
 };
+
+export type HotelRoomItem = {
+  id: number;
+  hotelId: number;
+  name: string;
+  areaTitle?: string;
+  bedTitle?: string;
+  windowTitle?: string;
+  smokeTitle?: string;
+  wifiInfo?: string;
+  pictureUrl?: string;
+  price?: number;
+  availableCount?: number;
+};
+
+export type HotelDetailItem = {
+  id: number;
+  nameCn: string;
+  nameEn?: string;
+  imageUrls?: string[];
+  starRating?: number;
+  score?: number;
+  totalReviews?: number;
+  price?: number;
+  currency?: string;
+  shortTags?: string[];
+  address?: string;
+  cityCode?: string;
+  openingDate?: string;
+  latitude?: number;
+  longitude?: number;
+  rooms?: HotelRoomItem[];
+};
