@@ -138,6 +138,7 @@ function DetailPage() {
   const [guestVisible, setGuestVisible] = useState(false);
   const [tagFilterVisible, setTagFilterVisible] = useState(false);
   const [activeTagGroupKey, setActiveTagGroupKey] = useState("");
+  const [roomSearchRefreshKey, setRoomSearchRefreshKey] = useState(0);
   const [dateRange, setDateRange] = useState<string[]>([
     filter.checkIn || defaultDates.checkIn,
     filter.checkOut || defaultDates.checkOut,
@@ -204,7 +205,10 @@ function DetailPage() {
           checkIn: filter.checkIn || defaultDates.checkIn,
           checkOut: filter.checkOut || defaultDates.checkOut,
           roomsNeeded: Math.max(1, filter.roomCount || 1),
-          peopleNeeded: Math.max(1, filter.adultCount || 1),
+          peopleNeeded: Math.max(
+            1,
+            (filter.adultCount || 0) + (filter.childCount || 0),
+          ),
           page: 1,
           pageSize: 50,
         });
@@ -228,8 +232,10 @@ function DetailPage() {
     filter.adultCount,
     filter.checkIn,
     filter.checkOut,
+    filter.childCount,
     filter.roomCount,
     hotelId,
+    roomSearchRefreshKey,
   ]);
 
   const centerLongitude =
@@ -711,6 +717,7 @@ function DetailPage() {
     }
     setDateRange([nextCheckIn, nextCheckOut]);
     setFilter({ checkIn: nextCheckIn, checkOut: nextCheckOut });
+    setRoomSearchRefreshKey((current) => current + 1);
     setCalendarVisible(false);
   };
 
