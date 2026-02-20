@@ -438,8 +438,10 @@ function DetailPage() {
       filter.checkIn || defaultDates.checkIn,
       filter.checkOut || defaultDates.checkOut,
     ]);
-    setGuestRoomCount(Math.max(1, filter.roomCount || 1));
-    setGuestAdultCount(Math.max(1, filter.adultCount || 1));
+    const nextRoomCount = Math.max(1, filter.roomCount || 1);
+    const nextAdultCount = Math.max(nextRoomCount, filter.adultCount || 1);
+    setGuestRoomCount(nextRoomCount);
+    setGuestAdultCount(nextAdultCount);
     setGuestChildCount(Math.max(0, filter.childCount || 0));
   }, [
     defaultDates.checkIn,
@@ -539,12 +541,28 @@ function DetailPage() {
     setter(safe);
   };
 
+  const handleRoomCountChange = (next: number) => {
+    const safeRoomCount = Math.min(99, Math.max(1, next));
+    setGuestRoomCount(safeRoomCount);
+    if (safeRoomCount > guestAdultCount) {
+      setGuestAdultCount(safeRoomCount);
+    }
+  };
+
+  const handleAdultCountChange = (next: number) => {
+    const minAdultCount = Math.max(1, guestRoomCount);
+    updateGuestCount(next, minAdultCount, 99, setGuestAdultCount);
+  };
+
   const applyGuestSelection = () => {
+    const safeRoomCount = Math.max(1, guestRoomCount);
+    const safeAdultCount = Math.max(safeRoomCount, guestAdultCount);
     setFilter({
-      roomCount: Math.max(1, guestRoomCount),
-      adultCount: Math.max(1, guestAdultCount),
+      roomCount: safeRoomCount,
+      adultCount: safeAdultCount,
       childCount: Math.max(0, guestChildCount),
     });
+    setGuestAdultCount(safeAdultCount);
     setGuestVisible(false);
   };
 
@@ -617,7 +635,11 @@ function DetailPage() {
           </View>
 
           <View className="detail-meta__location-card">
-            <Location width="18px" color="#196d4e" onClick={openFullscreenMap}/>
+            <Location
+              width="18px"
+              color="#196d4e"
+              onClick={openFullscreenMap}
+            />
 
             <View className="detail-meta__location-subtitle">
               {hotelAddress}
@@ -849,12 +871,8 @@ function DetailPage() {
             roomCount={guestRoomCount}
             adultCount={guestAdultCount}
             childCount={guestChildCount}
-            onChangeRoom={(next) =>
-              updateGuestCount(next, 1, 99, setGuestRoomCount)
-            }
-            onChangeAdult={(next) =>
-              updateGuestCount(next, 1, 99, setGuestAdultCount)
-            }
+            onChangeRoom={handleRoomCountChange}
+            onChangeAdult={handleAdultCountChange}
             onChangeChild={(next) =>
               updateGuestCount(next, 0, 99, setGuestChildCount)
             }

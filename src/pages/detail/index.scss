@@ -2,23 +2,17 @@
   min-height: 100vh;
   background: #f2f4f8;
   padding-bottom: 0;
-  overflow-y: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  overflow: visible;
 }
 .detail-page::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  display: none;
-  gap: 8px;
-  z-index: 1;
+  width: auto;
+  height: auto;
 }
 
 .detail-meta__rating-card,
 .detail-meta__location-card {
   border-radius: 8px;
   padding: 10px 10px 8px;
-  min-height: 22px;
   display: flex;
   align-items: center;
 }
@@ -102,7 +96,7 @@
 .detail-card {
   position: relative;
   background: #ffffff;
-  margin: -56px 0 0;
+  margin: -18px 0 0;
   min-height: calc(100vh - 240px);
   padding: 20px 16px;
   box-shadow: 0 -2px 16px rgba(16, 24, 40, 0.06);
@@ -293,6 +287,10 @@
 }
 
 .detail-stay-card {
+  position: -webkit-sticky;
+  position: sticky;
+  top: -2px;
+  z-index: 3;
   margin-top: 6px;
   border-radius: 12px;
   border: 1px solid #edf0f5;
