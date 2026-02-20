@@ -118,16 +118,21 @@ backend program for easyhotel with typescript
 - 控制器：`RoomsController.search`
 - Body DTO：`SearchRoomsDto`
 
-| 一级字段            | 类型                                          | 说明                                                                                |
-| ------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `hotelId`           | number                                        | 必填，只检索某酒店内部房型                                                          |
-| `tags.areaTitles`   | string[]? (`"小于35"`, `"35-50"`, `"50以上"`) | 对应面积段                                                                          |
-| `tags.bedTitles`    | string[]? (`"单人床"`, `"双人床"`...)         | 床型                                                                                |
-| `tags.window`       | `"有"` \| `"无"`                              | 采光                                                                                |
-| `tags.smoke`        | `"可吸烟"` \| `"禁烟"`                        | 吸烟政策                                                                            |
-| `tags.wifi`         | `"有"` \| `"无"`                              | wifi 信息                                                                           |
-| `facilities.*`      | string[]?                                     | 各分组设施（cleaning/bathing/.../view），使用 `hasEvery`/`JSON_CONTAINS` 全包含匹配 |
-| `page` / `pageSize` | number?                                       | 默认 `1` / `15`                                                                     |
+| 一级字段               | 类型                                          | 说明                                                                                |
+| ---------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `hotelId`              | number                                        | 必填，只检索某酒店内部房型                                                          |
+| `tags.areaTitles`      | string[]? (`"小于35"`, `"35-50"`, `"50以上"`) | 对应面积段                                                                          |
+| `tags.bedTitles`       | string[]? (`"单人床"`, `"双人床"`...)         | 床型                                                                                |
+| `tags.window`          | `"有"` \| `"无"`                              | 采光                                                                                |
+| `tags.smoke`           | `"可吸烟"` \| `"禁烟"`                        | 吸烟政策                                                                            |
+| `tags.wifi`            | `"有"` \| `"无"`                              | wifi 信息                                                                           |
+| `facilities.*`         | string[]?                                     | 各分组设施（cleaning/bathing/.../view），使用 `hasEvery`/`JSON_CONTAINS` 全包含匹配 |
+| `checkIn` / `checkOut` | string? (`YYYY-MM-DD`)                        | 与 `roomsNeeded`、`peopleNeeded` 一起传入时启用库存过滤，`checkOut` 不包含当日      |
+| `roomsNeeded`          | number?                                       | 需要房间数（≥1），用于筛选 `库存最小值 >= roomsNeeded`                              |
+| `peopleNeeded`         | number?                                       | 需要容纳总人数（≥1），用于筛选 `capacity * roomsNeeded >= peopleNeeded`             |
+| `page` / `pageSize`    | number?                                       | 默认 `1` / `15`                                                                     |
+
+> 说明：`checkIn`、`checkOut`、`roomsNeeded`、`peopleNeeded` 需同时传入；若只传部分字段，接口将返回 400。
 
 响应：
 

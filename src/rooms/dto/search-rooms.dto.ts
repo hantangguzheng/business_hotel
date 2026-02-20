@@ -16,6 +16,7 @@ import {
 } from '@prisma/client';
 import {
   IsArray,
+  IsDateString,
   IsEnum,
   IsIn,
   IsInt,
@@ -133,6 +134,26 @@ export class SearchRoomsDto {
   @Type(() => Number)
   @IsInt()
   hotelId: number;
+
+  @IsOptional()
+  @IsDateString()
+  checkIn?: string;
+
+  @IsOptional()
+  @IsDateString()
+  checkOut?: string;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  roomsNeeded?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @Min(1)
+  peopleNeeded?: number;
 
   @IsOptional()
   @ValidateNested()

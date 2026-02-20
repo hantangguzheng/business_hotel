@@ -334,19 +334,27 @@ export class RoomsService {
   async search(dto: SearchRoomsDto) {
     const page = dto.page ?? 1;
     const pageSize = dto.pageSize ?? 15;
+    const availableRoomIds = await this.resolveAvailableRoomIds(dto);
     const useRaw = process.env.USE_RAW_JSON_FILTER === 'true';
     if (useRaw) {
-      return this.searchRoomsRaw(dto, page, pageSize);
+      return this.searchRoomsRaw(dto, page, pageSize, availableRoomIds);
     }
-    return this.searchRoomsPrisma(dto, page, pageSize);
+    return this.searchRoomsPrisma(dto, page, pageSize, availableRoomIds);
   }
 
   private async searchRoomsPrisma(
     dto: SearchRoomsDto,
     page: number,
     pageSize: number,
+    availableRoomIds: number[] | null,
   ) {
     const and: Prisma.RoomWhereInput[] = [{ hotelId: dto.hotelId }];
+    if (availableRoomIds) {
+      if (availableRoomIds.length === 0) {
+        return { total: 0, data: [] };
+      }
+      and.push({ id: { in: availableRoomIds } });
+    }
     const tags = dto.tags;
     if (tags?.areaTitles?.length) {
       and.push({ areaTitle: { in: tags.areaTitles } });
@@ -416,8 +424,20 @@ export class RoomsService {
     dto: SearchRoomsDto,
     page: number,
     pageSize: number,
+    availableRoomIds: number[] | null,
   ) {
     const filters: Prisma.Sql[] = [Prisma.sql`r.hotel_id = ${dto.hotelId}`];
+    if (availableRoomIds) {
+      if (availableRoomIds.length === 0) {
+        return { total: 0, data: [] };
+      }
+      filters.push(
+        Prisma.sql`r.id IN (${Prisma.join(
+          availableRoomIds.map((id) => Prisma.sql`${id}`),
+          ',',
+        )})`,
+      );
+    }
     const tags = dto.tags;
     if (tags?.areaTitles?.length) {
       filters.push(
@@ -503,6 +523,65 @@ export class RoomsService {
       total,
       data: rows.map((row) => this.mapRoomRaw(row)),
     };
+  }
+
+  private async resolveAvailableRoomIds(dto: SearchRoomsDto) {
+    const { checkIn, checkOut, roomsNeeded, peopleNeeded } = dto;
+    const hasAnyAvailabilityFilter =
+      Boolean(checkIn) ||
+      Boolean(checkOut) ||
+      typeof roomsNeeded === 'number' ||
+      typeof peopleNeeded === 'number';
+
+    if (!hasAnyAvailabilityFilter) {
+      return null;
+    }
+
+    if (
+      !checkIn ||
+      !checkOut ||
+      typeof roomsNeeded !== 'number' ||
+      typeof peopleNeeded !== 'number'
+    ) {
+      throw new BadRequestException(
+        'checkIn, checkOut, roomsNeeded and peopleNeeded must be provided together',
+      );
+    }
+
+    const { checkInDate, checkOutDate } = this.ensureValidDateRange(
+      checkIn,
+      checkOut,
+    );
+    const minCapacity = Math.ceil(peopleNeeded / roomsNeeded);
+
+    const candidateRooms = await this.prisma.room.findMany({
+      where: {
+        hotelId: dto.hotelId,
+        capacity: { gte: minCapacity },
+      },
+      select: { id: true },
+    });
+
+    const candidateRoomIds = candidateRooms.map((room) => room.id);
+    if (candidateRoomIds.length === 0) return [];
+
+    const availabilityRows = await this.prisma.roomInventory.groupBy({
+      by: ['roomId'],
+      where: {
+        roomId: { in: candidateRoomIds },
+        date: {
+          gte: checkInDate,
+          lt: checkOutDate,
+        },
+      },
+      _min: {
+        availableCount: true,
+      },
+    });
+
+    return availabilityRows
+      .filter((row) => (row._min.availableCount ?? 0) >= roomsNeeded)
+      .map((row) => row.roomId);
   }
 
   private mapRoomEntity(room: Room) {
