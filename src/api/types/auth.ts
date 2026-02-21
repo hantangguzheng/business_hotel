@@ -1,6 +1,15 @@
 import type { AuthRole } from "@/types/auth"
+import type { AxiosRequestConfig } from "axios";
 
 export type APIAuthRole = Exclude<AuthRole, "USER">
+
+export type RequestMeta = {
+    withAuth?:boolean;
+};
+
+export type AppAxiosRequestConfig<T=any> = AxiosRequestConfig<T> & {
+    meta?:RequestMeta;
+}
 
 export interface IAuthRegisterRequest {
     username: string

@@ -1,36 +1,31 @@
-import { store } from "@/store/store";
-import type { AxiosRequestConfig } from "axios";
-import type { APIAuthRole, IAuthLoginRequest, IAuthRegisterRequest } from "./types/auth";
+import type { APIAuthRole, AppAxiosRequestConfig, IAuthLoginRequest, IAuthRegisterRequest } from "./types/auth";
 
 const API_ROOT = ''
 
-const withAuthorization = (config: AxiosRequestConfig) : AxiosRequestConfig => {
-  const accessToken = store.getState().auth.accessToken;
-  if (!accessToken) {
-    return config;
-  }
-  return {...config,
-    headers: {
-      ...config.headers,
-      'Authorization': `Bearer ${accessToken}`,
+const withAuthorization = (config: AppAxiosRequestConfig) : AppAxiosRequestConfig => {
+  return {
+    ...config,
+    meta:{
+      ...config.meta,
+      withAuth:true,
     },
   };
 };
 
 export const endpoint = {
   postLogin: (username:string, password:string):
-    AxiosRequestConfig<IAuthLoginRequest> => {
+    AppAxiosRequestConfig<IAuthLoginRequest> => {
       return {
         url:`${API_ROOT}/auth/login`,
         method:'POST',
         data:{
           username,
           password,
-        }
+        },
       }
   },
   postRegister: (username:string, password:string, role:APIAuthRole):
-    AxiosRequestConfig<IAuthRegisterRequest> => {
+    AppAxiosRequestConfig<IAuthRegisterRequest> => {
       return {
         url:`${API_ROOT}/auth/register`,
         method:'POST',
@@ -41,7 +36,7 @@ export const endpoint = {
         }
       }
   },
-  getUserMe: ():AxiosRequestConfig<any> => {
+  getUserMe: ():AppAxiosRequestConfig<any> => {
     return withAuthorization({
       url:`${API_ROOT}/users/me`,
       method:'GET',
