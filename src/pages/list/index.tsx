@@ -15,9 +15,12 @@ import { searchHotels } from "../../apis/hotels";
 import {
   HOTEL_DB_TO_CN_TAG_MAP,
   HOTEL_CN_TO_DB_TAG_MAP,
+  ROOM_FACILITY_FIELDS,
+  HOTEL_TAG_ICON_MAP,
   ROOM_CN_TO_DB_TAG_MAP,
   ROOM_TAG_VALUE_MAP,
 } from "../../apis/tag_map";
+import type { RoomFacilityField } from "../../apis/tag_map";
 import type {
   HotelListItem,
   SearchHotelsParams,
@@ -52,6 +55,22 @@ const SORT_OPTIONS: Array<{ label: string; value: SortMode }> = [
   { label: "价格优先", value: "price" },
   { label: "评分优先", value: "score" },
 ];
+
+const ROOM_FACILITY_FIELD_LABEL_MAP: Record<RoomFacilityField, string> = {
+  cleaningFacilities: "清洁",
+  bathingFacilities: "洗护",
+  layoutFacilities: "布局",
+  accessibleFacilities: "无障碍",
+  networkFacilities: "网络",
+  bathroomFacilities: "卫浴",
+  foodFacilities: "餐饮",
+  childFacilities: "儿童",
+  mediaFacilities: "媒体",
+  roomSpecFacilities: "房间配置",
+  kitchenFacilities: "厨房",
+  amenityFacilities: "便利设施",
+  viewFacilities: "景观",
+};
 
 const buildDefaultDates = () => {
   const today = new Date();
@@ -612,6 +631,30 @@ function ListPage() {
 
   const filterFields = Object.keys(facilityMap);
   const activeFieldTags = facilityMap[activeFacilityTab] || [];
+
+  const roomFacilityGroups = useMemo(() => {
+    const groupMap = ROOM_FACILITY_FIELDS.reduce(
+      (result, field) => {
+        result[field] = [];
+        return result;
+      },
+      {} as Record<RoomFacilityField, string[]>,
+    );
+
+    Object.entries(ROOM_CN_TO_DB_TAG_MAP).forEach(([label, fieldMap]) => {
+      (Object.keys(fieldMap || {}) as RoomFacilityField[]).forEach((field) => {
+        if (!groupMap[field].includes(label)) {
+          groupMap[field].push(label);
+        }
+      });
+    });
+
+    return ROOM_FACILITY_FIELDS.map((field) => ({
+      field,
+      label: ROOM_FACILITY_FIELD_LABEL_MAP[field],
+      tags: groupMap[field],
+    })).filter((group) => group.tags.length > 0);
+  }, []);
 
   useEffect(() => {
     setDateRange([checkIn, checkOut]);
@@ -1303,11 +1346,26 @@ function ListPage() {
                     </View>
                     <View className="hotel-card__row">
                       <View className="hotel-card__tags">
-                        {(hotel.shortTags || []).slice(0, 3).map((tag) => (
-                          <View className="hotel-card__tag" key={tag}>
-                            {formatHotelShortTag(tag)}
-                          </View>
-                        ))}
+                        {(hotel.shortTags || []).slice(0, 3).map((tag) => {
+                          const mappedIcon =
+                            HOTEL_TAG_ICON_MAP[
+                              tag as keyof typeof HOTEL_TAG_ICON_MAP
+                            ]?.icon;
+                          return (
+                            <View className="hotel-card__tag" key={tag}>
+                              {mappedIcon ? (
+                                <Image
+                                  className="hotel-card__tag-icon"
+                                  src={mappedIcon}
+                                  mode="aspectFit"
+                                />
+                              ) : (
+                                <View className="hotel-card__tag-icon hotel-card__tag-icon--placeholder" />
+                              )}
+                              <View>{formatHotelShortTag(tag)}</View>
+                            </View>
+                          );
+                        })}
                       </View>
                       <View className="hotel-card__nights">{nights}晚</View>
                     </View>
@@ -1368,21 +1426,51 @@ function ListPage() {
                 <View className="list-top__filter-tags-title">
                   {activeFacilityTab}
                 </View>
-                <View className="list-top__filter-tags">
-                  {activeFieldTags.map((tag) => (
-                    <View
-                      key={tag}
-                      className={
-                        selectedFacilities.includes(tag)
-                          ? "list-top__filter-tag is-active"
-                          : "list-top__filter-tag"
-                      }
-                      onClick={() => handleToggleFacility(tag)}
-                    >
-                      {tag}
-                    </View>
-                  ))}
-                </View>
+                {activeFacilityTab === "客房设施" ? (
+                  <View className="list-top__filter-group-list">
+                    {roomFacilityGroups.map((group) => (
+                      <View
+                        className="list-top__filter-group"
+                        key={group.field}
+                      >
+                        <View className="list-top__filter-group-title">
+                          {group.label}
+                        </View>
+                        <View className="list-top__filter-tags">
+                          {group.tags.map((tag) => (
+                            <View
+                              key={`${group.field}-${tag}`}
+                              className={
+                                selectedFacilities.includes(tag)
+                                  ? "list-top__filter-tag is-active"
+                                  : "list-top__filter-tag"
+                              }
+                              onClick={() => handleToggleFacility(tag)}
+                            >
+                              {tag}
+                            </View>
+                          ))}
+                        </View>
+                      </View>
+                    ))}
+                  </View>
+                ) : (
+                  <View className="list-top__filter-tags">
+                    {activeFieldTags.map((tag) => (
+                      <View
+                        key={tag}
+                        className={
+                          selectedFacilities.includes(tag)
+                            ? "list-top__filter-tag is-active"
+                            : "list-top__filter-tag"
+                        }
+                        onClick={() => handleToggleFacility(tag)}
+                      >
+                        {tag}
+                      </View>
+                    ))}
+                  </View>
+                )}
               </View>
             </View>
 

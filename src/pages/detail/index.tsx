@@ -1,5 +1,5 @@
 import { Image, Map, Swiper, SwiperItem, View } from "@tarojs/components";
-import Taro from "@tarojs/taro";
+import Taro, { usePageScroll } from "@tarojs/taro";
 import {
   ArrowDown,
   ArrowRight,
@@ -18,6 +18,7 @@ import { getHotelDetail, searchRooms } from "../../apis/hotels";
 import type { HotelDetailItem, HotelRoomItem } from "../../apis/type";
 import { useSharedFilter } from "../../store/filter-context";
 import {
+  HOTEL_TAG_ICON_MAP,
   ROOM_FACILITY_FIELDS,
   mapRoomTagValueToCn,
   mapTagToCn,
@@ -126,13 +127,13 @@ function DetailPage() {
   const { filter, setFilter } = useSharedFilter();
   const params = Taro.getCurrentInstance().router?.params || {};
   const defaultDates = useMemo(() => buildDefaultDates(), []);
-  const hotelId = Number(params.id || 1);
+  const hotelId = Number(params.id);
   const [hotel, setHotel] = useState<HotelDetailItem | null>(null);
   const [rooms, setRooms] = useState<HotelRoomItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [roomLoading, setRoomLoading] = useState(false);
   const [geoAddress, setGeoAddress] = useState("");
-  const [, setNearbySections] = useState<NearbySection[]>([]);
+  const [nearbySections, setNearbySections] = useState<NearbySection[]>([]);
   const [bookingState, setBookingState] = useState<BookingState | null>(null);
   const [calendarVisible, setCalendarVisible] = useState(false);
   const [guestVisible, setGuestVisible] = useState(false);
@@ -153,6 +154,21 @@ function DetailPage() {
     Math.max(0, filter.childCount || 0),
   );
   const [selectedRoomTags, setSelectedRoomTags] = useState<string[]>([]);
+  const [heroPullDistance, setHeroPullDistance] = useState(0);
+  const [heroScrollOffset, setHeroScrollOffset] = useState(0);
+
+  usePageScroll(({ scrollTop }) => {
+    const nextPullDistance =
+      scrollTop < 0 ? Math.min(120, Math.abs(scrollTop)) : 0;
+    const nextScrollOffset = scrollTop > 0 ? Math.min(120, scrollTop) : 0;
+
+    setHeroPullDistance((current) =>
+      current === nextPullDistance ? current : nextPullDistance,
+    );
+    setHeroScrollOffset((current) =>
+      current === nextScrollOffset ? current : nextScrollOffset,
+    );
+  });
 
   useEffect(() => {
     if (!hotelId) {
@@ -603,13 +619,28 @@ function DetailPage() {
   const roomTagOptions = useMemo(() => selectedRoomTags, [selectedRoomTags]);
 
   const filteredRoomList = useMemo(() => {
+    rooms.sort((a, b) => {
+      const aPrice =
+        typeof a.price === "number" && Number.isFinite(a.price) ? a.price : 0;
+      const bPrice =
+        typeof b.price === "number" && Number.isFinite(b.price) ? b.price : 0;
+      return aPrice - bPrice;
+    });
     if (selectedRoomTags.length === 0) return rooms;
     return rooms.filter((room) => {
       const tags = getRoomFilterTags(room);
       return selectedRoomTags.every((tag) => tags.includes(tag));
     });
   }, [rooms, selectedRoomTags]);
-  const hotelTags = (hotel?.shortTags || []).map((tag) => mapTagToCn(tag));
+  const hotelTagItems = (hotel?.shortTags || []).map((tag) => {
+    const mappedIcon =
+      HOTEL_TAG_ICON_MAP[tag as keyof typeof HOTEL_TAG_ICON_MAP]?.icon || "";
+    return {
+      key: tag,
+      label: mapTagToCn(tag),
+      icon: mappedIcon,
+    };
+  });
   const starCount = Math.max(0, Math.floor(Number(hotel?.starRating || 0)));
 
   const formatMonthDay = (value?: string) => {
@@ -621,6 +652,8 @@ function DetailPage() {
 
   const stayDateText = `${formatMonthDay(filter.checkIn)} - ${formatMonthDay(filter.checkOut)}`;
   const stayRoomGuestText = `${Math.max(1, filter.roomCount)}间 ${Math.max(1, filter.adultCount)}成人 ${Math.max(0, filter.childCount)}儿童`;
+  const heroHeight = 248 + heroPullDistance;
+  const heroImageTransform = `translateY(${heroPullDistance * 0.35 - heroScrollOffset * 0.28}px) scale(${1 + heroPullDistance / 420})`;
 
   useEffect(() => {
     setDateRange([
@@ -780,7 +813,7 @@ function DetailPage() {
 
   return (
     <View className="detail-page">
-      <View className="detail-hero">
+      <View className="detail-hero" style={{ height: `${heroHeight}px` }}>
         <Swiper
           className="detail-hero__swiper"
           circular
@@ -794,6 +827,7 @@ function DetailPage() {
                 className="detail-hero__image"
                 src={imageUrl}
                 mode="aspectFill"
+                style={{ transform: heroImageTransform }}
               />
             </SwiperItem>
           ))}
@@ -843,14 +877,21 @@ function DetailPage() {
 
         <View className="detail-facilities-wrap">
           <View className="detail-facilities">
-            {(hotelTags.length > 0 ? hotelTags : ["设施政策"])
-              .slice(0, 6)
-              .map((item) => (
-                <View className="detail-facility" key={item}>
+            {(hotelTagItems.length > 0
+              ? hotelTagItems
+              : [{ key: "default", label: "设施政策", icon: "" }]
+            ).map((item) => (
+              <View className="detail-facility" key={item.key}>
+                {item.icon ? (
+                  <View className="detail-facility__icon">
+                    <Image src={item.icon} mode="aspectFit" />
+                  </View>
+                ) : (
                   <View className="detail-facility__icon" />
-                  <View className="detail-facility__label">{item}</View>
-                </View>
-              ))}
+                )}
+                <View className="detail-facility__label">{item.label}</View>
+              </View>
+            ))}
           </View>
           <View className="detail-facilities__more">
             <View className="detail-facilities__more-text">
@@ -989,7 +1030,7 @@ function DetailPage() {
               <View className="detail-map-marker-label">{hotelName}</View>
             </View>
           </View>
-          {/* <View className="detail-nearby">
+          <View className="detail-nearby">
             {nearbySections.map((section) => (
               <View className="detail-nearby__section" key={section.key}>
                 <View className="detail-nearby__label">{section.label}</View>
@@ -1015,7 +1056,7 @@ function DetailPage() {
                 </View>
               </View>
             ))}
-          </View> */}
+          </View>
         </View>
       </View>
 
