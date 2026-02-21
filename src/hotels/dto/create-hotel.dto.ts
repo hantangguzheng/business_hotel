@@ -25,6 +25,7 @@ export class CreateHotelDto {
   @IsString()
   address: string;
 
+  @Type(()=>Number)
   @IsInt()
   @Min(1)
   @Max(5)
