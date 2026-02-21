@@ -1,4 +1,4 @@
-import { store } from "@/store/Store";
+import { store } from "@/store/store";
 import type { AxiosRequestConfig } from "axios";
 import type { APIAuthRole, IAuthLoginRequest, IAuthRegisterRequest } from "./types/auth";
 

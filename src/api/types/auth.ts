@@ -1,4 +1,5 @@
-export type AuthRole = "USER" | "MERCHANT" | "ADMIN";
+import type { AuthRole } from "@/types/auth"
+
 export type APIAuthRole = Exclude<AuthRole, "USER">
 
 export interface IAuthRegisterRequest {
