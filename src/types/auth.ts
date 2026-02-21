@@ -1,7 +1,7 @@
 export type AuthRole = "USER" | "MERCHANT" | "ADMIN";
 
 export interface IUser {
-    userId: string
+    userId: number
     username: string
     role: AuthRole
 }
