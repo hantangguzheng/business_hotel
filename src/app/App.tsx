@@ -2,6 +2,7 @@ import { RouterProvider } from "react-router";
 import { Provider as StoreProvider } from "react-redux";
 import { AppRouter } from "./AppRouter";
 import { store } from "@/store/store";
+import { AppAuth } from "./AppAuth";
 import { http } from "@/utils/config";
 import { configure } from "axios-hooks";
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       <StoreProvider store={store}>
+        <AppAuth />
         <RouterProvider router={AppRouter} />
       </StoreProvider>
     </>
