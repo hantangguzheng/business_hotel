@@ -40,7 +40,7 @@ const authSlice = createSlice({
             state.userobj = null;
             tokenCookieManager.clearToken();
         },
-        setLoading: (state:IAuthorizationState, action:PayloadAction<boolean>) {
+        setLoading: (state:IAuthorizationState, action:PayloadAction<boolean>) => {
             state.isLoading = action.payload;
         },
     },
