@@ -16,6 +16,7 @@ import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
 import { SearchRoomsDto } from './dto/search-rooms.dto';
 import { ROOM_IMAGE_URL_PREFIX } from '../hotels/hotel-media.config';
+import { HotelPromotionDto } from '../hotels/dto/hotel-response.dto';
 import { RoomDetailDto } from './dto/room-response.dto';
 import { RoomDetailQueryDto } from './dto/room-detail-query.dto';
 import * as path from 'path';
@@ -351,7 +352,15 @@ export class RoomsService {
     const and: Prisma.RoomWhereInput[] = [{ hotelId: dto.hotelId }];
     if (availableRoomIds) {
       if (availableRoomIds.length === 0) {
-        return { total: 0, data: [] };
+        return {
+          total: 0,
+          data: [],
+          promotions: await this.loadHotelPromotions(
+            dto.hotelId,
+            dto.checkIn,
+            dto.checkOut,
+          ),
+        };
       }
       and.push({ id: { in: availableRoomIds } });
     }
@@ -419,6 +428,12 @@ export class RoomsService {
       rooms.map((room) => room.id),
     );
 
+    const promotions = await this.loadHotelPromotions(
+      dto.hotelId,
+      dto.checkIn,
+      dto.checkOut,
+    );
+
     const data = rooms
       .map((room) => this.mapRoomEntity(room, availabilityMap.get(room.id)))
       .filter((room) => room.available_count !== 0);
@@ -426,6 +441,7 @@ export class RoomsService {
     return {
       total,
       data,
+      promotions,
     };
   }
 
@@ -438,7 +454,15 @@ export class RoomsService {
     const filters: Prisma.Sql[] = [Prisma.sql`r.hotel_id = ${dto.hotelId}`];
     if (availableRoomIds) {
       if (availableRoomIds.length === 0) {
-        return { total: 0, data: [] };
+        return {
+          total: 0,
+          data: [],
+          promotions: await this.loadHotelPromotions(
+            dto.hotelId,
+            dto.checkIn,
+            dto.checkOut,
+          ),
+        };
       }
       filters.push(
         Prisma.sql`r.id IN (${Prisma.join(
@@ -537,10 +561,50 @@ export class RoomsService {
       .filter((room) => room.available_count !== 0);
 
     const total = countRows[0]?.total ?? 0;
+    const promotions = await this.loadHotelPromotions(
+      dto.hotelId,
+      dto.checkIn,
+      dto.checkOut,
+    );
     return {
       total,
       data,
+      promotions,
     };
+  }
+
+  private async loadHotelPromotions(
+    hotelId: number,
+    checkIn?: string,
+    checkOut?: string,
+  ): Promise<HotelPromotionDto[]> {
+    if (!checkIn || !checkOut) {
+      return [];
+    }
+    const { checkInDate, checkOutDate } = this.ensureValidDateRange(
+      checkIn,
+      checkOut,
+    );
+    const promotionRows = await this.prisma.hotelPromotion.findMany({
+      where: {
+        hotelId,
+        startDate: { lte: checkOutDate },
+        endDate: { gte: checkInDate },
+      },
+      orderBy: { startDate: 'asc' },
+    });
+
+    return promotionRows.map(
+      (promotion) =>
+        new HotelPromotionDto({
+          id: promotion.id,
+          hotelId: promotion.hotelId,
+          promotionType: promotion.promotionType,
+          discount: Number(promotion.discount),
+          startDate: promotion.startDate,
+          endDate: promotion.endDate,
+        }),
+    );
   }
 
   private async resolveAvailableRoomIds(dto: SearchRoomsDto) {
@@ -627,7 +691,8 @@ export class RoomsService {
       price: priceNumber,
       priceOriginal: priceNumber,
       priceDiscounted: priceNumber,
-      available_count: typeof availableCount === 'number' ? availableCount : null,
+      available_count:
+        typeof availableCount === 'number' ? availableCount : null,
       cleaningFacilities: this.normalizeJson(cleaningFacilities),
       bathingFacilities: this.normalizeJson(bathingFacilities),
       layoutFacilities: this.normalizeJson(layoutFacilities),
@@ -674,11 +739,15 @@ export class RoomsService {
       price: priceNumber,
       priceOriginal: priceNumber,
       priceDiscounted: priceNumber,
-      available_count: typeof availableCount === 'number' ? availableCount : null,
+      available_count:
+        typeof availableCount === 'number' ? availableCount : null,
     };
   }
 
-  private async getAvailabilityByRoomIds(dto: SearchRoomsDto, roomIds: number[]) {
+  private async getAvailabilityByRoomIds(
+    dto: SearchRoomsDto,
+    roomIds: number[],
+  ) {
     const result = new Map<number, number>();
     if (!roomIds.length || !dto.checkIn || !dto.checkOut) {
       return result;

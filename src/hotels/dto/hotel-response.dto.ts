@@ -5,6 +5,7 @@ import { RoomListItemDto } from '../../rooms/dto/room-response.dto';
 
 export class HotelPromotionDto {
   id!: number;
+  hotelId!: number;
   promotionType!: PromotionType;
   discount!: number;
   startDate!: Date;

@@ -134,9 +134,52 @@ export class HotelsService {
     const rawTotal = countRows[0]?.total ?? 0;
     const total =
       typeof rawTotal === 'bigint' ? Number(rawTotal) : Number(rawTotal);
+
+    const hotels = rows.map((row) => this.mapHotelSearchRow(row));
+
+    let promotionEntries: HotelPromotionDto[] = [];
+    if (dto.checkIn && dto.checkOut && hotels.length > 0) {
+      const { checkInDate, checkOutDate } = this.ensureValidDateRange(
+        dto.checkIn,
+        dto.checkOut,
+      );
+      const hotelIds = hotels.map((hotel) => hotel.id);
+      const promotions = await this.prisma.hotelPromotion.findMany({
+        where: {
+          hotelId: { in: hotelIds },
+          startDate: { lte: checkOutDate },
+          endDate: { gte: checkInDate },
+        },
+        orderBy: { startDate: 'asc' },
+      });
+      const grouped = new Map<number, HotelPromotionDto[]>();
+      promotionEntries = promotions.map((promotion) => {
+        const dto = new HotelPromotionDto({
+          id: promotion.id,
+          hotelId: promotion.hotelId,
+          promotionType: promotion.promotionType,
+          discount: Number(promotion.discount),
+          startDate: promotion.startDate,
+          endDate: promotion.endDate,
+        });
+        const list = grouped.get(promotion.hotelId) ?? [];
+        list.push(dto);
+        grouped.set(promotion.hotelId, list);
+        return dto;
+      });
+      for (const hotel of hotels) {
+        hotel.promotions = grouped.get(hotel.id) ?? [];
+      }
+    } else {
+      for (const hotel of hotels) {
+        hotel.promotions = [];
+      }
+    }
+
     return {
       total,
-      data: rows.map((row) => this.mapHotelSearchRow(row)),
+      data: hotels,
+      promotions: promotionEntries,
     };
   }
 
