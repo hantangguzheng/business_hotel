@@ -33,6 +33,7 @@ export function AppAuth(){
     // onMount
     useEffect(()=>{
         checkInitAuth();
+        dispatch(authSlice.actions.setLoading(false));
     }, []);
 
     // pull user info while auth info changed

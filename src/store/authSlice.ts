@@ -3,12 +3,14 @@ import { tokenCookieManager } from "@/utils/authUtil";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 export type IAuthorizationState = {
+    isLoading: boolean,
     isAuthorized: boolean;
     accessToken: string;
     userobj: IUser | null;
 };
 
 const initAuthState: IAuthorizationState = {
+    isLoading: true,
     isAuthorized: false,
     accessToken: '',
     userobj: null,
@@ -37,7 +39,10 @@ const authSlice = createSlice({
             state.accessToken = '';
             state.userobj = null;
             tokenCookieManager.clearToken();
-        }
+        },
+        setLoading: (state:IAuthorizationState, action:PayloadAction<boolean>) {
+            state.isLoading = action.payload;
+        },
     },
 });
 
