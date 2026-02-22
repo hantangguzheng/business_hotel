@@ -79,7 +79,14 @@ function Index() {
   const [minStar, setMinStar] = useState<number | undefined>(undefined);
   const [maxStar, setMaxStar] = useState<number | undefined>(undefined);
   const hasAutoLocatedRef = useRef(false);
-  const keywordTags = ["适合情侣", "上海浦东国际机场", "上榜酒店", "国家会展"];
+  const keywordTags = [
+    "4.7分以上",
+    "自助早餐",
+    "新开业",
+    "双床房",
+    "自助入住",
+    "暖气",
+  ];
 
   const resolveCityInfoByName = (name?: string) => {
     if (!name) return undefined;
@@ -257,13 +264,14 @@ function Index() {
     locateUser();
   };
 
-  const buildSearchUrl = (nextKeyword?: string) => {
+  const buildSearchUrl = (nextKeyword?: string, quickTag?: string) => {
     const safeRoomsNeeded = roomCount > 0 ? roomCount : 1;
     const safePeopleNeeded = Math.max(1, adultCount + childCount);
     const params = {
       city,
       cityCode,
       keyword: nextKeyword ?? keyword,
+      quickTag: quickTag || undefined,
       minPrice: typeof minPrice === "number" ? minPrice : DEFAULT_MIN_PRICE,
       maxPrice: typeof maxPrice === "number" ? maxPrice : DEFAULT_MAX_PRICE,
       minStar: typeof minStar === "number" ? minStar : DEFAULT_MIN_STAR,
@@ -307,7 +315,7 @@ function Index() {
     return true;
   };
 
-  const handleSearch = (nextKeyword?: string) => {
+  const handleSearch = (nextKeyword?: string, quickTag?: string) => {
     if (!validateSearch()) {
       return;
     }
@@ -325,14 +333,14 @@ function Index() {
       minStar: typeof minStar === "number" ? minStar : DEFAULT_MIN_STAR,
       maxStar: typeof maxStar === "number" ? maxStar : DEFAULT_MAX_STAR,
       keyword: nextKeyword ?? keyword,
+      quickTag: quickTag || undefined,
     };
     console.log("search", payload);
-    Taro.navigateTo({ url: buildSearchUrl(nextKeyword) });
+    Taro.navigateTo({ url: buildSearchUrl(nextKeyword, quickTag) });
   };
 
   const handleTagClick = (tag: string) => {
-    setFilter({ keyword: tag });
-    handleSearch(tag);
+    handleSearch(undefined, tag);
   };
 
   const resolveInputValue = (event) => {
@@ -368,6 +376,8 @@ function Index() {
     };
     return `${formatShort(today)}至${formatShort(tomorrow)}`;
   };
+
+
 
   const resolveRange = (param) => {
     if (Array.isArray(param) && Array.isArray(param[0])) {

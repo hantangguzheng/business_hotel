@@ -313,7 +313,17 @@ function ListPage() {
   });
 
   useEffect(() => {
+    const nextTitle = String(city || "").trim();
+
+    if (!nextTitle) return;
+    Taro.setNavigationBarTitle({
+      title: nextTitle,
+    });
+  }, [city]);
+
+  useEffect(() => {
     const nextKeyword = normalizeParam(params.keyword);
+    const nextQuickTag = normalizeParam(params.quickTag);
     const nextCity = normalizeParam(params.city);
     const nextCityCode = normalizeParam(params.cityCode);
     const nextCheckIn = normalizeParam(params.checkIn);
@@ -354,6 +364,13 @@ function ListPage() {
     }
     if (!Number.isNaN(nextMaxStar) && nextMaxStar > 0) {
       setSelectedMaxStar(nextMaxStar);
+    }
+
+    if (
+      nextQuickTag &&
+      QUICK_FILTER_CHIPS.includes(nextQuickTag as QuickFilterChip)
+    ) {
+      setActiveQuickChips([nextQuickTag as QuickFilterChip]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

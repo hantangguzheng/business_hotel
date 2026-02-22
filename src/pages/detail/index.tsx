@@ -126,6 +126,7 @@ const buildDefaultDates = () => {
 function DetailPage() {
   const { filter, setFilter } = useSharedFilter();
   const params = Taro.getCurrentInstance().router?.params || {};
+  const initialHotelName = String(params.name || "").trim();
   const defaultDates = useMemo(() => buildDefaultDates(), []);
   const hotelId = Number(params.id);
   const [hotel, setHotel] = useState<HotelDetailItem | null>(null);
@@ -156,6 +157,12 @@ function DetailPage() {
   const [selectedRoomTags, setSelectedRoomTags] = useState<string[]>([]);
   const [heroPullDistance, setHeroPullDistance] = useState(0);
   const [heroScrollOffset, setHeroScrollOffset] = useState(0);
+
+  useEffect(() => {
+    Taro.setNavigationBarTitle({
+      title: initialHotelName || "酒店详情",
+    });
+  }, [initialHotelName]);
 
   usePageScroll(({ scrollTop }) => {
     const nextPullDistance =
@@ -209,6 +216,16 @@ function DetailPage() {
     filter.checkOut,
     hotelId,
   ]);
+
+  useEffect(() => {
+    let nextTitle = String(hotel?.nameCn || "").trim();
+    const idx = nextTitle.indexOf("(");
+    nextTitle = idx > 0 ? nextTitle.slice(0, idx) : nextTitle;
+    if (!nextTitle) return;
+    Taro.setNavigationBarTitle({
+      title: nextTitle,
+    });
+  }, [hotel?.nameCn]);
 
   useEffect(() => {
     if (!hotelId) return;
