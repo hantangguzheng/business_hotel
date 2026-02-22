@@ -190,7 +190,6 @@ export const HOTEL_CN_TO_DB_TAG_MAP: Record<string, HotelDbTag[]> = {
   洗衣房: ["LAUNDRY_ROOM", "FREE_LAUNDRY"],
   免费洗衣: ["FREE_LAUNDRY"],
   机器人服务: ["ROBOT_SERVICE", "DELIVERY_ROBOT"],
-  送物机器人: ["DELIVERY_ROBOT"],
   会议厅: ["MEETING_HALL"],
   家庭房: ["FAMILY_ROOM"],
   套房: ["SUITE"],

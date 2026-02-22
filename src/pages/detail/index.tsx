@@ -449,6 +449,10 @@ function DetailPage() {
   );
 
   const hotelName = hotel?.nameCn || hotel?.nameEn || "酒店详情";
+  const openingYearMatch = String(hotel?.openingDate || "").match(/\d{4}/);
+  const openingYearText = openingYearMatch
+    ? `${openingYearMatch[0]}年开业`
+    : null;
   const hotelAddress = geoAddress || "暂无地址信息";
   const hotelNear = hotel?.address || "暂无周边信息";
   const hotelImages =
@@ -495,6 +499,20 @@ function DetailPage() {
     if (!raw) return "";
     const mapped = normalizeTagText(mapTagToCn(raw));
     return mapped || raw;
+  };
+
+  const mapFloorTag = (value: unknown) => {
+    const raw = normalizeTagText(String(value || ""));
+    if (!raw || raw.toLowerCase() === "none") return "";
+
+    const floorMatch = raw.match(/-?\d+(?:\.\d+)?/);
+    if (!floorMatch) return "";
+
+    const floorNumber = Number(floorMatch[0]);
+    if (!Number.isFinite(floorNumber)) return "";
+    if (floorNumber < 5) return "低楼层";
+    if (floorNumber <= 10) return "中楼层";
+    return "高楼层";
   };
 
   const roomTagGroups = useMemo<TagGroup[]>(() => {
@@ -561,6 +579,11 @@ function DetailPage() {
             if (text) values.add(text);
             return;
           }
+          if (group.key === "floorTitle") {
+            const text = mapFloorTag(value);
+            if (text) values.add(text);
+            return;
+          }
           if (Array.isArray(value)) {
             value.forEach((item) => {
               const text = mapFacilityTag(item);
@@ -604,7 +627,7 @@ function DetailPage() {
   const getRoomFilterTags = (room: HotelRoomItem) => {
     const valueTags = [
       ...getRoomCardTags(room),
-      normalizeTagText(room.floorTitle),
+      mapFloorTag(room.floorTitle),
     ].filter(Boolean) as string[];
 
     const facilityTags: string[] = ROOM_FACILITY_FIELDS.flatMap((field) => {
@@ -850,6 +873,9 @@ function DetailPage() {
               />
             ))}
           </View>
+          {openingYearText && (
+            <View className="detail-title__opening-tag">{openingYearText}</View>
+          )}
         </View>
         <View className="detail-subtitle">{hotel?.nameEn || ""}</View>
         <View className="detail-meta">

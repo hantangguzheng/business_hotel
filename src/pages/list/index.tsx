@@ -72,6 +72,17 @@ const ROOM_FACILITY_FIELD_LABEL_MAP: Record<RoomFacilityField, string> = {
   viewFacilities: "景观",
 };
 
+const QUICK_FILTER_CHIPS = [
+  "4.7分以上",
+  "自助早餐",
+  "新开业",
+  "双床房",
+  "自助入住",
+  "暖气",
+] as const;
+
+type QuickFilterChip = (typeof QUICK_FILTER_CHIPS)[number];
+
 const buildDefaultDates = () => {
   const today = new Date();
   const tomorrow = new Date(today);
@@ -202,6 +213,9 @@ function ListPage() {
     city || DEFAULT_CITY,
   );
   const [isMyLocationMode, setIsMyLocationMode] = useState(false);
+  const [activeQuickChips, setActiveQuickChips] = useState<QuickFilterChip[]>(
+    [],
+  );
 
   const parseStoredCityInfo = (storedValue: unknown) => {
     if (!storedValue) return null;
@@ -352,6 +366,11 @@ function ListPage() {
     const peopleNeeded = safeAdultCount + safeChildCount;
 
     const selectedSet = new Set(selectedFacilities);
+    const hasQuickHighScore = activeQuickChips.includes("4.7分以上");
+    const hasQuickBuffet = activeQuickChips.includes("自助早餐");
+    const hasQuickSelfCheckin = activeQuickChips.includes("自助入住");
+    const hasQuickHeating = activeQuickChips.includes("暖气");
+    const hasQuickTwinBed = activeQuickChips.includes("双床房");
 
     const hotelLabels = facilityMap.酒店设施 || [];
     const roomLabels = facilityMap.客房设施 || [];
@@ -360,9 +379,12 @@ function ListPage() {
 
     const hotelTags = Array.from(
       new Set(
-        hotelLabels
-          .filter((label) => selectedSet.has(label))
-          .flatMap((label) => HOTEL_CN_TO_DB_TAG_MAP[label] || []),
+        [
+          ...hotelLabels.filter((label) => selectedSet.has(label)),
+          ...(hasQuickBuffet ? ["自助早餐"] : []),
+          ...(hasQuickSelfCheckin ? ["自助入住"] : []),
+          ...(hasQuickHeating ? ["暖气"] : []),
+        ].flatMap((label) => HOTEL_CN_TO_DB_TAG_MAP[label] || []),
       ),
     );
 
@@ -386,6 +408,14 @@ function ListPage() {
       undefined,
     );
 
+    const minScore = hasQuickHighScore
+      ? Math.max(minScoreBySelection || 0, 4.7)
+      : minScoreBySelection;
+
+    const bedTitles = hasQuickTwinBed
+      ? [ROOM_TAG_VALUE_MAP.bedTitles["双床"]]
+      : [];
+
     const roomFacilities: SearchRoomFacilityFilters = {};
     roomLabels
       .filter((label) => selectedSet.has(label))
@@ -406,7 +436,7 @@ function ListPage() {
       });
 
     const hasRoomFacilities = Object.keys(roomFacilities).length > 0;
-    const hasRoomTags = areaTitles.length > 0;
+    const hasRoomTags = areaTitles.length > 0 || bedTitles.length > 0;
     const safeMinPrice =
       typeof selectedMinPrice === "number"
         ? selectedMinPrice
@@ -454,7 +484,7 @@ function ListPage() {
         effectiveSortMode === "score"
           ? effectiveSortMode
           : undefined,
-      minScore: minScoreBySelection,
+      minScore,
       checkIn: checkIn || defaultDates.checkIn,
       checkOut: checkOut || defaultDates.checkOut,
       roomsNeeded: safeRoomCount,
@@ -463,7 +493,7 @@ function ListPage() {
       room:
         hasRoomTags || hasRoomFacilities
           ? {
-              tags: hasRoomTags ? { areaTitles } : undefined,
+              tags: hasRoomTags ? { areaTitles, bedTitles } : undefined,
               facilities: hasRoomFacilities ? roomFacilities : undefined,
             }
           : undefined,
@@ -494,10 +524,21 @@ function ListPage() {
 
       setTotalCount(nextTotal);
       setCurrentPage(page);
-      setHasMore(page * PAGE_SIZE < nextTotal);
       setHotels((current) => {
-        const mergedList = append ? [...current, ...nextList] : nextList;
-        return sortHotelsByMode(mergedList, sortMode);
+        if (!append) {
+          const resetList = sortHotelsByMode(nextList, sortMode);
+          setHasMore(resetList.length < nextTotal);
+          return resetList;
+        }
+
+        const existingIds = new Set(current.map((item) => item.id));
+        const incomingUnique = nextList.filter(
+          (item) => !existingIds.has(item.id),
+        );
+        const mergedList = [...current, ...incomingUnique];
+
+        setHasMore(incomingUnique.length > 0 && mergedList.length < nextTotal);
+        return mergedList;
       });
     } catch (error) {
       if (!append) {
@@ -680,7 +721,22 @@ function ListPage() {
     selectedMinPrice,
     selectedMaxPrice,
     selectedFacilities,
+    activeQuickChips,
   ]);
+
+  const isNewOpenHotel = (hotel: HotelListItem) => {
+    const yearMatch = String(hotel.openingDate || "").match(/\d{4}/);
+    if (!yearMatch) return false;
+    const year = Number(yearMatch[0]);
+    return Number.isFinite(year) && year >= 2024;
+  };
+
+  const displayedHotels = useMemo(() => {
+    if (!activeQuickChips.includes("新开业")) {
+      return hotels;
+    }
+    return hotels.filter((hotel) => isNewOpenHotel(hotel));
+  }, [activeQuickChips, hotels]);
 
   useReachBottom(() => {
     if (loadingHotels || loadingMore || !hasMore) return;
@@ -800,6 +856,9 @@ function ListPage() {
 
   const applyTripDraft = () => {
     const [nextCheckIn, nextCheckOut] = tripDraftDateRange;
+    const isLocationSelected =
+      Taro.getStorageSync(CITY_STORAGE_KEY) === MY_LOCATION_KEY;
+
     setFilter({
       city: tripDraftCity,
       cityCode: tripDraftCityCode,
@@ -809,6 +868,11 @@ function ListPage() {
       adultCount: tripDraftAdultCount,
       childCount: tripDraftChildCount,
     });
+
+    setIsMyLocationMode(isLocationSelected);
+    setTopLocationLabel(
+      isLocationSelected ? "我的位置" : tripDraftCity || DEFAULT_CITY,
+    );
     setTripVisible(false);
   };
 
@@ -950,6 +1014,14 @@ function ListPage() {
       }
       return [...current, item];
     });
+  };
+
+  const toggleQuickChip = (chip: QuickFilterChip) => {
+    setActiveQuickChips((current) =>
+      current.includes(chip)
+        ? current.filter((item) => item !== chip)
+        : [...current, chip],
+    );
   };
 
   const handleOpenDetail = (hotelId: string | number) => {
@@ -1237,10 +1309,19 @@ function ListPage() {
         )}
 
         <View className="list-top__chips">
-          <View className="list-top__chip is-active">4.7分以上</View>
-          <View className="list-top__chip">早餐</View>
-          <View className="list-top__chip">新开业</View>
-          <View className="list-top__chip">双床房</View>
+          {QUICK_FILTER_CHIPS.map((chip) => (
+            <View
+              key={chip}
+              className={
+                activeQuickChips.includes(chip)
+                  ? "list-top__chip is-active"
+                  : "list-top__chip"
+              }
+              onClick={() => toggleQuickChip(chip)}
+            >
+              {chip}
+            </View>
+          ))}
         </View>
       </View>
 
@@ -1270,11 +1351,11 @@ function ListPage() {
       <View className="hotel-list">
         <View className="hotel-top_holder"></View>
         {loadingHotels && <View className="hotel-list__empty">加载中...</View>}
-        {!loadingHotels && hotels.length === 0 && (
+        {!loadingHotels && displayedHotels.length === 0 && (
           <View className="hotel-list__empty">暂无符合条件的酒店</View>
         )}
         {!loadingHotels &&
-          hotels.map((hotel) =>
+          displayedHotels.map((hotel) =>
             (() => {
               const distanceText = formatDistance(hotel.distance);
               const starCount = Math.max(
@@ -1538,12 +1619,12 @@ function ListPage() {
         </View>
       </Popup>
 
-      {!loadingHotels && hotels.length > 0 && (
+      {!loadingHotels && displayedHotels.length > 0 && (
         <View className="hotel-list__footer">
           {loadingMore
             ? "加载更多中..."
             : hasMore
-              ? `已加载${hotels.length}/${totalCount}，上拉加载更多`
+              ? `已加载${displayedHotels.length}/${totalCount}，上拉加载更多`
               : `已加载全部${totalCount}条`}
         </View>
       )}

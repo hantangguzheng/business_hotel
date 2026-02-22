@@ -538,7 +538,9 @@
 }
 
 .list-top__chip.is-active {
-  background: #f3f3f6;
+  background: rgba(43, 100, 242, 0.12);
+  color: #2b64f2;
+  border: 1px solid rgba(43, 100, 242, 0.35);
 }
 
 .list-search {
