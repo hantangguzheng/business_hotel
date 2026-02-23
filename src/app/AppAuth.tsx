@@ -14,7 +14,7 @@ export function AppAuth(){
     const auth = useAppSelector(state=>state.auth);
     const dispatch = useDispatch();
 
-    const [resUser, execUser] = useAxios<IUserMeResponse>(endpoint.getUserMe(), {manual:true});
+    const [resUser, execUser] = useAxios<IUserMeResponse>({...endpoint.getUserMe()}, {manual:true});
 
     const checkInitAuth = () => {
         const curToken = tokenCookieManager.getToken();
