@@ -1138,6 +1138,25 @@ export class HotelsService {
   private buildHotelSearchConditions(dto: SearchHotelsDto) {
     const conditions: Prisma.Sql[] = [Prisma.sql`h.status = 1`];
 
+    const promotionDiscountExpr =
+      dto.checkIn && dto.checkOut
+        ? (() => {
+            const { checkInDate, checkOutDate } = this.ensureValidDateRange(
+              dto.checkIn,
+              dto.checkOut,
+            );
+            return Prisma.sql`COALESCE((
+              SELECT MIN(hp.discount)
+              FROM hotel_promotion hp
+              WHERE
+                hp.hotel_id = h.id
+                AND hp.start_date <= ${checkOutDate}
+                AND hp.end_date >= ${checkInDate}
+            ), 1)`;
+          })()
+        : Prisma.sql`1`;
+    const effectivePriceExpr = Prisma.sql`(h.price * ${promotionDiscountExpr})`;
+
     if (dto.keyword) {
       conditions.push(
         Prisma.sql`h.name_cn LIKE ${'%' + dto.keyword.trim() + '%'}`,
@@ -1147,10 +1166,10 @@ export class HotelsService {
       conditions.push(Prisma.sql`h.city_code = ${dto.cityCode}`);
     }
     if (typeof dto.minPrice === 'number') {
-      conditions.push(Prisma.sql`h.price >= ${dto.minPrice}`);
+      conditions.push(Prisma.sql`${effectivePriceExpr} >= ${dto.minPrice}`);
     }
     if (typeof dto.maxPrice === 'number') {
-      conditions.push(Prisma.sql`h.price <= ${dto.maxPrice}`);
+      conditions.push(Prisma.sql`${effectivePriceExpr} <= ${dto.maxPrice}`);
     }
     if (typeof dto.minStar === 'number') {
       conditions.push(Prisma.sql`h.star_rating >= ${dto.minStar}`);

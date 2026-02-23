@@ -25,7 +25,7 @@ backend program for easyhotel with typescript
 | ----------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `keyword`               | string?                            | 模糊匹配 `nameCn`                                                                               |
 | `cityCode`              | string?                            | 城市三字码精确匹配（如 `BJS`）                                                                  |
-| `minPrice` / `maxPrice` | number?                            | 起步价区间，单位与 `currency` 一致                                                              |
+| `minPrice` / `maxPrice` | number?                            | 起步价区间；当同时传入 `checkIn/checkOut` 时按促销后有效价过滤，否则按原价过滤                  |
 | `minStar` / `maxStar`   | number?                            | 星级区间（1~5）                                                                                 |
 | `minScore`              | number?                            | 最小评分                                                                                        |
 | `tags`                  | string[]?                          | 设施/亮点标签，后台通过 `JSON_CONTAINS` 匹配                                                    |
