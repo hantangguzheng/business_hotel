@@ -5,20 +5,23 @@ import { store } from "@/store/store";
 import { AppAuth } from "./AppAuth";
 import { http } from "@/utils/config";
 import { configure } from "axios-hooks";
+import { App as AntdApp } from "antd";
 
 // configure global axios
 configure({
-    axios:http,
-  });
+  axios: http,
+});
 
 function App() {
-  
+
   return (
     <>
-      <StoreProvider store={store}>
-        <AppAuth />
-        <RouterProvider router={AppRouter} />
-      </StoreProvider>
+      <AntdApp>
+        <StoreProvider store={store}>
+          <AppAuth />
+          <RouterProvider router={AppRouter} />
+        </StoreProvider>
+      </AntdApp>
     </>
   )
 }

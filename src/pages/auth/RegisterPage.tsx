@@ -1,7 +1,7 @@
 import { endpoint } from "@/api/endpoint";
 import type { APIAuthRole, ITokenResponse } from "@/api/types/auth";
 import { useAppDispatch } from "@/hooks/hooks";
-import { Button, Card, Form, Input, message, Select, Tabs } from "antd";
+import { App, Button, Card, Form, Input, Select, Tabs } from "antd";
 import type { RuleRender } from "antd/es/form";
 import useAxios from "axios-hooks";
 import { useEffect } from "react";
@@ -12,7 +12,7 @@ export const RegisterPage = () => {
 
     const nav = useNavigate();
     const dispatch = useAppDispatch();
-    const [msg, mctx] = message.useMessage();
+    const {message:msg} = App.useApp();
     const msgLoadingKey = 'register-loading';
     const [{ data, loading, error, response }, execLogin] = useAxios<ITokenResponse>(
         { ...endpoint.postRegister('', '', 'MERCHANT') }, { manual: true }
@@ -79,7 +79,6 @@ export const RegisterPage = () => {
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
         }
     }} >
-        {mctx}
         <Tabs
             centered
             activeKey={location.pathname}

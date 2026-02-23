@@ -2,7 +2,7 @@ import { endpoint } from "@/api/endpoint";
 import type { ITokenResponse } from "@/api/types/auth";
 import { useAppDispatch } from "@/hooks/hooks";
 import authSlice from "@/store/authSlice";
-import { Button, Card, Form, Input, message, Tabs } from "antd";
+import { Button, Card, Form, Input, App, Tabs } from "antd";
 import useAxios from "axios-hooks";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -12,7 +12,7 @@ export const LoginPage = () => {
 
     const nav = useNavigate();
     const dispatch = useAppDispatch();
-    const [msg, mctx] = message.useMessage();
+    const {message:msg} = App.useApp();
     const msgLoadingKey = 'login-loading';
     const [{ data, loading, error, response }, execLogin] = useAxios<ITokenResponse>(
         { ...endpoint.postLogin('', '') }, { manual: true }
@@ -67,7 +67,6 @@ export const LoginPage = () => {
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
         }
     }} >
-        {mctx}
         <Tabs
             centered
             activeKey={location.pathname}
@@ -79,8 +78,8 @@ export const LoginPage = () => {
         />
         <Form layout="horizontal"
             requiredMark={false}
-            labelCol={{ span: 3 }}
-            wrapperCol={{ span: 21 }}
+            labelCol={{ span: 4 }}
+            wrapperCol={{ span: 20 }}
             onFinish={onFinish}>
             <Form.Item label="用户名" name="username" rules={[{ required: true, message: '请输入用户名' }]}>
                 <Input />
