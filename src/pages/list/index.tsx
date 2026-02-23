@@ -125,6 +125,11 @@ const collectCityOptions = () => {
 
 const ALL_CITY_OPTIONS = collectCityOptions();
 
+const toFiniteNumber = (value: unknown, fallback: number) => {
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : fallback;
+};
+
 function ListPage() {
   const params = Taro.getCurrentInstance().router?.params || {};
   const { filter, setFilter } = useSharedFilter();
@@ -515,6 +520,71 @@ function ListPage() {
     };
   };
 
+  const getDiscountedHotelPrice = (hotel: HotelListItem) => {
+    const normalPrice = toFiniteNumber(hotel.price, 0);
+    const crossLinePrice = toFiniteNumber(hotel.crossLinePrice, 0);
+
+    const promotions = Array.isArray(hotel.promotions) ? hotel.promotions : [];
+    if (promotions.length === 0) {
+      return normalPrice;
+    }
+
+    const now = Date.now();
+    const activePromotions = promotions.filter((item) => {
+      const start = new Date(item.startDate).getTime();
+      const end = new Date(item.endDate).getTime();
+      if (Number.isNaN(start) || Number.isNaN(end)) return false;
+      return start <= now && now <= end;
+    });
+
+    if (activePromotions.length === 0) {
+      return normalPrice;
+    }
+
+    const bestPromotion = activePromotions.reduce<PromotionItem | null>(
+      (best, current) => {
+        const bestDiscount = Number(best?.discount || 1);
+        const currentDiscount = Number(current.discount || 1);
+        if (!best) return current;
+        return currentDiscount < bestDiscount ? current : best;
+      },
+      null,
+    );
+
+    const discount = Number(bestPromotion?.discount || 0);
+    const basePrice = crossLinePrice > 0 ? crossLinePrice : normalPrice;
+    if (!(discount > 0 && discount < 1) || basePrice <= 0) {
+      return normalPrice;
+    }
+
+    return Math.max(1, Math.round(basePrice * discount));
+  };
+
+  const filterHotelsBySelectedPrice = (list: HotelListItem[]) => {
+    const hasMinPrice =
+      typeof selectedMinPrice === "number" && Number.isFinite(selectedMinPrice);
+    const hasMaxPrice =
+      typeof selectedMaxPrice === "number" && Number.isFinite(selectedMaxPrice);
+
+    if (!hasMinPrice && !hasMaxPrice) {
+      return list;
+    }
+
+    return list.filter((hotel) => {
+      const currentPrice = getDiscountedHotelPrice(hotel);
+      if (!Number.isFinite(currentPrice) || currentPrice <= 0) {
+        return false;
+      }
+      if (hasMinPrice && currentPrice < (selectedMinPrice as number)) {
+        return false;
+      }
+      if (hasMaxPrice && currentPrice > (selectedMaxPrice as number)) {
+        return false;
+      }
+      return true;
+    });
+  };
+
   const fetchHotelList = async ({
     page,
     append,
@@ -532,7 +602,7 @@ function ListPage() {
 
     try {
       const response = await searchHotels(searchParams);
-      const nextList = response.data || [];
+      const nextList = filterHotelsBySelectedPrice(response.data || []);
       const nextTotal = Number(response.total || 0);
 
       setTotalCount(nextTotal);
@@ -576,16 +646,23 @@ function ListPage() {
       !isMyLocationMode && mode === "distance" ? "smart" : mode;
     const sortedList = [...list];
 
+    const resolvePriceForSort = (hotel: HotelListItem) => {
+      const price = getDiscountedHotelPrice(hotel);
+      return Number.isFinite(price) && price > 0
+        ? price
+        : Number.POSITIVE_INFINITY;
+    };
+
     if (actualMode === "distance") {
       sortedList.sort((left, right) => {
-        const leftDistance =
-          typeof left.distance === "number" && !Number.isNaN(left.distance)
-            ? left.distance
-            : Number.POSITIVE_INFINITY;
-        const rightDistance =
-          typeof right.distance === "number" && !Number.isNaN(right.distance)
-            ? right.distance
-            : Number.POSITIVE_INFINITY;
+        const leftDistance = toFiniteNumber(
+          left.distance,
+          Number.POSITIVE_INFINITY,
+        );
+        const rightDistance = toFiniteNumber(
+          right.distance,
+          Number.POSITIVE_INFINITY,
+        );
         return leftDistance - rightDistance;
       });
       return sortedList;
@@ -593,14 +670,8 @@ function ListPage() {
 
     if (actualMode === "price") {
       sortedList.sort((left, right) => {
-        const leftPrice =
-          typeof left.price === "number" && !Number.isNaN(left.price)
-            ? left.price
-            : Number.POSITIVE_INFINITY;
-        const rightPrice =
-          typeof right.price === "number" && !Number.isNaN(right.price)
-            ? right.price
-            : Number.POSITIVE_INFINITY;
+        const leftPrice = resolvePriceForSort(left);
+        const rightPrice = resolvePriceForSort(right);
         return leftPrice - rightPrice;
       });
       return sortedList;
@@ -608,54 +679,39 @@ function ListPage() {
 
     if (actualMode === "score") {
       sortedList.sort((left, right) => {
-        const leftScore =
-          typeof left.score === "number" && !Number.isNaN(left.score)
-            ? left.score
-            : Number.NEGATIVE_INFINITY;
-        const rightScore =
-          typeof right.score === "number" && !Number.isNaN(right.score)
-            ? right.score
-            : Number.NEGATIVE_INFINITY;
+        const leftScore = toFiniteNumber(left.score, Number.NEGATIVE_INFINITY);
+        const rightScore = toFiniteNumber(
+          right.score,
+          Number.NEGATIVE_INFINITY,
+        );
         return rightScore - leftScore;
       });
       return sortedList;
     }
 
     sortedList.sort((left, right) => {
-      const leftScore =
-        typeof left.score === "number" && !Number.isNaN(left.score)
-          ? left.score
-          : Number.NEGATIVE_INFINITY;
-      const rightScore =
-        typeof right.score === "number" && !Number.isNaN(right.score)
-          ? right.score
-          : Number.NEGATIVE_INFINITY;
+      const leftScore = toFiniteNumber(left.score, Number.NEGATIVE_INFINITY);
+      const rightScore = toFiniteNumber(right.score, Number.NEGATIVE_INFINITY);
       if (rightScore !== leftScore) {
         return rightScore - leftScore;
       }
 
       if (isMyLocationMode) {
-        const leftDistance =
-          typeof left.distance === "number" && !Number.isNaN(left.distance)
-            ? left.distance
-            : Number.POSITIVE_INFINITY;
-        const rightDistance =
-          typeof right.distance === "number" && !Number.isNaN(right.distance)
-            ? right.distance
-            : Number.POSITIVE_INFINITY;
+        const leftDistance = toFiniteNumber(
+          left.distance,
+          Number.POSITIVE_INFINITY,
+        );
+        const rightDistance = toFiniteNumber(
+          right.distance,
+          Number.POSITIVE_INFINITY,
+        );
         if (leftDistance !== rightDistance) {
           return leftDistance - rightDistance;
         }
       }
 
-      const leftPrice =
-        typeof left.price === "number" && !Number.isNaN(left.price)
-          ? left.price
-          : Number.POSITIVE_INFINITY;
-      const rightPrice =
-        typeof right.price === "number" && !Number.isNaN(right.price)
-          ? right.price
-          : Number.POSITIVE_INFINITY;
+      const leftPrice = resolvePriceForSort(left);
+      const rightPrice = resolvePriceForSort(right);
       return leftPrice - rightPrice;
     });
     return sortedList;
