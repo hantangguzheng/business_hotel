@@ -9,10 +9,10 @@ import type { AuthRole } from "@/types/auth";
 import styles from "./LayoutHeader.module.css";
 
 
+const { Header } = Layout;
 
-export function LayoutHeader({ headerBg }: { headerBg?: string }) {
+export const LayoutHeader = ({ headerBg }: { headerBg?: string }) => {
     const { userobj } = useAppSelector(s => s.auth);
-    const { Header } = Layout;
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
