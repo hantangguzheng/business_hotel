@@ -1,0 +1,48 @@
+{
+	"miniprogramRoot": "dist/",
+	"projectname": "isu_hotel",
+	"description": "hotel booking taro app",
+	"appid": "wx01251f02ba133524",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"enhance": true,
+		"minified": true,
+		"uploadWithSourceMap": false,
+		"ignoreUploadUnusedFiles": true,
+		"autoPrefix": true,
+		"compileHotReLoad": false,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"newFeature": true,
+		"coverView": true,
+		"packNpmManually": true,
+		"packNpmRelationList": [],
+		"minifyWXML": true,
+		"minifyWXSS": true
+	},
+	"compileType": "miniprogram",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {},
+	"packOptions": {
+		"ignore": [
+			{
+				"type": "suffix",
+				"value": ".csv"
+			},
+			{
+				"type": "suffix",
+				"value": ".md"
+			},
+			{
+				"type": "suffix",
+				"value": ".sql"
+			},
+			{
+				"type": "folder",
+				"value": "docs"
+			}
+		]
+	}
+}
