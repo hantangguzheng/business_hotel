@@ -228,8 +228,6 @@ export const HOTEL_DB_TO_CN_TAG_MAP: Partial<Record<HotelDbTag, string>> =
 export const ROOM_TAG_VALUE_MAP = {
   areaTitles: {
     "小于35m²": "less35",
-    "20-25m²": "less35",
-    "25-30m²": "less35",
     "35-50m²": "35-50",
     "50m²以上": "50above",
     "≥50m²": "50above",

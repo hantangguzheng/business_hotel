@@ -36,9 +36,9 @@ const DEFAULT_MIN_STAR = 2;
 const DEFAULT_MAX_STAR = 5;
 
 const BANNER_ITEMS = [
-  { src: bannerHotel1, hotelId: 63 },
+  { src: bannerHotel1, hotelId: 17 },
   { src: bannerHotel2, hotelId: 38 },
-  { src: bannerHotel3, hotelId: 17 },
+  { src: bannerHotel3, hotelId: 63 },
 ];
 
 const collectCityOptions = () => {

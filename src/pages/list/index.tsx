@@ -1,4 +1,4 @@
-import { Image, Input, View } from "@tarojs/components";
+import { Image, Input, ScrollView, View } from "@tarojs/components";
 import Taro, { useDidShow, useReachBottom } from "@tarojs/taro";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -375,7 +375,57 @@ function ListPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const buildSearchHotelsParams = (page: number): SearchHotelsParams => {
+  const buildHotelTagGroups = () => {
+    const selectedSet = new Set(selectedFacilities);
+    const hasQuickBuffet = activeQuickChips.includes("自助早餐");
+    const hasQuickSelfCheckin = activeQuickChips.includes("自助入住");
+    const hasQuickHeating = activeQuickChips.includes("暖气");
+
+    const selectedHotelLabels = Array.from(
+      new Set([
+        ...Object.keys(HOTEL_CN_TO_DB_TAG_MAP).filter((label) =>
+          selectedSet.has(label),
+        ),
+        ...(hasQuickBuffet ? ["自助早餐"] : []),
+        ...(hasQuickSelfCheckin ? ["自助入住"] : []),
+        ...(hasQuickHeating ? ["暖气"] : []),
+      ]),
+    );
+
+    return selectedHotelLabels
+      .map((label) =>
+        Array.from(new Set(HOTEL_CN_TO_DB_TAG_MAP[label] || [])).filter(
+          Boolean,
+        ),
+      )
+      .filter((group) => group.length > 0);
+  };
+
+  const buildHotelTagVariants = (tagGroups: string[][]) => {
+    if (tagGroups.length === 0) return [] as string[][];
+
+    const cartesian = tagGroups.reduce<string[][]>(
+      (current, group) =>
+        current.flatMap((picked) => group.map((tag) => [...picked, tag])),
+      [[]],
+    );
+
+    const uniqueMap = new Map<string, string[]>();
+    cartesian.forEach((tags) => {
+      const normalized = Array.from(new Set(tags));
+      const key = normalized.join("|");
+      if (!uniqueMap.has(key)) {
+        uniqueMap.set(key, normalized);
+      }
+    });
+
+    return Array.from(uniqueMap.values());
+  };
+
+  const buildSearchHotelsParams = (
+    page: number,
+    overrideHotelTags?: string[],
+  ): SearchHotelsParams => {
     const keywordValue = keyword.trim();
     const safeRoomCount = roomCount > 0 ? roomCount : 1;
     const safeAdultCount = adultCount > 0 ? adultCount : 1;
@@ -384,27 +434,18 @@ function ListPage() {
 
     const selectedSet = new Set(selectedFacilities);
     const hasQuickHighScore = activeQuickChips.includes("4.7分以上");
-    const hasQuickBuffet = activeQuickChips.includes("自助早餐");
-    const hasQuickSelfCheckin = activeQuickChips.includes("自助入住");
-    const hasQuickHeating = activeQuickChips.includes("暖气");
     const hasQuickTwinBed = activeQuickChips.includes("双床房");
     const hasQuickNewOpen = activeQuickChips.includes("新开业");
 
-    const hotelLabels = facilityMap.酒店设施 || [];
     const roomLabels = facilityMap.客房设施 || [];
     const areaLabels = facilityMap.房间面积 || [];
     const scoreLabels = facilityMap.评分 || [];
 
-    const hotelTags = Array.from(
-      new Set(
-        [
-          ...hotelLabels.filter((label) => selectedSet.has(label)),
-          ...(hasQuickBuffet ? ["自助早餐"] : []),
-          ...(hasQuickSelfCheckin ? ["自助入住"] : []),
-          ...(hasQuickHeating ? ["暖气"] : []),
-        ].flatMap((label) => HOTEL_CN_TO_DB_TAG_MAP[label] || []),
-      ),
-    );
+    const hotelTagGroups = buildHotelTagGroups();
+    const hotelTags =
+      overrideHotelTags && overrideHotelTags.length > 0
+        ? overrideHotelTags
+        : Array.from(new Set(hotelTagGroups.flat()));
 
     const areaTitles = Array.from(
       new Set(
@@ -568,7 +609,8 @@ function ListPage() {
     page: number;
     append: boolean;
   }) => {
-    const searchParams = buildSearchHotelsParams(page);
+    const hotelTagGroups = buildHotelTagGroups();
+    const hotelTagVariants = buildHotelTagVariants(hotelTagGroups);
 
     if (append) {
       setLoadingMore(true);
@@ -577,15 +619,37 @@ function ListPage() {
     }
 
     try {
-      const response = await searchHotels(searchParams);
-      const nextList = response.data || [];
-      const nextTotal = Number(response.total || 0);
+      const responses =
+        hotelTagVariants.length > 1
+          ? await Promise.all(
+              hotelTagVariants.map((tags) =>
+                searchHotels(buildSearchHotelsParams(page, tags)),
+              ),
+            )
+          : [await searchHotels(buildSearchHotelsParams(page))];
+
+      const responseList = responses.map((item) => item.data || []);
+      const nextList = Array.from(
+        new Map(
+          responseList
+            .flat()
+            .map((hotel) => [hotel.id, hotel] as [number, HotelListItem]),
+        ).values(),
+      );
+      const responseTotal = responses.reduce(
+        (sum, item) => sum + Number(item.total || 0),
+        0,
+      );
+      const requestHasMore = responses.some(
+        (item) => (item.data || []).length >= PAGE_SIZE,
+      );
+      const nextTotal = responseTotal > 0 ? responseTotal : nextList.length;
 
       setCurrentPage(page);
       setHotels((current) => {
         if (!append) {
           const resetList = sortHotelsByMode(nextList, sortMode);
-          setHasMore(resetList.length < nextTotal);
+          setHasMore(requestHasMore && resetList.length < nextTotal);
           return resetList;
         }
 
@@ -595,7 +659,11 @@ function ListPage() {
         );
         const mergedList = [...current, ...incomingUnique];
 
-        setHasMore(incomingUnique.length > 0 && mergedList.length < nextTotal);
+        setHasMore(
+          requestHasMore &&
+            incomingUnique.length > 0 &&
+            mergedList.length < nextTotal,
+        );
         return mergedList;
       });
     } catch (error) {
@@ -1489,7 +1557,6 @@ function ListPage() {
             className="list-top__filter-panel"
             onClick={(event) => event.stopPropagation()}
             catchMove
-            onTouchMove={stopOverlayTouchMove}
           >
             <View className="list-top__filter-content">
               <View className="list-top__filter-sidebar">
@@ -1508,7 +1575,7 @@ function ListPage() {
                 ))}
               </View>
 
-              <View className="list-top__filter-tags-wrap">
+              <ScrollView className="list-top__filter-tags-wrap" scrollY>
                 <View className="list-top__filter-tags-title">
                   {activeFacilityTab}
                 </View>
@@ -1557,7 +1624,7 @@ function ListPage() {
                     ))}
                   </View>
                 )}
-              </View>
+              </ScrollView>
             </View>
 
             <View className="list-top__filter-footer">
