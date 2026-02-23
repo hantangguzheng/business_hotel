@@ -22,9 +22,9 @@ import {
 import zh from "../../locales/zh";
 import en from "../../locales/en";
 import logo from "../../assets/imgs/logo.png";
-import bannerHotel1 from "../../assets/imgs/banner_hotel_1.png";
-import bannerHotel2 from "../../assets/imgs/banner_hotel_2.png";
-import bannerHotel3 from "../../assets/imgs/banner_hotel_3.png";
+import bannerHotel1 from "../../assets/imgs/banner_hotel_1.webp";
+import bannerHotel2 from "../../assets/imgs/banner_hotel_2.webp";
+import bannerHotel3 from "../../assets/imgs/banner_hotel_3.webp";
 import "./index.scss";
 const { cities } = require("../../utils/city");
 const md5Module = require("../../utils/md5.js");
@@ -88,7 +88,6 @@ function Index() {
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
   const [minStar, setMinStar] = useState<number | undefined>(undefined);
   const [maxStar, setMaxStar] = useState<number | undefined>(undefined);
-  const [bannerHeight, setBannerHeight] = useState(180);
   const hasAutoLocatedRef = useRef(false);
 
   const resolveCityInfoByName = (name?: string) => {
@@ -177,7 +176,7 @@ function Index() {
 
     if (!hasAutoLocatedRef.current) {
       hasAutoLocatedRef.current = true;
-      locateUser();
+      locateUser({ silent: true });
     }
   });
 
@@ -194,106 +193,115 @@ function Index() {
     setDateRange([checkIn, checkOut]);
   }, [checkIn, checkOut]);
 
-  useEffect(() => {
-    const updateBannerHeight = () => {
-      Taro.getImageInfo({
-        src: bannerHotel1,
-        success: (imageInfo) => {
-          const imageWidth = Number(imageInfo?.width || 0);
-          const imageHeight = Number(imageInfo?.height || 0);
-          const windowWidth = Number(Taro.getSystemInfoSync().windowWidth || 0);
-
-          if (imageWidth <= 0 || imageHeight <= 0 || windowWidth <= 0) return;
-          const nextHeight = Math.round(
-            (windowWidth * imageHeight) / imageWidth,
-          );
-          if (nextHeight > 0) {
-            setBannerHeight(nextHeight);
-          }
-        },
-      });
-    };
-
-    updateBannerHeight();
-  }, []);
-
   const handleOpenCity = () => {
     Taro.navigateTo({ url: "/pages/city/index" });
   };
 
-  const locateUser = () => {
-    Taro.getLocation({
-      type: "gcj02",
-      success: (res) => {
-        const locationParam = `${res.latitude},${res.longitude}`;
-        const sig = md5(
-          `/ws/geocoder/v1?key=${QQ_MAP_KEY}&location=${locationParam}${QQ_MAP_SK}`,
-        );
-        Taro.request({
-          url: `${QQ_MAP_BASE_URL}/geocoder/v1`,
-          data: {
-            key: QQ_MAP_KEY,
-            location: locationParam,
-            sig,
-          },
-          success: (response) => {
-            console.log(response);
-            const result = response?.data?.result;
-            const geocoderCity =
-              result?.address_component?.city ||
-              result?.ad_info?.city ||
-              result?.address_component?.district ||
-              "";
-            const resolvedCityInfo =
-              resolveCityInfoByName(geocoderCity) || DEFAULT_CITY_INFO;
-            const address =
-              result?.formatted_addresses?.recommend || result?.address;
-            const rawAddress = address
-              ? String(address)
-              : `${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
-            const text = `${copy.myLocationText}：${rawAddress}`;
-            setLocationKey(MY_LOCATION_KEY);
-            setFilter({
-              city: resolvedCityInfo.name,
-              cityCode: resolvedCityInfo.cityCode,
-              userLat: res.latitude,
-              userLng: res.longitude,
-            });
-            setLocationNotice(text);
+  const locateUser = (options?: { silent?: boolean }) => {
+    Taro.getSetting({
+      success: (settingRes) => {
+        const hasLocationPermission =
+          settingRes?.authSetting?.["scope.userLocation"] === true;
+
+        if (!hasLocationPermission) {
+          if (!options?.silent) {
+            setLocationNotice("定位权限未开启，请点击定位按钮并授权");
             setShowLocationNotice(true);
-            Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
-            Taro.setStorageSync(CITY_LOCATION_INFO_KEY, resolvedCityInfo);
-            Taro.setStorageSync(CITY_ADDRESS_KEY, rawAddress);
+          }
+          return;
+        }
+
+        Taro.getLocation({
+          type: "gcj02",
+          success: (res) => {
+            const locationParam = `${res.latitude},${res.longitude}`;
+            const sig = md5(
+              `/ws/geocoder/v1?key=${QQ_MAP_KEY}&location=${locationParam}${QQ_MAP_SK}`,
+            );
+            Taro.request({
+              url: `${QQ_MAP_BASE_URL}/geocoder/v1`,
+              data: {
+                key: QQ_MAP_KEY,
+                location: locationParam,
+                sig,
+              },
+              success: (response) => {
+                console.log(response);
+                const result = response?.data?.result;
+                const geocoderCity =
+                  result?.address_component?.city ||
+                  result?.ad_info?.city ||
+                  result?.address_component?.district ||
+                  "";
+                const resolvedCityInfo =
+                  resolveCityInfoByName(geocoderCity) || DEFAULT_CITY_INFO;
+                const address =
+                  result?.formatted_addresses?.recommend || result?.address;
+                const rawAddress = address
+                  ? String(address)
+                  : `${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
+                const text = `${copy.myLocationText}：${rawAddress}`;
+                setLocationKey(MY_LOCATION_KEY);
+                setFilter({
+                  city: resolvedCityInfo.name,
+                  cityCode: resolvedCityInfo.cityCode,
+                  userLat: res.latitude,
+                  userLng: res.longitude,
+                });
+                setLocationNotice(text);
+                setShowLocationNotice(true);
+                Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
+                Taro.setStorageSync(CITY_LOCATION_INFO_KEY, resolvedCityInfo);
+                Taro.setStorageSync(CITY_ADDRESS_KEY, rawAddress);
+              },
+              fail: () => {
+                const rawAddress = `${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
+                const text = `${copy.myLocationText}：${rawAddress}`;
+                const fallbackCityInfo = DEFAULT_CITY_INFO;
+                setLocationKey(MY_LOCATION_KEY);
+                setFilter({
+                  city: fallbackCityInfo.name,
+                  cityCode: fallbackCityInfo.cityCode,
+                  userLat: res.latitude,
+                  userLng: res.longitude,
+                });
+                setLocationNotice(text);
+                setShowLocationNotice(true);
+                Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
+                Taro.setStorageSync(CITY_LOCATION_INFO_KEY, fallbackCityInfo);
+                Taro.setStorageSync(CITY_ADDRESS_KEY, rawAddress);
+              },
+            });
           },
           fail: () => {
-            const rawAddress = `${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
-            const text = `${copy.myLocationText}：${rawAddress}`;
-            const fallbackCityInfo = DEFAULT_CITY_INFO;
-            setLocationKey(MY_LOCATION_KEY);
-            setFilter({
-              city: fallbackCityInfo.name,
-              cityCode: fallbackCityInfo.cityCode,
-              userLat: res.latitude,
-              userLng: res.longitude,
-            });
-            setLocationNotice(text);
-            setShowLocationNotice(true);
-            Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
-            Taro.setStorageSync(CITY_LOCATION_INFO_KEY, fallbackCityInfo);
-            Taro.setStorageSync(CITY_ADDRESS_KEY, rawAddress);
+            if (!options?.silent) {
+              setLocationNotice("定位失败，请稍后重试");
+              setShowLocationNotice(true);
+            }
           },
         });
       },
       fail: () => {
-        setLocationNotice("定位失败，请检查定位权限");
-        setShowLocationNotice(true);
+        if (!options?.silent) {
+          setLocationNotice("读取定位权限失败，请稍后重试");
+          setShowLocationNotice(true);
+        }
       },
     });
   };
 
   const handleLocate = (event) => {
     event.stopPropagation();
-    locateUser();
+    Taro.authorize({
+      scope: "scope.userLocation",
+      success: () => {
+        locateUser();
+      },
+      fail: () => {
+        setLocationNotice("定位权限未开启，请在设置中允许定位");
+        setShowLocationNotice(true);
+      },
+    });
   };
 
   const buildSearchUrl = (nextKeyword?: string, quickTag?: string) => {
@@ -494,7 +502,7 @@ function Index() {
         />
         <View className="lang-toggle__text">{copy.toggleText}</View>
       </View> */}
-      <View className="banner" style={{ height: `${bannerHeight}px` }}>
+      <View className="banner">
         <Swiper
           className="banner__swiper"
           circular
@@ -503,7 +511,7 @@ function Index() {
           duration={500}
           indicatorDots
         >
-          {BANNER_ITEMS.map((item, index) => (
+          {BANNER_ITEMS.map((item) => (
             <SwiperItem
               key={`banner-${item.hotelId}`}
               onClick={() => handleBannerClick(item.hotelId)}
@@ -511,7 +519,7 @@ function Index() {
               <Image
                 className="banner__image"
                 src={item.src}
-                mode={index === 0 ? "aspectFit" : "aspectFill"}
+                mode="aspectFill"
               />
             </SwiperItem>
           ))}

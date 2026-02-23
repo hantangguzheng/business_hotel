@@ -10,6 +10,7 @@ declare module '*.less';
 declare module '*.scss';
 declare module '*.sass';
 declare module '*.styl';
+declare module "*.webp";
 declare module '*qqmap-wx-jssdk' {
   const QQMapWX: any;
   export default QQMapWX;

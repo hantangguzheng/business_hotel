@@ -5,21 +5,44 @@
 	"appid": "wx01251f02ba133524",
 	"setting": {
 		"urlCheck": true,
-		"es6": false,
-		"enhance": false,
+		"es6": true,
+		"enhance": true,
+		"minified": true,
+		"uploadWithSourceMap": false,
+		"ignoreUploadUnusedFiles": true,
+		"autoPrefix": true,
 		"compileHotReLoad": false,
-		"postcss": false,
+		"postcss": true,
 		"preloadBackgroundData": false,
-		"minified": false,
 		"newFeature": true,
-		"autoAudits": false,
 		"coverView": true,
-		"showShadowRootInWxmlPanel": false,
-		"scopeDataCheck": false,
-		"useCompilerModule": false
+		"packNpmManually": true,
+		"packNpmRelationList": [],
+		"minifyWXML": true,
+		"minifyWXSS": true
 	},
 	"compileType": "miniprogram",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"condition": {}
+	"condition": {},
+	"packOptions": {
+		"ignore": [
+			{
+				"type": "suffix",
+				"value": ".csv"
+			},
+			{
+				"type": "suffix",
+				"value": ".md"
+			},
+			{
+				"type": "suffix",
+				"value": ".sql"
+			},
+			{
+				"type": "folder",
+				"value": "docs"
+			}
+		]
+	}
 }

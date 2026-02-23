@@ -1,4 +1,4 @@
-import { RUNTIME_CONFIG } from "../../config/env";;
+import { RUNTIME_CONFIG } from "./env";
 
 export const CITY_STORAGE_KEY = "city_selected";
 export const CITY_LOCATION_INFO_KEY = "city_location_info";

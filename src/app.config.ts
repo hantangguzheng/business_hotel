@@ -13,6 +13,12 @@ export default defineAppConfig({
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'black'
   },
+  permission: {
+    'scope.userLocation': {
+      desc: '用于获取您附近的酒店位置'
+    }
+  },
+  lazyCodeLoading: 'requiredComponents',
   requiredPrivateInfos: [
     'getLocation'
   ]

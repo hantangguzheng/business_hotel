@@ -1,6 +1,10 @@
 import type { UserConfigExport } from "@tarojs/cli";
 export default {
-  mini: {},
+  mini: {
+    optimizeMainPackage: {
+      enable: true,
+    },
+  },
   h5: {
     /**
      * WebpackChain 插件配置

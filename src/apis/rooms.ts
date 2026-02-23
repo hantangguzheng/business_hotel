@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro";
-import { RUNTIME_CONFIG } from "../../config/env";
+import { RUNTIME_CONFIG } from "../constants/env";
 import type {
   HotelRoomItem,
   PromotionItem,

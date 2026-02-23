@@ -1,4 +1,5 @@
 import { defineConfig, type UserConfigExport } from '@tarojs/cli'
+import path from 'node:path'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import devConfig from './dev'
 import prodConfig from './prod'
@@ -34,7 +35,11 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
       }
     },
     cache: {
-      enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
+      enable: true,
+      buildDependencies: {
+        config: [path.join(process.cwd(), 'config/index.ts')]
+      },
+      name: `${process.env.NODE_ENV || 'development'}-${process.env.TARO_ENV || 'weapp'}`
     },
     mini: {
       imageUrlLoaderOption: {
@@ -56,6 +61,10 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
         }
       },
       webpackChain(chain) {
+        chain.module
+      .rule('image')
+      .test(/\.(png|jpe?g|gif|bpm|svg|webp)$/i) // 确保包含 webp
+      .set('type', 'asset/resource')
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
         chain.plugin('miniCssExtractPlugin').tap((args) => {
           const nextArgs = Array.isArray(args) ? [...args] : [{}]
