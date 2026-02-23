@@ -1,7 +1,7 @@
 export default {
   heroTitle: "酒店7折起",
   cardTitle: "开启你的旅途 🌴",
-  cardSubtitle: "酒店低至7折",
+  cardSubtitle: "酒店低至5折",
   locationLabel: "酒店位置",
   locationPlaceholder: "选择城市",
   cityDefault: "城市",

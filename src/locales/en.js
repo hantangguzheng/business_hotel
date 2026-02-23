@@ -1,7 +1,7 @@
 export default {
   heroTitle: "Hotels 30% Off",
   cardTitle: "Start Your Trip 🌴",
-  cardSubtitle: "Up to 30% Off",
+  cardSubtitle: "Up to 50% Off",
   locationLabel: "City",
   locationPlaceholder: "Select city",
   cityDefault: "City",

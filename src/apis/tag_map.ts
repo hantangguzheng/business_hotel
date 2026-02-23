@@ -1,4 +1,6 @@
 import iconChargingPile from "../assets/icons/hotel-tag-charging-pile.svg";
+import iconBuFFETBreakfast from "../assets/icons/hotel-tag-buffet-breakfast.svg";
+import iconButlerService from "../assets/icons/hotel-tag-butler-service.svg";
 import iconChessRoom from "../assets/icons/hotel-tag-chess-room.svg";
 import iconCinemaRoom from "../assets/icons/hotel-tag-cinema-room.svg";
 import iconCoffeeMachine from "../assets/icons/hotel-tag-coffee-machine.svg";
@@ -78,11 +80,11 @@ export const HOTEL_TAG_ICON_MAP: Record<
 > = {
   BUFFET_BREAKFAST: {
     tag: "BUFFET_BREAKFAST",
-    icon: "",
+    icon: iconBuFFETBreakfast,
   },
   BUTLER_SERVICE: {
     tag: "BUTLER_SERVICE",
-    icon: "",
+    icon: iconButlerService,
   },
   CHARGING_PILE: {
     tag: "CHARGING_PILE",

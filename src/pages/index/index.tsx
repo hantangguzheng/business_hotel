@@ -1,14 +1,18 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Image, Input, View } from "@tarojs/components";
+import { Image, Input, Swiper, SwiperItem, View } from "@tarojs/components";
 import { Button, Calendar, Cell, Popup } from "@nutui/nutui-react-taro";
 import Taro, { useDidShow } from "@tarojs/taro";
 import { ArrowDown, Close } from "@nutui/icons-react-taro";
 import GuestSelector from "../../components/guest-selector";
 import PriceStarPopup from "../../components/price-star-popup";
+import { getHotelDetail } from "../../apis/hotels";
 import { useSharedFilter } from "../../store/filter-context";
 import zh from "../../locales/zh";
 import en from "../../locales/en";
 import logo from "../../assets/imgs/logo.png";
+import bannerHotel1 from "../../assets/imgs/banner_hotel_1.png";
+import bannerHotel2 from "../../assets/imgs/banner_hotel_2.png";
+import bannerHotel3 from "../../assets/imgs/banner_hotel_3.png";
 import "./index.scss";
 const { cities } = require("../../utils/city");
 const md5Module = require("../../utils/md5.js");
@@ -25,6 +29,12 @@ const DEFAULT_CITY_INFO = {
   name: "上海",
   cityCode: "2",
 };
+
+const BANNER_ITEMS = [
+  { src: bannerHotel1, hotelId: 63 },
+  { src: bannerHotel2, hotelId: 38 },
+  { src: bannerHotel3, hotelId: 17 },
+];
 
 const collectCityOptions = () => {
   const groups = Object.keys(cities || {});
@@ -78,6 +88,7 @@ function Index() {
   const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
   const [minStar, setMinStar] = useState<number | undefined>(undefined);
   const [maxStar, setMaxStar] = useState<number | undefined>(undefined);
+  const [bannerHeight, setBannerHeight] = useState(180);
   const hasAutoLocatedRef = useRef(false);
   const keywordTags = [
     "4.7分以上",
@@ -97,6 +108,19 @@ function Index() {
         .trim();
       return optionName === normalizedName;
     });
+    if (!matched) return undefined;
+    return {
+      name: matched.name,
+      cityCode: String(matched.cityCode || ""),
+    };
+  };
+
+  const resolveCityInfoByCode = (targetCityCode?: string) => {
+    const code = String(targetCityCode || "").trim();
+    if (!code) return undefined;
+    const matched = ALL_CITY_OPTIONS.find(
+      (item) => String(item.cityCode || "") === code,
+    );
     if (!matched) return undefined;
     return {
       name: matched.name,
@@ -177,13 +201,29 @@ function Index() {
   useEffect(() => {
     setDateRange([checkIn, checkOut]);
   }, [checkIn, checkOut]);
-  const handleToggleLang = () => {
-    setLang((current) => {
-      const next = current === "zh" ? "en" : "zh";
-      Taro.setStorageSync(LANG_STORAGE_KEY, next);
-      return next;
-    });
-  };
+
+  useEffect(() => {
+    const updateBannerHeight = () => {
+      Taro.getImageInfo({
+        src: bannerHotel1,
+        success: (imageInfo) => {
+          const imageWidth = Number(imageInfo?.width || 0);
+          const imageHeight = Number(imageInfo?.height || 0);
+          const windowWidth = Number(Taro.getSystemInfoSync().windowWidth || 0);
+
+          if (imageWidth <= 0 || imageHeight <= 0 || windowWidth <= 0) return;
+          const nextHeight = Math.round(
+            (windowWidth * imageHeight) / imageWidth,
+          );
+          if (nextHeight > 0) {
+            setBannerHeight(nextHeight);
+          }
+        },
+      });
+    };
+
+    updateBannerHeight();
+  }, []);
 
   const handleOpenCity = () => {
     Taro.navigateTo({ url: "/pages/city/index" });
@@ -343,6 +383,23 @@ function Index() {
     handleSearch(undefined, tag);
   };
 
+  const handleBannerClick = async (hotelId: number) => {
+    try {
+      const hotelDetail = await getHotelDetail(hotelId, checkIn, checkOut);
+      const nextCityCode = String(hotelDetail?.cityCode || "").trim();
+      const cityInfoByCode = resolveCityInfoByCode(nextCityCode);
+
+      setFilter({
+        cityCode: nextCityCode || cityCode,
+        city: cityInfoByCode?.name || city,
+      });
+    } catch (error) {
+      // ignore fetch error and continue navigation
+    }
+
+    Taro.navigateTo({ url: `/pages/detail/index?id=${hotelId}` });
+  };
+
   const resolveInputValue = (event) => {
     return event?.detail?.value ?? event?.target?.value ?? "";
   };
@@ -376,8 +433,6 @@ function Index() {
     };
     return `${formatShort(today)}至${formatShort(tomorrow)}`;
   };
-
-
 
   const resolveRange = (param) => {
     if (Array.isArray(param) && Array.isArray(param[0])) {
@@ -439,16 +494,36 @@ function Index() {
 
   return (
     <View className="hotel-page">
-      <View className="lang-toggle" onClick={handleToggleLang}>
+      {/* <View className="lang-toggle" onClick={handleToggleLang}>
         <Image
           className="lang-toggle__icon"
           src="https://img14.360buyimg.com/imagetools/jfs/t1/135168/8/21387/6193/625fa81aEe07cc347/55ad5bc2580c53a6.png"
           mode="aspectFit"
         />
         <View className="lang-toggle__text">{copy.toggleText}</View>
-      </View>
-      <View className="hero">
-        {/* <View className="hero__title">{copy.heroTitle}</View> */}
+      </View> */}
+      <View className="banner" style={{ height: `${bannerHeight}px` }}>
+        <Swiper
+          className="banner__swiper"
+          circular
+          autoplay
+          interval={3500}
+          duration={500}
+          indicatorDots
+        >
+          {BANNER_ITEMS.map((item, index) => (
+            <SwiperItem
+              key={`banner-${item.hotelId}`}
+              onClick={() => handleBannerClick(item.hotelId)}
+            >
+              <Image
+                className="banner__image"
+                src={item.src}
+                mode={index === 0 ? "aspectFit" : "aspectFill"}
+              />
+            </SwiperItem>
+          ))}
+        </Swiper>
       </View>
       <View className="card">
         <View className="card__header">
