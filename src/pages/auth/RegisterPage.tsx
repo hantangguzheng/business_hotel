@@ -12,7 +12,7 @@ export const RegisterPage = () => {
 
     const nav = useNavigate();
     const dispatch = useAppDispatch();
-    const {message:msg} = App.useApp();
+    const { message: msg } = App.useApp();
     const msgLoadingKey = 'register-loading';
     const [{ data, loading, error, response }, execLogin] = useAxios<ITokenResponse>(
         { ...endpoint.postRegister('', '', 'MERCHANT') }, { manual: true }
@@ -75,45 +75,49 @@ export const RegisterPage = () => {
     });
 
     return <Card style={{ width: 400 }} styles={{
-        root: {
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-        }
-    }} >
-        <Tabs
-            centered
-            activeKey={location.pathname}
-            onChange={(key) => nav(key)}
-            items={[
-                { key: '/auth/login', label: '登录' },
-                { key: '/auth/register', label: '注册' },
-            ]}
-        />
-        <Form layout="horizontal"
-            labelCol={{ span: 6 }}
-            wrapperCol={{ span: 18 }}
-            onFinish={onFinish}>
-            <Form.Item label="用户名" name="username" rules={[{ required: true, message: '请输入用户名' }]}>
-                <Input />
-            </Form.Item>
-            <Form.Item label="密码" name="password" rules={[{ required: true, message: '请输入密码' }, { min: 6, message: '密码长度至少为6位' }]}>
-                <Input.Password />
-            </Form.Item>
-            <Form.Item label="请重复密码" name="confirmPassword" dependencies={['password']} rules={[
-                { required: true, message: '请再次输入密码' },
-                confirmPasswordValidator,
-            ]}>
-                <Input.Password />
-            </Form.Item>
-            <Form.Item label="账户类型" name="role" rules={[{ required: true, message: '请选择注册账号的类型' }]}>
-                <Select options={[
-                    { value: 'MERCHANT', label: '商户' },
-                    { value: 'ADMIN', label: '管理员' },
+            root: {
+                boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                marginBottom: '60px',
+            },
+            body: {
+                paddingTop: '0px',
+            }
+        }} >
+            <Tabs
+                centered
+                activeKey={location.pathname}
+                onChange={(key) => nav(key)}
+                items={[
+                    { key: '/auth/login', label: '登录' },
+                    { key: '/auth/register', label: '注册' },
                 ]}
-                />
-            </Form.Item>
-            <Button type="primary" htmlType="submit" block>
-                注册
-            </Button>
-        </Form>
-    </Card>
+            />
+            <Form layout="horizontal"
+                labelCol={{ span: 6 }}
+                wrapperCol={{ span: 18 }}
+                onFinish={onFinish}>
+                <Form.Item label="用户名" name="username" rules={[{ required: true, message: '请输入用户名' }]}>
+                    <Input />
+                </Form.Item>
+                <Form.Item label="密码" name="password" rules={[{ required: true, message: '请输入密码' }, { min: 6, message: '密码长度至少为6位' }]}>
+                    <Input.Password />
+                </Form.Item>
+                <Form.Item label="请重复密码" name="confirmPassword" dependencies={['password']} rules={[
+                    { required: true, message: '请再次输入密码' },
+                    confirmPasswordValidator,
+                ]}>
+                    <Input.Password />
+                </Form.Item>
+                <Form.Item label="账户类型" name="role" rules={[{ required: true, message: '请选择注册账号的类型' }]}>
+                    <Select options={[
+                        { value: 'MERCHANT', label: '商户' },
+                        { value: 'ADMIN', label: '管理员' },
+                    ]}
+                    />
+                </Form.Item>
+                <Button type="primary" htmlType="submit" block>
+                    注册
+                </Button>
+            </Form>
+        </Card>
 }

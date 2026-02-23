@@ -12,7 +12,7 @@ export const LoginPage = () => {
 
     const nav = useNavigate();
     const dispatch = useAppDispatch();
-    const {message:msg} = App.useApp();
+    const { message: msg } = App.useApp();
     const msgLoadingKey = 'login-loading';
     const [{ data, loading, error, response }, execLogin] = useAxios<ITokenResponse>(
         { ...endpoint.postLogin('', '') }, { manual: true }
@@ -63,33 +63,37 @@ export const LoginPage = () => {
     }, [data, error, loading, response, dispatch]);
 
     return <Card style={{ width: 400 }} styles={{
-        root: {
-            boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-        }
-    }} >
-        <Tabs
-            centered
-            activeKey={location.pathname}
-            onChange={(key) => nav(key)}
-            items={[
-                { key: '/auth/login', label: '登录' },
-                { key: '/auth/register', label: '注册' },
-            ]}
-        />
-        <Form layout="horizontal"
-            requiredMark={false}
-            labelCol={{ span: 4 }}
-            wrapperCol={{ span: 20 }}
-            onFinish={onFinish}>
-            <Form.Item label="用户名" name="username" rules={[{ required: true, message: '请输入用户名' }]}>
-                <Input />
-            </Form.Item>
-            <Form.Item label="密码" name="password" rules={[{ required: true, message: '请输入密码' }, { min: 6, message: '密码长度至少为6位' }]}>
-                <Input.Password />
-            </Form.Item>
-            <Button type="primary" htmlType="submit" block>
-                登录
-            </Button>
-        </Form>
-    </Card>
+            root: {
+                boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+                marginBottom: '60px',
+            },
+            body: {
+                paddingTop: '0px',
+            }
+        }} >
+            <Tabs
+                centered
+                activeKey={location.pathname}
+                onChange={(key) => nav(key)}
+                items={[
+                    { key: '/auth/login', label: '登录' },
+                    { key: '/auth/register', label: '注册' },
+                ]}
+            />
+            <Form layout="horizontal"
+                requiredMark={false}
+                labelCol={{ span: 4 }}
+                wrapperCol={{ span: 20 }}
+                onFinish={onFinish}>
+                <Form.Item label="用户名" name="username" rules={[{ required: true, message: '请输入用户名' }]}>
+                    <Input />
+                </Form.Item>
+                <Form.Item label="密码" name="password" rules={[{ required: true, message: '请输入密码' }, { min: 6, message: '密码长度至少为6位' }]}>
+                    <Input.Password />
+                </Form.Item>
+                <Button type="primary" htmlType="submit" block>
+                    登录
+                </Button>
+            </Form>
+        </Card>
 }
