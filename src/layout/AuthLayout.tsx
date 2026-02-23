@@ -1,7 +1,8 @@
-import { Outlet, useLocation } from "react-router"
+import { Navigate, Outlet, useLocation } from "react-router"
 import styles from './AuthLayout.module.css'
 import { Avatar, Space } from "antd";
 import { motion } from 'framer-motion'
+import { useAppSelector } from "@/hooks/hooks";
 
 const bgMap: Record<string, string> = {
     '/auth/login': '0%',
@@ -10,7 +11,12 @@ const bgMap: Record<string, string> = {
 
 export const AuthLayout = () => {
     const loc = useLocation();
+    const {isAuthorized, userobj} = useAppSelector(s => s.auth);
     const curBgPos = bgMap[loc.pathname] ?? '0%';
+
+    if (isAuthorized && userobj) {
+        return <Navigate to="/" replace />;
+    }
 
     return <>
         <div className={styles.background} style={{ backgroundPositionX: curBgPos }}></div>
