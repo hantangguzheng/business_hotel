@@ -7,6 +7,18 @@ import GuestSelector from "../../components/guest-selector";
 import PriceStarPopup from "../../components/price-star-popup";
 import { getHotelDetail } from "../../apis/hotels";
 import { useSharedFilter } from "../../store/filter-context";
+import {
+  CITY_ADDRESS_KEY,
+  CITY_LOCATION_INFO_KEY,
+  CITY_STORAGE_KEY,
+  DEFAULT_CITY_INFO,
+  LANG_STORAGE_KEY,
+  MY_LOCATION_KEY,
+  QUICK_FILTER_TAGS,
+  QQ_MAP_BASE_URL,
+  QQ_MAP_KEY,
+  QQ_MAP_SK,
+} from "../../constants/app";
 import zh from "../../locales/zh";
 import en from "../../locales/en";
 import logo from "../../assets/imgs/logo.png";
@@ -18,17 +30,10 @@ const { cities } = require("../../utils/city");
 const md5Module = require("../../utils/md5.js");
 const md5: (input: string, key?: string, raw?: boolean) => string =
   typeof md5Module === "function" ? md5Module : md5Module?.default;
-const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
-const QQ_MAP_SK = "eReOMGZUU9rMnVbYphtudUST6EfMC7MC";
 const DEFAULT_MIN_PRICE = 0;
 const DEFAULT_MAX_PRICE = 1000000;
 const DEFAULT_MIN_STAR = 2;
 const DEFAULT_MAX_STAR = 5;
-
-const DEFAULT_CITY_INFO = {
-  name: "上海",
-  cityCode: "2",
-};
 
 const BANNER_ITEMS = [
   { src: bannerHotel1, hotelId: 63 },
@@ -58,11 +63,6 @@ const collectCityOptions = () => {
 
 const ALL_CITY_OPTIONS = collectCityOptions();
 function Index() {
-  const LANG_STORAGE_KEY = "app_lang";
-  const CITY_STORAGE_KEY = "city_selected";
-  const CITY_LOCATION_INFO_KEY = "city_location_info";
-  const CITY_ADDRESS_KEY = "city_address";
-  const MY_LOCATION_KEY = "__MY_LOCATION__";
   const [lang, setLang] = useState<"zh" | "en">("zh");
   const copy = useMemo(() => (lang === "zh" ? zh : en), [lang]);
   const { filter, setFilter } = useSharedFilter();
@@ -90,14 +90,6 @@ function Index() {
   const [maxStar, setMaxStar] = useState<number | undefined>(undefined);
   const [bannerHeight, setBannerHeight] = useState(180);
   const hasAutoLocatedRef = useRef(false);
-  const keywordTags = [
-    "4.7分以上",
-    "自助早餐",
-    "新开业",
-    "双床房",
-    "自助入住",
-    "暖气",
-  ];
 
   const resolveCityInfoByName = (name?: string) => {
     if (!name) return undefined;
@@ -238,7 +230,7 @@ function Index() {
           `/ws/geocoder/v1?key=${QQ_MAP_KEY}&location=${locationParam}${QQ_MAP_SK}`,
         );
         Taro.request({
-          url: "https://apis.map.qq.com/ws/geocoder/v1",
+          url: `${QQ_MAP_BASE_URL}/geocoder/v1`,
           data: {
             key: QQ_MAP_KEY,
             location: locationParam,
@@ -497,7 +489,7 @@ function Index() {
       {/* <View className="lang-toggle" onClick={handleToggleLang}>
         <Image
           className="lang-toggle__icon"
-          src="https://img14.360buyimg.com/imagetools/jfs/t1/135168/8/21387/6193/625fa81aEe07cc347/55ad5bc2580c53a6.png"
+          src={LANG_TOGGLE_ICON_URL}
           mode="aspectFit"
         />
         <View className="lang-toggle__text">{copy.toggleText}</View>
@@ -703,7 +695,7 @@ function Index() {
         </Popup>
 
         <View className="keyword-tags">
-          {keywordTags.map((tag) => (
+          {QUICK_FILTER_TAGS.map((tag) => (
             <View
               key={tag}
               className="keyword-tags__item"

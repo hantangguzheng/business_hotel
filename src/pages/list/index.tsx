@@ -7,16 +7,26 @@ import {
   Popup,
   SideNavBarItem,
 } from "@nutui/nutui-react-taro";
-import { ArrowDown, Close, Checked, StarFill } from "@nutui/icons-react-taro";
+import { ArrowDown, Close, Checked } from "@nutui/icons-react-taro";
 import GuestSelector from "../../components/guest-selector";
 import PriceStarPopup from "../../components/price-star-popup";
+import HotelList from "../../components/hotel-list";
 import { useSharedFilter } from "../../store/filter-context";
 import { searchHotels } from "../../apis/hotels";
+import {
+  CITY_ADDRESS_KEY,
+  CITY_LOCATION_INFO_KEY,
+  CITY_STORAGE_KEY,
+  MY_LOCATION_KEY,
+  QUICK_FILTER_TAGS,
+  QQ_MAP_BASE_URL,
+  QQ_MAP_KEY,
+  QQ_MAP_SK,
+} from "../../constants/app";
 import {
   HOTEL_DB_TO_CN_TAG_MAP,
   HOTEL_CN_TO_DB_TAG_MAP,
   ROOM_FACILITY_FIELDS,
-  HOTEL_TAG_ICON_MAP,
   PROMOTION_TO_CN_MAP,
   ROOM_CN_TO_DB_TAG_MAP,
   ROOM_TAG_VALUE_MAP,
@@ -29,7 +39,6 @@ import type {
   SearchRoomFacilityFilters,
 } from "../../apis/type";
 import "./index.scss";
-import diamondIcon from "../../assets/imgs/diamond.svg";
 import mapIcon from "../../assets/imgs/map.svg";
 const { cities } = require("../../utils/city");
 const md5Module = require("../../utils/md5.js");
@@ -42,12 +51,6 @@ const DEFAULT_MAX_PRICE = 1000000;
 const DEFAULT_MIN_STAR = 2;
 const DEFAULT_MAX_STAR = 5;
 const PAGE_SIZE = 20;
-const CITY_STORAGE_KEY = "city_selected";
-const CITY_LOCATION_INFO_KEY = "city_location_info";
-const CITY_ADDRESS_KEY = "city_address";
-const MY_LOCATION_KEY = "__MY_LOCATION__";
-const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
-const QQ_MAP_SK = "eReOMGZUU9rMnVbYphtudUST6EfMC7MC";
 
 type SortMode = "smart" | "distance" | "price" | "score";
 
@@ -74,16 +77,7 @@ const ROOM_FACILITY_FIELD_LABEL_MAP: Record<RoomFacilityField, string> = {
   viewFacilities: "景观",
 };
 
-const QUICK_FILTER_CHIPS = [
-  "4.7分以上",
-  "自助早餐",
-  "新开业",
-  "双床房",
-  "自助入住",
-  "暖气",
-] as const;
-
-type QuickFilterChip = (typeof QUICK_FILTER_CHIPS)[number];
+type QuickFilterChip = (typeof QUICK_FILTER_TAGS)[number];
 
 const buildDefaultDates = () => {
   const today = new Date();
@@ -370,7 +364,7 @@ function ListPage() {
 
     if (
       nextQuickTag &&
-      QUICK_FILTER_CHIPS.includes(nextQuickTag as QuickFilterChip)
+      QUICK_FILTER_TAGS.includes(nextQuickTag as QuickFilterChip)
     ) {
       setActiveQuickChips([nextQuickTag as QuickFilterChip]);
     }
@@ -939,7 +933,7 @@ function ListPage() {
         );
 
         Taro.request({
-          url: "https://apis.map.qq.com/ws/geocoder/v1",
+          url: `${QQ_MAP_BASE_URL}/geocoder/v1`,
           data: {
             key: QQ_MAP_KEY,
             location: locationParam,
@@ -1400,7 +1394,7 @@ function ListPage() {
         )}
 
         <View className="list-top__chips">
-          {QUICK_FILTER_CHIPS.map((chip) => (
+          {QUICK_FILTER_TAGS.map((chip) => (
             <View
               key={chip}
               className={
@@ -1430,7 +1424,7 @@ function ListPage() {
               longitude: mapCenter.longitude,
               latitude: mapCenter.latitude,
               iconPath:
-                "https://dummyimage.com/22x22/2b64f2/ffffff.png&text=%20",
+                FALLBACK_MAP_MARKER_ICON_URL,
               width: 22,
               height: 22,
             },
@@ -1439,135 +1433,18 @@ function ListPage() {
         <View className="list-top__map-mask">查看地图</View>
       </View> */}
 
-      <View className="hotel-list">
-        <View className="hotel-top_holder"></View>
-        {loadingHotels && <View className="hotel-list__empty">加载中...</View>}
-        {!loadingHotels && displayedHotels.length === 0 && (
-          <View className="hotel-list__empty">暂无符合条件的酒店</View>
-        )}
-        {!loadingHotels &&
-          displayedHotels.map((hotel) =>
-            (() => {
-              const distanceText = formatDistance(hotel.distance);
-              const priceDisplay = getHotelPriceDisplay(hotel);
-              const starCount = Math.max(
-                0,
-                Math.floor(
-                  Number(hotel.starRating ?? (hotel as any).star_rating) || 0,
-                ),
-              );
-              return (
-                <View
-                  className="hotel-card"
-                  key={hotel.id}
-                  onClick={() => handleOpenDetail(hotel.id)}
-                >
-                  <View className="hotel-card__media">
-                    <Image
-                      className="hotel-card__image"
-                      src={
-                        hotel.imageUrls?.[0] ||
-                        "https://dummyimage.com/600x400/f0f2f5/999999&text=Hotel"
-                      }
-                      mode="aspectFill"
-                    />
-                    <View className="hotel-card__rating">
-                      <StarFill color="#ffd166" width="16px" />
-
-                      <View>
-                        {typeof hotel.score === "number"
-                          ? hotel.score.toFixed(1)
-                          : "--"}
-                      </View>
-                    </View>
-                  </View>
-                  <View className="hotel-card__body">
-                    <View className="hotel-card__title">
-                      <View className="hotel-card__title-text">
-                        {hotel.nameCn || hotel.nameEn}
-                      </View>
-                      {Array.from({ length: starCount }).map((_, index) => (
-                        <Image
-                          key={`diamond-${hotel.id}-${index}`}
-                          className="hotel-card__diamond"
-                          src={diamondIcon}
-                          mode="aspectFit"
-                        />
-                      ))}
-                    </View>
-                    <View className="hotel-card__row">
-                      <View className="hotel-card__distance">
-                        {distanceText ? (
-                          <View className="hotel-card__distance-text">
-                            {distanceText}
-                          </View>
-                        ) : null}
-                        {hotel.address ? (
-                          <>
-                            {distanceText ? (
-                              <View className="hotel-card__distance-dot" />
-                            ) : null}
-                            <View className="hotel-card__address">
-                              {hotel.address}
-                            </View>
-                          </>
-                        ) : null}
-                      </View>
-                      <View className="hotel-card__price">
-                        {priceDisplay.originalPrice > 0 ? (
-                          <View className="hotel-card__price-origin">
-                            ¥{priceDisplay.originalPrice}
-                          </View>
-                        ) : null}
-                        <View className="hotel-card__price-main">
-                          <View className="hotel-card__price-main-sign">¥</View>
-                          <View className="hotel-card__price-main-number">
-                            {priceDisplay.currentPrice}
-                          </View>
-                          <View className="hotel-card__price-main-suffix">
-                            起
-                          </View>
-                        </View>
-                      </View>
-                    </View>
-                    <View className="hotel-card__row">
-                      <View className="hotel-card__tags">
-                        {(hotel.shortTags || []).slice(0, 3).map((tag) => {
-                          const mappedIcon =
-                            HOTEL_TAG_ICON_MAP[
-                              tag as keyof typeof HOTEL_TAG_ICON_MAP
-                            ]?.icon;
-                          return (
-                            <View className="hotel-card__tag" key={tag}>
-                              {mappedIcon ? (
-                                <Image
-                                  className="hotel-card__tag-icon"
-                                  src={mappedIcon}
-                                  mode="aspectFit"
-                                />
-                              ) : (
-                                <View className="hotel-card__tag-icon hotel-card__tag-icon--placeholder" />
-                              )}
-                              <View>{formatHotelShortTag(tag)}</View>
-                            </View>
-                          );
-                        })}
-                      </View>
-                      <View className="hotel-card__extra">
-                        <View className="hotel-card__nights">{nights}晚</View>
-                        {priceDisplay.promotionLabel ? (
-                          <View className="hotel-card__promotion-tag">
-                            {priceDisplay.promotionLabel}
-                          </View>
-                        ) : null}
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              );
-            })(),
-          )}
-      </View>
+      <HotelList
+        loadingHotels={loadingHotels}
+        hotels={displayedHotels}
+        loadingMore={loadingMore}
+        hasMore={hasMore}
+        totalCount={totalCount}
+        nights={nights}
+        onOpenDetail={handleOpenDetail}
+        formatDistance={formatDistance}
+        getHotelPriceDisplay={getHotelPriceDisplay}
+        formatHotelShortTag={formatHotelShortTag}
+      />
 
       <Calendar
         visible={calendarVisible}
@@ -1730,16 +1607,6 @@ function ListPage() {
           </Button>
         </View>
       </Popup>
-
-      {!loadingHotels && displayedHotels.length > 0 && (
-        <View className="hotel-list__footer">
-          {loadingMore
-            ? "加载更多中..."
-            : hasMore
-              ? `已加载${displayedHotels.length}/${totalCount}，上拉加载更多`
-              : `已加载全部${totalCount}条`}
-        </View>
-      )}
 
       {priceStarVisible && (
         <View

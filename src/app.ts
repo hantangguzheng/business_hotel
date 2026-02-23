@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 import Taro, { useDidShow, useDidHide } from '@tarojs/taro'
 import { SharedFilterProvider } from './store/filter-context'
+import { DEFAULT_LANG, LANG_STORAGE_KEY } from './constants/app'
 // 全局样式
 import './app.scss'
-
-const LANG_STORAGE_KEY = 'app_lang'
-const DEFAULT_LANG = 'zh'
 
 function App(props) {
   // 可以使用所有的 React Hooks

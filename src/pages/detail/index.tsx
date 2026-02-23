@@ -1,9 +1,8 @@
-import { Image, Map, Swiper, SwiperItem, View } from "@tarojs/components";
+import { Image, Swiper, SwiperItem, View } from "@tarojs/components";
 import Taro, { usePageScroll } from "@tarojs/taro";
 import {
   ArrowDown,
   ArrowRight,
-  Check,
   Close,
   Location,
 } from "@nutui/icons-react-taro";
@@ -14,7 +13,8 @@ import {
   Popup,
   SideNavBarItem,
 } from "@nutui/nutui-react-taro";
-import { getHotelDetail, searchRooms } from "../../apis/hotels";
+import { getHotelDetail } from "../../apis/hotels";
+import { searchRooms } from "../../apis/rooms";
 import type {
   HotelDetailItem,
   HotelRoomItem,
@@ -29,18 +29,20 @@ import {
   mapTagToCn,
 } from "../../apis/tag_map";
 import GuestSelector from "../../components/guest-selector";
+import RoomList from "../../components/room-list";
+import Nearby from "../../components/nearby";
+import {
+  FALLBACK_HOTEL_IMAGE_URL,
+  QQ_MAP_BASE_URL,
+  QQ_MAP_KEY,
+  QQ_MAP_SK,
+} from "../../constants/app";
 import "./index.scss";
-import highlightIcon from "../../assets/imgs/highlight.svg";
 import diamondIcon from "../../assets/imgs/diamond.svg";
 const md5Module = require("../../utils/md5.js");
 const md5: (input: string, key?: string, raw?: boolean) => string =
   typeof md5Module === "function" ? md5Module : md5Module?.default;
-
-const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
-const QQ_MAP_SK = "eReOMGZUU9rMnVbYphtudUST6EfMC7MC";
-
-const FALLBACK_IMAGE =
-  "https://dummyimage.com/600x400/f0f2f5/999999&text=Hotel";
+const FALLBACK_IMAGE = FALLBACK_HOTEL_IMAGE_URL;
 
 type NearbyItem = {
   title: string;
@@ -304,7 +306,7 @@ function DetailPage() {
     const sig = buildTencentSig("/ws/geocoder/v1", geocoderData);
 
     Taro.request({
-      url: "https://apis.map.qq.com/ws/geocoder/v1",
+      url: `${QQ_MAP_BASE_URL}/geocoder/v1`,
       data: {
         ...geocoderData,
         sig,
@@ -346,7 +348,7 @@ function DetailPage() {
         requestData.sig = buildTencentSig("/ws/place/v1/search", requestData);
 
         Taro.request({
-          url: "https://apis.map.qq.com/ws/place/v1/search",
+          url: `${QQ_MAP_BASE_URL}/place/v1/search`,
           data: requestData,
           success: (response) => {
             const result = response?.data as any;
@@ -1066,147 +1068,26 @@ function DetailPage() {
           </View>
         </View>
 
-        <View className="detail-section">
-          <View className="detail-rooms">
-            {filteredRoomList.map((room) => {
-              const priceDisplay = getRoomPriceDisplay(room);
+        <RoomList
+          rooms={filteredRoomList}
+          hotelImage={hotelImage}
+          bookingState={bookingState}
+          loading={loading}
+          roomLoading={roomLoading}
+          getRoomCardTags={getRoomCardTags}
+          getRoomPriceDisplay={getRoomPriceDisplay}
+          onBookRoom={handleBookRoom}
+        />
 
-              return (
-                <View className="detail-room" key={room.id}>
-                  <Image
-                    className="detail-room__image"
-                    src={room.pictureUrl || hotelImage}
-                    mode="aspectFill"
-                  />
-                  <View className="detail-room__content">
-                    <View className="detail-room__name">{room.name}</View>
-                    <View className="detail-room__meta">
-                      {getRoomCardTags(room).join(" · ") || "暂无房型信息"}
-                    </View>
-                    <View className="detail-room__bottom">
-                      <View className="detail-room__stock">
-                        剩余 {room.availableCount ?? 0} 间
-                      </View>
-                      <View className="detail-room__actions">
-                        <View className="detail-room__price-wrap">
-                          <View className="detail-room__price">
-                            {priceDisplay.originalPrice > 0 ? (
-                              <View className="detail-room__price-origin">
-                                ¥{priceDisplay.originalPrice}
-                              </View>
-                            ) : null}
-                            <View className="detail-room__price-main">
-                              <View className="detail-room__price-main-sign">
-                                ¥
-                              </View>
-                              <View className="detail-room__price-main-number">
-                                {priceDisplay.currentPrice}
-                              </View>
-                            </View>
-                          </View>
-                          <View className="detail-room__extra">
-                            {priceDisplay.promotionLabel ? (
-                              <View className="detail-room__promotion-tag">
-                                {priceDisplay.promotionLabel}
-                              </View>
-                            ) : null}
-                          </View>
-                        </View>
-                        <View
-                          className={`detail-room__book ${bookingState?.roomId === room.id ? "is-active" : ""}`}
-                          onClick={() =>
-                            handleBookRoom(room.id, priceDisplay.currentPrice)
-                          }
-                        >
-                          {bookingState?.roomId === room.id ? (
-                            <Check width="12px" color="#ffffff" />
-                          ) : (
-                            "订"
-                          )}
-                        </View>
-                      </View>
-                    </View>
-                  </View>
-                </View>
-              );
-            })}
-            {filteredRoomList.length === 0 ? (
-              <View className="detail-empty">
-                {loading || roomLoading ? "加载中..." : "暂无房型信息"}
-              </View>
-            ) : null}
-          </View>
-        </View>
-
-        <View className="detail-section">
-          <View className="detail-section__row">
-            <View className="detail-section__title">位置周边</View>
-            <View
-              className="detail-section__action"
-              onClick={openFullscreenMap}
-            >
-              打开地图
-            </View>
-          </View>
-          <View className="detail-map-tabs">
-            <View className="detail-map-tabs__item-title">
-              <Image
-                src={highlightIcon}
-                className="detail-map-tabs__item-icon"
-              ></Image>
-
-              <View className="detail-map-tabs__item is-active">位置亮点</View>
-            </View>
-
-            <View className="detail-map-tabs__item">{hotelNear}</View>
-          </View>
-          <View className="detail-map-card">
-            <View className="detail-map-card__container">
-              <Map
-                id="myMap"
-                className="detail-map"
-                markers={markers}
-                longitude={centerLongitude}
-                latitude={centerLatitude}
-                scale={16}
-                enableScroll={false}
-                enableZoom={false}
-                enableRotate={false}
-                enableOverlooking={false}
-                onTap={openFullscreenMap}
-                onError={() => {}}
-              />
-              <View className="detail-map-marker-label">{hotelName}</View>
-            </View>
-          </View>
-          <View className="detail-nearby">
-            {nearbySections.map((section) => (
-              <View className="detail-nearby__section" key={section.key}>
-                <View className="detail-nearby__label">{section.label}</View>
-                <View className="detail-nearby__grid">
-                  {section.items.map((item, index) => (
-                    <View
-                      className="detail-nearby__item"
-                      key={`${section.key}-${item.title}-${index}`}
-                    >
-                      <View className="detail-nearby__item-title-row">
-                        <View className="detail-nearby__item-icon">
-                          {item.icon}
-                        </View>
-                        <View className="detail-nearby__item-title">
-                          {item.title}
-                        </View>
-                      </View>
-                      <View className="detail-nearby__item-subtitle">
-                        {item.subtitle}
-                      </View>
-                    </View>
-                  ))}
-                </View>
-              </View>
-            ))}
-          </View>
-        </View>
+        <Nearby
+          hotelNear={hotelNear}
+          hotelName={hotelName}
+          markers={markers}
+          centerLongitude={centerLongitude}
+          centerLatitude={centerLatitude}
+          nearbySections={nearbySections}
+          onOpenFullscreenMap={openFullscreenMap}
+        />
       </View>
 
       {bookingState ? (

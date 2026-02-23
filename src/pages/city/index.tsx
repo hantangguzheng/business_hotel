@@ -2,14 +2,16 @@ import { useEffect, useMemo, useState } from "react";
 import { Input, View } from "@tarojs/components";
 import Taro, { useDidShow } from "@tarojs/taro";
 import { Elevator } from "@nutui/nutui-react-taro";
+import {
+  CITY_ADDRESS_KEY,
+  CITY_LOCATION_INFO_KEY,
+  CITY_STORAGE_KEY,
+  MY_LOCATION_KEY,
+  QQ_MAP_BASE_URL,
+  QQ_MAP_KEY,
+  QQ_MAP_SK,
+} from "../../constants/app";
 import "./index.scss";
-
-const CITY_STORAGE_KEY = "city_selected";
-const CITY_LOCATION_INFO_KEY = "city_location_info";
-const CITY_ADDRESS_KEY = "city_address";
-const MY_LOCATION_KEY = "__MY_LOCATION__";
-const QQ_MAP_KEY = "IPIBZ-U3CKJ-UYQFM-DZX2P-XR7J2-GABWR";
-const QQ_MAP_SK = "eReOMGZUU9rMnVbYphtudUST6EfMC7MC";
 const md5Module = require("../../utils/md5.js");
 const md5: (input: string, key?: string, raw?: boolean) => string =
   typeof md5Module === "function" ? md5Module : md5Module?.default;
@@ -226,7 +228,7 @@ function CityIndex() {
         };
         const sig = buildTencentSig("/ws/geocoder/v1", geocoderData);
         Taro.request({
-          url: "https://apis.map.qq.com/ws/geocoder/v1",
+          url: `${QQ_MAP_BASE_URL}/geocoder/v1`,
           data: {
             ...geocoderData,
             sig,
