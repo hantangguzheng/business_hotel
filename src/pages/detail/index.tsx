@@ -15,10 +15,15 @@ import {
   SideNavBarItem,
 } from "@nutui/nutui-react-taro";
 import { getHotelDetail, searchRooms } from "../../apis/hotels";
-import type { HotelDetailItem, HotelRoomItem } from "../../apis/type";
+import type {
+  HotelDetailItem,
+  HotelRoomItem,
+  PromotionItem,
+} from "../../apis/type";
 import { useSharedFilter } from "../../store/filter-context";
 import {
   HOTEL_TAG_ICON_MAP,
+  PROMOTION_TO_CN_MAP,
   ROOM_FACILITY_FIELDS,
   mapRoomTagValueToCn,
   mapTagToCn,
@@ -131,6 +136,7 @@ function DetailPage() {
   const hotelId = Number(params.id);
   const [hotel, setHotel] = useState<HotelDetailItem | null>(null);
   const [rooms, setRooms] = useState<HotelRoomItem[]>([]);
+  const [roomPromotions, setRoomPromotions] = useState<PromotionItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [roomLoading, setRoomLoading] = useState(false);
   const [geoAddress, setGeoAddress] = useState("");
@@ -246,8 +252,10 @@ function DetailPage() {
           pageSize: 50,
         });
         setRooms(response.data || []);
+        setRoomPromotions(response.promotions || []);
       } catch (error) {
         setRooms([]);
+        setRoomPromotions([]);
         Taro.showToast({
           title: "获取房型失败",
           icon: "none",
@@ -739,6 +747,77 @@ function DetailPage() {
     ],
   );
 
+  const activeRoomPromotion = useMemo(() => {
+    const promotions = Array.isArray(roomPromotions) ? roomPromotions : [];
+    if (promotions.length === 0) return null;
+
+    const now = Date.now();
+    const activePromotions = promotions.filter((item) => {
+      const start = new Date(item.startDate).getTime();
+      const end = new Date(item.endDate).getTime();
+      if (Number.isNaN(start) || Number.isNaN(end)) return false;
+      return start <= now && now <= end;
+    });
+
+    if (activePromotions.length === 0) return null;
+
+    return activePromotions.reduce<PromotionItem | null>((best, current) => {
+      const bestDiscount = Number(best?.discount || 1);
+      const currentDiscount = Number(current.discount || 1);
+      if (!best) return current;
+      return currentDiscount < bestDiscount ? current : best;
+    }, null);
+  }, [roomPromotions]);
+
+  const formatPromotionLabel = (promotion: PromotionItem) => {
+    const baseLabel =
+      PROMOTION_TO_CN_MAP[promotion.promotionType] || promotion.promotionType;
+    const discount = Number(promotion.discount || 0);
+    if (!(discount > 0 && discount < 1)) return baseLabel;
+
+    const fold = discount * 10;
+    const foldText = Number.isInteger(fold) ? String(fold) : fold.toFixed(1);
+    return `${baseLabel} | ${foldText}折`;
+  };
+
+  const getRoomPriceDisplay = (room: HotelRoomItem) => {
+    const normalPrice =
+      typeof room.price === "number" && Number.isFinite(room.price)
+        ? room.price
+        : hotelPrice;
+    const originalPrice =
+      typeof room.priceOriginal === "number" &&
+      Number.isFinite(room.priceOriginal)
+        ? room.priceOriginal
+        : 0;
+
+    if (!activeRoomPromotion) {
+      return {
+        currentPrice: normalPrice,
+        originalPrice: originalPrice > normalPrice ? originalPrice : 0,
+        promotionLabel: "",
+      };
+    }
+
+    const discount = Number(activeRoomPromotion.discount || 0);
+    const basePrice = originalPrice > 0 ? originalPrice : normalPrice;
+    if (!(discount > 0 && discount < 1) || basePrice <= 0) {
+      return {
+        currentPrice: normalPrice,
+        originalPrice: originalPrice > normalPrice ? originalPrice : 0,
+        promotionLabel: formatPromotionLabel(activeRoomPromotion),
+      };
+    }
+
+    const discountPrice = Math.max(1, Math.round(basePrice * discount));
+
+    return {
+      currentPrice: discountPrice,
+      originalPrice: basePrice,
+      promotionLabel: formatPromotionLabel(activeRoomPromotion),
+    };
+  };
+
   const handleBookRoom = (roomId: number, roomPrice?: number) => {
     const unitPrice =
       typeof roomPrice === "number" && Number.isFinite(roomPrice)
@@ -989,41 +1068,68 @@ function DetailPage() {
 
         <View className="detail-section">
           <View className="detail-rooms">
-            {filteredRoomList.map((room) => (
-              <View className="detail-room" key={room.id}>
-                <Image
-                  className="detail-room__image"
-                  src={room.pictureUrl || hotelImage}
-                  mode="aspectFill"
-                />
-                <View className="detail-room__content">
-                  <View className="detail-room__name">{room.name}</View>
-                  <View className="detail-room__meta">
-                    {getRoomCardTags(room).join(" · ") || "暂无房型信息"}
-                  </View>
-                  <View className="detail-room__bottom">
-                    <View className="detail-room__stock">
-                      剩余 {room.availableCount ?? 0} 间
+            {filteredRoomList.map((room) => {
+              const priceDisplay = getRoomPriceDisplay(room);
+
+              return (
+                <View className="detail-room" key={room.id}>
+                  <Image
+                    className="detail-room__image"
+                    src={room.pictureUrl || hotelImage}
+                    mode="aspectFill"
+                  />
+                  <View className="detail-room__content">
+                    <View className="detail-room__name">{room.name}</View>
+                    <View className="detail-room__meta">
+                      {getRoomCardTags(room).join(" · ") || "暂无房型信息"}
                     </View>
-                    <View className="detail-room__actions">
-                      <View className="detail-room__price">
-                        ¥{room.price ?? hotelPrice}
+                    <View className="detail-room__bottom">
+                      <View className="detail-room__stock">
+                        剩余 {room.availableCount ?? 0} 间
                       </View>
-                      <View
-                        className={`detail-room__book ${bookingState?.roomId === room.id ? "is-active" : ""}`}
-                        onClick={() => handleBookRoom(room.id, room.price)}
-                      >
-                        {bookingState?.roomId === room.id ? (
-                          <Check width="12px" color="#ffffff" />
-                        ) : (
-                          "订"
-                        )}
+                      <View className="detail-room__actions">
+                        <View className="detail-room__price-wrap">
+                          <View className="detail-room__price">
+                            {priceDisplay.originalPrice > 0 ? (
+                              <View className="detail-room__price-origin">
+                                ¥{priceDisplay.originalPrice}
+                              </View>
+                            ) : null}
+                            <View className="detail-room__price-main">
+                              <View className="detail-room__price-main-sign">
+                                ¥
+                              </View>
+                              <View className="detail-room__price-main-number">
+                                {priceDisplay.currentPrice}
+                              </View>
+                            </View>
+                          </View>
+                          <View className="detail-room__extra">
+                            {priceDisplay.promotionLabel ? (
+                              <View className="detail-room__promotion-tag">
+                                {priceDisplay.promotionLabel}
+                              </View>
+                            ) : null}
+                          </View>
+                        </View>
+                        <View
+                          className={`detail-room__book ${bookingState?.roomId === room.id ? "is-active" : ""}`}
+                          onClick={() =>
+                            handleBookRoom(room.id, priceDisplay.currentPrice)
+                          }
+                        >
+                          {bookingState?.roomId === room.id ? (
+                            <Check width="12px" color="#ffffff" />
+                          ) : (
+                            "订"
+                          )}
+                        </View>
                       </View>
                     </View>
                   </View>
                 </View>
-              </View>
-            ))}
+              );
+            })}
             {filteredRoomList.length === 0 ? (
               <View className="detail-empty">
                 {loading || roomLoading ? "加载中..." : "暂无房型信息"}

@@ -46,6 +46,15 @@ export type SearchHotelsParams = {
   pageSize?: number;
 };
 
+export type PromotionItem = {
+  id: number;
+  hotelId: number;
+  promotionType: string;
+  discount?: number;
+  startDate: string;
+  endDate: string;
+}
+
 export type HotelListItem = {
   id: number;
   merchantId?: number;
@@ -66,6 +75,7 @@ export type HotelListItem = {
   openingDate?: string;
   status?: number;
   distance?: number;
+  promotions?: PromotionItem[];
 };
 
 export type SearchHotelsResponse = {
@@ -88,6 +98,7 @@ export type SearchRoomsParams = {
 export type SearchRoomsResponse = {
   total: number;
   data: HotelRoomItem[];
+  promotions?: PromotionItem[];
 };
 
 export type HotelRoomItem = {
@@ -95,6 +106,8 @@ export type HotelRoomItem = {
   hotelId: number;
   name: string;
   price?: number;
+  priceOriginal?: number;
+  priceDiscounted?: number;
   capacity?: number;
   availableCount?: number;
   floorTitle?: string;

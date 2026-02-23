@@ -2,6 +2,7 @@ import Taro from "@tarojs/taro";
 import type {
   HotelRoomItem,
   HotelDetailItem,
+  PromotionItem,
   SearchHotelsParams,
   SearchHotelsResponse,
   SearchRoomsParams,
@@ -195,6 +196,7 @@ export async function searchHotels(
   });
 
   if (response.statusCode >= 200 && response.statusCode < 300) {
+    // console.log("搜索酒店请求成功，响应数据：", response.data);
     return response.data || { total: 0, data: [] };
   }
 
@@ -291,6 +293,10 @@ const normalizeRoom = (
   const smokeTitle = normalizeString(room.smokeTitle || room.smoke_title);
   const wifiInfo = normalizeString(room.wifiInfo || room.wifi_info);
   const floorTitle = normalizeString(room.floorTitle || room.floor_title);
+  const priceOriginal = normalizeNumber(room.priceOriginal || room.price_original);
+  const priceDiscounted = normalizeNumber(
+    room.priceDiscounted || room.price_discounted,
+  );
 
   return {
     id,
@@ -343,6 +349,36 @@ const normalizeRoom = (
     viewFacilities: parseMaybeJsonArray(room.viewFacilities || room.view_facilities),
     pictureUrl: pictureUrls[0],
     price,
+    priceOriginal,
+    priceDiscounted,
+  };
+};
+
+const normalizePromotionItem = (item: unknown): PromotionItem | null => {
+  if (!item || typeof item !== "object") return null;
+  const source = item as Record<string, unknown>;
+
+  const id = normalizeNumber(source.id);
+  const hotelId =
+    normalizeNumber(source.hotelId) || normalizeNumber(source.hotel_id);
+  const promotionType = normalizeString(
+    source.promotionType || source.promotion_type,
+  );
+  const startDate = normalizeString(source.startDate || source.start_date);
+  const endDate = normalizeString(source.endDate || source.end_date);
+  const discount = normalizeNumber(source.discount);
+
+  if (!id || !hotelId || !promotionType || !startDate || !endDate) {
+    return null;
+  }
+
+  return {
+    id,
+    hotelId,
+    promotionType,
+    discount,
+    startDate,
+    endDate,
   };
 };
 
@@ -441,12 +477,20 @@ export async function searchRooms(
     const sourceRooms = Array.isArray(response.data.data)
       ? (response.data.data as Array<Record<string, unknown>>)
       : [];
+    const sourcePromotions = Array.isArray((response.data as any).promotions)
+      ? ((response.data as any).promotions as unknown[])
+      : [];
+    const promotions = sourcePromotions
+      .map((item) => normalizePromotionItem(item))
+      .filter((item): item is PromotionItem => Boolean(item));
+
     return {
       total:
         typeof response.data.total === "number"
           ? response.data.total
           : sourceRooms.length,
       data: sourceRooms.map((room) => normalizeRoom(room, params.hotelId)),
+      promotions,
     };
   }
 

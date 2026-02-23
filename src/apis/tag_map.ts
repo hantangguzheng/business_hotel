@@ -400,7 +400,7 @@ export const ROOM_CN_TO_DB_TAG_MAP: Record<string, Partial<Record<RoomFacilityFi
   水果: { foodFacilities: ["FRUIT"] },
   多功能插座: { amenityFacilities: ["SOCKET_MULTI"] },
 
-  市景: { viewFacilities: ["CITY_VIEW"] },
+  城景: { viewFacilities: ["CITY_VIEW"] },
   江景: { viewFacilities: ["RIVER_VIEW"] },
   智能马桶: { bathroomFacilities: ["SMART_TOILET"] },
   沙发: { layoutFacilities: ["SOFA"] },
@@ -413,6 +413,15 @@ export const ROOM_CN_TO_DB_TAG_MAP: Record<string, Partial<Record<RoomFacilityFi
   儿童洗漱用品: { childFacilities: ["TOILETRIES"] },
   儿童马桶座圈: { childFacilities: ["TOILET_SEAT"] },
   地标景观: { viewFacilities: ["LANDMARK_VIEW"] },
+};
+
+export const PROMOTION_TO_CN_MAP: Record<string, string> = {
+  FLASH_SALE: "限时特惠",
+  MEMBER_EXCLUSIVE: "会员专享",
+  HOLIDAY_SPECIAL: "节日特惠",
+  WEEKEND_DEAL: "周末特惠",
+  NEW_OPEN: "开业特惠",
+  SEASONAL: "季节特惠",
 };
 
 export const ROOM_DB_TO_CN_TAG_MAP: Record<string, string> =

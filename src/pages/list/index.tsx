@@ -17,12 +17,14 @@ import {
   HOTEL_CN_TO_DB_TAG_MAP,
   ROOM_FACILITY_FIELDS,
   HOTEL_TAG_ICON_MAP,
+  PROMOTION_TO_CN_MAP,
   ROOM_CN_TO_DB_TAG_MAP,
   ROOM_TAG_VALUE_MAP,
 } from "../../apis/tag_map";
 import type { RoomFacilityField } from "../../apis/tag_map";
 import type {
   HotelListItem,
+  PromotionItem,
   SearchHotelsParams,
   SearchRoomFacilityFilters,
 } from "../../apis/type";
@@ -1051,6 +1053,78 @@ function ListPage() {
     );
   };
 
+  const getActivePromotion = (hotel: HotelListItem) => {
+    const promotions = Array.isArray(hotel.promotions) ? hotel.promotions : [];
+    if (promotions.length === 0) return null;
+
+    const now = Date.now();
+    const activePromotions = promotions.filter((item) => {
+      const start = new Date(item.startDate).getTime();
+      const end = new Date(item.endDate).getTime();
+      if (Number.isNaN(start) || Number.isNaN(end)) return false;
+      return start <= now && now <= end;
+    });
+
+    if (activePromotions.length === 0) return null;
+
+    return activePromotions.reduce<PromotionItem | null>((best, current) => {
+      const bestDiscount = Number(best?.discount || 1);
+      const currentDiscount = Number(current.discount || 1);
+      if (!best) return current;
+      return currentDiscount < bestDiscount ? current : best;
+    }, null);
+  };
+
+  const formatPromotionLabel = (promotion: PromotionItem) => {
+    const baseLabel =
+      PROMOTION_TO_CN_MAP[promotion.promotionType] || promotion.promotionType;
+    const discount = Number(promotion.discount || 0);
+    if (!(discount > 0 && discount < 1)) return baseLabel;
+
+    const fold = discount * 10;
+    const foldText = Number.isInteger(fold) ? String(fold) : fold.toFixed(1);
+    return `${baseLabel} | ${foldText}折`;
+  };
+
+  const getHotelPriceDisplay = (hotel: HotelListItem) => {
+    const normalPrice =
+      typeof hotel.price === "number" && Number.isFinite(hotel.price)
+        ? hotel.price
+        : 0;
+    const crossLinePrice =
+      typeof hotel.crossLinePrice === "number" &&
+      Number.isFinite(hotel.crossLinePrice)
+        ? hotel.crossLinePrice
+        : 0;
+
+    const activePromotion = getActivePromotion(hotel);
+    if (!activePromotion) {
+      return {
+        currentPrice: normalPrice,
+        originalPrice: crossLinePrice > normalPrice ? crossLinePrice : 0,
+        promotionLabel: "",
+      };
+    }
+
+    const discount = Number(activePromotion.discount || 0);
+    const basePrice = crossLinePrice > 0 ? crossLinePrice : normalPrice;
+    if (!(discount > 0 && discount < 1) || basePrice <= 0) {
+      return {
+        currentPrice: normalPrice,
+        originalPrice: crossLinePrice > normalPrice ? crossLinePrice : 0,
+        promotionLabel: formatPromotionLabel(activePromotion),
+      };
+    }
+
+    const discountPrice = Math.max(1, Math.round(basePrice * discount));
+
+    return {
+      currentPrice: discountPrice,
+      originalPrice: basePrice,
+      promotionLabel: formatPromotionLabel(activePromotion),
+    };
+  };
+
   const selectedSortLabel =
     availableSortOptions.find((option) => option.value === sortMode)?.label ||
     "智能排序";
@@ -1375,6 +1449,7 @@ function ListPage() {
           displayedHotels.map((hotel) =>
             (() => {
               const distanceText = formatDistance(hotel.distance);
+              const priceDisplay = getHotelPriceDisplay(hotel);
               const starCount = Math.max(
                 0,
                 Math.floor(
@@ -1439,7 +1514,20 @@ function ListPage() {
                         ) : null}
                       </View>
                       <View className="hotel-card__price">
-                        ¥ {hotel.price || 0}起
+                        {priceDisplay.originalPrice > 0 ? (
+                          <View className="hotel-card__price-origin">
+                            ¥{priceDisplay.originalPrice}
+                          </View>
+                        ) : null}
+                        <View className="hotel-card__price-main">
+                          <View className="hotel-card__price-main-sign">¥</View>
+                          <View className="hotel-card__price-main-number">
+                            {priceDisplay.currentPrice}
+                          </View>
+                          <View className="hotel-card__price-main-suffix">
+                            起
+                          </View>
+                        </View>
                       </View>
                     </View>
                     <View className="hotel-card__row">
@@ -1465,7 +1553,14 @@ function ListPage() {
                           );
                         })}
                       </View>
-                      <View className="hotel-card__nights">{nights}晚</View>
+                      <View className="hotel-card__extra">
+                        <View className="hotel-card__nights">{nights}晚</View>
+                        {priceDisplay.promotionLabel ? (
+                          <View className="hotel-card__promotion-tag">
+                            {priceDisplay.promotionLabel}
+                          </View>
+                        ) : null}
+                      </View>
                     </View>
                   </View>
                 </View>
