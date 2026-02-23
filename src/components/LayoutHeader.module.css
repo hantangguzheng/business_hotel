@@ -24,6 +24,12 @@
     cursor: pointer;
 }
 
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f7f7f7;
+}
+
 .user {
   
   display: flex;
@@ -46,8 +52,3 @@
     text-decoration: underline;
 }
 
-.title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #f7f7f7;
-}
