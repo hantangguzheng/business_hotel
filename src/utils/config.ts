@@ -6,7 +6,9 @@ import type { AppAxiosRequestConfig } from "@/api/types/auth";
 
 
 
-export const http = axios.create({});
+export const http = axios.create({
+    baseURL:'/api',
+});
 
 http.interceptors.request.use(
     (req) => {
