@@ -10,4 +10,15 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    proxy:{
+      '/api':{
+        target:'http://49.235.184.154:3000',
+        changeOrigin: true,
+        rewrite: (path) => {
+          return path.replace(/^\/api/, '');
+        }
+      }
+    }
+  }
 })
