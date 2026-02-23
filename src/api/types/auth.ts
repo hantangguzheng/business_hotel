@@ -27,3 +27,7 @@ export interface IUserMeResponse {
     username: string
     role: APIAuthRole
 }
+
+export interface ITokenResponse {
+    access_token: string
+}
