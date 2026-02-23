@@ -22,6 +22,9 @@ import {
 import zh from "../../locales/zh";
 import en from "../../locales/en";
 import logo from "../../assets/imgs/logo.png";
+import bannerHotel1 from "../../assets/imgs/banner_hotel_1.png";
+import bannerHotel2 from "../../assets/imgs/banner_hotel_2.png";
+import bannerHotel3 from "../../assets/imgs/banner_hotel_3.png";
 import "./index.scss";
 const { cities } = require("../../utils/city");
 const md5Module = require("../../utils/md5.js");
@@ -33,9 +36,9 @@ const DEFAULT_MIN_STAR = 2;
 const DEFAULT_MAX_STAR = 5;
 
 const BANNER_ITEMS = [
-  { src: "/assets/imgs/banner_1.webp", hotelId: 63 },
-  { src: "/assets/imgs/banner_2.webp", hotelId: 38 },
-  { src: "/assets/imgs/banner_3.webp", hotelId: 17 },
+  { src: bannerHotel1, hotelId: 63 },
+  { src: bannerHotel2, hotelId: 38 },
+  { src: bannerHotel3, hotelId: 17 },
 ];
 
 const collectCityOptions = () => {
