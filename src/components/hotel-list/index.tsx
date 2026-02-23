@@ -16,7 +16,6 @@ type HotelListProps = {
   hotels: HotelListItem[];
   loadingMore: boolean;
   hasMore: boolean;
-  totalCount: number;
   nights: number;
   onOpenDetail: (hotelId: string | number) => void;
   formatDistance: (distance?: number) => string;
@@ -29,7 +28,6 @@ function HotelList({
   hotels,
   loadingMore,
   hasMore,
-  totalCount,
   nights,
   onOpenDetail,
   formatDistance,
@@ -169,8 +167,8 @@ function HotelList({
           {loadingMore
             ? "加载更多中..."
             : hasMore
-              ? `已加载${hotels.length}/${totalCount}，上拉加载更多`
-              : `已加载全部${totalCount}条`}
+              ? `已显示${hotels.length}条，上拉加载更多`
+              : `已显示${hotels.length}条`}
         </View>
       )}
     </>

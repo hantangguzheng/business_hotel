@@ -183,7 +183,6 @@ function ListPage() {
   const [loadingHotels, setLoadingHotels] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalCount, setTotalCount] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [activeTopAction, setActiveTopAction] = useState<
     "sort" | "priceStar" | "filter"
@@ -389,6 +388,7 @@ function ListPage() {
     const hasQuickSelfCheckin = activeQuickChips.includes("自助入住");
     const hasQuickHeating = activeQuickChips.includes("暖气");
     const hasQuickTwinBed = activeQuickChips.includes("双床房");
+    const hasQuickNewOpen = activeQuickChips.includes("新开业");
 
     const hotelLabels = facilityMap.酒店设施 || [];
     const roomLabels = facilityMap.客房设施 || [];
@@ -503,6 +503,7 @@ function ListPage() {
           ? effectiveSortMode
           : undefined,
       minScore,
+      minOpeningYear: hasQuickNewOpen ? 2024 : undefined,
       checkIn: checkIn || defaultDates.checkIn,
       checkOut: checkOut || defaultDates.checkOut,
       roomsNeeded: safeRoomCount,
@@ -560,31 +561,6 @@ function ListPage() {
     return Math.max(1, Math.round(basePrice * discount));
   };
 
-  const filterHotelsBySelectedPrice = (list: HotelListItem[]) => {
-    const hasMinPrice =
-      typeof selectedMinPrice === "number" && Number.isFinite(selectedMinPrice);
-    const hasMaxPrice =
-      typeof selectedMaxPrice === "number" && Number.isFinite(selectedMaxPrice);
-
-    if (!hasMinPrice && !hasMaxPrice) {
-      return list;
-    }
-
-    return list.filter((hotel) => {
-      const currentPrice = getDiscountedHotelPrice(hotel);
-      if (!Number.isFinite(currentPrice) || currentPrice <= 0) {
-        return false;
-      }
-      if (hasMinPrice && currentPrice < (selectedMinPrice as number)) {
-        return false;
-      }
-      if (hasMaxPrice && currentPrice > (selectedMaxPrice as number)) {
-        return false;
-      }
-      return true;
-    });
-  };
-
   const fetchHotelList = async ({
     page,
     append,
@@ -602,10 +578,9 @@ function ListPage() {
 
     try {
       const response = await searchHotels(searchParams);
-      const nextList = filterHotelsBySelectedPrice(response.data || []);
+      const nextList = response.data || [];
       const nextTotal = Number(response.total || 0);
 
-      setTotalCount(nextTotal);
       setCurrentPage(page);
       setHotels((current) => {
         if (!append) {
@@ -792,20 +767,6 @@ function ListPage() {
     selectedFacilities,
     activeQuickChips,
   ]);
-
-  const isNewOpenHotel = (hotel: HotelListItem) => {
-    const yearMatch = String(hotel.openingDate || "").match(/\d{4}/);
-    if (!yearMatch) return false;
-    const year = Number(yearMatch[0]);
-    return Number.isFinite(year) && year >= 2024;
-  };
-
-  const displayedHotels = useMemo(() => {
-    if (!activeQuickChips.includes("新开业")) {
-      return hotels;
-    }
-    return hotels.filter((hotel) => isNewOpenHotel(hotel));
-  }, [activeQuickChips, hotels]);
 
   useReachBottom(() => {
     if (loadingHotels || loadingMore || !hasMore) return;
@@ -1491,10 +1452,9 @@ function ListPage() {
 
       <HotelList
         loadingHotels={loadingHotels}
-        hotels={displayedHotels}
+        hotels={hotels}
         loadingMore={loadingMore}
         hasMore={hasMore}
-        totalCount={totalCount}
         nights={nights}
         onOpenDetail={handleOpenDetail}
         formatDistance={formatDistance}

@@ -29,6 +29,7 @@ export type SearchHotelsParams = {
   minStar?: number;
   maxStar?: number;
   minScore?: number;
+  minOpeningYear?: number;
   tags?: string[];
   sortBy?: "distance" | "price" | "score";
   cityCode?: string;

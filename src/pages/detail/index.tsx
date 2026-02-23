@@ -1001,21 +1001,19 @@ function DetailPage() {
 
         <View className="detail-facilities-wrap">
           <View className="detail-facilities">
-            {(hotelTagItems.length > 0
-              ? hotelTagItems
-              : [{ key: "default", label: "设施政策", icon: "" }]
-            ).map((item) => (
-              <View className="detail-facility" key={item.key}>
-                {item.icon ? (
-                  <View className="detail-facility__icon">
-                    <Image src={item.icon} mode="aspectFit" />
-                  </View>
-                ) : (
-                  <View className="detail-facility__icon" />
-                )}
-                <View className="detail-facility__label">{item.label}</View>
-              </View>
-            ))}
+            {hotelTagItems.length > 0 &&
+              hotelTagItems.map((item) => (
+                <View className="detail-facility" key={item.key}>
+                  {item.icon ? (
+                    <View className="detail-facility__icon">
+                      <Image src={item.icon} mode="aspectFit" />
+                    </View>
+                  ) : (
+                    <View className="detail-facility__icon" />
+                  )}
+                  <View className="detail-facility__label">{item.label}</View>
+                </View>
+              ))}
           </View>
           <View className="detail-facilities__more">
             <View className="detail-facilities__more-text">
@@ -1096,7 +1094,9 @@ function DetailPage() {
             <View className="detail-footer__label">总价</View>
             <View className="detail-footer__nights-and-price">
               <View className="detail-footer__price">¥{totalPrice}.00</View>
-              <View className="detail-footer__nights">共{nights}晚</View>
+              <View className="detail-footer__nights">
+                共{nights}晚/{filter.roomCount}间
+              </View>
             </View>
           </View>
           <View className="detail-footer__button">确定</View>

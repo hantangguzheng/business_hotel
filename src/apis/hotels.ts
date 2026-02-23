@@ -126,6 +126,13 @@ export async function searchHotels(
     cleanParams.minScore = params.minScore;
   }
 
+  if (
+    typeof params.minOpeningYear === "number" &&
+    Number.isFinite(params.minOpeningYear)
+  ) {
+    cleanParams.minOpeningYear = Math.floor(params.minOpeningYear);
+  }
+
   if (params.sortBy === "distance" || params.sortBy === "price" || params.sortBy === "score") {
     cleanParams.sortBy = params.sortBy;
   }
