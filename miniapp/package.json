@@ -38,6 +38,7 @@
   "author": "",
   "dependencies": {
     "@babel/runtime": "^7.21.5",
+    "pinyin-pro": "*",
     "@nutui/icons-react": "^3.0.1",
     "@nutui/icons-react-taro": "^1.0.5",
     "@nutui/nutui-react-taro": "^2.6.14",

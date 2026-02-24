@@ -36,6 +36,7 @@ const toCityOption = (item) => ({
   name: item?.name || "",
   key: item?.key || "",
   cityCode: String(item?.cityCode || ""),
+  pinyin: item?.pinyin || "",
 });
 
 const HOT_CITIES = (cities.热门 || []).map(toCityOption);
@@ -54,6 +55,7 @@ type CityOption = {
   name: string;
   key?: string;
   cityCode: string;
+  pinyin?: string;
 };
 
 function CityIndex() {
@@ -81,12 +83,10 @@ function CityIndex() {
     return matched;
   };
   useEffect(() => {
-    // 设置 300ms 的延迟更新
     const handler = setTimeout(() => {
       setDebouncedQuery(query);
     }, 300);
 
-    // 清除函数：如果在 300ms 内用户再次输入，取消上一个定时器
     return () => {
       clearTimeout(handler);
     };
@@ -181,14 +181,19 @@ function CityIndex() {
   }, [debouncedQuery, hasLocated, locatedText]);
 
   const filteredGroups = useMemo(() => {
-    if (!debouncedQuery) return CITY_GROUPS; // 使用防抖后的值
+    if (!debouncedQuery) return CITY_GROUPS;
+
+    const searchKey = debouncedQuery.toLowerCase().trim();
+
     return CITY_GROUPS.map((group) => ({
       ...group,
-      cities: group.cities.filter(
-        (city) =>
-          city.name.includes(debouncedQuery) ||
-          city.pinyin?.toLowerCase().includes(debouncedQuery.toLowerCase()),
-      ),
+      cities: group.cities.filter((city) => {
+        return (
+          city.name.includes(searchKey) || // 搜 "上海"
+          city.pinyin?.includes(searchKey) || // 搜 "shanghai"
+          city.initials?.includes(searchKey) // 搜 "sh"
+        );
+      }),
     })).filter((group) => group.cities.length > 0);
   }, [debouncedQuery]);
 
@@ -355,16 +360,18 @@ function CityIndex() {
         )}
 
         <View className="city-list">
-          <Elevator
-            list={dataList}
-            height={elevatorHeight}
-            spaceHeight={16}
-            titleHeight={30}
-            onItemClick={(key: string, item: CityOption) =>
-              onItemClick(key, item)
-            }
-            onIndexClick={(key: string) => onIndexClick(key)}
-          />
+          <View className="city-list-inner">
+            <Elevator
+              list={dataList}
+              height={elevatorHeight}
+              spaceHeight={16}
+              titleHeight={30}
+              onItemClick={(key: string, item: CityOption) =>
+                onItemClick(key, item)
+              }
+              onIndexClick={(key: string) => onIndexClick(key)}
+            />
+          </View>
         </View>
       </View>
     </View>
