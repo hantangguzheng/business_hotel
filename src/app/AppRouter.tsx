@@ -7,6 +7,7 @@ import { HotelCreatePage } from '@/pages/merchant/HotelCreatePage';
 import { HotelDetailPage } from '@/pages/merchant/HotelDetailPage';
 import { HotelEditPage } from '@/pages/merchant/HotelEditPage';
 import { HotelsPage } from '@/pages/merchant/HotelsPage';
+import { RoomsPage } from '@/pages/merchant/RoomsPage';
 import type { AuthRole } from '@/types/auth';
 import { App } from 'antd';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router';
@@ -103,6 +104,10 @@ export const AppRouter = createBrowserRouter([
                 {
                     path: 'hotel/:id/edit',
                     element: <HotelEditPage/>,
+                },
+                {
+                    path: 'hotel/:id/rooms',
+                    element: <RoomsPage/>,
                 },
             ],
         },]
