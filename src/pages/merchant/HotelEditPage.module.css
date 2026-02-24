@@ -1,0 +1,15 @@
+.container {
+  padding: 24px;
+  max-width: 900px;
+}
+
+.breadcrumb {
+  margin-bottom: 24px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
