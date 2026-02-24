@@ -1,8 +1,9 @@
 import { useAppSelector } from '@/hooks/hooks';
 import { AuthLayout } from '@/layout/AuthLayout';
-import { MainLayout } from '@/layout/MainLayout';
+import { MerchantLayout } from '@/layout/MerchantLayout';
 import { LoginPage } from '@/pages/auth/LoginPage';
 import { RegisterPage } from '@/pages/auth/RegisterPage';
+import { HotelsPage } from '@/pages/merchant/HotelsPage';
 import type { AuthRole } from '@/types/auth';
 import { App } from 'antd';
 import { createBrowserRouter, Navigate, Outlet } from 'react-router';
@@ -82,9 +83,12 @@ export const AppRouter = createBrowserRouter([
         element: <RoleGaurd allowedRoles={['MERCHANT']} />,
         children: [{
             path: '/merchant',
-            element: <MainLayout />,
+            element: <MerchantLayout />,
             children: [
-
+                {
+                    path: 'hotels',
+                    element: <HotelsPage/>
+                },
             ],
         },]
     }
