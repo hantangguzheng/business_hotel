@@ -21,6 +21,9 @@ type HotelListProps = {
   formatDistance: (distance?: number) => string;
 };
 
+// TODO: consider swapping ScrollView out for a virtualized list
+// when hotel arrays grow very large (react-window/react-virtualized, etc.)
+
 function HotelList({
   loadingHotels,
   hotels,
@@ -132,7 +135,43 @@ function HotelList({
     >
       <View className="hotel-list">
         <View className="hotel-top_holder"></View>
-        {loadingHotels && <View className="hotel-list__empty">加载中...</View>}
+        {/* skeleton screen: show placeholders while initial load */}
+        {loadingHotels &&
+          hotels.length === 0 &&
+          Array.from({ length: 5 }).map((_, idx) => (
+            <View
+              key={`skeleton-${idx}`}
+              className="hotel-card hotel-card--skeleton"
+            >
+              <View className="hotel-card__media">
+                <View className="hotel-card__image skeleton-rect" />
+                <View className="hotel-card__rating skeleton-rect" />
+              </View>
+              <View className="hotel-card__body">
+                <View className="hotel-card__title">
+                  <View className="hotel-card__title-text skeleton-rect" />
+                </View>
+                <View className="hotel-card__row">
+                  <View className="hotel-card__distance">
+                    <View className="skeleton-rect short" />
+                  </View>
+                  <View className="hotel-card__price">
+                    <View className="skeleton-rect short" />
+                  </View>
+                </View>
+                <View className="hotel-card__row">
+                  <View className="hotel-card__tags">
+                    <View className="skeleton-rect tag" />
+                    <View className="skeleton-rect tag" />
+                    <View className="skeleton-rect tag" />
+                  </View>
+                  <View className="hotel-card__extra">
+                    <View className="skeleton-rect short" />
+                  </View>
+                </View>
+              </View>
+            </View>
+          ))}
         {!loadingHotels && hotels.length === 0 && (
           <View className="hotel-list__empty">暂无符合条件的酒店</View>
         )}
