@@ -33,7 +33,7 @@ export const LayoutHeader = ({ headerBg }: { headerBg?: string }) => {
     return (
         <Header
             className={styles.header}
-            style={{ background: headerBg }}>
+            style={{ background: headerBg, position: 'fixed', width:'100%' }}>
             <Space className={styles["logo-container"]}>
                 {/* <img src="/favicon.png" alt="Logo" className={styles.logo}/> */}
                 <Avatar onClick={onLogoClick} size={70} src={<img src="/favicon.png" alt="Logo" />} className={styles.logo} ></Avatar>
@@ -46,9 +46,9 @@ export const LayoutHeader = ({ headerBg }: { headerBg?: string }) => {
                         { key: 'logout', label: '退出登录', onClick: onLogout }
                     ]
                 }}>
-                    <span  className={styles.username}>
+                    <span className={styles.username}>
 
-                    {userobj?.username}
+                        {userobj?.username}
                     </span>
                 </Dropdown>
             </Space>

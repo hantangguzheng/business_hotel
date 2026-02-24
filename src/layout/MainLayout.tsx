@@ -14,9 +14,9 @@ export function MainLayout({ menuItems }: MainLayoutProps) {
     return (
         <Layout style={{minHeight:'100vh'}}>
             <LayoutHeader />
-            <Layout>
+            <Layout style={{overflow:'hidden', marginTop:64}}>
                 <LayoutSider menuItems={menuItems} />
-                <Content>
+                <Content style={{overflow:'auto', height: '100%' ,marginLeft:200}}>
                     <Outlet />
                 </Content>
             </Layout>

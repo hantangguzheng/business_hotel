@@ -13,7 +13,7 @@ export const LayoutSider = ({ menuItems }: LayoutSiderProps) => {
     const navigate = useNavigate();
 
     return (
-        <Sider>
+        <Sider style = {{position:'fixed', height:'100vh'}}>
             <Menu
                 mode="inline"
                 selectedKeys={[location.pathname]}
