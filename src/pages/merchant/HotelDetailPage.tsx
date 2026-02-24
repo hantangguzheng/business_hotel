@@ -6,7 +6,7 @@ import styles from './HotelDetailPage.module.css';
 import { useHotels } from '@/hooks/merchant';
 import { HotelViewForm } from '@/components/HotelViewForm';
 
-export function HotelDetailPage() {
+export const HotelDetailPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { message: msg } = App.useApp();
@@ -75,6 +75,13 @@ export function HotelDetailPage() {
                             onClick={() => navigate(`/merchant/hotel/${id}/rooms`)}
                         >
                             管理房间
+                        </Button>
+                        <Button
+                            icon={<UnorderedListOutlined />}
+                            type="primary"
+                            onClick={() => navigate(`/merchant/hotel/${id}/promotion`)}
+                        >
+                            管理促销活动
                         </Button>
                     </Space>
                 }
