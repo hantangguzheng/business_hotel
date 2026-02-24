@@ -3,7 +3,9 @@ import { AuthLayout } from '@/layout/AuthLayout';
 import { MerchantLayout } from '@/layout/MerchantLayout';
 import { LoginPage } from '@/pages/auth/LoginPage';
 import { RegisterPage } from '@/pages/auth/RegisterPage';
+import { HotelCreatePage } from '@/pages/merchant/HotelCreatePage';
 import { HotelDetailPage } from '@/pages/merchant/HotelDetailPage';
+import { HotelEditPage } from '@/pages/merchant/HotelEditPage';
 import { HotelsPage } from '@/pages/merchant/HotelsPage';
 import type { AuthRole } from '@/types/auth';
 import { App } from 'antd';
@@ -91,8 +93,16 @@ export const AppRouter = createBrowserRouter([
                     element: <HotelsPage/>,
                 },
                 {
+                    path: 'hotel/create',
+                    element: <HotelCreatePage/>,
+                },
+                {
                     path: 'hotel/:id',
                     element: <HotelDetailPage/>,
+                },
+                {
+                    path: 'hotel/:id/edit',
+                    element: <HotelEditPage/>,
                 },
             ],
         },]
