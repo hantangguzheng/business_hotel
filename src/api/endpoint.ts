@@ -1,9 +1,12 @@
 import type { APIAuthRole, AppAxiosRequestConfig, IAuthLoginRequest, IAuthRegisterRequest } from "./types/auth";
 import type { IHotelCreateRequest } from "./types/hotel";
+import type { IRoomCreateRequest, IRoomListResponse } from "./types/room";
 
 const API_ROOT = '';
 
 const API_MERCHANT_HOTEL = 'api/merchant/hotels';
+const API_HOTEL = 'hotels';
+const API_ROOM = 'rooms';
 
 const withAuthorization = (config: AppAxiosRequestConfig) : AppAxiosRequestConfig => {
   return {
@@ -47,6 +50,7 @@ export const endpoint = {
     });
   },
   // merchant
+  // hotel
   getListHotels: ():AppAxiosRequestConfig<any>=>{
     return withAuthorization({
       url:`${API_ROOT}/${API_MERCHANT_HOTEL}/`,
@@ -68,5 +72,31 @@ export const endpoint = {
       data:info,
     });
   },
-
+  // room
+  getListRooms: (hotelId:number):AppAxiosRequestConfig<any>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_HOTEL}/${hotelId}/rooms`,
+      method:'GET',
+    });
+  },
+  postCreateRoom: (hotelId:number, info:IRoomCreateRequest|FormData):AppAxiosRequestConfig<IRoomCreateRequest|FormData>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_HOTEL}/${hotelId}/rooms`,
+      method:'POST',
+      data:info,
+    });
+  },
+  putUpdateRoom: (roomId:number, info:IRoomCreateRequest|FormData):AppAxiosRequestConfig<IRoomCreateRequest|FormData>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_ROOM}/${roomId}`,
+      method:'PUT',
+      data:info,
+    });
+  },
+  deleteDeleteRoom: (roomId:number):AppAxiosRequestConfig<any>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_ROOM}/${roomId}`,
+      method:'DELETE',
+    });
+  },
 }
