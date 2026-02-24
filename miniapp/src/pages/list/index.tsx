@@ -844,10 +844,18 @@ function ListPage() {
   }, [checkIn, checkOut]);
 
   useEffect(() => {
+    // debounce the actual search request (not the input)
+    let mounted = true;
+    const delay = 300;
     const timer = setTimeout(() => {
+      if (!mounted) return;
       void fetchHotelList({ page: 1, append: false });
-    }, 250);
-    return () => clearTimeout(timer);
+    }, delay);
+
+    return () => {
+      mounted = false;
+      clearTimeout(timer);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     city,

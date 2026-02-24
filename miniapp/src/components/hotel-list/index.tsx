@@ -128,10 +128,9 @@ function HotelList({
       className="hotel-list-scroll-view"
       scrollY
       scrollWithAnimation
-      // 2. 设置提前量：距离底部 250px 时触发
       lowerThreshold={250}
       onScrollToLower={handleScrollToLower}
-      style={{ height: "100vh" }} // 必须指定高度，滚动才生效
+      style={{ height: "100vh" }} 
     >
       <View className="hotel-list">
         <View className="hotel-top_holder"></View>
