@@ -21,6 +21,8 @@ export interface IHotelCreateRequest extends IImagesPayload {
     crossLinePrice?: string
     currency?: string
 
+    imageUrls?:string[]
+
 }
 
 export interface IHotelListResponseSingle {
