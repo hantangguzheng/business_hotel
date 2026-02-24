@@ -120,7 +120,7 @@ export function HotelsPage() {
                     </Button>
                     <Button
                         icon={<EditOutlined />}
-                        onClick={() => navigate(`/merchant/hotel/edit/${hotel.id}`)}
+                        onClick={() => navigate(`/merchant/hotel/${hotel.id}/edit`)}
                     >
                         编辑
                     </Button>
