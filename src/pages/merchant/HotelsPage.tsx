@@ -1,7 +1,5 @@
-import { endpoint } from "@/api/endpoint";
 import { App, Breadcrumb, Button, Input, Select, Space, Table, Tag } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import useAxios from "axios-hooks";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -10,6 +8,7 @@ import type { IHotelListResponseSingle } from "@/api/types/hotel";
 import type { CityCode, HotelStatus } from "@/types/hotel";
 import { cityCodeMapping } from "@/utils/hotelUtil";
 import { EditOutlined, PlusOutlined, ReloadOutlined, SearchOutlined } from "@ant-design/icons";
+import { useHotels } from "@/hooks/merchant";
 
 const statusMap: Record<HotelStatus, Record<string, string>> = {
     0: { label: '待审核', color: 'orange' },
@@ -24,13 +23,10 @@ export function HotelsPage() {
     const [cityCode, setCityCode] = useState<CityCode | undefined>();
     const [page, setPage] = useState(1);
     const [pageSize, setPageSize] = useState(10);
-    // const [status, _] = useState<HotelStatus | undefined>();
 
     const { message: msg } = App.useApp();
 
-    const [{ data, loading, error }, refetch] = useAxios<IHotelListResponseSingle[]>(
-        { ...endpoint.getListHotels() }
-    );
+    const { list: data, loading, error, refresh: refetch } = useHotels();
 
     const filtered = useMemo(() => {
         if (!data) return [];
@@ -43,7 +39,7 @@ export function HotelsPage() {
 
     const handleKeywordChange = (val: string) => {
         setKeyword(val);
-        setPage(1);  // 重置页码
+        setPage(1);
     };
 
     const handleCityChange = (val: CityCode) => {
@@ -51,7 +47,6 @@ export function HotelsPage() {
         setPage(1);
     };
 
-    // 前端分页
     const paginated = useMemo(() => {
         const start = (page - 1) * pageSize;
         return filtered.slice(start, start + pageSize);
@@ -81,7 +76,7 @@ export function HotelsPage() {
             dataIndex: 'price',
             key: 'price',
         },
-        
+
         {
             title: '原价',
             dataIndex: 'crossLinePrice',
@@ -116,12 +111,20 @@ export function HotelsPage() {
             title: '操作',
             key: 'action',
             render: (_, hotel) => (
-                <Button
-                    icon={<EditOutlined />}
-                    onClick={() => navigate(`/merchant/hotels/${hotel.id}`)}
-                >
-                    编辑
-                </Button>
+                <Space>
+                    <Button
+                        icon={<SearchOutlined />}
+                        onClick={() => navigate(`/merchant/hotel/${hotel.id}`)}
+                    >
+                        查看
+                    </Button>
+                    <Button
+                        icon={<EditOutlined />}
+                        onClick={() => navigate(`/merchant/hotel/edit/${hotel.id}`)}
+                    >
+                        编辑
+                    </Button>
+                </Space>
             ),
         },
     ];
@@ -175,7 +178,7 @@ export function HotelsPage() {
                 <Button
                     type="primary"
                     icon={<PlusOutlined />}
-                    onClick={() => navigate('/merchant/hotels/new')}
+                    onClick={() => navigate('/merchant/hotel/new')}
                 >
                     新增酒店
                 </Button>
