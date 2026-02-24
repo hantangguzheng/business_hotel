@@ -5,6 +5,7 @@ import useAxios from "axios-hooks";
 import { useEffect } from "react";
 import hotelSlice from "@/store/hotelSlice";
 import type { IHotelListResponseSingle } from "@/api/types/hotel";
+import { STATIC_ROOT } from "@/utils/config";
 
 export const useHotels = () => {
     const dispatch = useDispatch();
@@ -22,7 +23,15 @@ export const useHotels = () => {
 
     useEffect(() => {
         if (data) {
-            dispatch(hotelSlice.actions.setList(data));
+            dispatch(hotelSlice.actions.setList(data.map(v => ({
+                ...v,
+                imageUrls: v.imageUrls?.map(url => {
+                    if (url.trim().startsWith('/')) {
+                        return `${STATIC_ROOT}${url}`;
+                    }
+                    return url;
+                }),
+            }))));
         }
     }, [data]);
 

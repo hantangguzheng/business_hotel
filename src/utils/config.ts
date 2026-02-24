@@ -4,11 +4,13 @@ import authSlice from "@/store/authSlice";
 import { store } from "@/store/store";
 import type { AppAxiosRequestConfig } from "@/api/types/auth";
 
-
+const BASE_URL = '/api';
 
 export const http = axios.create({
-    baseURL:'/api',
+    baseURL:BASE_URL,
 });
+
+export const STATIC_ROOT = `${BASE_URL}`;
 
 http.interceptors.request.use(
     (req) => {
