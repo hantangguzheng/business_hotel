@@ -13,3 +13,10 @@ export const CityCode = {
 } as const;
 
 export type CityCode = typeof CityCode[keyof typeof CityCode];
+
+export type HotelTag = "BUFFET_BREAKFAST" | "CHESS_ROOM" | "MEMBER_BENEFITS" | 
+    "CHARGING_PILE" | "FREE_WIFI" | "INSTAGRAMMABLE" | "GYM" | "BUTLER_SERVICE" | 
+    "COFFEE_MACHINE" | "SELF_CHECKIN" | "MEETING_HALL" | "VINTAGE_STYLE" | 
+    "CINEMA_ROOM" | "ROBOT_SERVICE" | "SMART_CONTROL" | "FAMILY_ROOM" | 
+    "LAUNDRY_ROOM" | "FREE_LUGGAGE" | "FREE_PARKING" | "DRYER" | "KTV" | 
+    "FREE_LAUNDRY" | "SUITE" | "HEATING" | "DELIVERY_ROBOT" | "NON_SMOKING_FLOOR";
