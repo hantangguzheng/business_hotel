@@ -1,6 +1,6 @@
 import type { APIAuthRole, AppAxiosRequestConfig, IAuthLoginRequest, IAuthRegisterRequest } from "./types/auth";
 import type { IHotelCreateRequest } from "./types/hotel";
-import type { IRoomCreateRequest, IRoomListResponse } from "./types/room";
+import type { IRoomCreateRequest } from "./types/room";
 
 const API_ROOT = '';
 
