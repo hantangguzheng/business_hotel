@@ -178,9 +178,9 @@ export function HotelsPage() {
                 <Button
                     type="primary"
                     icon={<PlusOutlined />}
-                    onClick={() => navigate('/merchant/hotel/new')}
+                    onClick={() => navigate('/merchant/hotel/create')}
                 >
-                    新增酒店
+                    新增酒店申请
                 </Button>
             </div>
 

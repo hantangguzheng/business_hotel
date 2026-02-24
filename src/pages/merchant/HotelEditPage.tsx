@@ -55,7 +55,7 @@ export const HotelEditPage = () => {
             <Breadcrumb
                 className={styles.breadcrumb}
                 items={[
-                    { title: <a onClick={() => navigate('/merchant/hotels')}>酒店管理</a> },
+                    { title: <a onClick={() => navigate('/merchant/hotels')}>酒店信息管理</a> },
                     { title: <a onClick={() => navigate(`/merchant/hotel/${id}`)}>{hotel?.nameCn ?? '酒店详情'}</a> },
                     { title: '编辑' },
                 ]}
