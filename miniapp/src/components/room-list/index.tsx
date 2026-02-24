@@ -46,6 +46,7 @@ function RoomList({
                 className="detail-room__image"
                 src={room.pictureUrl || hotelImage}
                 mode="aspectFill"
+                lazyLoad
               />
               <View className="detail-room__content">
                 <View className="detail-room__name">{room.name}</View>

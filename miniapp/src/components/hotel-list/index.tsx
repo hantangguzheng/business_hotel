@@ -1,15 +1,14 @@
-import { Image, View } from "@tarojs/components";
+import { Image, View, ScrollView } from "@tarojs/components";
+import { useCallback, useRef } from "react";
 import { StarFill } from "@nutui/icons-react-taro";
-import { HOTEL_TAG_ICON_MAP } from "../../apis/tag_map";
-import type { HotelListItem } from "../../apis/type";
+import {
+  HOTEL_TAG_ICON_MAP,
+  HOTEL_DB_TO_CN_TAG_MAP,
+  PROMOTION_TO_CN_MAP,
+} from "../../apis/tag_map";
+import type { HotelListItem, PromotionItem } from "../../apis/type";
 import { FALLBACK_HOTEL_IMAGE_URL } from "../../constants/app";
 import diamondIcon from "../../assets/imgs/diamond.svg";
-
-type HotelPriceDisplay = {
-  currentPrice: number;
-  originalPrice: number;
-  promotionLabel: string;
-};
 
 type HotelListProps = {
   loadingHotels: boolean;
@@ -18,9 +17,8 @@ type HotelListProps = {
   hasMore: boolean;
   nights: number;
   onOpenDetail: (hotelId: string | number) => void;
+  onLoadMore?: () => void;
   formatDistance: (distance?: number) => string;
-  getHotelPriceDisplay: (hotel: HotelListItem) => HotelPriceDisplay;
-  formatHotelShortTag: (tag: string) => string;
 };
 
 function HotelList({
@@ -30,12 +28,108 @@ function HotelList({
   hasMore,
   nights,
   onOpenDetail,
+  onLoadMore,
   formatDistance,
-  getHotelPriceDisplay,
-  formatHotelShortTag,
 }: HotelListProps) {
+  const lastTriggerRef = useRef<number>(0);
+  const THROTTLE_MS = 300;
+
+  const handleScrollToLower = useCallback(() => {
+    const now = Date.now();
+    if (now - lastTriggerRef.current < THROTTLE_MS) return;
+    lastTriggerRef.current = now;
+
+    if (loadingMore || !hasMore) return;
+    onLoadMore?.();
+  }, [loadingMore, hasMore, onLoadMore]);
+
+  const formatHotelShortTag = (tag: string) => {
+    return (
+      HOTEL_DB_TO_CN_TAG_MAP[tag as keyof typeof HOTEL_DB_TO_CN_TAG_MAP] || tag
+    );
+  };
+
+  const getActivePromotion = (hotel: HotelListItem) => {
+    const promotions = Array.isArray(hotel.promotions) ? hotel.promotions : [];
+    if (promotions.length === 0) return null;
+
+    const now = Date.now();
+    const activePromotions = promotions.filter((item: PromotionItem) => {
+      const start = new Date(item.startDate).getTime();
+      const end = new Date(item.endDate).getTime();
+      if (Number.isNaN(start) || Number.isNaN(end)) return false;
+      return start <= now && now <= end;
+    });
+
+    if (activePromotions.length === 0) return null;
+
+    return activePromotions.reduce<PromotionItem | null>((best, current) => {
+      const bestDiscount = Number(best?.discount || 1);
+      const currentDiscount = Number(current.discount || 1);
+      if (!best) return current;
+      return currentDiscount < bestDiscount ? current : best;
+    }, null);
+  };
+
+  const formatPromotionLabel = (promotion: PromotionItem) => {
+    const baseLabel =
+      PROMOTION_TO_CN_MAP[promotion.promotionType] || promotion.promotionType;
+    const discount = Number(promotion.discount || 0);
+    if (!(discount > 0 && discount < 1)) return baseLabel;
+
+    const fold = discount * 10;
+    const foldText = Number.isInteger(fold) ? String(fold) : fold.toFixed(1);
+    return `${baseLabel} | ${foldText}折`;
+  };
+
+  const getHotelPriceDisplay = (hotel: HotelListItem) => {
+    const normalPrice =
+      typeof hotel.price === "number" && Number.isFinite(hotel.price)
+        ? hotel.price
+        : 0;
+    const crossLinePrice =
+      typeof hotel.crossLinePrice === "number" &&
+      Number.isFinite(hotel.crossLinePrice)
+        ? hotel.crossLinePrice
+        : 0;
+
+    const activePromotion = getActivePromotion(hotel);
+    if (!activePromotion) {
+      return {
+        currentPrice: normalPrice,
+        originalPrice: crossLinePrice > normalPrice ? crossLinePrice : 0,
+        promotionLabel: "",
+      };
+    }
+
+    const discount = Number(activePromotion.discount || 0);
+    const basePrice = crossLinePrice > 0 ? crossLinePrice : normalPrice;
+    if (!(discount > 0 && discount < 1) || basePrice <= 0) {
+      return {
+        currentPrice: normalPrice,
+        originalPrice: crossLinePrice > normalPrice ? crossLinePrice : 0,
+        promotionLabel: formatPromotionLabel(activePromotion),
+      };
+    }
+
+    const discountPrice = Math.max(1, Math.round(basePrice * discount));
+
+    return {
+      currentPrice: discountPrice,
+      originalPrice: basePrice,
+      promotionLabel: formatPromotionLabel(activePromotion),
+    };
+  };
   return (
-    <>
+    <ScrollView
+      className="hotel-list-scroll-view"
+      scrollY
+      scrollWithAnimation
+      // 2. 设置提前量：距离底部 250px 时触发
+      lowerThreshold={250}
+      onScrollToLower={handleScrollToLower}
+      style={{ height: "100vh" }} // 必须指定高度，滚动才生效
+    >
       <View className="hotel-list">
         <View className="hotel-top_holder"></View>
         {loadingHotels && <View className="hotel-list__empty">加载中...</View>}
@@ -64,6 +158,7 @@ function HotelList({
                     className="hotel-card__image"
                     src={hotel.imageUrls?.[0] || FALLBACK_HOTEL_IMAGE_URL}
                     mode="aspectFill"
+                    lazyLoad
                   />
                   <View className="hotel-card__rating">
                     <StarFill color="#ffd166" width="16px" />
@@ -153,7 +248,9 @@ function HotelList({
                         <View className="hotel-card__promotion-tag">
                           {priceDisplay.promotionLabel}
                         </View>
-                      ) : null}
+                      ) : (
+                        <p>??</p>
+                      )}
                     </View>
                   </View>
                 </View>
@@ -171,7 +268,7 @@ function HotelList({
               : `已显示${hotels.length}条`}
         </View>
       )}
-    </>
+    </ScrollView>
   );
 }
 

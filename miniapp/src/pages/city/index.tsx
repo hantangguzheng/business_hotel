@@ -58,6 +58,7 @@ type CityOption = {
 
 function CityIndex() {
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const [elevatorHeight, setElevatorHeight] = useState(260);
   const [hasLocated, setHasLocated] = useState(false);
   const [locatedText, setLocatedText] = useState("");
@@ -79,6 +80,17 @@ function CityIndex() {
     if (!matched) return undefined;
     return matched;
   };
+  useEffect(() => {
+    // 设置 300ms 的延迟更新
+    const handler = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 300);
+
+    // 清除函数：如果在 300ms 内用户再次输入，取消上一个定时器
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [query]);
 
   const parseStoredCityInfo = (storedValue: unknown) => {
     if (!storedValue) return null;
@@ -166,15 +178,19 @@ function CityIndex() {
 
   useEffect(() => {
     updateElevatorHeight();
-  }, [query, hasLocated, locatedText]);
+  }, [debouncedQuery, hasLocated, locatedText]);
 
   const filteredGroups = useMemo(() => {
-    if (!query) return CITY_GROUPS;
+    if (!debouncedQuery) return CITY_GROUPS; // 使用防抖后的值
     return CITY_GROUPS.map((group) => ({
       ...group,
-      cities: group.cities.filter((city) => city.name.includes(query)),
+      cities: group.cities.filter(
+        (city) =>
+          city.name.includes(debouncedQuery) ||
+          city.pinyin?.toLowerCase().includes(debouncedQuery.toLowerCase()),
+      ),
     })).filter((group) => group.cities.length > 0);
-  }, [query]);
+  }, [debouncedQuery]);
 
   const dataList = useMemo(
     () =>

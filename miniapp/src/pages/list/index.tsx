@@ -1,6 +1,6 @@
 import { Image, Input, ScrollView, View } from "@tarojs/components";
 import Taro, { useDidShow, useReachBottom } from "@tarojs/taro";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import {
   Button,
   Calendar,
@@ -24,10 +24,8 @@ import {
   QQ_MAP_SK,
 } from "../../constants/app";
 import {
-  HOTEL_DB_TO_CN_TAG_MAP,
   HOTEL_CN_TO_DB_TAG_MAP,
   ROOM_FACILITY_FIELDS,
-  PROMOTION_TO_CN_MAP,
   ROOM_CN_TO_DB_TAG_MAP,
   ROOM_TAG_VALUE_MAP,
 } from "../../apis/tag_map";
@@ -216,6 +214,9 @@ function ListPage() {
   const [activeQuickChips, setActiveQuickChips] = useState<QuickFilterChip[]>(
     [],
   );
+
+  const reachBottomLastRef = useRef<number>(0);
+  const REACH_BOTTOM_THROTTLE_MS = 800;
 
   const parseStoredCityInfo = (storedValue: unknown) => {
     if (!storedValue) return null;
@@ -696,6 +697,58 @@ function ListPage() {
         : Number.POSITIVE_INFINITY;
     };
 
+    const WEIGHTS = {
+      SCORE: 0.5, // 评分权重 50%
+      DISTANCE: 0.3, // 距离权重 30% (定位时开启)
+      COST: 0.2, // 价格权重 20%
+    };
+
+    // 如果没有定位，将距离的权重按比例分配给评分和成本
+    const activeWeights = { ...WEIGHTS };
+    if (!isMyLocationMode) {
+      activeWeights.SCORE = 0.7; // 评分提升至 70%
+      activeWeights.COST = 0.3; // 成本提升至 30%
+      activeWeights.DISTANCE = 0;
+    }
+    const resolveCostForSort = (hotel: HotelListItem) => {
+      const cost = getDiscountedHotelPrice(hotel);
+      return Number.isFinite(cost) && cost > 0 ? cost : 5000; // 默认高价兜底
+    };
+
+    // --- 排序逻辑 ---
+    if (actualMode === "smart") {
+      sortedList.sort((left, right) => {
+        const getSmartScore = (hotel: HotelListItem) => {
+          // 1. 评分归一化 (0-5 分) -> 映射为 0-100 分
+          const scoreBase = toFiniteNumber(hotel.score, 0);
+          const normalizedScore = (scoreBase / 5) * 100;
+
+          // 2. 距离归一化 (假设 10km 内为有效范围) -> 越近分数越高
+          // 逻辑：10km 以上设为 0 分，0m 设为 100 分
+          let normalizedDistance = 0;
+          if (isMyLocationMode) {
+            const dist = toFiniteNumber(hotel.distance, 10000);
+            normalizedDistance = Math.max(0, 1 - dist / 10000) * 100;
+          }
+
+          // 3. 成本归一化 (假设 100-3000 元为常态) -> 越便宜分数越高
+          // 逻辑：3000 元以上设为 0 分，100 元设为 100 分
+          const cost = resolveCostForSort(hotel);
+          const normalizedCost = Math.max(0, 1 - (cost - 100) / 2900) * 100;
+
+          // 4. 计算加权总分
+          return (
+            normalizedScore * activeWeights.SCORE +
+            normalizedDistance * activeWeights.DISTANCE +
+            normalizedCost * activeWeights.COST
+          );
+        };
+
+        return getSmartScore(right) - getSmartScore(left); // 总分高者排前面
+      });
+      return sortedList;
+    }
+
     if (actualMode === "distance") {
       sortedList.sort((left, right) => {
         const leftDistance = toFiniteNumber(
@@ -732,31 +785,8 @@ function ListPage() {
       return sortedList;
     }
 
-    sortedList.sort((left, right) => {
-      const leftScore = toFiniteNumber(left.score, Number.NEGATIVE_INFINITY);
-      const rightScore = toFiniteNumber(right.score, Number.NEGATIVE_INFINITY);
-      if (rightScore !== leftScore) {
-        return rightScore - leftScore;
-      }
-
-      if (isMyLocationMode) {
-        const leftDistance = toFiniteNumber(
-          left.distance,
-          Number.POSITIVE_INFINITY,
-        );
-        const rightDistance = toFiniteNumber(
-          right.distance,
-          Number.POSITIVE_INFINITY,
-        );
-        if (leftDistance !== rightDistance) {
-          return leftDistance - rightDistance;
-        }
-      }
-
-      const leftPrice = resolvePriceForSort(left);
-      const rightPrice = resolvePriceForSort(right);
-      return leftPrice - rightPrice;
-    });
+    // just in case the mode isn't recognized (shouldn't happen),
+    // return the original list so the caller always gets an array.
     return sortedList;
   };
 
@@ -837,6 +867,10 @@ function ListPage() {
   ]);
 
   useReachBottom(() => {
+    const now = Date.now();
+    if (now - reachBottomLastRef.current < REACH_BOTTOM_THROTTLE_MS) return;
+    reachBottomLastRef.current = now;
+
     if (loadingHotels || loadingMore || !hasMore) return;
     void fetchHotelList({ page: currentPage + 1, append: true });
   });
@@ -1126,83 +1160,7 @@ function ListPage() {
     Taro.navigateTo({ url: `/pages/detail/index?id=${hotelId}` });
   };
 
-  const formatHotelShortTag = (tag: string) => {
-    return (
-      HOTEL_DB_TO_CN_TAG_MAP[tag as keyof typeof HOTEL_DB_TO_CN_TAG_MAP] || tag
-    );
-  };
-
-  const getActivePromotion = (hotel: HotelListItem) => {
-    const promotions = Array.isArray(hotel.promotions) ? hotel.promotions : [];
-    if (promotions.length === 0) return null;
-
-    const now = Date.now();
-    const activePromotions = promotions.filter((item) => {
-      const start = new Date(item.startDate).getTime();
-      const end = new Date(item.endDate).getTime();
-      if (Number.isNaN(start) || Number.isNaN(end)) return false;
-      return start <= now && now <= end;
-    });
-
-    if (activePromotions.length === 0) return null;
-
-    return activePromotions.reduce<PromotionItem | null>((best, current) => {
-      const bestDiscount = Number(best?.discount || 1);
-      const currentDiscount = Number(current.discount || 1);
-      if (!best) return current;
-      return currentDiscount < bestDiscount ? current : best;
-    }, null);
-  };
-
-  const formatPromotionLabel = (promotion: PromotionItem) => {
-    const baseLabel =
-      PROMOTION_TO_CN_MAP[promotion.promotionType] || promotion.promotionType;
-    const discount = Number(promotion.discount || 0);
-    if (!(discount > 0 && discount < 1)) return baseLabel;
-
-    const fold = discount * 10;
-    const foldText = Number.isInteger(fold) ? String(fold) : fold.toFixed(1);
-    return `${baseLabel} | ${foldText}折`;
-  };
-
-  const getHotelPriceDisplay = (hotel: HotelListItem) => {
-    const normalPrice =
-      typeof hotel.price === "number" && Number.isFinite(hotel.price)
-        ? hotel.price
-        : 0;
-    const crossLinePrice =
-      typeof hotel.crossLinePrice === "number" &&
-      Number.isFinite(hotel.crossLinePrice)
-        ? hotel.crossLinePrice
-        : 0;
-
-    const activePromotion = getActivePromotion(hotel);
-    if (!activePromotion) {
-      return {
-        currentPrice: normalPrice,
-        originalPrice: crossLinePrice > normalPrice ? crossLinePrice : 0,
-        promotionLabel: "",
-      };
-    }
-
-    const discount = Number(activePromotion.discount || 0);
-    const basePrice = crossLinePrice > 0 ? crossLinePrice : normalPrice;
-    if (!(discount > 0 && discount < 1) || basePrice <= 0) {
-      return {
-        currentPrice: normalPrice,
-        originalPrice: crossLinePrice > normalPrice ? crossLinePrice : 0,
-        promotionLabel: formatPromotionLabel(activePromotion),
-      };
-    }
-
-    const discountPrice = Math.max(1, Math.round(basePrice * discount));
-
-    return {
-      currentPrice: discountPrice,
-      originalPrice: basePrice,
-      promotionLabel: formatPromotionLabel(activePromotion),
-    };
-  };
+  // moved format/getPrice helpers into HotelList component
 
   const selectedSortLabel =
     availableSortOptions.find((option) => option.value === sortMode)?.label ||
@@ -1525,9 +1483,11 @@ function ListPage() {
         hasMore={hasMore}
         nights={nights}
         onOpenDetail={handleOpenDetail}
+        onLoadMore={() => {
+          if (loadingHotels || loadingMore || !hasMore) return;
+          void fetchHotelList({ page: currentPage + 1, append: true });
+        }}
         formatDistance={formatDistance}
-        getHotelPriceDisplay={getHotelPriceDisplay}
-        formatHotelShortTag={formatHotelShortTag}
       />
 
       <Calendar
