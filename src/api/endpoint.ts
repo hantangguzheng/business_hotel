@@ -1,4 +1,5 @@
 import type { APIAuthRole, AppAxiosRequestConfig, IAuthLoginRequest, IAuthRegisterRequest } from "./types/auth";
+import type { IHotelCreateRequest } from "./types/hotel";
 
 const API_ROOT = '';
 
@@ -52,6 +53,20 @@ export const endpoint = {
       method:'GET',
     });
     
-  }
+  },
+  postCreateHotel: (info:IHotelCreateRequest):AppAxiosRequestConfig<IHotelCreateRequest>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_MERCHANT_HOTEL}/`,
+      method:'POST',
+      data:info,
+    });
+  },
+  putUpdateHotel: (id:number, info:IHotelCreateRequest|FormData):AppAxiosRequestConfig<IHotelCreateRequest|FormData>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_MERCHANT_HOTEL}/${id}`,
+      method:'PUT',
+      data:info,
+    });
+  },
 
 }
