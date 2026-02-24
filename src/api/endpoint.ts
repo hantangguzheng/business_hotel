@@ -54,7 +54,7 @@ export const endpoint = {
     });
     
   },
-  postCreateHotel: (info:IHotelCreateRequest):AppAxiosRequestConfig<IHotelCreateRequest>=>{
+  postCreateHotel: (info:IHotelCreateRequest|FormData):AppAxiosRequestConfig<IHotelCreateRequest|FormData>=>{
     return withAuthorization({
       url:`${API_ROOT}/${API_MERCHANT_HOTEL}/`,
       method:'POST',
