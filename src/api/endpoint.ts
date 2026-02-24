@@ -1,6 +1,8 @@
 import type { APIAuthRole, AppAxiosRequestConfig, IAuthLoginRequest, IAuthRegisterRequest } from "./types/auth";
 
-const API_ROOT = ''
+const API_ROOT = '';
+
+const API_MERCHANT_HOTEL = 'api/merchant/hotels';
 
 const withAuthorization = (config: AppAxiosRequestConfig) : AppAxiosRequestConfig => {
   return {
@@ -13,6 +15,7 @@ const withAuthorization = (config: AppAxiosRequestConfig) : AppAxiosRequestConfi
 };
 
 export const endpoint = {
+  // auth
   postLogin: (username:string, password:string):
     AppAxiosRequestConfig<IAuthLoginRequest> => {
       return {
@@ -22,7 +25,7 @@ export const endpoint = {
           username,
           password,
         },
-      }
+      };
   },
   postRegister: (username:string, password:string, role:APIAuthRole):
     AppAxiosRequestConfig<IAuthRegisterRequest> => {
@@ -34,12 +37,21 @@ export const endpoint = {
           password,
           role,
         }
-      }
+      };
   },
   getUserMe: ():AppAxiosRequestConfig<any> => {
     return withAuthorization({
       url:`${API_ROOT}/users/me`,
       method:'GET',
-    })
+    });
   },
+  // merchant
+  getListHotels: ():AppAxiosRequestConfig<any>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_MERCHANT_HOTEL}/`,
+      method:'GET',
+    });
+    
+  }
+
 }
