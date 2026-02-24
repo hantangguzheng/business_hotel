@@ -292,13 +292,50 @@ function Index() {
 
   const handleLocate = (event) => {
     event.stopPropagation();
-    Taro.authorize({
-      scope: "scope.userLocation",
-      success: () => {
-        locateUser();
+
+    Taro.getSetting({
+      success: (settingRes) => {
+        const authSetting = settingRes?.authSetting || {};
+        const locationAuth = authSetting["scope.userLocation"];
+
+        if (locationAuth === true) {
+          locateUser();
+          return;
+        }
+
+        if (locationAuth === undefined) {
+          Taro.authorize({
+            scope: "scope.userLocation",
+            success: () => {
+              locateUser();
+            },
+            fail: () => {
+              setLocationNotice("定位权限未开启，请在设置中允许定位");
+              setShowLocationNotice(true);
+            },
+          });
+          return;
+        }
+
+        Taro.openSetting({
+          success: (openSettingRes) => {
+            const enabled =
+              openSettingRes?.authSetting?.["scope.userLocation"] === true;
+            if (enabled) {
+              locateUser();
+              return;
+            }
+            setLocationNotice("定位权限未开启，请在设置中允许定位");
+            setShowLocationNotice(true);
+          },
+          fail: () => {
+            setLocationNotice("打开设置失败，请稍后重试");
+            setShowLocationNotice(true);
+          },
+        });
       },
       fail: () => {
-        setLocationNotice("定位权限未开启，请在设置中允许定位");
+        setLocationNotice("读取定位权限失败，请稍后重试");
         setShowLocationNotice(true);
       },
     });
@@ -502,6 +539,9 @@ function Index() {
         />
         <View className="lang-toggle__text">{copy.toggleText}</View>
       </View> */}
+      {/* <button style={{ "background": "red !important", "color": "white !important", }}>
+        测试按钮
+      </button> */}
       <View className="banner">
         <Swiper
           className="banner__swiper"
