@@ -26,6 +26,7 @@ export interface IHotelCreateRequest extends IImagesPayload {
 export interface IHotelListResponseSingle {
     id: number;
     nameCn: string;
+    nameEn?: string;
     address: string;
     starRating: number;
     cityCode: CityCode;

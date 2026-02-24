@@ -29,17 +29,16 @@ export const HotelViewForm = ({
                 <Descriptions column={2}>
                     <Descriptions.Item label="名称">{hotel?.nameCn}</Descriptions.Item>
                     {/* <Descriptions.Item label="中文名称">{hotel?.nameCn}</Descriptions.Item> */}
-                    {/* <Descriptions.Item label="英文名称">{hotel?.nameEn}</Descriptions.Item> */}
+                    <Descriptions.Item label="英文名称">{hotel?.nameEn}</Descriptions.Item>
                     <Descriptions.Item label="地址" span={2}>{hotel?.address}</Descriptions.Item>
                     <Descriptions.Item label="城市">{hotel ? cityCodeMapping[hotel.cityCode] : '位置'}</Descriptions.Item>
                     <Descriptions.Item label="星级">{hotel?.starRating} 星</Descriptions.Item>
-                    {/* <Descriptions.Item label="开业日期">{hotel?.openingDate}</Descriptions.Item> */}
                 </Descriptions>
 
                 <Divider titlePlacement="start" styles={dividerStyles}>价格</Divider>
                 <Descriptions column={2} >
                     <Descriptions.Item label="价格">¥ {hotel?.price}</Descriptions.Item>
-                    <Descriptions.Item label="划线价">¥ {hotel?.crossLinePrice}</Descriptions.Item>
+                    <Descriptions.Item label="原价">¥ {hotel?.crossLinePrice}</Descriptions.Item>
                     <Descriptions.Item label="货币">{hotel?.currency}</Descriptions.Item>
                 </Descriptions>
 
