@@ -1,0 +1,992 @@
+[
+  {
+    "nameCn": "布丁严选酒店(上海环球港金沙江路店)",
+    "nameEn": "Pod Choice Hotel (Shanghai Huanqiugang Jinshajiang Lu Road)",
+    "address": "近华东师范大学(普陀校区)",
+    "starRating": 2,
+    "openingDate": "2016-06-30T00:00:00Z",
+    "cityCode": "2",
+    "price": "117.0",
+    "crossLinePrice": "128.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 1032,
+    "shortTags": [
+      "DELIVERY_ROBOT",
+      "FREE_LAUNDRY",
+      "SUITE",
+      "NON_SMOKING_FLOOR",
+      "HEATING",
+      "FREE_LUGGAGE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc1h12000bxcxszr0C43_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc1h12000bxcxszr0C43_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.242719,
+    "longitude": 121.407987,
+    "rooms": []
+  },
+  {
+    "nameCn": "布丁严选酒店(上海中环百联铜川路地铁站店)",
+    "nameEn": "Pod Choice Hotel (Shanghai Zhonghuan Bailian Tongchuan Road Subway Station)",
+    "address": "近真光路地铁站",
+    "starRating": 0,
+    "openingDate": "2022-08-09T00:00:00Z",
+    "cityCode": "2",
+    "price": "116.0",
+    "crossLinePrice": "127.0",
+    "currency": "RMB",
+    "score": 4.4,
+    "totalReviews": 650,
+    "shortTags": [
+      "CINEMA_ROOM",
+      "FAMILY_ROOM",
+      "LAUNDRY_ROOM",
+      "FREE_LUGGAGE",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0203r120009nsnutu5493_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0203r120009nsnutu5493_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.257405,
+    "longitude": 121.396221,
+    "rooms": []
+  },
+  {
+    "nameCn": "布丁严选酒店(上海行知路地铁站店)",
+    "nameEn": "Pod Choice Hotel (Shanghai Xingzhi Road Subway Station)",
+    "address": "近行知路地铁站",
+    "starRating": 2,
+    "openingDate": "2015-07-20T00:00:00Z",
+    "cityCode": "2",
+    "price": "109.0",
+    "crossLinePrice": "159.0",
+    "currency": "RMB",
+    "score": 4.5,
+    "totalReviews": 329,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "CINEMA_ROOM",
+      "FAMILY_ROOM",
+      "LAUNDRY_ROOM",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc1d12000cvfyid4E47A_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc1d12000cvfyid4E47A_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.289245,
+    "longitude": 121.414316,
+    "rooms": []
+  },
+  {
+    "nameCn": "喆啡酒店(上海环球港华师大店)",
+    "nameEn": "JAMES JOYCE COFFETEL( Shanghai Global Harbor Huashida Hotel)",
+    "address": "近华东师范大学(普陀校区)",
+    "starRating": 3,
+    "openingDate": "2023-08-22T00:00:00Z",
+    "cityCode": "2",
+    "price": "205.0",
+    "crossLinePrice": "215.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 853,
+    "shortTags": [
+      "VINTAGE_STYLE",
+      "LAUNDRY_ROOM",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc5s12000eyh6u8w55A7_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc5s12000eyh6u8w55A7_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.235071,
+    "longitude": 121.417041,
+    "rooms": []
+  },
+  {
+    "nameCn": "筎归酒店(上海中山公园金沙江路地铁站店)",
+    "nameEn": "Jungui Hotel (Shanghai Jinshajiang Road Metro Station Branch)",
+    "address": "近中山公园地铁站",
+    "starRating": 2,
+    "openingDate": "2015-05-07T00:00:00Z",
+    "cityCode": "2",
+    "price": "160.0",
+    "crossLinePrice": "169.0",
+    "currency": "RMB",
+    "score": 4.5,
+    "totalReviews": 1355,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "BUTLER_SERVICE",
+      "SMART_CONTROL",
+      "CHARGING_PILE",
+      "FREE_LUGGAGE",
+      "FAMILY_ROOM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc3912000fohs40mC011_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc3912000fohs40mC011_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.235387,
+    "longitude": 121.419229,
+    "rooms": []
+  },
+  {
+    "nameCn": "维也纳国际酒店(上海金沙江路长风公园店)",
+    "nameEn": "Vienna International Hotel (Shanghai Jinshajiang Road)",
+    "address": "近长风公园",
+    "starRating": 3,
+    "openingDate": "2023-08-09T00:00:00Z",
+    "cityCode": "2",
+    "price": "188.0",
+    "crossLinePrice": "220.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 1750,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "HEATING",
+      "ROBOT_SERVICE",
+      "NON_SMOKING_FLOOR",
+      "FREE_WIFI",
+      "FREE_PARKING"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/200a0r000000h2fx28B5D_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/200a0r000000h2fx28B5D_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.236783,
+    "longitude": 121.404971,
+    "rooms": []
+  },
+  {
+    "nameCn": "青季酒店MINI(上海普陀华师大兰溪路店)",
+    "nameEn": "Qingji MINI Hotel (Shanghai Putuo East China Normal University Lanxi Road Branch)",
+    "address": "近长风公园",
+    "starRating": 2,
+    "openingDate": "2023-05-27T00:00:00Z",
+    "cityCode": "2",
+    "price": "98.0",
+    "crossLinePrice": "169.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 1053,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "LAUNDRY_ROOM",
+      "COFFEE_MACHINE",
+      "HEATING",
+      "KTV",
+      "CHESS_ROOM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc4w12000dv6wca998CC_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc4w12000dv6wca998CC_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.246003,
+    "longitude": 121.411363,
+    "rooms": []
+  },
+  {
+    "nameCn": "智仁商旅酒店(上海曹杨路隆德路地铁站店)",
+    "nameEn": "Hotel zhiren",
+    "address": "近曹杨路地铁站",
+    "starRating": 2,
+    "openingDate": "2024-12-02T00:00:00Z",
+    "cityCode": "2",
+    "price": "143.0",
+    "crossLinePrice": "176.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 2012,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "FREE_WIFI",
+      "LAUNDRY_ROOM",
+      "MEETING_HALL",
+      "SUITE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0201k1200099h7vw69417_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0201k1200099h7vw69417_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.240576,
+    "longitude": 121.427318,
+    "rooms": []
+  },
+  {
+    "nameCn": "宿适精选酒店(曹杨路地铁站店)",
+    "nameEn": "Sushi Select Hotel (Caoyang Road Subway Station)",
+    "address": "近隆德路地铁站",
+    "starRating": 2,
+    "openingDate": "2025-12-09T00:00:00Z",
+    "cityCode": "2",
+    "price": "97.0",
+    "crossLinePrice": "170.0",
+    "currency": "RMB",
+    "score": 4.1,
+    "totalReviews": 438,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "FAMILY_ROOM",
+      "NON_SMOKING_FLOOR",
+      "HEATING",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc4s12000qi5sc3y3415_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc4s12000qi5sc3y3415_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.241572,
+    "longitude": 121.427512,
+    "rooms": []
+  },
+  {
+    "nameCn": "汉庭酒店(上海金沙江路地铁站店)",
+    "nameEn": "HanTing Hotel (Shanghai Jinshajiang Road Subway Station)",
+    "address": "近华东师范大学(普陀校区)",
+    "starRating": 2,
+    "openingDate": "2015-10-22T00:00:00Z",
+    "cityCode": "2",
+    "price": "220.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 992,
+    "shortTags": [
+      "DRYER",
+      "ROBOT_SERVICE",
+      "NON_SMOKING_FLOOR",
+      "SMART_CONTROL",
+      "BUFFET_BREAKFAST",
+      "SELF_CHECKIN"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0206p1200093j6q977939_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0206p1200093j6q977939_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.236171,
+    "longitude": 121.417141,
+    "rooms": []
+  },
+  {
+    "nameCn": "一间森林酒店(上海中山公园江苏路地铁站店)",
+    "nameEn": "Iforest Hotel(Jiangsu Road Station)",
+    "address": "近江苏路地铁站",
+    "starRating": 2,
+    "openingDate": "2018-07-06T00:00:00Z",
+    "cityCode": "2",
+    "price": "74.0",
+    "crossLinePrice": "128.0",
+    "currency": "RMB",
+    "score": 4.1,
+    "totalReviews": 888,
+    "shortTags": [
+      "FREE_WIFI",
+      "FAMILY_ROOM",
+      "NON_SMOKING_FLOOR"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc0512000asnirc2440D_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc0512000asnirc2440D_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.230503,
+    "longitude": 121.43387,
+    "rooms": []
+  },
+  {
+    "nameCn": "布丁严选酒店(上海中山公园店)",
+    "nameEn": "Pod Inn Yanxuan Hotel (Shanghai Zhongshan Park)",
+    "address": "近中山公园地铁站",
+    "starRating": 2,
+    "openingDate": "2018-05-09T00:00:00Z",
+    "cityCode": "2",
+    "price": "127.0",
+    "currency": "RMB",
+    "score": 4.2,
+    "totalReviews": 516,
+    "shortTags": [
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/020521200095396db5602_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/020521200095396db5602_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.224294,
+    "longitude": 121.412538,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家精选酒店(上海中山公园江苏路地铁站店)",
+    "nameEn": "Homeinn Plus Hotel (Shanghai Zhongshan Park Jiangsu Road Subway Station)",
+    "address": "近中山公园",
+    "starRating": 3,
+    "openingDate": "2021-03-31T00:00:00Z",
+    "cityCode": "2",
+    "price": "184.0",
+    "crossLinePrice": "226.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 1151,
+    "shortTags": [
+      "LAUNDRY_ROOM",
+      "FREE_LUGGAGE",
+      "FREE_WIFI",
+      "NON_SMOKING_FLOOR"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc2n12000dedadbl0A1A_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc2n12000dedadbl0A1A_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.232183,
+    "longitude": 121.431459,
+    "rooms": []
+  },
+  {
+    "nameCn": "布丁严选酒店(上海田子坊马当路地铁站店)",
+    "nameEn": "Pod Choice Hotel (Shanghai Tianzifang Madang Road Subway Station)",
+    "address": "近打浦桥",
+    "starRating": 2,
+    "openingDate": "2020-12-26T00:00:00Z",
+    "cityCode": "2",
+    "price": "130.0",
+    "crossLinePrice": "142.0",
+    "currency": "RMB",
+    "score": 4.2,
+    "totalReviews": 482,
+    "shortTags": [
+      "SMART_CONTROL",
+      "FREE_WIFI",
+      "NON_SMOKING_FLOOR",
+      "FAMILY_ROOM",
+      "FREE_LUGGAGE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc5512000hykwoi35A3C_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc5512000hykwoi35A3C_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.212518,
+    "longitude": 121.483655,
+    "rooms": []
+  },
+  {
+    "nameCn": "青旅酒店(上海环球港店)",
+    "nameEn": "Youth Hostel (Shanghai Global Harbor)",
+    "address": "近中山公园地铁站",
+    "starRating": 2,
+    "openingDate": "2015-07-29T00:00:00Z",
+    "cityCode": "2",
+    "price": "53.0",
+    "crossLinePrice": "65.0",
+    "currency": "RMB",
+    "score": 4.3,
+    "totalReviews": 509,
+    "shortTags": [
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0204j12000iwr4d4q8279_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0204j12000iwr4d4q8279_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.240379,
+    "longitude": 121.422843,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家酒店·neo(上海中山公园延安西路店)",
+    "nameEn": "Homeinn · neo (Shanghai Zhongshan Park Yanan West Road)",
+    "address": "近中山公园地铁站",
+    "starRating": 2,
+    "openingDate": "2022-05-25T00:00:00Z",
+    "cityCode": "2",
+    "price": "170.0",
+    "crossLinePrice": "195.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 1703,
+    "shortTags": [
+      "FREE_PARKING",
+      "BUFFET_BREAKFAST",
+      "MEETING_HALL",
+      "LAUNDRY_ROOM",
+      "FREE_LUGGAGE",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc2912000cfmas2i1FF0_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc2912000cfmas2i1FF0_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.217203,
+    "longitude": 121.432429,
+    "rooms": []
+  },
+  {
+    "nameCn": "景莱酒店∙臻选(上海真如地铁站店)",
+    "nameEn": "Jinglai Hotel∙Selection (Shanghai Zhenru Metro Station Branch)",
+    "address": "近上海真如环宇城MAX",
+    "starRating": 3,
+    "openingDate": "2019-04-20T00:00:00Z",
+    "cityCode": "2",
+    "price": "157.0",
+    "crossLinePrice": "309.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 3123,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "SMART_CONTROL",
+      "GYM",
+      "DRYER",
+      "ROBOT_SERVICE",
+      "INSTAGRAMMABLE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc5n12000cocgiud1947_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc5n12000cocgiud1947_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.252665,
+    "longitude": 121.408898,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家派柏·云酒店(上海淞虹路地铁站店)",
+    "nameEn": "Home Inn Pebble Hotel (Shanghai Songhong Road Subway Station)",
+    "address": "近淞虹路地铁站",
+    "starRating": 2,
+    "openingDate": "2019-01-26T00:00:00Z",
+    "cityCode": "2",
+    "price": "111.0",
+    "crossLinePrice": "127.0",
+    "currency": "RMB",
+    "score": 4.5,
+    "totalReviews": 789,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "FREE_LUGGAGE",
+      "FREE_WIFI",
+      "FAMILY_ROOM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0202x1200097cfpox1294_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0202x1200097cfpox1294_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.228259,
+    "longitude": 121.368224,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家酒店·neo(上海曹杨新村枫桥路地铁站店)",
+    "nameEn": "Homeinn · neo (Shanghai Caoyang New Village Fengqiao Road Subway Station)",
+    "address": "近上海真如环宇城MAX",
+    "starRating": 2,
+    "openingDate": "2016-04-02T00:00:00Z",
+    "cityCode": "2",
+    "price": "190.0",
+    "crossLinePrice": "222.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 1803,
+    "shortTags": [
+      "FREE_PARKING",
+      "ROBOT_SERVICE",
+      "LAUNDRY_ROOM",
+      "FAMILY_ROOM",
+      "NON_SMOKING_FLOOR",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0200z120009y5shvg0F10_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0200z120009y5shvg0F10_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.24756,
+    "longitude": 121.415693,
+    "rooms": []
+  },
+  {
+    "nameCn": "汉庭酒店(上海环球港华师大店)",
+    "nameEn": "HanTing Hotel (Shanghai Global Harbor East China Normal University)",
+    "address": "近隆德路地铁站",
+    "starRating": 2,
+    "openingDate": "2020-01-09T00:00:00Z",
+    "cityCode": "2",
+    "price": "206.0",
+    "crossLinePrice": "220.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 650,
+    "shortTags": [
+      "COFFEE_MACHINE",
+      "LAUNDRY_ROOM",
+      "FAMILY_ROOM",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc2012000myyulbnDF6B_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc2012000myyulbnDF6B_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.23979,
+    "longitude": 121.424807,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家商旅酒店(上海外滩城隍庙店)",
+    "nameEn": "Homeinn Selected Hotel (Shanghai Bund City God Temple)",
+    "address": "近外滩",
+    "starRating": 3,
+    "openingDate": "2016-02-27T00:00:00Z",
+    "cityCode": "2",
+    "price": "225.0",
+    "crossLinePrice": "245.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 3264,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "INSTAGRAMMABLE",
+      "FREE_LUGGAGE",
+      "NON_SMOKING_FLOOR",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0206o120008fpxs2d91DE_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0206o120008fpxs2d91DE_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.22803,
+    "longitude": 121.497351,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海外滩豫园地铁站亚朵酒店",
+    "nameEn": "Atour Hotel Shanghai Bund Yuyuan Subway Station",
+    "address": "近外滩",
+    "starRating": 4,
+    "openingDate": "2022-06-12T00:00:00Z",
+    "cityCode": "2",
+    "price": "700.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 1640,
+    "shortTags": [
+      "INSTAGRAMMABLE",
+      "SMART_CONTROL",
+      "GYM",
+      "LAUNDRY_ROOM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc3t12000ng2319fAF0D_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc3t12000ng2319fAF0D_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.235349,
+    "longitude": 121.497767,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海外滩璞硯酒店",
+    "nameEn": "The Bund Puyan Hotel, Shanghai",
+    "address": "近南京路步行街",
+    "starRating": 5,
+    "openingDate": "2025-08-02T00:00:00Z",
+    "cityCode": "2",
+    "price": "798.0",
+    "crossLinePrice": "1249.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 16531,
+    "shortTags": [],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc4t12000hf08fq76B5B_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc4t12000hf08fq76B5B_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.246224,
+    "longitude": 121.488844,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海外滩雅致酒店",
+    "nameEn": "Mehood Elegant Hotel Shanghai Bund",
+    "address": "近外滩",
+    "starRating": 5,
+    "openingDate": "2020-11-21T00:00:00Z",
+    "cityCode": "2",
+    "price": "698.0",
+    "crossLinePrice": "1198.0",
+    "currency": "RMB",
+    "score": 4.4,
+    "totalReviews": 8384,
+    "shortTags": [
+      "GYM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0205b1200093rxaulCC45_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0205b1200093rxaulCC45_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.254793,
+    "longitude": 121.49582,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海外滩花间堂·愉园",
+    "nameEn": "Blossom House Shanghai On The Bund",
+    "address": "近外滩",
+    "starRating": 5,
+    "openingDate": "2025-09-20T00:00:00Z",
+    "cityCode": "2",
+    "price": "892.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 8908,
+    "shortTags": [],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc5512000qutsn8vB45C_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc5512000qutsn8vB45C_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.235486,
+    "longitude": 121.498526,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海外滩英迪格酒店",
+    "nameEn": "Hotel Indigo SHANGHAI ON THE BUND by IHG",
+    "address": "近外滩",
+    "starRating": 5,
+    "openingDate": "2021-08-19T00:00:00Z",
+    "cityCode": "2",
+    "price": "1073.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 5141,
+    "shortTags": [],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/020551200065btbkp413A_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/020551200065btbkp413A_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.232067,
+    "longitude": 121.506553,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海凯宾斯基大酒店",
+    "nameEn": "Grand Kempinski Hotel Shanghai",
+    "address": "近东方明珠",
+    "starRating": 5,
+    "openingDate": "2020-09-23T00:00:00Z",
+    "cityCode": "2",
+    "price": "926.0",
+    "crossLinePrice": "1090.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 8847,
+    "shortTags": [
+      "FREE_PARKING"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/20060i00000099uznE93F_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/20060i00000099uznE93F_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.248253,
+    "longitude": 121.510726,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海浦东星河湾酒店",
+    "nameEn": "Chateau Star River Pudong Shanghai",
+    "address": "近上海新国际博览中心",
+    "starRating": 5,
+    "openingDate": "2017-11-26T00:00:00Z",
+    "cityCode": "2",
+    "price": "597.0",
+    "crossLinePrice": "1150.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 4972,
+    "shortTags": [
+      "INSTAGRAMMABLE",
+      "MEETING_HALL",
+      "CHARGING_PILE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0202n120009o30znw1970_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0202n120009o30znw1970_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.19789,
+    "longitude": 121.544079,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海外滩豫园美居酒店",
+    "nameEn": "Mercure Shanghai Yu Garden On the Bund",
+    "address": "近外滩",
+    "starRating": 4,
+    "openingDate": "2021-10-19T00:00:00Z",
+    "cityCode": "2",
+    "price": "515.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 8347,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "FREE_LAUNDRY",
+      "VINTAGE_STYLE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/200s1e000001f2q4e86C8_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/200s1e000001f2q4e86C8_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.227714,
+    "longitude": 121.495509,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海外滩茂悦大酒店",
+    "nameEn": "Hyatt On The Bund Shanghai",
+    "address": "近外滩",
+    "starRating": 5,
+    "openingDate": "2025-01-23T00:00:00Z",
+    "cityCode": "2",
+    "price": "1099.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 2927,
+    "shortTags": [
+      "FREE_PARKING"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc4d12000g2df3oz5CD2_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc4d12000g2df3oz5CD2_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.251136,
+    "longitude": 121.499545,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海外滩逸扉酒店",
+    "nameEn": "UrCove by Hyatt Shanghai on the Bund",
+    "address": "近外滩",
+    "starRating": 4,
+    "openingDate": "2016-07-27T00:00:00Z",
+    "cityCode": "2",
+    "price": "789.0",
+    "crossLinePrice": "1226.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 521,
+    "shortTags": [
+      "COFFEE_MACHINE",
+      "SMART_CONTROL"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc0p12000pgwgsqrC4AD_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc0p12000pgwgsqrC4AD_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.236869,
+    "longitude": 121.499949,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海城中希尔顿酒店",
+    "nameEn": "Hilton Shanghai City Center",
+    "address": "近江苏路地铁站",
+    "starRating": 5,
+    "openingDate": "2016-06-12T00:00:00Z",
+    "cityCode": "2",
+    "price": "1050.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 3888,
+    "shortTags": [
+      "INSTAGRAMMABLE",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc3r12000kgiw22p977A_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc3r12000kgiw22p977A_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.223918,
+    "longitude": 121.442968,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海淳大万丽酒店",
+    "nameEn": "Renaissance Shanghai Pudong Hotel",
+    "address": "近上海科技馆地铁站",
+    "starRating": 5,
+    "openingDate": "2023-09-13T00:00:00Z",
+    "cityCode": "2",
+    "price": "682.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 2789,
+    "shortTags": [
+      "FREE_PARKING"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/02072120008z4dy7k749A_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/02072120008z4dy7k749A_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.230173,
+    "longitude": 121.558401,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海雅居乐万豪侯爵酒店",
+    "nameEn": "Shanghai Marriott Marquis City Centre",
+    "address": "近南京路步行街",
+    "starRating": 5,
+    "openingDate": "2016-07-10T00:00:00Z",
+    "cityCode": "2",
+    "price": "1059.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 7752,
+    "shortTags": [
+      "MEETING_HALL"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc3e12000o7ftmisA8DD_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc3e12000o7ftmisA8DD_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.242619,
+    "longitude": 121.480064,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海静安英迪格酒店",
+    "nameEn": "Hotel Indigo SHANGHAI JING'AN by IHG",
+    "address": "近上海站",
+    "starRating": 5,
+    "openingDate": "2022-03-28T00:00:00Z",
+    "cityCode": "2",
+    "price": "1017.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 5861,
+    "shortTags": [],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/20071a0000018v9gvF323_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/20071a0000018v9gvF323_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.249923,
+    "longitude": 121.459089,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海北外滩金辉索菲特酒店",
+    "nameEn": "Sofitel Shanghai North Bund",
+    "address": "近南京路步行街",
+    "starRating": 5,
+    "openingDate": "2018-03-21T00:00:00Z",
+    "cityCode": "2",
+    "price": "1018.0",
+    "crossLinePrice": "1198.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 7744,
+    "shortTags": [
+      "INSTAGRAMMABLE",
+      "SMART_CONTROL"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc2k12000f3xvx6o2CBA_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc2k12000f3xvx6o2CBA_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.259667,
+    "longitude": 121.498671,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海明天广场JW万豪酒店",
+    "nameEn": "JW Marriott Hotel Shanghai at Tomorrow Square",
+    "address": "近南京路步行街",
+    "starRating": 5,
+    "openingDate": "2024-05-11T00:00:00Z",
+    "cityCode": "2",
+    "price": "1169.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 1143,
+    "shortTags": [
+      "FREE_WIFI",
+      "GYM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/200l0f0000007hj6zB42E_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/200l0f0000007hj6zB42E_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.236381,
+    "longitude": 121.476206,
+    "rooms": []
+  },
+  {
+    "nameCn": "全季酒店(上海外滩城隍庙店)",
+    "nameEn": "JI Hotel (Shanghai the Bund, City God Temple)",
+    "address": "近外滩",
+    "starRating": 3,
+    "openingDate": "2021-05-05T00:00:00Z",
+    "cityCode": "2",
+    "price": "355.0",
+    "crossLinePrice": "409.0",
+    "currency": "RMB",
+    "score": 4.4,
+    "totalReviews": 3804,
+    "shortTags": [
+      "LAUNDRY_ROOM",
+      "ROBOT_SERVICE",
+      "BUFFET_BREAKFAST"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/200j0d0000006s0pnBCF8_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/200j0d0000006s0pnBCF8_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.228276,
+    "longitude": 121.498018,
+    "rooms": []
+  },
+  {
+    "nameCn": "OPARTMENT远东饭店",
+    "nameEn": "OPARTMENT The Far Eastern Hotel",
+    "address": "近外滩",
+    "starRating": 5,
+    "openingDate": "2015-11-19T00:00:00Z",
+    "cityCode": "2",
+    "price": "1188.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 2708,
+    "shortTags": [
+      "INSTAGRAMMABLE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc5y12000bv5fnj138F7_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc5y12000bv5fnj138F7_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.235883,
+    "longitude": 121.484385,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海世博陆家嘴滨江中心亚朵S酒店",
+    "nameEn": "Atour S Hotel(Shanghai World Expo Lujiaizui Riverside Center)",
+    "address": "近上海世博展览馆",
+    "starRating": 5,
+    "openingDate": "2019-09-13T00:00:00Z",
+    "cityCode": "2",
+    "price": "518.0",
+    "crossLinePrice": "998.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 3535,
+    "shortTags": [
+      "ROBOT_SERVICE",
+      "FREE_PARKING"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/020641200096zdp6oA035_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/020641200096zdp6oA035_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 31.200711,
+    "longitude": 121.513543,
+    "rooms": []
+  }
+]
