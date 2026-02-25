@@ -1,10 +1,11 @@
 import type { APIAuthRole, AppAxiosRequestConfig, IAuthLoginRequest, IAuthRegisterRequest } from "./types/auth";
-import type { IHotelCreateRequest, IPromotionCreateRequest } from "./types/hotel";
+import type { IAdminHotelQuery, IAdminRejectRequest, IHotelCreateRequest, IPromotionCreateRequest } from "./types/hotel";
 import type { IRoomCreateRequest } from "./types/room";
 
 const API_ROOT = '';
 
 const API_MERCHANT_HOTEL = 'api/merchant/hotels';
+const API_ADMIN_HOTEL = 'api/admin/hotels';
 const API_HOTEL = 'hotels';
 const API_ROOM = 'rooms';
 
@@ -126,4 +127,45 @@ export const endpoint = {
       method:'DELETE',
     });
   },
+  //admin
+  //hotel
+  getListHotelAdmin:(query:IAdminHotelQuery):AppAxiosRequestConfig<any>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_ADMIN_HOTEL}`,
+      method:'GET',
+      params:query,
+    });
+  },
+  postApproveAdmin:(id:number):AppAxiosRequestConfig<any>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_ADMIN_HOTEL}/${id}/approve`,
+      method:'POST',
+    });
+  },
+  postRejectAdmin:(id:number, rejectInfo:IAdminRejectRequest):AppAxiosRequestConfig<IAdminRejectRequest>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_ADMIN_HOTEL}/${id}/reject`,
+      method:'POST',
+      data:rejectInfo,
+    });
+  },
+  postOfflineAdmin:(id:number):AppAxiosRequestConfig<any>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_ADMIN_HOTEL}/${id}/offline`,
+      method:'POST',
+    });
+  },
+  postRestoreAdmin:(id:number):AppAxiosRequestConfig<any>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_ADMIN_HOTEL}/${id}/restore`,
+      method:'POST',
+    });
+  },
+  postApproveAllAdmin:():AppAxiosRequestConfig<any>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_ADMIN_HOTEL}/approve-all`,
+      method:'POST',
+    });
+  },
+
 }

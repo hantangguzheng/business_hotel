@@ -1,27 +1,27 @@
 import type { IImagesPayload } from "@/api/types/api"
-import type { CityCode, HotelTag, PromotionType } from "@/types/hotel"
+import type { CityCode, HotelStatus, HotelTag, PromotionType } from "@/types/hotel"
 
 
 export interface IHotelCreateRequest extends IImagesPayload {
-    nameCn:string
-    nameEn:string
-    address:string
-    starRating:number
-    cityCode:string
-    openingDate:string
+    nameCn: string
+    nameEn: string
+    address: string
+    starRating: number
+    cityCode: string
+    openingDate: string
     shortTags?: HotelTag[]
 
-    score?:number
-    totalReviews?:number
-    
-    latitude:number
-    longitude:number
+    score?: number
+    totalReviews?: number
+
+    latitude: number
+    longitude: number
 
     price: string
     crossLinePrice?: string
     currency?: string
 
-    imageUrls?:string[]
+    imageUrls?: string[]
 
 }
 
@@ -43,7 +43,7 @@ export interface IHotelListResponseSingle {
     latitude: number;
     longitude: number;
     merchantId: number;
-    status: number;
+    status: HotelStatus;
     auditReason: string | null;
 }
 
@@ -55,12 +55,22 @@ export interface IPromotionCreateRequest {
 }
 
 export interface IPromotionListRespone {
-    id:number,
-    hotelId:number,    
+    id: number,
+    hotelId: number,
     promotionType: PromotionType;
     discount: string;
     startDate: string;
     endDate: string;
     createAt: string;
     updatedAt: string;
+}
+
+export interface IAdminHotelQuery {
+    status?: HotelStatus;
+    cityCode?: CityCode;
+    keyword?: string;
+}
+
+export interface IAdminRejectRequest {
+    auditReason: string;
 }
