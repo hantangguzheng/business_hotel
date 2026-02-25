@@ -7,6 +7,9 @@ import { HotelCreatePage } from '@/pages/merchant/HotelCreatePage';
 import { HotelDetailPage } from '@/pages/merchant/HotelDetailPage';
 import { HotelEditPage } from '@/pages/merchant/HotelEditPage';
 import { HotelsPage } from '@/pages/merchant/HotelsPage';
+import { RoomCreatePage } from '@/pages/merchant/RoomCreatePage';
+import { RoomDetailPage } from '@/pages/merchant/RoomDetailPage';
+import { RoomEditPage } from '@/pages/merchant/RoomEditPage';
 import { RoomsPage } from '@/pages/merchant/RoomsPage';
 import type { AuthRole } from '@/types/auth';
 import { App } from 'antd';
@@ -50,13 +53,14 @@ const RoleGaurd = ({ allowedRoles }: RoleGaurdProps) => {
         return <Navigate to="/auth/login" replace />;
     }
     if (!(userobj?.role) || !(allowedRoles.includes(userobj.role))) {
-        msg.open({
-            content: '用户权限不匹配',
-            type: 'error',
-            key: msgLoadingKey,
-            duration: 2,
-        });
-        return <Navigate to="/" replace />;
+        // msg.open({
+        //     content: '用户权限不匹配',
+        //     type: 'error',
+        //     key: msgLoadingKey,
+        //     duration: 2,
+        // });
+        // return <Navigate to="/" replace />;
+        return <div>uuu</div>;
     }
     msg.destroy(msgLoadingKey);
 
@@ -108,6 +112,18 @@ export const AppRouter = createBrowserRouter([
                 {
                     path: 'hotel/:id/rooms',
                     element: <RoomsPage/>,
+                },
+                {
+                    path: 'hotel/:id/room/create',
+                    element: <RoomCreatePage/>,
+                },
+                {
+                    path: 'hotel/:id/room/:rid',
+                    element: <RoomDetailPage/>,
+                },
+                {
+                    path: 'hotel/:id/room/:rid/edit',
+                    element: <RoomEditPage/>,
                 },
             ],
         },]
