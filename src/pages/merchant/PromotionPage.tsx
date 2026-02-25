@@ -7,7 +7,7 @@ import { endpoint } from '@/api/endpoint';
 import useAxios from 'axios-hooks';
 import { useState } from 'react';
 import { useHotels } from '@/hooks/merchant';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { promotionTypeMapping } from '@/utils/hotelUtil';
 import type { PromotionType } from '@/types/hotel';
 import type { IPromotionCreateRequest, IPromotionListRespone } from '@/api/types/hotel';
@@ -23,9 +23,13 @@ export function PromotionsPage() {
     const { id } = useParams();
     const navigate = useNavigate();
     const { message: msg } = App.useApp();
-    const { getHotel } = useHotels();
+    
+    const isAdmin = useLocation().pathname.startsWith('/admin');
+    const { getHotel } = useHotels(!isAdmin);
     const hotel = getHotel(Number(id));
     const [form] = Form.useForm();
+
+    const rolePrefix = isAdmin?'admin':'merchant';
 
     const [modalOpen, setModalOpen] = useState(false);
     const [editingPromotion, setEditingPromotion] = useState<IPromotionListRespone | null>(null);
@@ -169,8 +173,8 @@ export function PromotionsPage() {
             <Breadcrumb
                 className={styles.breadcrumb}
                 items={[
-                    { title: <a onClick={() => navigate('/merchant/hotels')}>酒店信息管理</a> },
-                    { title: <a onClick={() => navigate(`/merchant/hotel/${id}`)}>{hotel?.nameCn ?? '酒店详情'}</a> },
+                    { title: <a onClick={() => navigate(`/${rolePrefix}/hotels`)}>酒店信息管理</a> },
+                    { title: <a onClick={() => navigate(`/${rolePrefix}/hotel/${id}`)}>{hotel?.nameCn ?? '酒店详情'}</a> },
                     { title: '促销管理' },
                 ]}
             />

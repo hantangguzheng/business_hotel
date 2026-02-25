@@ -13,9 +13,12 @@ export function RoomDetailPage() {
     const { id, rid } = useParams();
     const navigate = useNavigate();
     const { state } = useLocation();
-    const { getHotel } = useHotels();
+    const isAdmin = useLocation().pathname.startsWith('/admin');
+    const { getHotel } = useHotels(!isAdmin);
     const hotel = getHotel(Number(id));
     const roomSt: IRoomListResponse | undefined = state?.room;
+
+    const rolePrefix = isAdmin ? 'admin' : 'merchant';
 
     const [{ data: rooms }] = useAxios<IRoomListResponse[]>(
         endpoint.getListRooms(Number(id)), { manual: !!roomSt }  // 没有 state 时才请求
@@ -28,9 +31,9 @@ export function RoomDetailPage() {
             <Breadcrumb
                 className={styles.breadcrumb}
                 items={[
-                    { title: <a onClick={() => navigate('/merchant/hotels')}>酒店信息管理</a> },
-                    { title: <a onClick={() => navigate(`/merchant/hotel/${id}`)}>{hotel?.nameCn ?? '酒店详情'}</a> },
-                    { title: <a onClick={() => navigate(`/merchant/hotel/${id}/rooms`)}>房间管理</a> },
+                    { title: <a onClick={() => navigate(`/${rolePrefix}/hotels`)}>酒店信息管理</a> },
+                    { title: <a onClick={() => navigate(`/${rolePrefix}/hotel/${id}`)}>{hotel?.nameCn ?? '酒店详情'}</a> },
+                    { title: <a onClick={() => navigate(`/${rolePrefix}/hotel/${id}/rooms`)}>房间管理</a> },
                     { title: room?.name ?? '房间详情' },
                 ]}
             />
@@ -40,17 +43,17 @@ export function RoomDetailPage() {
                     <Space>
                         <Button
                             icon={<ArrowLeftOutlined />}
-                            onClick={() => navigate(`/merchant/hotel/${id}/rooms`)}
+                            onClick={() => navigate(`/${rolePrefix}/hotel/${id}/rooms`)}
                         >
                             返回
                         </Button>
-                        <Button
+                        {!isAdmin && (<Button
                             type="primary"
                             icon={<EditOutlined />}
-                            onClick={() => navigate(`/merchant/hotel/${id}/room/${rid}/edit`, { state: { room } })}
+                            onClick={() => navigate(`/${rolePrefix}/hotel/${id}/room/${rid}/edit`, { state: { room } })}
                         >
                             编辑
-                        </Button>
+                        </Button>)}
                     </Space>
                 }
             />

@@ -1,7 +1,7 @@
 import { Breadcrumb, Button, Popconfirm, Space, Table, Image, App } from 'antd';
 import styles from './RoomsPage.module.css';
 import { DeleteOutlined, EditOutlined, EyeOutlined, PlusOutlined } from '@ant-design/icons';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { useHotels } from '@/hooks/merchant';
 import useAxios from 'axios-hooks';
 import { endpoint } from '@/api/endpoint';
@@ -14,8 +14,11 @@ export function RoomsPage() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { message: msg } = App.useApp();
-  const { getHotel } = useHotels();
+  const isAdmin = useLocation().pathname.startsWith('/admin');
+  const { getHotel } = useHotels(!isAdmin);
   const hotel = getHotel(Number(id));
+
+  const rolePrefix = isAdmin?'admin':'merchant';
 
   const [{ data, loading }, refetch] = useAxios<IRoomListResponse[]>(
     endpoint.getListRooms(Number(id))
@@ -88,13 +91,13 @@ export function RoomsPage() {
         <Space>
           <Button
             icon={<EyeOutlined />}
-            onClick={() => navigate(`/merchant/hotel/${id}/room/${room.id}`, { state: { room } })}
+            onClick={() => navigate(`/${rolePrefix}/hotel/${id}/room/${room.id}`, { state: { room } })}
           >
             查看
           </Button>
-          <Button
+          {!isAdmin && (<><Button
             icon={<EditOutlined />}
-            onClick={() => navigate(`/merchant/hotel/${id}/room/${room.id}/edit`, { state: { room } })}
+            onClick={() => navigate(`/${rolePrefix}/hotel/${id}/room/${room.id}/edit`, { state: { room } })}
           >
             编辑
           </Button>
@@ -107,7 +110,7 @@ export function RoomsPage() {
             cancelText="取消"
           >
             <Button danger icon={<DeleteOutlined />}>删除</Button>
-          </Popconfirm>
+          </Popconfirm></>)}
         </Space>
       ),
     },
@@ -118,20 +121,20 @@ export function RoomsPage() {
       <Breadcrumb
         className={styles.breadcrumb}
         items={[
-          { title: <a onClick={() => navigate('/merchant/hotels')}>酒店信息管理</a> },
-          { title: <a onClick={() => navigate(`/merchant/hotel/${id}`)}>{hotel?.nameCn ?? '酒店详情'}</a> },
+          { title: <a onClick={() => navigate(`/${rolePrefix}/hotels`)}>酒店信息管理</a> },
+          { title: <a onClick={() => navigate(`/${rolePrefix}/hotel/${id}`)}>{hotel?.nameCn ?? '酒店详情'}</a> },
           { title: '房间管理' },
         ]}
       />
-      <div className={styles.toolbar}>
+      {!isAdmin && (<div className={styles.toolbar}>
         <Button
           type="primary"
           icon={<PlusOutlined />}
-          onClick={() => navigate(`/merchant/hotel/${id}/room/create`)}
+          onClick={() => navigate(`/${rolePrefix}/hotel/${id}/room/create`)}
         >
           新增房型
         </Button>
-      </div>
+      </div>)}
       <Table
         rowKey="id"
         loading={loading}

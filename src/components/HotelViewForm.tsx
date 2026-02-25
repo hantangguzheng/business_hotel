@@ -3,9 +3,11 @@ import {
     Descriptions, Image,
     Result,
     Space,
+    Tag,
 } from 'antd';
 import { cityCodeMapping, hotelTagMapping } from '@/utils/hotelUtil';
 import type { IHotelListResponseSingle } from '@/api/types/hotel';
+import type { HotelStatus } from '@/types/hotel';
 
 
 interface HotelViewFormProps {
@@ -15,6 +17,13 @@ interface HotelViewFormProps {
 }
 
 const dividerStyles = { content: { marginLeft: -60, fontWeight: 'bold' } };
+
+const statusMap: Record<HotelStatus, Record<string, string>> = {
+    0: { label: '待审核', color: 'orange' },
+    1: { label: '已发布', color: 'green' },
+    2: { label: '审核拒绝', color: 'red' },
+    3: { label: '下线', color: 'default' },
+} as const;
 
 export const HotelViewForm = ({
     hotel,
@@ -72,6 +81,16 @@ export const HotelViewForm = ({
                         </Image.PreviewGroup>
                     </Descriptions.Item>
                 </Descriptions>
+
+                {hotel?.auditReason && <><Divider titlePlacement="start" styles={dividerStyles}>审核信息</Divider>
+                    <Descriptions column={1}>
+                        <Descriptions.Item label="审核状态">
+                            <Tag color={statusMap[hotel.status]?.color}>
+                                {statusMap[hotel.status]?.label ?? '未知'}
+                            </Tag></Descriptions.Item>
+                        <Descriptions.Item label="原因">{hotel?.auditReason}</Descriptions.Item>
+
+                    </Descriptions></>}
             </>}
 
             {loading && <Result
