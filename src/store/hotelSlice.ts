@@ -1,5 +1,6 @@
 import type { IHotelListResponseSingle } from "@/api/types/hotel";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import authSlice from "./authSlice";
 
 export interface IHotelState {
     list: IHotelListResponseSingle[] | null;
@@ -32,6 +33,11 @@ const hotelSlice = createSlice({
             }
         },
     },
+    extraReducers: (builder) => {
+        builder.addCase(authSlice.actions.logout, (state) => {
+            state.list = null;
+        });
+    }
 });
 
 export default hotelSlice;

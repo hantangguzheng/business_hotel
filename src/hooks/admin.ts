@@ -7,19 +7,19 @@ import hotelSlice from "@/store/hotelSlice";
 import type { IHotelListResponseSingle } from "@/api/types/hotel";
 import { STATIC_ROOT } from "@/utils/config";
 
-export const useHotels = (enable=true) => {
+export const useAdminHotels = () => {
     const dispatch = useDispatch();
     const list = useAppSelector(s => s.hotels.list);
 
     const [{ data, loading, error }, refetch] = useAxios<IHotelListResponseSingle[]>(
-        { ...endpoint.getListHotels() }, { manual: true }
+        { ...endpoint.getListHotelAdmin({}) }, { manual: true }
     );
 
     useEffect(() => {
-        if (enable && list === null) {
+        if (list === null) {
             refetch();
         }
-    }, [list, enable]);
+    }, [list]);
 
     useEffect(() => {
         if (data) {

@@ -25,7 +25,7 @@ export interface IHotelCreateRequest extends IImagesPayload {
 
 }
 
-export interface IHotelListResponseSingle {
+export interface IHotelListResponseSingle extends IAdminHotelAdditionPayload {
     id: number;
     nameCn: string;
     nameEn?: string;
@@ -73,4 +73,8 @@ export interface IAdminHotelQuery {
 
 export interface IAdminRejectRequest {
     auditReason: string;
+}
+
+export interface IAdminHotelAdditionPayload {
+    create_at?: string;
 }
