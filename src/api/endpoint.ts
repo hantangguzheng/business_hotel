@@ -1,5 +1,5 @@
 import type { APIAuthRole, AppAxiosRequestConfig, IAuthLoginRequest, IAuthRegisterRequest } from "./types/auth";
-import type { IHotelCreateRequest } from "./types/hotel";
+import type { IHotelCreateRequest, IPromotionCreateRequest } from "./types/hotel";
 import type { IRoomCreateRequest } from "./types/room";
 
 const API_ROOT = '';
@@ -96,6 +96,33 @@ export const endpoint = {
   deleteDeleteRoom: (roomId:number):AppAxiosRequestConfig<any>=>{
     return withAuthorization({
       url:`${API_ROOT}/${API_ROOM}/${roomId}`,
+      method:'DELETE',
+    });
+  },
+  // promotion
+  getListPromotion: (id:number):AppAxiosRequestConfig<any>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_MERCHANT_HOTEL}/${id}/promotions`,
+      method:'GET',
+    });
+  },
+  postCreatePromotion: (id:number, info:IPromotionCreateRequest):AppAxiosRequestConfig<IPromotionCreateRequest>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_MERCHANT_HOTEL}/${id}/promotions`,
+      method:'POST',
+      data:info,
+    });
+  },
+  putUpdatePromotion: (id:number, pid:number, info:IPromotionCreateRequest):AppAxiosRequestConfig<IPromotionCreateRequest>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_MERCHANT_HOTEL}/${id}/promotions/${pid}`,
+      method:'PUT',
+      data:info,
+    });
+  },
+  deleteDeletePromotion: (id:number, pid:number):AppAxiosRequestConfig<any>=>{
+    return withAuthorization({
+      url:`${API_ROOT}/${API_MERCHANT_HOTEL}/${id}/promotions/${pid}`,
       method:'DELETE',
     });
   },
