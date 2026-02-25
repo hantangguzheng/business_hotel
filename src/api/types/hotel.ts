@@ -49,10 +49,18 @@ export interface IHotelListResponseSingle {
 
 export interface IPromotionCreateRequest {
     promotionType: PromotionType;
-
     discount: string;
-
     startDate: string;
-
     endDate: string;
+}
+
+export interface IPromotionListRespone {
+    id:number,
+    hotelId:number,    
+    promotionType: PromotionType;
+    discount: string;
+    startDate: string;
+    endDate: string;
+    createAt: string;
+    updatedAt: string;
 }
