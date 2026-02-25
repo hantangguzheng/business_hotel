@@ -7,6 +7,7 @@ import { HotelCreatePage } from '@/pages/merchant/HotelCreatePage';
 import { HotelDetailPage } from '@/pages/merchant/HotelDetailPage';
 import { HotelEditPage } from '@/pages/merchant/HotelEditPage';
 import { HotelsPage } from '@/pages/merchant/HotelsPage';
+import { PromotionsPage } from '@/pages/merchant/PromotionPage';
 import { RoomCreatePage } from '@/pages/merchant/RoomCreatePage';
 import { RoomDetailPage } from '@/pages/merchant/RoomDetailPage';
 import { RoomEditPage } from '@/pages/merchant/RoomEditPage';
@@ -93,6 +94,7 @@ export const AppRouter = createBrowserRouter([
             path: '/merchant',
             element: <MerchantLayout />,
             children: [
+                {index:true, element: <Navigate to="/merchant/hotels" replace />},
                 {
                     path: 'hotels',
                     element: <HotelsPage/>,
@@ -124,6 +126,10 @@ export const AppRouter = createBrowserRouter([
                 {
                     path: 'hotel/:id/room/:rid/edit',
                     element: <RoomEditPage/>,
+                },
+                {
+                    path: 'hotel/:id/promotions',
+                    element: <PromotionsPage/>,
                 },
             ],
         },]

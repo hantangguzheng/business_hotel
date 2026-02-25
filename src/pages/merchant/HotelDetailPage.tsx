@@ -79,7 +79,7 @@ export const HotelDetailPage = () => {
                         <Button
                             icon={<UnorderedListOutlined />}
                             type="primary"
-                            onClick={() => navigate(`/merchant/hotel/${id}/promotion`)}
+                            onClick={() => navigate(`/merchant/hotel/${id}/promotions`)}
                         >
                             管理促销活动
                         </Button>
