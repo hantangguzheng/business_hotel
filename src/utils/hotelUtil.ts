@@ -1,12 +1,12 @@
-import type { CityCode, HotelTag } from "@/types/hotel"
+import type { CityCode, HotelTag, PromotionType } from "@/types/hotel"
 
 
-export const cityCodeMapping:Record<CityCode, string> = {
-    "1":"北京",
-    "2":"上海",
+export const cityCodeMapping: Record<CityCode, string> = {
+    "1": "北京",
+    "2": "上海",
 }
 
-export const hotelTagMapping:Record<HotelTag, string> = {
+export const hotelTagMapping: Record<HotelTag, string> = {
     'BUFFET_BREAKFAST': '自助早餐',
     'CHESS_ROOM': '棋牌室',
     'MEMBER_BENEFITS': '享会员权益',
@@ -33,4 +33,13 @@ export const hotelTagMapping:Record<HotelTag, string> = {
     'HEATING': '全屋暖气',
     'DELIVERY_ROBOT': '送餐机器人',
     'NON_SMOKING_FLOOR': '无烟楼层',
+}
+
+export const promotionTypeMapping: Record<PromotionType, string> = {
+    FLASH_SALE: '限时特卖',
+    HOLIDAY_SPECIAL: '节假日特惠',
+    WEEKEND_DEAL: '周末特惠',
+    NEW_OPEN: '开业特惠',
+    SEASONAL: '季节性优惠',
+    MEMBER_EXCLUSIVE: '会员专享',
 }

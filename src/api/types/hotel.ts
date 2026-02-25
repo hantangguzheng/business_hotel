@@ -1,5 +1,5 @@
 import type { IImagesPayload } from "@/api/types/api"
-import type { CityCode, HotelTag } from "@/types/hotel"
+import type { CityCode, HotelTag, PromotionType } from "@/types/hotel"
 
 
 export interface IHotelCreateRequest extends IImagesPayload {
@@ -45,4 +45,14 @@ export interface IHotelListResponseSingle {
     merchantId: number;
     status: number;
     auditReason: string | null;
+}
+
+export interface IPromotionCreateRequest {
+    promotionType: PromotionType;
+
+    discount: string;
+
+    startDate: string;
+
+    endDate: string;
 }
