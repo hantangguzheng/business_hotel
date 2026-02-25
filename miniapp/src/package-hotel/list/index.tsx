@@ -10,7 +10,7 @@ import {
 import { ArrowDown, Close, Checked } from "@nutui/icons-react-taro";
 import GuestSelector from "../../components/guest-selector";
 import PriceStarPopup from "../../components/price-star-popup";
-import HotelList from "../../components/hotel-list";
+import HotelList from "./components/hotel-list";
 import { useSharedFilter } from "../../store/filter-context";
 import { searchHotels } from "../../apis/hotels";
 import {
@@ -1165,7 +1165,7 @@ function ListPage() {
   };
 
   const handleOpenDetail = (hotelId: string | number) => {
-    Taro.navigateTo({ url: `/pages/detail/index?id=${hotelId}` });
+    Taro.navigateTo({ url: `/package-hotel/detail/index?id=${hotelId}` });
   };
 
   // moved format/getPrice helpers into HotelList component
@@ -1261,7 +1261,7 @@ function ListPage() {
                 onClick={() => {
                   setPendingTripCityPick(true);
                   closeTopCards();
-                  Taro.navigateTo({ url: "/pages/city/index" });
+                  Taro.navigateTo({ url: "/package-common/city/index" });
                 }}
               >
                 <View className="list-top__trip-option-value">

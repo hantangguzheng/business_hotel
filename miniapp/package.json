@@ -38,7 +38,6 @@
   "author": "",
   "dependencies": {
     "@babel/runtime": "^7.21.5",
-    "pinyin-pro": "*",
     "@nutui/icons-react": "^3.0.1",
     "@nutui/icons-react-taro": "^1.0.5",
     "@nutui/nutui-react-taro": "^2.6.14",
@@ -58,6 +57,7 @@
     "@tarojs/shared": "4.1.11",
     "@tarojs/taro": "4.1.11",
     "antd-mobile": "^5.42.3",
+    "pinyin-pro": "*",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "zustand": "^4.4.0"
@@ -88,6 +88,7 @@
     "ts-node": "^10.9.1",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
     "typescript": "^5.1.0",
-    "webpack": "5.91.0"
+    "webpack": "5.91.0",
+    "webpack-bundle-analyzer": "^5.2.0"
   }
 }

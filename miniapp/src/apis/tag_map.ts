@@ -1,29 +1,34 @@
-import iconChargingPile from "../assets/icons/hotel-tag-charging-pile.svg";
-import iconBuFFETBreakfast from "../assets/icons/hotel-tag-buffet-breakfast.svg";
-import iconButlerService from "../assets/icons/hotel-tag-butler-service.svg";
-import iconChessRoom from "../assets/icons/hotel-tag-chess-room.svg";
-import iconCinemaRoom from "../assets/icons/hotel-tag-cinema-room.svg";
-import iconCoffeeMachine from "../assets/icons/hotel-tag-coffee-machine.svg";
-import iconDeliveryRobot from "../assets/icons/hotel-tag-delivery-robot.svg";
-import iconDryer from "../assets/icons/hotel-tag-dryer.svg";
-import iconFamilyRoom from "../assets/icons/hotel-tag-family-room.svg";
-import iconFreeLaundry from "../assets/icons/hotel-tag-free-laundry.svg";
-import iconFreeLuggage from "../assets/icons/hotel-tag-free-luggage.svg";
-import iconFreeParking from "../assets/icons/hotel-tag-free-parking.svg";
-import iconFreeWifi from "../assets/icons/hotel-tag-free-wifi.svg";
-import iconGym from "../assets/icons/hotel-tag-gym.svg";
-import iconHeating from "../assets/icons/hotel-tag-heating.svg";
-import iconInstagrammable from "../assets/icons/hotel-tag-instagrammable.svg";
-import iconKtv from "../assets/icons/hotel-tag-ktv.svg";
-import iconLaundryRoom from "../assets/icons/hotel-tag-laundry-room.svg";
-import iconMeetingHall from "../assets/icons/hotel-tag-meeting-hall.svg";
-import iconMemberBenefits from "../assets/icons/hotel-tag-member-benefits.svg";
-import iconNonSmokingFloor from "../assets/icons/hotel-tag-non-smoking-floor.svg";
-import iconRobotService from "../assets/icons/hotel-tag-robot-service.svg";
-import iconSelfCheckin from "../assets/icons/hotel-tag-self-checkin.svg";
-import iconSmartControl from "../assets/icons/hotel-tag-smart-control.svg";
-import iconSuite from "../assets/icons/hotel-tag-suite.svg";
-import iconVintageStyle from "../assets/icons/hotel-tag-vintage-style.svg";
+import { RUNTIME_CONFIG } from "../constants/env";
+
+const API_BASE_URL = RUNTIME_CONFIG.apiBaseUrl;
+const iconUrl = (name: string) => `${API_BASE_URL}/static/icons/${name}`;
+
+const iconChargingPile = iconUrl("hotel-tag-charging-pile.svg");
+const iconBuFFETBreakfast = iconUrl("hotel-tag-buffet-breakfast.svg");
+const iconButlerService = iconUrl("hotel-tag-butler-service.svg");
+const iconChessRoom = iconUrl("hotel-tag-chess-room.svg");
+const iconCinemaRoom = iconUrl("hotel-tag-cinema-room.svg");
+const iconCoffeeMachine = iconUrl("hotel-tag-coffee-machine.svg");
+const iconDeliveryRobot = iconUrl("hotel-tag-delivery-robot.svg");
+const iconDryer = iconUrl("hotel-tag-dryer.svg");
+const iconFamilyRoom = iconUrl("hotel-tag-family-room.svg");
+const iconFreeLaundry = iconUrl("hotel-tag-free-laundry.svg");
+const iconFreeLuggage = iconUrl("hotel-tag-free-luggage.svg");
+const iconFreeParking = iconUrl("hotel-tag-free-parking.svg");
+const iconFreeWifi = iconUrl("hotel-tag-free-wifi.svg");
+const iconGym = iconUrl("hotel-tag-gym.svg");
+const iconHeating = iconUrl("hotel-tag-heating.svg");
+const iconInstagrammable = iconUrl("hotel-tag-instagrammable.svg");
+const iconKtv = iconUrl("hotel-tag-ktv.svg");
+const iconLaundryRoom = iconUrl("hotel-tag-laundry-room.svg");
+const iconMeetingHall = iconUrl("hotel-tag-meeting-hall.svg");
+const iconMemberBenefits = iconUrl("hotel-tag-member-benefits.svg");
+const iconNonSmokingFloor = iconUrl("hotel-tag-non-smoking-floor.svg");
+const iconRobotService = iconUrl("hotel-tag-robot-service.svg");
+const iconSelfCheckin = iconUrl("hotel-tag-self-checkin.svg");
+const iconSmartControl = iconUrl("hotel-tag-smart-control.svg");
+const iconSuite = iconUrl("hotel-tag-suite.svg");
+const iconVintageStyle = iconUrl("hotel-tag-vintage-style.svg");
 
 export const ROOM_FACILITY_FIELDS = [
   "cleaningFacilities",

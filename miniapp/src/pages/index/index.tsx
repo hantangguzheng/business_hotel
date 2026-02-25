@@ -19,12 +19,10 @@ import {
   QQ_MAP_KEY,
   QQ_MAP_SK,
 } from "../../constants/app";
+import { RUNTIME_CONFIG } from "src/constants/env";
 import zh from "../../locales/zh";
 import en from "../../locales/en";
 import logo from "../../assets/imgs/logo.png";
-import bannerHotel1 from "../../assets/imgs/banner_hotel_1.png";
-import bannerHotel2 from "../../assets/imgs/banner_hotel_2.png";
-import bannerHotel3 from "../../assets/imgs/banner_hotel_3.png";
 import "./index.scss";
 const { cities } = require("../../utils/city");
 const md5Module = require("../../utils/md5.js");
@@ -34,6 +32,10 @@ const DEFAULT_MIN_PRICE = 0;
 const DEFAULT_MAX_PRICE = 1000000;
 const DEFAULT_MIN_STAR = 2;
 const DEFAULT_MAX_STAR = 5;
+const API_BASE_URL = RUNTIME_CONFIG.apiBaseUrl || "http://localhost:3000";
+const bannerHotel1 = `${API_BASE_URL}/static/imgs/banner_hotel_1.png`;
+const bannerHotel2 = `${API_BASE_URL}/static/imgs/banner_hotel_2.png`;
+const bannerHotel3 = `${API_BASE_URL}/static/imgs/banner_hotel_3.png`;
 
 const BANNER_ITEMS = [
   { src: bannerHotel1, hotelId: 17 },
@@ -194,7 +196,7 @@ function Index() {
   }, [checkIn, checkOut]);
 
   const handleOpenCity = () => {
-    Taro.navigateTo({ url: "/pages/city/index" });
+    Taro.navigateTo({ url: "/package-common/pages/city/index" });
   };
 
   const locateUser = (options?: { silent?: boolean }) => {
@@ -365,7 +367,7 @@ function Index() {
       .filter(([, value]) => value !== undefined && value !== null)
       .map(([key, value]) => `${key}=${encodeURIComponent(String(value))}`)
       .join("&");
-    return `/pages/list/index?${query}`;
+    return `/package-hotel/list/index?${query}`;
   };
 
   const showMissingField = (message: string) => {
@@ -434,7 +436,7 @@ function Index() {
       // ignore fetch error and continue navigation
     }
 
-    Taro.navigateTo({ url: `/pages/detail/index?id=${hotelId}` });
+    Taro.navigateTo({ url: `/package-hotel/detail/index?id=${hotelId}` });
   };
 
   const resolveInputValue = (event) => {

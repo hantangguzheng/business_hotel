@@ -5,10 +5,10 @@ import {
   HOTEL_TAG_ICON_MAP,
   HOTEL_DB_TO_CN_TAG_MAP,
   PROMOTION_TO_CN_MAP,
-} from "../../apis/tag_map";
-import type { HotelListItem, PromotionItem } from "../../apis/type";
-import { FALLBACK_HOTEL_IMAGE_URL } from "../../constants/app";
-import diamondIcon from "../../assets/imgs/diamond.svg";
+} from "../../../../apis/tag_map";
+import type { HotelListItem, PromotionItem } from "../../../../apis/type";
+import { FALLBACK_HOTEL_IMAGE_URL } from "../../../../constants/app";
+import diamondIcon from "../../../../assets/imgs/diamond.svg";
 
 type HotelListProps = {
   loadingHotels: boolean;
@@ -130,7 +130,7 @@ function HotelList({
       scrollWithAnimation
       lowerThreshold={250}
       onScrollToLower={handleScrollToLower}
-      style={{ height: "100vh" }} 
+      style={{ height: "100vh" }}
     >
       <View className="hotel-list">
         <View className="hotel-top_holder"></View>

@@ -29,8 +29,8 @@ import {
   mapTagToCn,
 } from "../../apis/tag_map";
 import GuestSelector from "../../components/guest-selector";
-import RoomList from "../../components/room-list";
-import Nearby from "../../components/nearby";
+import RoomList from "./components/room-list";
+import Nearby from "./components/nearby";
 import {
   FALLBACK_HOTEL_IMAGE_URL,
   QQ_MAP_BASE_URL,
@@ -132,10 +132,13 @@ const buildDefaultDates = () => {
 
 function DetailPage() {
   const { filter, setFilter } = useSharedFilter();
-  const params = Taro.getCurrentInstance().router?.params || {};
-  const initialHotelName = String(params.name || "").trim();
+  const currentInstance = Taro.getCurrentInstance();
+  const params = currentInstance.router?.params || {};
+  const preloadData = (currentInstance.preloadData as any) || {};
+  const initialHotelName = String(params.name || preloadData.name || "").trim();
   const defaultDates = useMemo(() => buildDefaultDates(), []);
-  const hotelId = Number(params.id);
+  const rawHotelId = params.id ?? preloadData.hotelId ?? preloadData.hotel?.id;
+  const hotelId = Number(rawHotelId || 0);
   const [hotel, setHotel] = useState<HotelDetailItem | null>(null);
   const [rooms, setRooms] = useState<HotelRoomItem[]>([]);
   const [roomPromotions, setRoomPromotions] = useState<PromotionItem[]>([]);
@@ -186,7 +189,13 @@ function DetailPage() {
   });
 
   useEffect(() => {
+    // If no hotelId from params, try to use preloadData.hotel if available
     if (!hotelId) {
+      if (preloadData && preloadData.hotel) {
+        setHotel(preloadData.hotel as HotelDetailItem);
+        return;
+      }
+
       Taro.showToast({
         title: "缺少酒店ID",
         icon: "none",
@@ -198,12 +207,21 @@ function DetailPage() {
     const run = async () => {
       setLoading(true);
       try {
-        const detail = await getHotelDetail(
-          hotelId,
-          filter.checkIn || defaultDates.checkIn,
-          filter.checkOut || defaultDates.checkOut,
-        );
-        setHotel(detail);
+        // if preloadData contains full hotel detail, use it to avoid extra request
+        if (
+          preloadData &&
+          preloadData.hotel &&
+          Number(preloadData.hotel?.id) === hotelId
+        ) {
+          setHotel(preloadData.hotel as HotelDetailItem);
+        } else {
+          const detail = await getHotelDetail(
+            hotelId,
+            filter.checkIn || defaultDates.checkIn,
+            filter.checkOut || defaultDates.checkOut,
+          );
+          setHotel(detail);
+        }
       } catch (error) {
         setHotel(null);
         Taro.showToast({
@@ -223,6 +241,9 @@ function DetailPage() {
     filter.checkIn,
     filter.checkOut,
     hotelId,
+    // include preloadData keys so effect re-runs if preload changes
+    preloadData?.hotelId,
+    preloadData?.hotel,
   ]);
 
   useEffect(() => {

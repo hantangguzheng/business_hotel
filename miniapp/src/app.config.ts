@@ -1,12 +1,29 @@
 export default defineAppConfig({
   pages: [
-    
     'pages/index/index',
-    'pages/city/index',
-    'pages/list/index',
-    'pages/detail/index',
     
   ],
+  subPackages: [
+    {
+      root: 'package-hotel',
+      pages: [
+        'detail/index',
+        'list/index'
+      ]
+    },
+    {
+      root: 'package-common',
+      pages: [
+        'city/index'
+      ]
+    }
+  ],
+  preloadRule: {
+    'pages/index/index': {
+      network: 'all',
+      packages: ['package-common','package-hotel'] 
+    },
+  },
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',

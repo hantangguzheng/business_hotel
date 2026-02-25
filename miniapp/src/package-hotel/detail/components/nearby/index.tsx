@@ -1,5 +1,5 @@
 import { Image, Map, View } from "@tarojs/components";
-import highlightIcon from "../../assets/imgs/highlight.svg";
+import highlightIcon from "../../../../assets/imgs/highlight.svg";
 
 type NearbyItem = {
   title: string;

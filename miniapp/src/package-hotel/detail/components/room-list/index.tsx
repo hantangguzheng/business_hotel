@@ -1,6 +1,6 @@
 import { Image, View } from "@tarojs/components";
 import { Check } from "@nutui/icons-react-taro";
-import type { HotelRoomItem } from "../../apis/type";
+import type { HotelRoomItem } from "../../../../apis/type";
 
 type BookingState = {
   roomId: number;
