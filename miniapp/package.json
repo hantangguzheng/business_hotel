@@ -56,8 +56,6 @@
     "@tarojs/runtime": "4.1.11",
     "@tarojs/shared": "4.1.11",
     "@tarojs/taro": "4.1.11",
-    "antd-mobile": "^5.42.3",
-    "pinyin-pro": "*",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "zustand": "^4.4.0"

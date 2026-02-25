@@ -60,22 +60,65 @@ export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
           }
         }
       },
-      webpackChain(chain) {
-        chain.module
-      .rule('image')
-      .test(/\.(png|jpe?g|gif|bpm|svg|webp)$/i) // 确保包含 webp
-      .set('type', 'asset/resource')
-        chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
-        chain.plugin('miniCssExtractPlugin').tap((args) => {
-          const nextArgs = Array.isArray(args) ? [...args] : [{}]
-          const firstArg = nextArgs[0] || {}
-          nextArgs[0] = {
-            ...firstArg,
-            ignoreOrder: true
-          }
-          return nextArgs
-        })
+      // config/index.ts
+webpackChain(chain) {
+  // 1. 原有的图片处理规则
+  chain.module
+    .rule('image')
+    .test(/\.(png|jpe?g|gif|bpm|svg|webp)$/i)
+    .set('type', 'asset/resource');
+
+  // 2. 原有的插件配置
+  chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin);
+  
+  chain.plugin('miniCssExtractPlugin').tap((args) => {
+    const nextArgs = Array.isArray(args) ? [...args] : [{}];
+    const firstArg = nextArgs[0] || {};
+    nextArgs[0] = { ...firstArg, ignoreOrder: true };
+    return nextArgs;
+  });
+
+  // 3. 新增：splitChunks 优化配置
+  chain.merge({
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          // 策略 A：将地图 SDK 强制拆分到 package-hotel 分包，减小主包 vendors.js
+          mapSdk: {
+            name: 'package-hotel/map-sdk', // 输出到分包目录下
+            test: /qqmap-wx-jssdk/,        // 匹配你的地图 SDK
+            priority: 100,                 // 优先级设高，确保优先命中
+            enforce: true,                 // 强制提取
+            chunks: 'all'
+          },
+          common: {
+          name: 'vendors',
+          test: /[\\/]node_modules[\\/](@nutui|@tarojs[\\/]components)[\\/]/,
+          priority: 100,
+          enforce: true,
+          chunks: 'all'
+        }
+          // 策略 B：如果还有其他大库（如 lodash），也可以单独拆出
+          // commonUtils: {
+          //   name: 'package-common/utils',
+          //   test: /[\\/]node_modules[\\/](lodash|dayjs)[\\/]/,
+          //   priority: 90,
+          //   enforce: true,
+          //   chunks: 'all'
+          // }
+        }
       }
+    }
+  });
+
+  // 4. 分析器配置（建议保留，方便后续验证效果）
+  if (process.env.ANALYZE === 'true') {
+    chain.plugin('analyzer')
+      .use(require('webpack-bundle-analyzer').BundleAnalyzerPlugin, [
+        { analyzerMode: 'static', reportFilename: 'report.html' }
+      ]);
+  }
+}
     },
     h5: {
       imageUrlLoaderOption: {

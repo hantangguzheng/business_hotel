@@ -1757,34 +1757,6 @@ var city = {
   ],
 };
 
-// add pinyin field to every city entry using pinyin-pro
-try {
-  const { pinyin } = require("pinyin-pro");
-  Object.values(city).forEach((group) => {
-    group.forEach((item) => {
-      const name = item.name || "";
-      // 1. 生成全拼并去掉空格：shanghai
-      item.pinyin = pinyin(name, { toneType: "none" })
-        .replace(/\s+/g, "")
-        .toLowerCase();
-
-      // 2. 增加首字母简拼：sh
-      // type: "pattern" 会返回拼音首字母缩写
-      item.initials = pinyin(name, { pattern: "first", toneType: "none" })
-        .replace(/\s+/g, "")
-        .toLowerCase();
-    });
-  });
-} catch (e) {
-  // pinyin-pro may not be installed in some environments; fallback to empty string
-  console.warn("pinyin-pro not available, city.pinyin will be empty");
-  Object.values(city).forEach((group) => {
-    group.forEach((item) => {
-      item.pinyin = "";
-    });
-  });
-}
-
 module.exports = {
   cities: city,
 };
