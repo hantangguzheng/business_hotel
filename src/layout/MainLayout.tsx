@@ -8,12 +8,13 @@ const { Content } = Layout;
 
 interface MainLayoutProps {
     menuItems?: ItemType<MenuItemType>[];
+    bg?:string;
 }
 
-export function MainLayout({ menuItems }: MainLayoutProps) {
+export function MainLayout({ menuItems, bg }: MainLayoutProps) {
     return (
         <Layout style={{minHeight:'100vh'}}>
-            <LayoutHeader />
+            <LayoutHeader headerBg={bg} />
             <Layout style={{overflow:'hidden', marginTop:64}}>
                 <LayoutSider menuItems={menuItems} />
                 <Content style={{overflow:'auto', height: '100%' ,marginLeft:200}}>
