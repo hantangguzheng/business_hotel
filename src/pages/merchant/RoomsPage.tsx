@@ -88,13 +88,13 @@ export function RoomsPage() {
         <Space>
           <Button
             icon={<EyeOutlined />}
-            onClick={() => navigate(`/merchant/hotel/${id}/rooms/${room.id}`, { state: { room } })}
+            onClick={() => navigate(`/merchant/hotel/${id}/room/${room.id}`, { state: { room } })}
           >
             查看
           </Button>
           <Button
             icon={<EditOutlined />}
-            onClick={() => navigate(`/merchant/hotel/${id}/rooms/${room.id}/edit`, { state: { room } })}
+            onClick={() => navigate(`/merchant/hotel/${id}/room/${room.id}/edit`, { state: { room } })}
           >
             编辑
           </Button>
@@ -127,7 +127,7 @@ export function RoomsPage() {
         <Button
           type="primary"
           icon={<PlusOutlined />}
-          onClick={() => navigate(`/merchant/hotel/${id}/room/new`)}
+          onClick={() => navigate(`/merchant/hotel/${id}/room/create`)}
         >
           新增房型
         </Button>

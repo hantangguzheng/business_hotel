@@ -1,3 +1,4 @@
+import type { IRoomPayload } from "@/api/types/room"
 import type {
     AccessibleFacility, AmenityFacility, AreaTitle, BathingFacility,
     BathroomFacility, BedTitle, ChildFacility, CleaningFacility, FoodFacility,
@@ -146,3 +147,50 @@ export const smokeTitleMapping: Record<TwoOption, string>={
     'n':'禁烟',
 }
 
+export const facilityGroupLabels: Record<string, string> = {
+  CleaningFacility: '清洁服务',//
+  BathingFacility: '洗浴用品',//
+  LayoutFacility: '客房布局和家具',//
+  AccessibleFacility: '无障碍设施',//
+  NetworkFacility: '网络与通讯设施',//
+  BathroomFacility: '卫浴设施',//
+  FoodFacility: '食品饮品',//
+  ChildFacility: '儿童设施服务',//
+  MediaFacility: '媒体科技',//
+  RoomSpecFacility: '客房设施',//
+  KitchenFacility: '厨房用品',//
+  AmenityFacility: '便利设施',//
+  ViewFacility: '室外景观',//
+};
+
+export const facilityFieldMap: Record<string, keyof IRoomPayload> = {
+  CleaningFacility: 'cleaningFacilities',
+  BathingFacility: 'bathingFacilities',
+  LayoutFacility: 'layoutFacilities',
+  AccessibleFacility: 'accessibleFacilities',
+  NetworkFacility: 'networkFacilities',
+  BathroomFacility: 'bathroomFacilities',
+  FoodFacility: 'foodFacilities',
+  ChildFacility: 'childFacilities',
+  MediaFacility: 'mediaFacilities',
+  RoomSpecFacility: 'roomSpecFacilities',
+  KitchenFacility: 'kitchenFacilities',
+  AmenityFacility: 'amenityFacilities',
+  ViewFacility: 'viewFacilities',
+};
+
+export const facilityLabelMap: Record<keyof typeof facilityFieldMap, Record<string, string>> = {
+  CleaningFacility: cleaningFacilityMapping,
+  BathingFacility: bathingFacilityMapping,
+  LayoutFacility: layoutFacilityMapping,
+  AccessibleFacility: accessibleFacilityMapping,
+  NetworkFacility: networkFacilityMapping,
+  BathroomFacility: bathroomFacilityMapping,
+  FoodFacility: foodFacilityMapping,
+  ChildFacility: childFacilityMapping,
+  MediaFacility: mediaFacilityMapping,
+  RoomSpecFacility: roomSpecFacilityMapping,
+  KitchenFacility: kitchenFacilityMapping,
+  AmenityFacility: amenityFacilityMapping,
+  ViewFacility: viewFacilityMapping,
+}
