@@ -2,6 +2,8 @@ import { useAppSelector } from '@/hooks/hooks';
 import { AdminLayout } from '@/layout/AdminLayout';
 import { AuthLayout } from '@/layout/AuthLayout';
 import { MerchantLayout } from '@/layout/MerchantLayout';
+import { AdminHotelDetailPage } from '@/pages/admin/AdminHotelDetailPage';
+import { AdminHotelsPage } from '@/pages/admin/AdminHotelsPage';
 import { LoginPage } from '@/pages/auth/LoginPage';
 import { RegisterPage } from '@/pages/auth/RegisterPage';
 import { HotelCreatePage } from '@/pages/merchant/HotelCreatePage';
@@ -104,42 +106,42 @@ export const AppRouter = createBrowserRouter([
             path: '/merchant',
             element: <MerchantLayout />,
             children: [
-                {index:true, element: <Navigate to="/merchant/hotels" replace />},
+                { index: true, element: <Navigate to="/merchant/hotels" replace /> },
                 {
                     path: 'hotels',
-                    element: <HotelsPage/>,
+                    element: <HotelsPage />,
                 },
                 {
                     path: 'hotel/create',
-                    element: <HotelCreatePage/>,
+                    element: <HotelCreatePage />,
                 },
                 {
                     path: 'hotel/:id',
-                    element: <HotelDetailPage/>,
+                    element: <HotelDetailPage />,
                 },
                 {
                     path: 'hotel/:id/edit',
-                    element: <HotelEditPage/>,
+                    element: <HotelEditPage />,
                 },
                 {
                     path: 'hotel/:id/rooms',
-                    element: <RoomsPage/>,
+                    element: <RoomsPage />,
                 },
                 {
                     path: 'hotel/:id/room/create',
-                    element: <RoomCreatePage/>,
+                    element: <RoomCreatePage />,
                 },
                 {
                     path: 'hotel/:id/room/:rid',
-                    element: <RoomDetailPage/>,
+                    element: <RoomDetailPage />,
                 },
                 {
                     path: 'hotel/:id/room/:rid/edit',
-                    element: <RoomEditPage/>,
+                    element: <RoomEditPage />,
                 },
                 {
                     path: 'hotel/:id/promotions',
-                    element: <PromotionsPage/>,
+                    element: <PromotionsPage />,
                 },
             ],
         },]
@@ -150,12 +152,28 @@ export const AppRouter = createBrowserRouter([
             path: '/admin',
             element: <AdminLayout />,
             children: [
-                {index:true, element: <Navigate to="/admin/hotels" replace />},
+                { index: true, element: <Navigate to="/admin/hotels" replace /> },
                 {
                     path: 'hotels',
-                    element: <HotelsPage/>,
+                    element: <AdminHotelsPage />,
                 },
-                
+                {
+                    path: 'hotel/:id',
+                    element: <AdminHotelDetailPage />,
+                },
+                { 
+                    path: 'hotel/:id/rooms', 
+                    element: <RoomsPage /> 
+                },
+                { 
+                    path: 'hotel/:id/room/:rid', 
+                    element: <RoomDetailPage/> 
+                },
+                { 
+                    path: 'hotel/:id/promotions', 
+                    element: <PromotionsPage /> 
+                },
+
             ],
         },]
     }
