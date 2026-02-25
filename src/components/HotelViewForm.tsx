@@ -8,6 +8,7 @@ import {
 import { cityCodeMapping, hotelTagMapping } from '@/utils/hotelUtil';
 import type { IHotelListResponseSingle } from '@/api/types/hotel';
 import type { HotelStatus } from '@/types/hotel';
+import { processImgUrl } from '@/utils/urlUtil';
 
 
 interface HotelViewFormProps {
@@ -71,7 +72,7 @@ export const HotelViewForm = ({
                                 {hotel?.imageUrls?.map((url, index) => (
                                     <Image
                                         key={index}
-                                        src={url}
+                                        src={processImgUrl(url)}
                                         width={120}
                                         height={80}
                                         style={{ objectFit: 'cover' }}

@@ -9,6 +9,8 @@ import type { ColumnsType } from 'antd/es/table';
 import type { IRoomListResponse } from '@/api/types/room';
 import { areaTitleMapping, bedTitleMapping } from '@/utils/roomUtil';
 import type { AreaTitle, BedTitle } from '@/types/room';
+import { STATIC_ROOT } from '@/utils/config';
+import { processImgUrl } from '@/utils/urlUtil';
 
 export function RoomsPage() {
   const { id } = useParams();
@@ -21,7 +23,7 @@ export function RoomsPage() {
   const rolePrefix = isAdmin?'admin':'merchant';
 
   const [{ data, loading }, refetch] = useAxios<IRoomListResponse[]>(
-    endpoint.getListRooms(Number(id))
+    endpoint.getListRooms(Number(id)), {useCache:false}
   );
 
   const [, execDelete] = useAxios('', { manual: true });
@@ -43,7 +45,7 @@ export function RoomsPage() {
       key: 'pictureUrl',
       width: 80,
       render: url => (
-        <Image src={url} width={60} height={40} style={{ objectFit: 'cover' }} />
+        <Image src={processImgUrl(url)} width={60} height={40} style={{ objectFit: 'cover' }} />
       ),
     },
     {

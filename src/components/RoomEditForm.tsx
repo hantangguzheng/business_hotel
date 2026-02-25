@@ -7,6 +7,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { STATIC_ROOT } from '@/utils/config';
 import { areaTitleMapping, bedTitleMapping, facilityFieldMap, facilityGroupLabels, facilityLabelMap, smokeTitleMapping, wifiTitleMapping, windowTitleMapping } from '@/utils/roomUtil';
 import type { IRoomCreateRequest, IRoomListResponse } from '@/api/types/room';
+import { processImgUrl } from '@/utils/urlUtil';
 
 const bedTitleOptions = Object.entries(bedTitleMapping).map(([value, label]) => ({ label, value }));
 const areaTitleOptions = Object.entries(areaTitleMapping).map(([value, label]) => ({ label, value }));
@@ -43,7 +44,7 @@ export const RoomEditForm = ({
           uid: '0',
           name: 'picture',
           status: 'done' as const,
-          url: room.pictureUrl,
+          url: processImgUrl(room.pictureUrl),
         }]);
       }
     }
@@ -51,7 +52,10 @@ export const RoomEditForm = ({
 
   const handleFinish = (values: any) => {
     const file = fileList.find(f => f.originFileObj);
-    const existingUrl = fileList.find(f => f.status === 'done' && f.url)?.url;
+    const existingUrlU = fileList.find(f => f.status === 'done' && f.url)?.url;
+    const sliceUrl = existingUrlU?.slice(STATIC_ROOT.length)
+    const existingUrl = existingUrlU?.startsWith(STATIC_ROOT)?sliceUrl:existingUrlU;
+
 
     const payload = { ...values };
     // 清理空数组
@@ -171,6 +175,7 @@ export const RoomEditForm = ({
             />
           )}
           <Image
+            styles={{ root: { display: 'none' } }}
             preview={{ visible: previewOpen, onVisibleChange: setPreviewOpen }}
             src={previewImage}
           />

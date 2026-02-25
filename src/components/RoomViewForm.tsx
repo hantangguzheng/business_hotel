@@ -1,6 +1,7 @@
 import type { IRoomListResponse } from '@/api/types/room';
 import type { BedTitle } from '@/types/room';
 import { areaTitleMapping, bedTitleMapping, facilityFieldMap, facilityGroupLabels, facilityLabelMap, smokeTitleMapping, wifiTitleMapping, windowTitleMapping } from '@/utils/roomUtil';
+import { processImgUrl } from '@/utils/urlUtil';
 import { Descriptions, Divider, Image, Result } from 'antd';
 
 interface RoomViewFormProps {
@@ -38,7 +39,7 @@ export const RoomViewForm = ({ room, loading, actions }: RoomViewFormProps) => {
                     <Descriptions.Item label="房间图片">
                         {room?.pictureUrl && (
                             <Image
-                                src={room.pictureUrl}
+                                src={processImgUrl(room.pictureUrl)}
                                 width={200}
                                 style={{ objectFit: 'cover' }}
                             />

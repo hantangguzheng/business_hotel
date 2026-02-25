@@ -240,6 +240,7 @@ export const HotelEditForm = ({
                     />
                 )}
                 <Image
+                    styles={{ root: { display: 'none' } }}
                     preview={{
                         visible: previewOpen,
                         onVisibleChange: setPreviewOpen,
