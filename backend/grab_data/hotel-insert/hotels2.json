@@ -1,0 +1,811 @@
+[
+    {
+        "id": "11825410",
+        "nameCn": "如家精选酒店(上海滴水湖港城新天地店)",
+        "nameEn": "Homeinn Plus Hotel (Shanghai Dishui Lake Port City New World)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/200a1f000001g1zot9DFE_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/200a1f000001g1zot9DFE_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.8",
+        "totalReviews": 2658,
+        "price": 196.0,
+        "crossLinePrice": 279.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "免费停车",
+            "洗衣服务",
+            "免费行李寄存",
+            "送餐机器人",
+            "免费迷你吧"
+        ],
+        "latitude": 30.901252,
+        "longitude": 121.91277,
+        "address": "近港城新天地",
+        "cityCode": 2
+    },
+    {
+        "id": "112420466",
+        "nameCn": "上海滴水湖斯南格尔精选酒店",
+        "nameEn": "Stargale's Collection",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc2h12000cgf6yac040D_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc2h12000cgf6yac040D_C_400_600_R5_Q70.jpg",
+        "starRating": 4,
+        "score": "4.7",
+        "totalReviews": 2163,
+        "price": 429.0,
+        "crossLinePrice": 505.0,
+        "currency": "RMB",
+        "shortTags": [
+            "亲子主题房",
+            "充电桩",
+            "景观餐厅",
+            "湖畔夜景",
+            "阳台房",
+            "日出日落"
+        ],
+        "latitude": 30.897911,
+        "longitude": 121.933807,
+        "address": "近滴水湖临港",
+        "cityCode": 2
+    },
+    {
+        "id": "115541800",
+        "nameCn": "如家精选酒店(上海滴水湖天文馆店)",
+        "nameEn": "Homeinn Plus Hotel (Shanghai Dishui Lake Planetarium)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0205z12000ds9olohCCF6_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0205z12000ds9olohCCF6_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.8",
+        "totalReviews": 2258,
+        "price": 192.0,
+        "crossLinePrice": 279.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "自助早餐",
+            "机器人服务",
+            "免费停车",
+            "洗衣房",
+            "湖景房"
+        ],
+        "latitude": 30.902863,
+        "longitude": 121.931571,
+        "address": "近上海海昌海洋公园",
+        "cityCode": 2
+    },
+    {
+        "id": "11403849",
+        "nameCn": "维也纳国际酒店(上海滴水湖海洋公园店)",
+        "nameEn": "Vienna International Hotel (Shanghai Dishui Lake Ocean Park)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc0w12000coys95uB4B7_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc0w12000coys95uB4B7_C_400_600_R5_Q70.jpg",
+        "starRating": 4,
+        "score": "4.7",
+        "totalReviews": 2476,
+        "price": 328.0,
+        "crossLinePrice": 350.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "亲子主题房",
+            "免费停车",
+            "窗外好景",
+            "机器人服务",
+            "复古风"
+        ],
+        "latitude": 30.889375,
+        "longitude": 121.929043,
+        "address": "近滴水湖临港",
+        "cityCode": 2
+    },
+    {
+        "id": "42841941",
+        "nameCn": "和颐至尊酒店(上海临港滴水湖海洋公园店)",
+        "nameEn": "Yitel Premium (Shanghai Lingang Dishui Lake, Ocean Park)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/200l16000000yy979634F_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/200l16000000yy979634F_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.7",
+        "totalReviews": 2226,
+        "price": 207.0,
+        "crossLinePrice": 309.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费停车",
+            "洗衣房",
+            "机器人服务",
+            "免费行李寄存",
+            "智能客控",
+            "管家服务"
+        ],
+        "latitude": 30.907354,
+        "longitude": 121.912578,
+        "address": "近上海海昌海洋公园",
+        "cityCode": 2
+    },
+    {
+        "id": "124231539",
+        "nameCn": "上海滴水湖临港书院人家逸扉酒店",
+        "nameEn": "UrCove by Hyatt Shanghai Dishui Lake Lin-gang Shuyuan Village",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc6e12000i2osscrE9FA_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc6e12000i2osscrE9FA_C_400_600_R5_Q70.jpg",
+        "starRating": 5,
+        "score": "4.7",
+        "totalReviews": 258,
+        "price": 360.0,
+        "crossLinePrice": 680.0,
+        "currency": "RMB",
+        "shortTags": [
+            "园林建筑",
+            "窗外好景",
+            "健身室",
+            "免费停车",
+            "温泉泡汤",
+            "亲子酒店"
+        ],
+        "latitude": 30.94776,
+        "longitude": 121.89879,
+        "address": "近交通银行耀雪冰雪世界",
+        "cityCode": 2
+    },
+    {
+        "id": "109169530",
+        "nameCn": "如家精选酒店(上海临港滴水湖地铁站店)",
+        "nameEn": "Homeinn Plus Hotel (Shanghai Lingang Dishui Lake Subway Station)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc0g12000f4i0z8r6DA9_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc0g12000f4i0z8r6DA9_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.8",
+        "totalReviews": 3421,
+        "price": 196.0,
+        "crossLinePrice": 279.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "免费洗衣服务",
+            "免费停车",
+            "智能客控",
+            "自助早餐",
+            "送餐机器人"
+        ],
+        "latitude": 30.907857,
+        "longitude": 121.930304,
+        "address": "近上海海昌海洋公园",
+        "cityCode": 2
+    },
+    {
+        "id": "8656170",
+        "nameCn": "如家商旅酒店(上海临港海洋公园滴水湖店)",
+        "nameEn": "Homeinn Selected Hotel (Shanghai Lin-gang Ocean Park Dishui Lake)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc3l12000hz7i2viF9DB_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc3l12000hz7i2viF9DB_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.7",
+        "totalReviews": 2046,
+        "price": 157.0,
+        "crossLinePrice": 229.0,
+        "currency": "RMB",
+        "shortTags": [
+            "洗衣服务",
+            "免费停车",
+            "自助早餐",
+            "送餐机器人",
+            "免费迷你吧",
+            "无烟楼层"
+        ],
+        "latitude": 30.902152,
+        "longitude": 121.931765,
+        "address": "近滴水湖临港",
+        "cityCode": 2
+    },
+    {
+        "id": "71545879",
+        "nameCn": "上海滴水湖假日酒店",
+        "nameEn": "Holiday Inn SHANGHAI DISHUI LAKE by IHG",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0202s120008hk6e2eF54F_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0202s120008hk6e2eF54F_C_400_600_R5_Q70.jpg",
+        "starRating": 4,
+        "score": "4.6",
+        "totalReviews": 3754,
+        "price": 376.0,
+        "crossLinePrice": 400.0,
+        "currency": "RMB",
+        "shortTags": [
+            "儿童乐园",
+            "免费停车",
+            "亲子主题房",
+            "园林建筑",
+            "拍照出片",
+            "健身室"
+        ],
+        "latitude": 30.910502,
+        "longitude": 121.923566,
+        "address": "近上海海昌海洋公园",
+        "cityCode": 2
+    },
+    {
+        "id": "104455211",
+        "nameCn": "极乐汤滴水湖温泉酒店",
+        "nameEn": "Brilliant Tang Dishui Lake Hot Spring Hotel",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc2d12000ath1wyc87DF_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc2d12000ath1wyc87DF_C_400_600_R5_Q70.jpg",
+        "starRating": 4,
+        "score": "4.2",
+        "totalReviews": 447,
+        "price": 326.0,
+        "crossLinePrice": 400.0,
+        "currency": "RMB",
+        "shortTags": [
+            "温泉",
+            "桑拿",
+            "免费停车",
+            "游戏室",
+            "榻榻米房",
+            "全屋地暖"
+        ],
+        "latitude": 30.89415,
+        "longitude": 121.932847,
+        "address": "近滴水湖临港",
+        "cityCode": 2
+    },
+    {
+        "id": "117842158",
+        "nameCn": "康铂酒店(上海滴水湖天文馆店)",
+        "nameEn": "Campanile Hotel (Shanghai Dishui Lake  Hotel)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc4u12000enuf12iC306_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc4u12000enuf12iC306_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.8",
+        "totalReviews": 1544,
+        "price": 240.0,
+        "crossLinePrice": 263.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费停车",
+            "机器人服务",
+            "洗衣房",
+            "免费健身室",
+            "管家服务",
+            "咖啡厅"
+        ],
+        "latitude": 30.909201,
+        "longitude": 121.929922,
+        "address": "近中国航海博物馆",
+        "cityCode": 2
+    },
+    {
+        "id": "110378688",
+        "nameCn": "上海临港锦江国际酒店",
+        "nameEn": "Radisson Collection Lingang Shanghai",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc6y12000rgz73buF042_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc6y12000rgz73buF042_C_400_600_R5_Q70.jpg",
+        "starRating": 5,
+        "score": "4.9",
+        "totalReviews": 3872,
+        "price": 807.0,
+        "crossLinePrice": 950.0,
+        "currency": "RMB",
+        "shortTags": [
+            "景观落地窗",
+            "日出美景",
+            "当地特色体验",
+            "海景房",
+            "室内恒温泳池",
+            "壁球室"
+        ],
+        "latitude": 30.885865,
+        "longitude": 121.930214,
+        "address": "近滴水湖",
+        "cityCode": 2
+    },
+    {
+        "id": "118615737",
+        "nameCn": "梵妮兰·民宿",
+        "nameEn": "Vanilla New Start Hotel",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0204r12000dslewucE285_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0204r12000dslewucE285_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.7",
+        "totalReviews": 44,
+        "price": 187.0,
+        "crossLinePrice": 269.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "情侣房",
+            "儿童俱乐部",
+            "影音房",
+            "棋牌房",
+            "可做饭"
+        ],
+        "latitude": 30.903,
+        "longitude": 121.90891,
+        "address": "近港城新天地",
+        "cityCode": 2
+    },
+    {
+        "id": "78147130",
+        "nameCn": "全季酒店(上海滴水湖地铁站店)",
+        "nameEn": "JI Hotel (Shanghai Dishui Lake Subway Station)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc5r12000o01zf3v81DA_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc5r12000o01zf3v81DA_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.8",
+        "totalReviews": 1635,
+        "price": 328.0,
+        "crossLinePrice": 349.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费停车",
+            "机器人服务",
+            "洗衣房",
+            "健身室",
+            "自助入住",
+            "自助早餐"
+        ],
+        "latitude": 30.910451,
+        "longitude": 121.931412,
+        "address": "近上海天文馆",
+        "cityCode": 2
+    },
+    {
+        "id": "120334005",
+        "nameCn": "上海金桥海昌企鹅度假酒店",
+        "nameEn": "Shanghai Jinqiao Haichang Penguin Resort Hotel",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc3w12000frir7xrB362_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc3w12000frir7xrB362_C_400_600_R5_Q70.jpg",
+        "starRating": 4,
+        "score": "4.6",
+        "totalReviews": 1134,
+        "price": 1309.0,
+        "crossLinePrice": 1699.0,
+        "currency": "RMB",
+        "shortTags": [
+            "儿童乐园",
+            "亲子主题房",
+            "充电桩",
+            "行政酒廊",
+            "亲近动物",
+            "免费停车"
+        ],
+        "latitude": 30.954017,
+        "longitude": 121.936645,
+        "address": "近上海天文馆",
+        "cityCode": 2
+    },
+    {
+        "id": "120298226",
+        "nameCn": "上海星空漫居主题酒店(海洋公园店)",
+        "nameEn": "Shanghai Starry Sky Manju Theme Hotel (Haichang Ocean Park Branch)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc4d12000ecj4ybb3FDE_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc4d12000ecj4ybb3FDE_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.7",
+        "totalReviews": 687,
+        "price": 348.0,
+        "crossLinePrice": 670.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费客房WiFi",
+            "洗衣房",
+            "全屋暖气",
+            "阳台房",
+            "复式loft房",
+            "江河景房"
+        ],
+        "latitude": 30.925639,
+        "longitude": 121.918661,
+        "address": "近上海海昌海洋公园",
+        "cityCode": 2
+    },
+    {
+        "id": "25265677",
+        "nameCn": "上海海昌海洋公园度假酒店",
+        "nameEn": "Shanghai Haichang Ocean Park Resort Hotel",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/02065120008x8bor9F79A_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/02065120008x8bor9F79A_C_400_600_R5_Q70.jpg",
+        "starRating": 4,
+        "score": "4.7",
+        "totalReviews": 6798,
+        "price": 1186.0,
+        "crossLinePrice": 1390.0,
+        "currency": "RMB",
+        "shortTags": [
+            "春节活动",
+            "亲子酒店",
+            "亲子主题房",
+            "近乐园",
+            "动人夜景",
+            "中式餐厅"
+        ],
+        "latitude": 30.920645,
+        "longitude": 121.913307,
+        "address": "近上海海昌海洋公园",
+        "cityCode": 2
+    },
+    {
+        "id": "66771374",
+        "nameCn": "桔子水晶上海临港海洋公园酒店",
+        "nameEn": "Crystal Orange Shanghai Lingang Ocean Park Hotel",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/020341200086lvydj499A_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/020341200086lvydj499A_C_400_600_R5_Q70.jpg",
+        "starRating": 4,
+        "score": "4.8",
+        "totalReviews": 3508,
+        "price": 358.0,
+        "crossLinePrice": null,
+        "currency": "RMB",
+        "shortTags": [
+            "洗衣房",
+            "免费停车",
+            "家庭房",
+            "窗外好景",
+            "送餐机器人",
+            "管家服务"
+        ],
+        "latitude": 30.922396,
+        "longitude": 121.924616,
+        "address": "近上海天文馆",
+        "cityCode": 2
+    },
+    {
+        "id": "59296440",
+        "nameCn": "花筑·吾遇素月民宿(上海滴水湖临港店)",
+        "nameEn": "Floral Hotel· Shanghai Wuyu Suyue Hotel",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0206j120009niofrm1B39_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0206j120009niofrm1B39_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.8",
+        "totalReviews": 43,
+        "price": 291.0,
+        "crossLinePrice": 383.0,
+        "currency": "RMB",
+        "shortTags": [
+            "地暖",
+            "露台",
+            "花园",
+            "免费洗衣服务",
+            "果蔬采摘",
+            "棋牌房"
+        ],
+        "latitude": 30.942085,
+        "longitude": 121.889633,
+        "address": "近上海海昌海洋公园",
+        "cityCode": 2
+    },
+    {
+        "id": "130843403",
+        "nameCn": "上海滴水湖英迪格酒店",
+        "nameEn": "Hotel Indigo SHANGHAI HARBOUR CITY by IHG",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc0712000nzfy2je5151_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc0712000nzfy2je5151_C_400_600_R5_Q70.jpg",
+        "starRating": 5,
+        "score": "4.7",
+        "totalReviews": 626,
+        "price": 821.0,
+        "crossLinePrice": null,
+        "currency": "RMB",
+        "shortTags": [
+            "湖景房",
+            "阳台房",
+            "充电桩",
+            "日落美景",
+            "新开业",
+            "室内恒温泳池"
+        ],
+        "latitude": 30.895996,
+        "longitude": 121.935444,
+        "address": "近滴水湖",
+        "cityCode": 2
+    },
+    {
+        "id": "106763528",
+        "nameCn": "逐浪电竞酒店(上海闵行交大华师大紫龙路店)",
+        "nameEn": "Pursue Waves E-Sports Hotel (Shanghai Minhang Jiaotong University Huashi University Zilong Road)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0203412000b30cg44926A_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0203412000b30cg44926A_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.9",
+        "totalReviews": 1281,
+        "price": 239.0,
+        "crossLinePrice": 329.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费停车",
+            "多人开黑",
+            "游戏特权",
+            "影音房",
+            "复式loft房",
+            "电竞电脑"
+        ],
+        "latitude": 31.040386,
+        "longitude": 121.474238,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "2100015",
+        "nameCn": "如家派柏·云酒店(上海闵行华东师范大学吴泾店)",
+        "nameEn": "Homeinn Pebble Hotel (Shanghai Minhang East China Normal University Wujing)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc1q12000l4xntfu4D98_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc1q12000l4xntfu4D98_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.5",
+        "totalReviews": 1238,
+        "price": 146.0,
+        "crossLinePrice": 159.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "免费停车",
+            "充电桩",
+            "机器人服务",
+            "洗衣房",
+            "套房"
+        ],
+        "latitude": 31.053271,
+        "longitude": 121.468523,
+        "address": "近蓝迪文化传播有限公司(宝秀路)",
+        "cityCode": 2
+    },
+    {
+        "id": "130376973",
+        "nameCn": "如家艾扉酒店(上海闵行华东师范大学永德路店)",
+        "nameEn": "AifeiShanghai Wujing Huashida Pedestrian Street Store",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/0200y12000m92xbh441DF_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/0200y12000m92xbh441DF_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.8",
+        "totalReviews": 323,
+        "price": 157.0,
+        "crossLinePrice": 190.0,
+        "currency": "RMB",
+        "shortTags": [
+            "新开业",
+            "机器人服务",
+            "洗衣房",
+            "免费行李寄存",
+            "自助早餐",
+            "家庭房"
+        ],
+        "latitude": 31.04927,
+        "longitude": 121.470657,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "694679",
+        "nameCn": "白玉兰酒店(上海闵行吴泾华师大店)",
+        "nameEn": "Magnotel Shanghai Minhang Wujing",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/200f1600000105crrFA57_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/200f1600000105crrFA57_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.7",
+        "totalReviews": 430,
+        "price": 167.0,
+        "crossLinePrice": 299.0,
+        "currency": "RMB",
+        "shortTags": [
+            "洗衣房",
+            "会议厅",
+            "免费停车",
+            "影音房",
+            "儿童餐",
+            "套房"
+        ],
+        "latitude": 31.047638,
+        "longitude": 121.473381,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "7461247",
+        "nameCn": "汉庭酒店(上海吴泾步行街店)",
+        "nameEn": "HanTing Hotel (Shanghai Wujing Pedestrian Street)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc1v12000lwu3l88EE29_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc1v12000lwu3l88EE29_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.5",
+        "totalReviews": 383,
+        "price": 173.0,
+        "crossLinePrice": 184.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费停车",
+            "洗衣房",
+            "机器人服务",
+            "咖啡厅",
+            "自助入住",
+            "自助早餐"
+        ],
+        "latitude": 31.04882,
+        "longitude": 121.474319,
+        "address": "近超盒算NB(闵行剑川路店)",
+        "cityCode": 2
+    },
+    {
+        "id": "6630051",
+        "nameCn": "如家商旅酒店(上海华东师范大学吴泾店)",
+        "nameEn": "Homeinn Selected Hotel (Shanghai East China Normal University Wujing)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/02057120008btdt8oCB4D_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/02057120008btdt8oCB4D_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.8",
+        "totalReviews": 839,
+        "price": 151.0,
+        "crossLinePrice": 169.0,
+        "currency": "RMB",
+        "shortTags": [
+            "机器人服务",
+            "免费停车",
+            "免费洗衣服务",
+            "管家服务",
+            "咖啡厅",
+            "自助早餐"
+        ],
+        "latitude": 31.047941,
+        "longitude": 121.461978,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "106712439",
+        "nameCn": "YUNIK电竞酒店(上海闵行华师大店)",
+        "nameEn": "YUNIK Hotel (Shanghai Minhang China Normal University)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc2g12000b6hcdo5170E_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc2g12000b6hcdo5170E_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.7",
+        "totalReviews": 571,
+        "price": 153.0,
+        "crossLinePrice": 209.0,
+        "currency": "RMB",
+        "shortTags": [
+            "电竞房",
+            "多人开黑",
+            "免费停车",
+            "自助入住",
+            "洗衣房",
+            "无烟楼层"
+        ],
+        "latitude": 31.046159,
+        "longitude": 121.4578,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "21006035",
+        "nameCn": "全季酒店(上海吴泾华师大店)",
+        "nameEn": "JI Hotel (Shanghai Wujing Huashida)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/20060v000000jiz033F74_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/20060v000000jiz033F74_C_400_600_R5_Q70.jpg",
+        "starRating": 3,
+        "score": "4.8",
+        "totalReviews": 711,
+        "price": 282.0,
+        "crossLinePrice": 307.0,
+        "currency": "RMB",
+        "shortTags": [
+            "自助入住",
+            "自助早餐",
+            "无烟楼层",
+            "洗衣房",
+            "全屋暖气",
+            "免费客房WiFi"
+        ],
+        "latitude": 31.050426,
+        "longitude": 121.469999,
+        "address": "近农工商超市(吴泾店)",
+        "cityCode": 2
+    },
+    {
+        "id": "80709870",
+        "nameCn": "锐思特酒店(上海闵行交大华师大店)",
+        "nameEn": "Rest Hotel (Shanghai Minhang Jiaotong University East China Normal University)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/1mc0212000k6dhifx07B1_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/1mc0212000k6dhifx07B1_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.3",
+        "totalReviews": 327,
+        "price": 133.0,
+        "crossLinePrice": 156.0,
+        "currency": "RMB",
+        "shortTags": [
+            "享会员权益",
+            "洗衣房",
+            "免费行李寄存",
+            "免费客房WiFi",
+            "充电桩"
+        ],
+        "latitude": 31.048223,
+        "longitude": 121.470772,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    },
+    {
+        "id": "6327110",
+        "nameCn": "汉庭酒店(上海吴泾华师大店)",
+        "nameEn": "HanTing Hotel (Shanghai Wujing East China Normal University)",
+        "imageUrls": [
+            "https://dimg04.c-ctrip.com/images/200210000000pu0l66370_R_640_440_R5_D.jpg"
+        ],
+        "ctripImageUrl": "https://dimg04.c-ctrip.com/images/200210000000pu0l66370_C_400_600_R5_Q70.jpg",
+        "starRating": 2,
+        "score": "4.7",
+        "totalReviews": 540,
+        "price": 173.0,
+        "crossLinePrice": 188.0,
+        "currency": "RMB",
+        "shortTags": [
+            "免费停车",
+            "洗衣房",
+            "自助早餐",
+            "自助入住",
+            "无烟楼层",
+            "免费客房WiFi"
+        ],
+        "latitude": 31.055274,
+        "longitude": 121.457892,
+        "address": "近华东师范大学(闵行校区)",
+        "cityCode": 2
+    }
+]

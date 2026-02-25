@@ -1,0 +1,80 @@
+{
+        "hotelId": "110386987",
+        "id": 448385983,
+        "name": "尊享大床房",
+        "areaTitle": "12平方米",
+        "bedTitle": "1张1.51米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc6s12000bxcxr6iE74D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3p12000bxcxpnk9D9E.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2w12000bxcxrfc243A.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3p12000bxcxre1E921.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4d12000bxcxrac888A.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "客房布局和家具": [
+                "书桌"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "特长睡床(超过两米)"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁"
+            ],
+            "便利设施": [
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1761070067,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 153,
+                "deletePrice": 167,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    }

@@ -1,0 +1,767 @@
+[
+  {
+    "nameCn": "如家精选酒店(北京宣武门知春路店)",
+    "nameEn": "Homeinn Plus Hotel (Beijing 宣武门 知春路)",
+    "address": "北京市丰台区知春路47号",
+    "starRating": 3,
+    "openingDate": "2015-11-28T00:00:00Z",
+    "cityCode": "1",
+    "price": "196.0",
+    "crossLinePrice": "279.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 2658,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "FREE_PARKING",
+      "FREE_LUGGAGE",
+      "DELIVERY_ROBOT"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/200a1f000001g1zot9DFE_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/200a1f000001g1zot9DFE_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.907737,
+    "longitude": 116.387797,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海滴水湖斯南格尔精选酒店(北京西单朝阳路店)",
+    "nameEn": "Stargale's Collection(Beijing 西单 朝阳路)",
+    "address": "北京市丰台区朝阳路63号",
+    "starRating": 4,
+    "openingDate": "2025-08-11T00:00:00Z",
+    "cityCode": "1",
+    "price": "429.0",
+    "crossLinePrice": "505.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 2163,
+    "shortTags": [
+      "CHARGING_PILE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc2h12000cgf6yac040D_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc2h12000cgf6yac040D_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.920957,
+    "longitude": 116.482054,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家精选酒店(北京北苑成府路店)",
+    "nameEn": "Homeinn Plus Hotel (Beijing 北苑 成府路)",
+    "address": "北京市海淀区成府路117号",
+    "starRating": 3,
+    "openingDate": "2018-08-13T00:00:00Z",
+    "cityCode": "1",
+    "price": "192.0",
+    "crossLinePrice": "279.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 2258,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "BUFFET_BREAKFAST",
+      "ROBOT_SERVICE",
+      "FREE_PARKING",
+      "LAUNDRY_ROOM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0205z12000ds9olohCCF6_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0205z12000ds9olohCCF6_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 40.011227,
+    "longitude": 116.516364,
+    "rooms": []
+  },
+  {
+    "nameCn": "维也纳国际酒店(北京通州学院路店)",
+    "nameEn": "Vienna International Hotel (Beijing 通州 学院路)",
+    "address": "北京市海淀区学院路76号",
+    "starRating": 4,
+    "openingDate": "2016-04-19T00:00:00Z",
+    "cityCode": "1",
+    "price": "328.0",
+    "crossLinePrice": "350.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 2476,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "FREE_PARKING",
+      "ROBOT_SERVICE",
+      "VINTAGE_STYLE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc0w12000coys95uB4B7_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc0w12000coys95uB4B7_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.85712,
+    "longitude": 116.481153,
+    "rooms": []
+  },
+  {
+    "nameCn": "和颐至尊酒店(北京双井西单北大街店)",
+    "nameEn": "Yitel Premium (Beijing 双井 西单北大街)",
+    "address": "北京市海淀区西单北大街130号",
+    "starRating": 3,
+    "openingDate": "2021-08-03T00:00:00Z",
+    "cityCode": "1",
+    "price": "207.0",
+    "crossLinePrice": "309.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 2226,
+    "shortTags": [
+      "FREE_PARKING",
+      "LAUNDRY_ROOM",
+      "ROBOT_SERVICE",
+      "FREE_LUGGAGE",
+      "SMART_CONTROL",
+      "BUTLER_SERVICE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/200l16000000yy979634F_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/200l16000000yy979634F_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.936478,
+    "longitude": 116.290972,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海滴水湖临港书院人家逸扉酒店(北京石景山北四环西路店)",
+    "nameEn": "UrCove by Hyatt Shanghai Dishui Lake Lin-gang Shuyuan Village(Beijing 石景山 北四环西路)",
+    "address": "北京市朝阳区北四环西路106号",
+    "starRating": 5,
+    "openingDate": "2021-04-07T00:00:00Z",
+    "cityCode": "1",
+    "price": "360.0",
+    "crossLinePrice": "680.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 258,
+    "shortTags": [
+      "GYM",
+      "FREE_PARKING"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc6e12000i2osscrE9FA_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc6e12000i2osscrE9FA_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 40.01157,
+    "longitude": 116.285941,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家精选酒店(北京海淀西四环北路店)",
+    "nameEn": "Homeinn Plus Hotel (Beijing 海淀 西四环北路)",
+    "address": "北京市东城区西四环北路126号",
+    "starRating": 3,
+    "openingDate": "2022-10-30T00:00:00Z",
+    "cityCode": "1",
+    "price": "196.0",
+    "crossLinePrice": "279.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 3421,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "FREE_LAUNDRY",
+      "FREE_PARKING",
+      "SMART_CONTROL",
+      "BUFFET_BREAKFAST",
+      "DELIVERY_ROBOT"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc0g12000f4i0z8r6DA9_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc0g12000f4i0z8r6DA9_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.930449,
+    "longitude": 116.344564,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家商旅酒店(北京西四复兴路店)",
+    "nameEn": "Homeinn Selected Hotel (Beijing 西四 复兴路)",
+    "address": "北京市西城区复兴路56号",
+    "starRating": 3,
+    "openingDate": "2022-02-12T00:00:00Z",
+    "cityCode": "1",
+    "price": "157.0",
+    "crossLinePrice": "229.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 2046,
+    "shortTags": [
+      "FREE_PARKING",
+      "BUFFET_BREAKFAST",
+      "DELIVERY_ROBOT",
+      "NON_SMOKING_FLOOR"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc3l12000hz7i2viF9DB_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc3l12000hz7i2viF9DB_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.984644,
+    "longitude": 116.394943,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海滴水湖假日酒店(北京建国门王府井大街店)",
+    "nameEn": "Holiday Inn SHANGHAI DISHUI LAKE by IHG(Beijing 建国门 王府井大街)",
+    "address": "北京市朝阳区王府井大街93号",
+    "starRating": 4,
+    "openingDate": "2020-05-11T00:00:00Z",
+    "cityCode": "1",
+    "price": "376.0",
+    "crossLinePrice": "400.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 3754,
+    "shortTags": [
+      "FREE_PARKING",
+      "INSTAGRAMMABLE",
+      "GYM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0202s120008hk6e2eF54F_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0202s120008hk6e2eF54F_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.850983,
+    "longitude": 116.344742,
+    "rooms": []
+  },
+  {
+    "nameCn": "极乐汤滴水湖温泉酒店(北京通州建国路店)",
+    "nameEn": "Brilliant Tang Dishui Lake Hot Spring Hotel(Beijing 通州 建国路)",
+    "address": "北京市朝阳区建国路163号",
+    "starRating": 4,
+    "openingDate": "2015-06-28T00:00:00Z",
+    "cityCode": "1",
+    "price": "326.0",
+    "crossLinePrice": "400.0",
+    "currency": "RMB",
+    "score": 4.2,
+    "totalReviews": 447,
+    "shortTags": [
+      "FREE_PARKING"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc2d12000ath1wyc87DF_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc2d12000ath1wyc87DF_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.877804,
+    "longitude": 116.452473,
+    "rooms": []
+  },
+  {
+    "nameCn": "康铂酒店(北京簋街复兴路店)",
+    "nameEn": "Campanile Hotel (Beijing 簋街 复兴路)",
+    "address": "北京市海淀区复兴路185号",
+    "starRating": 3,
+    "openingDate": "2025-05-25T00:00:00Z",
+    "cityCode": "1",
+    "price": "240.0",
+    "crossLinePrice": "263.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 1544,
+    "shortTags": [
+      "FREE_PARKING",
+      "ROBOT_SERVICE",
+      "LAUNDRY_ROOM",
+      "BUTLER_SERVICE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc4u12000enuf12iC306_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc4u12000enuf12iC306_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.931712,
+    "longitude": 116.329489,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海临港锦江国际酒店(北京宣武门成府路店)",
+    "nameEn": "Radisson Collection Lingang Shanghai(Beijing 宣武门 成府路)",
+    "address": "北京市丰台区成府路137号",
+    "starRating": 5,
+    "openingDate": "2020-06-17T00:00:00Z",
+    "cityCode": "1",
+    "price": "807.0",
+    "crossLinePrice": "950.0",
+    "currency": "RMB",
+    "score": 4.9,
+    "totalReviews": 3872,
+    "shortTags": [],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc6y12000rgz73buF042_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc6y12000rgz73buF042_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.901027,
+    "longitude": 116.388845,
+    "rooms": []
+  },
+  {
+    "nameCn": "梵妮兰·民宿(北京丰台望京西路店)",
+    "nameEn": "Vanilla New Start Hotel(Beijing 丰台 望京西路)",
+    "address": "北京市丰台区望京西路26号",
+    "starRating": 2,
+    "openingDate": "2015-04-23T00:00:00Z",
+    "cityCode": "1",
+    "price": "187.0",
+    "crossLinePrice": "269.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 44,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "CINEMA_ROOM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0204r12000dslewucE285_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0204r12000dslewucE285_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.917578,
+    "longitude": 116.314463,
+    "rooms": []
+  },
+  {
+    "nameCn": "全季酒店(北京鼓楼知春路店)",
+    "nameEn": "JI Hotel (Beijing 鼓楼 知春路)",
+    "address": "北京市丰台区知春路105号",
+    "starRating": 3,
+    "openingDate": "2019-09-06T00:00:00Z",
+    "cityCode": "1",
+    "price": "328.0",
+    "crossLinePrice": "349.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 1635,
+    "shortTags": [
+      "FREE_PARKING",
+      "ROBOT_SERVICE",
+      "LAUNDRY_ROOM",
+      "GYM",
+      "SELF_CHECKIN",
+      "BUFFET_BREAKFAST"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc5r12000o01zf3v81DA_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc5r12000o01zf3v81DA_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.978394,
+    "longitude": 116.364897,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海金桥海昌企鹅度假酒店(北京丰台广渠路店)",
+    "nameEn": "Shanghai Jinqiao Haichang Penguin Resort Hotel(Beijing 丰台 广渠路)",
+    "address": "北京市西城区广渠路182号",
+    "starRating": 4,
+    "openingDate": "2016-12-05T00:00:00Z",
+    "cityCode": "1",
+    "price": "1309.0",
+    "crossLinePrice": "1699.0",
+    "currency": "RMB",
+    "score": 4.6,
+    "totalReviews": 1134,
+    "shortTags": [
+      "CHARGING_PILE",
+      "FREE_PARKING"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc3w12000frir7xrB362_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc3w12000frir7xrB362_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.882658,
+    "longitude": 116.419908,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海星空漫居主题酒店(北京方庄西单北大街店)",
+    "nameEn": "Shanghai Starry Sky Manju Theme Hotel (Beijing 方庄 西单北大街)",
+    "address": "北京市朝阳区西单北大街65号",
+    "starRating": 2,
+    "openingDate": "2023-08-29T00:00:00Z",
+    "cityCode": "1",
+    "price": "348.0",
+    "crossLinePrice": "670.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 687,
+    "shortTags": [
+      "FREE_WIFI",
+      "LAUNDRY_ROOM",
+      "HEATING"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc4d12000ecj4ybb3FDE_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc4d12000ecj4ybb3FDE_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.993276,
+    "longitude": 116.485727,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海海昌海洋公园度假酒店(北京宣武门成府路店)",
+    "nameEn": "Shanghai Haichang Ocean Park Resort Hotel(Beijing 宣武门 成府路)",
+    "address": "北京市东城区成府路3号",
+    "starRating": 4,
+    "openingDate": "2019-07-06T00:00:00Z",
+    "cityCode": "1",
+    "price": "1186.0",
+    "crossLinePrice": "1390.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 6798,
+    "shortTags": [],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/02065120008x8bor9F79A_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/02065120008x8bor9F79A_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.963662,
+    "longitude": 116.449466,
+    "rooms": []
+  },
+  {
+    "nameCn": "桔子水晶上海临港海洋公园酒店(北京鼓楼复兴路店)",
+    "nameEn": "Crystal Orange Shanghai Lingang Ocean Park Hotel(Beijing 鼓楼 复兴路)",
+    "address": "北京市东城区复兴路49号",
+    "starRating": 4,
+    "openingDate": "2022-09-06T00:00:00Z",
+    "cityCode": "1",
+    "price": "358.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 3508,
+    "shortTags": [
+      "LAUNDRY_ROOM",
+      "FREE_PARKING",
+      "FAMILY_ROOM",
+      "DELIVERY_ROBOT",
+      "BUTLER_SERVICE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/020341200086lvydj499A_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/020341200086lvydj499A_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.878846,
+    "longitude": 116.287344,
+    "rooms": []
+  },
+  {
+    "nameCn": "花筑·吾遇素月民宿(北京方庄西单北大街店)",
+    "nameEn": "Floral Hotel· Shanghai Wuyu Suyue Hotel(Beijing 方庄 西单北大街)",
+    "address": "北京市丰台区西单北大街21号",
+    "starRating": 3,
+    "openingDate": "2022-02-10T00:00:00Z",
+    "cityCode": "1",
+    "price": "291.0",
+    "crossLinePrice": "383.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 43,
+    "shortTags": [
+      "FREE_LAUNDRY"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0206j120009niofrm1B39_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0206j120009niofrm1B39_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.956992,
+    "longitude": 116.449346,
+    "rooms": []
+  },
+  {
+    "nameCn": "上海滴水湖英迪格酒店(北京建国门潘家园路店)",
+    "nameEn": "Hotel Indigo SHANGHAI HARBOUR CITY by IHG(Beijing 建国门 潘家园路)",
+    "address": "北京市朝阳区潘家园路9号",
+    "starRating": 5,
+    "openingDate": "2022-02-10T00:00:00Z",
+    "cityCode": "1",
+    "price": "821.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 626,
+    "shortTags": [
+      "CHARGING_PILE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc0712000nzfy2je5151_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc0712000nzfy2je5151_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.980704,
+    "longitude": 116.360232,
+    "rooms": []
+  },
+  {
+    "nameCn": "逐浪电竞酒店(北京石景山三里屯路店)",
+    "nameEn": "Pursue Waves E-Sports Hotel (Beijing 石景山 三里屯路)",
+    "address": "北京市东城区三里屯路194号",
+    "starRating": 2,
+    "openingDate": "2023-04-12T00:00:00Z",
+    "cityCode": "1",
+    "price": "239.0",
+    "crossLinePrice": "329.0",
+    "currency": "RMB",
+    "score": 4.9,
+    "totalReviews": 1281,
+    "shortTags": [
+      "FREE_PARKING",
+      "CINEMA_ROOM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0203412000b30cg44926A_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0203412000b30cg44926A_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.853697,
+    "longitude": 116.363748,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家派柏·云酒店(北京石景山阜成路店)",
+    "nameEn": "Homeinn Pebble Hotel (Beijing 石景山 阜成路)",
+    "address": "北京市东城区阜成路113号",
+    "starRating": 2,
+    "openingDate": "2024-04-11T00:00:00Z",
+    "cityCode": "1",
+    "price": "146.0",
+    "crossLinePrice": "159.0",
+    "currency": "RMB",
+    "score": 4.5,
+    "totalReviews": 1238,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "FREE_PARKING",
+      "CHARGING_PILE",
+      "ROBOT_SERVICE",
+      "LAUNDRY_ROOM",
+      "SUITE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc1q12000l4xntfu4D98_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc1q12000l4xntfu4D98_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.961051,
+    "longitude": 116.382039,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家艾扉酒店(北京望京长安街店)",
+    "nameEn": "AifeiShanghai Wujing Huashida Pedestrian Street Store(Beijing 望京 长安街)",
+    "address": "北京市丰台区长安街150号",
+    "starRating": 2,
+    "openingDate": "2018-02-14T00:00:00Z",
+    "cityCode": "1",
+    "price": "157.0",
+    "crossLinePrice": "190.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 323,
+    "shortTags": [
+      "ROBOT_SERVICE",
+      "LAUNDRY_ROOM",
+      "FREE_LUGGAGE",
+      "BUFFET_BREAKFAST",
+      "FAMILY_ROOM"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/0200y12000m92xbh441DF_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/0200y12000m92xbh441DF_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.964375,
+    "longitude": 116.309721,
+    "rooms": []
+  },
+  {
+    "nameCn": "白玉兰酒店(北京崇文门复兴路店)",
+    "nameEn": "Magnotel Shanghai Minhang Wujing(Beijing 崇文门 复兴路)",
+    "address": "北京市海淀区复兴路69号",
+    "starRating": 3,
+    "openingDate": "2025-06-30T00:00:00Z",
+    "cityCode": "1",
+    "price": "167.0",
+    "crossLinePrice": "299.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 430,
+    "shortTags": [
+      "LAUNDRY_ROOM",
+      "MEETING_HALL",
+      "FREE_PARKING",
+      "CINEMA_ROOM",
+      "SUITE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/200f1600000105crrFA57_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/200f1600000105crrFA57_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.897785,
+    "longitude": 116.303555,
+    "rooms": []
+  },
+  {
+    "nameCn": "汉庭酒店(北京丰台成府路店)",
+    "nameEn": "HanTing Hotel (Beijing 丰台 成府路)",
+    "address": "北京市丰台区成府路108号",
+    "starRating": 2,
+    "openingDate": "2022-10-01T00:00:00Z",
+    "cityCode": "1",
+    "price": "173.0",
+    "crossLinePrice": "184.0",
+    "currency": "RMB",
+    "score": 4.5,
+    "totalReviews": 383,
+    "shortTags": [
+      "FREE_PARKING",
+      "LAUNDRY_ROOM",
+      "ROBOT_SERVICE",
+      "SELF_CHECKIN",
+      "BUFFET_BREAKFAST"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc1v12000lwu3l88EE29_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc1v12000lwu3l88EE29_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.944617,
+    "longitude": 116.452784,
+    "rooms": []
+  },
+  {
+    "nameCn": "如家商旅酒店(北京崇文门酒仙桥路店)",
+    "nameEn": "Homeinn Selected Hotel (Beijing 崇文门 酒仙桥路)",
+    "address": "北京市西城区酒仙桥路199号",
+    "starRating": 3,
+    "openingDate": "2016-12-14T00:00:00Z",
+    "cityCode": "1",
+    "price": "151.0",
+    "crossLinePrice": "169.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 839,
+    "shortTags": [
+      "ROBOT_SERVICE",
+      "FREE_PARKING",
+      "FREE_LAUNDRY",
+      "BUTLER_SERVICE",
+      "BUFFET_BREAKFAST"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/02057120008btdt8oCB4D_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/02057120008btdt8oCB4D_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.973906,
+    "longitude": 116.37992,
+    "rooms": []
+  },
+  {
+    "nameCn": "YUNIK电竞酒店(北京簋街青年路店)",
+    "nameEn": "YUNIK Hotel (Beijing 簋街 青年路)",
+    "address": "北京市朝阳区青年路136号",
+    "starRating": 2,
+    "openingDate": "2017-06-03T00:00:00Z",
+    "cityCode": "1",
+    "price": "153.0",
+    "crossLinePrice": "209.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 571,
+    "shortTags": [
+      "FREE_PARKING",
+      "SELF_CHECKIN",
+      "LAUNDRY_ROOM",
+      "NON_SMOKING_FLOOR"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc2g12000b6hcdo5170E_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc2g12000b6hcdo5170E_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.93989,
+    "longitude": 116.395011,
+    "rooms": []
+  },
+  {
+    "nameCn": "全季酒店(北京酒仙桥知春路店)",
+    "nameEn": "JI Hotel (Beijing 酒仙桥 知春路)",
+    "address": "北京市丰台区知春路140号",
+    "starRating": 3,
+    "openingDate": "2015-08-14T00:00:00Z",
+    "cityCode": "1",
+    "price": "282.0",
+    "crossLinePrice": "307.0",
+    "currency": "RMB",
+    "score": 4.8,
+    "totalReviews": 711,
+    "shortTags": [
+      "SELF_CHECKIN",
+      "BUFFET_BREAKFAST",
+      "NON_SMOKING_FLOOR",
+      "LAUNDRY_ROOM",
+      "HEATING",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/20060v000000jiz033F74_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/20060v000000jiz033F74_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.902475,
+    "longitude": 116.299559,
+    "rooms": []
+  },
+  {
+    "nameCn": "锐思特酒店(北京簋街阜成路店)",
+    "nameEn": "Rest Hotel (Beijing 簋街 阜成路)",
+    "address": "北京市海淀区阜成路126号",
+    "starRating": 2,
+    "openingDate": "2016-10-21T00:00:00Z",
+    "cityCode": "1",
+    "price": "133.0",
+    "crossLinePrice": "156.0",
+    "currency": "RMB",
+    "score": 4.3,
+    "totalReviews": 327,
+    "shortTags": [
+      "MEMBER_BENEFITS",
+      "LAUNDRY_ROOM",
+      "FREE_LUGGAGE",
+      "FREE_WIFI",
+      "CHARGING_PILE"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/1mc0212000k6dhifx07B1_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/1mc0212000k6dhifx07B1_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.939728,
+    "longitude": 116.515897,
+    "rooms": []
+  },
+  {
+    "nameCn": "汉庭酒店(北京鼓楼西四环北路店)",
+    "nameEn": "HanTing Hotel (Beijing 鼓楼 西四环北路)",
+    "address": "北京市海淀区西四环北路77号",
+    "starRating": 2,
+    "openingDate": "2025-07-21T00:00:00Z",
+    "cityCode": "1",
+    "price": "173.0",
+    "crossLinePrice": "188.0",
+    "currency": "RMB",
+    "score": 4.7,
+    "totalReviews": 540,
+    "shortTags": [
+      "FREE_PARKING",
+      "LAUNDRY_ROOM",
+      "BUFFET_BREAKFAST",
+      "SELF_CHECKIN",
+      "NON_SMOKING_FLOOR",
+      "FREE_WIFI"
+    ],
+    "imageUrls": [
+      "https://dimg04.c-ctrip.com/images/200210000000pu0l66370_R_640_440_R5_D.jpg",
+      "https://dimg04.c-ctrip.com/images/200210000000pu0l66370_C_400_600_R5_Q70.jpg"
+    ],
+    "latitude": 39.88985,
+    "longitude": 116.458805,
+    "rooms": []
+  }
+]

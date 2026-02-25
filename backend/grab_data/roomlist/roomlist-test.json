@@ -1,0 +1,5368 @@
+[
+    {
+        "hotelId": "110386987",
+        "id": 448385983,
+        "name": "尊享大床房",
+        "areaTitle": "12平方米",
+        "bedTitle": "1张1.51米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc6s12000bxcxr6iE74D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3p12000bxcxpnk9D9E.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2w12000bxcxrfc243A.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3p12000bxcxre1E921.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4d12000bxcxrac888A.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "客房布局和家具": [
+                "书桌"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "特长睡床(超过两米)"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁"
+            ],
+            "便利设施": [
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1761070067,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 153,
+                "deletePrice": 167,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "110386987",
+        "id": 448463021,
+        "name": "尊享双床房",
+        "areaTitle": "13平方米",
+        "bedTitle": "2张1.35米双人床",
+        "windowTitle": "有窗",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc2a12000bxcxxe4FE97.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1f12000bxcxr5o9F4F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3212000bp1r72h7455.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2o12000bxcxqyo909D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1612000bp2b41m355B.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "特长睡床(超过两米)"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁"
+            ],
+            "便利设施": [
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1761070070,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 169,
+                "deletePrice": 184,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "110386987",
+        "id": 448463452,
+        "name": "严选大床房",
+        "areaTitle": "12平方米",
+        "bedTitle": "1张1.51米大床",
+        "windowTitle": "窗户位于走廊或过道",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc4112000bxcxr4x95F6.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0r12000bxcxt2e19A5.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2m12000bp1sv5q6E21.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5d12000bxcxrca48FC.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "特长睡床(超过两米)"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁"
+            ],
+            "便利设施": [
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1761070077,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 135,
+                "deletePrice": 147,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "110386987",
+        "id": 448464090,
+        "name": "严选 双床房",
+        "areaTitle": "12平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "天窗",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc0u12000bxcxq7i64AD.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3l12000bxcxrc64CF2.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6q12000bxcxxee0F58.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2j12000bxcxoqi70A3.jpg",
+            "https://dimg04.c-ctrip.com/images/0583n12000bp85je6BDE7.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "特长睡床(超过两米)"
+            ],
+            "媒体科技": [
+                "智能门锁"
+            ],
+            "便利设施": [
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1761070084,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 153,
+                "deletePrice": 167,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "110386987",
+        "id": 448464328,
+        "name": "严选套房",
+        "areaTitle": "12平方米",
+        "bedTitle": "1张1.51米大床",
+        "windowTitle": "天窗",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc4p12000bxcxyxrFE28.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4w12000cmod35c0297.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0b12000bp1wlmaB72A.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5512000bp1x0d6521D.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "茶几"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "地毯",
+                "特长睡床(超过两米)"
+            ],
+            "媒体科技": [
+                "智能门锁"
+            ],
+            "便利设施": [
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1761070087,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 153,
+                "deletePrice": 167,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "110386987",
+        "id": 452913438,
+        "name": "特惠房",
+        "areaTitle": "12平方米",
+        "bedTitle": "1张1.35米双人床",
+        "windowTitle": "部分有窗且位于走廊或过道",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc0712000eyeh01x555F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4o12000eyehajyB591.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4x12000c5qpd3vA073.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "特长睡床(超过两米)"
+            ],
+            "媒体科技": [
+                "智能门锁"
+            ],
+            "便利设施": [
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1761070073,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 117,
+                "deletePrice": 128,
+                "hasDiscount": true,
+                "discount": 0.91
+            }
+        ]
+    },
+    {
+        "hotelId": "110386987",
+        "id": 452915098,
+        "name": "严选家庭房",
+        "areaTitle": "12–18平方米",
+        "bedTitle": "2张双人床",
+        "windowTitle": "有窗",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc6g12000bxcxyxh6308.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0112000bxcxq8xF411.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5512000bp1x0d6521D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1l12000c5qpclv6EC2.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "特长睡床(超过两米)"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁"
+            ],
+            "便利设施": [
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1791328362,
+                "guestCount": 3,
+                "childCount": 0,
+                "price": 203,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "110386987",
+        "id": 455175522,
+        "name": "商务套房",
+        "areaTitle": "18平方米",
+        "bedTitle": "2张双人床 及 1张单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc3b12000bxcxt0sBCBF.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2w12000bxcxyx73943.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4912000bxcxt1p427B.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1v12000bxcsz3n7A19.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5d12000bxcxrca48FC.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "客房布局和家具": [
+                "沙发"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "特长睡床(超过两米)"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁"
+            ],
+            "便利设施": [
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1791316587,
+                "guestCount": 3,
+                "childCount": 0,
+                "price": 288,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "95450006",
+        "id": 368394733,
+        "name": "严选大床房",
+        "areaTitle": "12–15平方米",
+        "bedTitle": "1张1.5米双人床",
+        "windowTitle": "部分有窗且位于走廊或过道",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0201j120009nsu11s23F8.jpg",
+            "https://dimg04.c-ctrip.com/images/0206j120009nsva5a16D4.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD1012000awu4hw265D7.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "食品饮品": [
+                "瓶装水"
+            ],
+            "客房设施": [
+                "空调"
+            ],
+            "媒体科技": [
+                "电视机"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1770528998,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 123,
+                "deletePrice": 134,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "95450006",
+        "id": 368395773,
+        "name": "尊享大床房",
+        "areaTitle": "12–15平方米",
+        "bedTitle": "1张1.5米双人床",
+        "windowTitle": "有窗",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/02022120009nsvtazE540.jpg",
+            "https://dimg04.c-ctrip.com/images/02046120009nswan9B4EB.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD4j12000awcnmzk1DBC.jpg",
+            "https://dimg04.c-ctrip.com/images/0205l120009nsvqvj5962.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "食品饮品": [
+                "瓶装水"
+            ],
+            "客房设施": [
+                "空调"
+            ],
+            "媒体科技": [
+                "电视机"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1793180462,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 139,
+                "deletePrice": 152,
+                "hasDiscount": true,
+                "discount": 0.91
+            }
+        ]
+    },
+    {
+        "hotelId": "95450006",
+        "id": 368396341,
+        "name": "商务大床房",
+        "areaTitle": "13–18平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0201n120009nsyf0t3F8F.jpg",
+            "https://dimg04.c-ctrip.com/images/0201w120009nsxyea60D7.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD5c12000awrjzgy3579.jpg",
+            "https://dimg04.c-ctrip.com/images/02010120009nsxm8b2FB8.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD5s12000ax1hkf53AAC.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "食品饮品": [
+                "瓶装水"
+            ],
+            "客房设施": [
+                "空调"
+            ],
+            "媒体科技": [
+                "电视机"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1793267577,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 153,
+                "deletePrice": 167,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "95450006",
+        "id": 368397199,
+        "name": "严选双床房",
+        "areaTitle": "13–18平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "部分有窗且位于走廊或过道",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0204r120009nszqc2DC13.jpg",
+            "https://dimg04.c-ctrip.com/images/0204z120009nszpw8CBAA.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD4z12000aw99g9v6FF1.jpg",
+            "https://dimg04.c-ctrip.com/images/0202s120009nszcp53F79.jpg",
+            "https://dimg04.c-ctrip.com/images/0202k120009nt05vzE7C8.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "食品饮品": [
+                "瓶装水"
+            ],
+            "客房设施": [
+                "空调"
+            ],
+            "媒体科技": [
+                "电视机"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1793180468,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 144,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "95450006",
+        "id": 368398543,
+        "name": "尊享双床房",
+        "areaTitle": "15–20平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/02047120009nt0g1x882C.jpg",
+            "https://dimg04.c-ctrip.com/images/02048120009nt0kkn7531.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD5r12000ax9n92y2B74.jpg",
+            "https://dimg04.c-ctrip.com/images/0204c120009nt1hln4668.jpg",
+            "https://dimg04.c-ctrip.com/images/0202n120009nt1hm90163.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "食品饮品": [
+                "瓶装水"
+            ],
+            "客房设施": [
+                "空调"
+            ],
+            "媒体科技": [
+                "电视机"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1793180464,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 161,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "95450006",
+        "id": 368398797,
+        "name": "家庭房",
+        "areaTitle": "15–20平方米",
+        "bedTitle": "1张单人床 及 1张双人床",
+        "windowTitle": "无窗",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/02065120009nt20hxEDDC.jpg",
+            "https://dimg04.c-ctrip.com/images/02020120009nt1pi61823.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD4m12000ax70913C68B.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD4q12000ax13jzy8661.jpg",
+            "https://dimg04.c-ctrip.com/images/02050120009nt1x8y8211.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "食品饮品": [
+                "瓶装水"
+            ],
+            "客房设施": [
+                "空调"
+            ],
+            "媒体科技": [
+                "电视机"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1793180471,
+                "guestCount": 3,
+                "childCount": 0,
+                "price": 148,
+                "deletePrice": 161,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "95450006",
+        "id": 368399076,
+        "name": "严选家庭房",
+        "areaTitle": "15–20平方米",
+        "bedTitle": "1张单人床 及 1张双人床",
+        "windowTitle": "有窗",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0202q120009nt2zop242D.jpg",
+            "https://dimg04.c-ctrip.com/images/0204y120009nt2ss4D945.jpg",
+            "https://dimg04.c-ctrip.com/images/0200m120009nt2lqt2534.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD6z12000awpkx388123.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD3t12000ax40jm81135.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD4o12000ax0kyce8D21.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "食品饮品": [
+                "瓶装水"
+            ],
+            "客房设施": [
+                "空调"
+            ],
+            "媒体科技": [
+                "电视机"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1793180461,
+                "guestCount": 3,
+                "childCount": 0,
+                "price": 163,
+                "deletePrice": 178,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "95450006",
+        "id": 368399354,
+        "name": "严选影音大床房",
+        "areaTitle": "15–20平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "无窗",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/02022120009nt3vxe6BF7.jpg",
+            "https://dimg04.c-ctrip.com/images/0203e120009nt3bwv56F4.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD1g12000ax41xwk2646.jpg",
+            "https://dimg04.c-ctrip.com/images/0205u120009nt40e1ED1A.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD2x12000awuiiwz488F.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD2d12000awafiy85576.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "媒体科技": [
+                "投影仪",
+                "电视机"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "食品饮品": [
+                "瓶装水"
+            ],
+            "客房设施": [
+                "空调"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1793180472,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 139,
+                "deletePrice": 152,
+                "hasDiscount": true,
+                "discount": 0.91
+            }
+        ]
+    },
+    {
+        "hotelId": "95450006",
+        "id": 368399612,
+        "name": "严选影音家庭房",
+        "areaTitle": "15–20平方米",
+        "bedTitle": "1张单人床 及 1张双人床",
+        "windowTitle": "无窗",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0203w120009nt487cCDB9.jpg",
+            "https://dimg04.c-ctrip.com/images/02019120009nt41208A12.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD6512000aw5lshxBF15.jpg",
+            "https://dimg04.c-ctrip.com/images/0200d120009nt4ech0BD7.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD4412000awotmnr2AFB.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD2d12000awafiy85576.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "媒体科技": [
+                "投影仪",
+                "电视机"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "食品饮品": [
+                "瓶装水"
+            ],
+            "客房设施": [
+                "空调"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1793180473,
+                "guestCount": 3,
+                "childCount": 0,
+                "price": 163,
+                "deletePrice": 178,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "95450006",
+        "id": 368400848,
+        "name": "惠选房",
+        "areaTitle": "12平方米",
+        "bedTitle": "1张1.2米单人床",
+        "windowTitle": "部分有窗且位于走廊或过道",
+        "floorTitle": "2层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0202h120009nssvjc76DE.jpg",
+            "https://dimg04.c-ctrip.com/images/0205r120009nstu0t0BE8.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD0c12000ax3649j7434.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD5a12000awnbqnt67C0.jpg",
+            "https://dimg04.c-ctrip.com/images/0200y120009nssv7cF72E.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "食品饮品": [
+                "瓶装水"
+            ],
+            "客房设施": [
+                "空调"
+            ],
+            "媒体科技": [
+                "电视机"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1793180467,
+                "guestCount": 1,
+                "childCount": 0,
+                "price": 116,
+                "deletePrice": 127,
+                "hasDiscount": true,
+                "discount": 0.91
+            }
+        ]
+    },
+    {
+        "hotelId": "912237",
+        "id": 22439890,
+        "name": "商务大床房",
+        "areaTitle": "18平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc1d12000cvfyid4E47A.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2k12000cvfynxa579D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1u12000cvfybv3C546.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4812000cvt3ak402F2.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "客房布局和家具": [
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "食品饮品": [
+                "电热水壶"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "卫星频道"
+            ],
+            "便利设施": [
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 136832961,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 145,
+                "deletePrice": 212,
+                "hasDiscount": true,
+                "discount": 0.68
+            },
+            {
+                "saleRoomId": 1585948609,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 223,
+                "deletePrice": 243,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "912237",
+        "id": 24139832,
+        "name": "舒适大床房",
+        "areaTitle": "12–15平方米",
+        "bedTitle": "1张1.5米双人床",
+        "windowTitle": "窗户位于走廊或过道",
+        "floorTitle": "2-3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc4d12000cvftdwp2D84.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6512000cvftwhdA7D7.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6m12000cvfudr8E9ED.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2q12000cvfussf300D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4q12000cvt3fej7ED8.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "客房布局和家具": [
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "床具：毯子或被子"
+            ],
+            "食品饮品": [
+                "电热水壶"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "卫星频道"
+            ],
+            "便利设施": [
+                "多种规格电源插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 136833337,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 117,
+                "deletePrice": 172,
+                "hasDiscount": true,
+                "discount": 0.68
+            },
+            {
+                "saleRoomId": 1585948619,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 160,
+                "deletePrice": 174,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "912237",
+        "id": 24139833,
+        "name": "舒适双床房",
+        "areaTitle": "12平方米",
+        "bedTitle": "2张单人床 或 2张单人床",
+        "windowTitle": "窗户位于走廊或过道",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc4j12000cvfvphk7551.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0j12000cvfvmfx667B.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1e12000cvfv4qrBFC2.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4612000cvfvmhr5445.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4q12000cvt3fej7ED8.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "客房布局和家具": [
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "床具：毯子或被子"
+            ],
+            "食品饮品": [
+                "电热水壶"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "卫星频道"
+            ],
+            "便利设施": [
+                "多种规格电源插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 136833308,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 145,
+                "deletePrice": 212,
+                "hasDiscount": true,
+                "discount": 0.68
+            }
+        ]
+    },
+    {
+        "hotelId": "912237",
+        "id": 24139834,
+        "name": "商务双床房",
+        "areaTitle": "18平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc3o12000cvumaa4567A.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1t12000cvumfudEBCE.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4812000cvum4bvF29C.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4812000cvt3ak402F2.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "客房布局和家具": [
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "食品饮品": [
+                "电热水壶"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "卫星频道"
+            ],
+            "便利设施": [
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1585948604,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 304,
+                "deletePrice": 331,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "912237",
+        "id": 38779813,
+        "name": "严选影音双床房",
+        "areaTitle": "25平方米",
+        "bedTitle": "2张1.1米单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc1212000cvfx1auCAAA.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4912000cvfxcdaB5DB.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2b12000cvfxbu9707F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4812000cvt3ak402F2.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "客房布局和家具": [
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "自动窗帘",
+                "床具：毯子或被子"
+            ],
+            "食品饮品": [
+                "电热水壶"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "卫星频道"
+            ],
+            "便利设施": [
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 136833056,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 182,
+                "deletePrice": 265,
+                "hasDiscount": true,
+                "discount": 0.69
+            }
+        ]
+    },
+    {
+        "hotelId": "912237",
+        "id": 41285073,
+        "name": "乐享大床房",
+        "areaTitle": "8–12平方米",
+        "bedTitle": "1张1.35米双人床",
+        "windowTitle": "窗户位于走廊或过道",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc4o12000cvfsel06413.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4b12000cvfta3xF28F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5z12000cvftk28E1B8.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4812000cvt3ak402F2.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "客房布局和家具": [
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "床具：毯子或被子"
+            ],
+            "食品饮品": [
+                "电热水壶"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "卫星频道"
+            ],
+            "便利设施": [
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 136833101,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 109,
+                "deletePrice": 159,
+                "hasDiscount": true,
+                "discount": 0.69
+            }
+        ]
+    },
+    {
+        "hotelId": "912237",
+        "id": 375737196,
+        "name": "优享家庭房",
+        "areaTitle": "12–15平方米",
+        "bedTitle": "1张双人床 及 1张单人床",
+        "windowTitle": "窗户位于走廊或过道",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc2y12000cvfxp76C2AA.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0b12000cvfya4i5C0D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5s12000cvfxt1vD776.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4h12000cvfy28h3D3E.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4q12000cvt3fej7ED8.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "客房布局和家具": [
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "床具：毯子或被子"
+            ],
+            "食品饮品": [
+                "电热水壶"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "卫星频道"
+            ],
+            "便利设施": [
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1273854910,
+                "guestCount": 3,
+                "childCount": 0,
+                "price": 212,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "912237",
+        "id": 470548489,
+        "name": "豪华家庭房",
+        "areaTitle": "18平方米",
+        "bedTitle": "1张双人床 及 1张单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc2112000cvfyo32AB9E.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4t12000cvfz3bf13BF.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4z12000cvfzb8h9F9A.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4812000cvt3ak402F2.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "梳子"
+            ],
+            "客房布局和家具": [
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "床具：毯子或被子"
+            ],
+            "食品饮品": [
+                "电热水壶"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "卫星频道"
+            ],
+            "便利设施": [
+                "多种规格电源插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1503653717,
+                "guestCount": 3,
+                "childCount": 0,
+                "price": 172,
+                "deletePrice": 252,
+                "hasDiscount": true,
+                "discount": 0.68
+            }
+        ]
+    },
+    {
+        "hotelId": "121877680",
+        "id": 494662611,
+        "name": "醇享大床房",
+        "areaTitle": "18平方米",
+        "bedTitle": "1张1.6米大床",
+        "windowTitle": "无窗",
+        "floorTitle": "5-7层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc4v12000et1yxau331C.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5i12000et1yzab543F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1g12000et1z2ry5D12.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3t12000et1r3cu23FE.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2f12000et1r5qhAED9.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3612000et1qmkc0866.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "休闲椅",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "智能马桶",
+                "吹风机",
+                "淋浴",
+                "浴衣",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "110V电压插座",
+                "雨伞"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1805218053,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 227,
+                "deletePrice": 277,
+                "hasDiscount": true,
+                "discount": 0.82
+            }
+        ]
+    },
+    {
+        "hotelId": "121877680",
+        "id": 494662883,
+        "name": "醇享双床房",
+        "areaTitle": "18平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "无窗",
+        "floorTitle": "4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc6012000et1yldw693B.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3d12000et1y1z8D713.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1012000et1yjsfFBEB.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2i12000et1xzg49535.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3b12000et1s0zf03A2.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "休闲椅",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "智能马桶",
+                "吹风机",
+                "淋浴",
+                "浴衣",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "110V电压插座",
+                "雨伞"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1805217938,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 293,
+                "deletePrice": 319,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "121877680",
+        "id": 494664695,
+        "name": "啡凡双床房",
+        "areaTitle": "16平方米",
+        "bedTitle": "2张1米单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "4-7层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc4s12000et1s7si3A72.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4412000et24l0zD7BC.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2i12000et1xzg49535.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4912000et1qjjwCD12.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "休闲椅",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "智能马桶",
+                "吹风机",
+                "淋浴",
+                "浴衣",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "110V电压插座",
+                "雨伞"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1805219091,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 299,
+                "deletePrice": 336,
+                "hasDiscount": true,
+                "discount": 0.89
+            }
+        ]
+    },
+    {
+        "hotelId": "121877680",
+        "id": 494665662,
+        "name": "啡凡高级大床房",
+        "areaTitle": "16平方米",
+        "bedTitle": "1张1.6米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "4-7层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc2i12000et1ctgm5EE1.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5v12000et1r639C662.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5i12000et1yzab543F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1012000et1yjsfFBEB.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3912000eya0418288E.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6t12000et1s06dF7DC.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "休闲椅",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "智能马桶",
+                "吹风机",
+                "淋浴",
+                "浴衣",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "110V电压插座",
+                "雨伞"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1805219090,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 293,
+                "deletePrice": 319,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "121877680",
+        "id": 494666006,
+        "name": "啡凡高级双床房",
+        "areaTitle": "16平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "5-7层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc5112000et1s0ynB0AC.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6t12000et1s06dF7DC.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0t12000eya06h1CCFE.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2f12000et1r5qhAED9.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "休闲椅",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "智能马桶",
+                "吹风机",
+                "淋浴",
+                "浴衣",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "110V电压插座",
+                "雨伞"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1805217946,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 324,
+                "deletePrice": 361,
+                "hasDiscount": true,
+                "discount": 0.9
+            }
+        ]
+    },
+    {
+        "hotelId": "19476850",
+        "id": 83124790,
+        "name": "高级大床房（智能小度管家＋手机投屏）",
+        "areaTitle": "18–25平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "5-6层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc7212000fo7k4b15163.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3212000fo7jc1451AC.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3h12000fo7jfd3A898.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2s12000fo7j42zCD6C.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1312000fo7kewx18ED.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "茶几",
+                "餐桌",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "智能马桶",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "媒体科技": [
+                "智能客控",
+                "电视机",
+                "音响",
+                "智能门锁"
+            ],
+            "客房设施": [
+                "空调",
+                "电风扇",
+                "自动窗帘",
+                "遮光窗帘",
+                "床具：鸭绒被",
+                "床具：毯子或被子",
+                "空气净化器"
+            ],
+            "室外景观": [
+                "城景"
+            ],
+            "便利设施": [
+                "管家服务",
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "110V电压插座",
+                "220V电压插座"
+            ],
+            "无障碍设施": [
+                "门铃/电话提示",
+                "无障碍电话工具"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 908044107,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 275,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "19476850",
+        "id": 93371083,
+        "name": "商务大床房（智能小度管家＋手机投屏）",
+        "areaTitle": "16–23平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "无窗",
+        "floorTitle": "5-6层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc0912000fo7m2cpFDF7.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2g12000fo7nvka8F4A.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0s12000fo7njvnECE2.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5c12000fo7ls5m5A36.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1112000fo7mqql31D4.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "衣柜/衣橱",
+                "书桌",
+                "餐桌",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "媒体科技": [
+                "智能客控",
+                "电视机",
+                "音响",
+                "智能门锁"
+            ],
+            "客房设施": [
+                "空调",
+                "电风扇",
+                "自动窗帘",
+                "遮光窗帘",
+                "床具：鸭绒被",
+                "床具：毯子或被子",
+                "空气净化器"
+            ],
+            "便利设施": [
+                "管家服务",
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "110V电压插座",
+                "220V电压插座"
+            ],
+            "无障碍设施": [
+                "门铃/电话提示",
+                "无障碍电话工具"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 919380763,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 213,
+                "deletePrice": 252,
+                "hasDiscount": true,
+                "discount": 0.85
+            }
+        ]
+    },
+    {
+        "hotelId": "19476850",
+        "id": 93384051,
+        "name": "精致大床房（智能小度管家＋手机投屏）",
+        "areaTitle": "10–15平方米",
+        "bedTitle": "1张1.5米双人床",
+        "windowTitle": "部分有窗",
+        "floorTitle": "5层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc4612000fo7ughw7914.jpg",
+            "https://dimg04.c-ctrip.com/images/020061200080z4w79618F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3a12000fo7utteAA02.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5z12000fo7ugig8240.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1g12000fo7v9t88E0F.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "餐桌",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "媒体科技": [
+                "智能客控",
+                "电视机",
+                "有线频道",
+                "音响",
+                "智能门锁"
+            ],
+            "客房设施": [
+                "空调",
+                "电风扇",
+                "手动窗帘",
+                "自动窗帘",
+                "遮光窗帘",
+                "床具：鸭绒被",
+                "床具：毯子或被子",
+                "空气净化器"
+            ],
+            "便利设施": [
+                "管家服务",
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "110V电压插座",
+                "220V电压插座"
+            ],
+            "无障碍设施": [
+                "门铃/电话提示",
+                "无障碍电话工具"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 919380765,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 188,
+                "deletePrice": 223,
+                "hasDiscount": true,
+                "discount": 0.84
+            }
+        ]
+    },
+    {
+        "hotelId": "19476850",
+        "id": 94442575,
+        "name": "高级标间（智能小度管家＋手机投屏）",
+        "areaTitle": "20–28平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "部分有窗",
+        "floorTitle": "5层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc6r12000fo7ta681D39.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0e12000fo7tkex676B.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0j12000fo7tjgz4CB8.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6312000fo7tr2j184A.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "茶几",
+                "餐桌",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "媒体科技": [
+                "智能客控",
+                "电视机",
+                "音响",
+                "智能门锁"
+            ],
+            "客房设施": [
+                "空调",
+                "电风扇",
+                "自动窗帘",
+                "遮光窗帘",
+                "床具：鸭绒被",
+                "床具：毯子或被子",
+                "空气净化器"
+            ],
+            "便利设施": [
+                "管家服务",
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "110V电压插座",
+                "220V电压插座"
+            ],
+            "无障碍设施": [
+                "门铃/电话提示",
+                "无障碍电话工具"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 919380768,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 272,
+                "deletePrice": 322,
+                "hasDiscount": true,
+                "discount": 0.84
+            }
+        ]
+    },
+    {
+        "hotelId": "19476850",
+        "id": 126341865,
+        "name": "豪华大床房（智能小度管家＋手机投屏）",
+        "areaTitle": "25–30平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "6层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc6e12000fo7x7ne9E65.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD1z120009f7nqa9C6F3.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4q12000fo7wt2iAA4F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4812000fo7wtn25B77.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2q12000fo7x2yxB303.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "衣柜/衣橱",
+                "书桌",
+                "茶几",
+                "休闲椅",
+                "餐桌",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "智能马桶",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "媒体科技": [
+                "智能客控",
+                "电视机",
+                "音响",
+                "智能门锁"
+            ],
+            "客房设施": [
+                "空调",
+                "电风扇",
+                "自动窗帘",
+                "遮光窗帘",
+                "特长睡床(超过两米)",
+                "床具：鸭绒被",
+                "床具：毯子或被子",
+                "空气净化器"
+            ],
+            "室外景观": [
+                "城景"
+            ],
+            "便利设施": [
+                "管家服务",
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "110V电压插座",
+                "220V电压插座"
+            ],
+            "无障碍设施": [
+                "门铃/电话提示",
+                "无障碍电话工具"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 908044114,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 253,
+                "deletePrice": 298,
+                "hasDiscount": true,
+                "discount": 0.85
+            }
+        ]
+    },
+    {
+        "hotelId": "19476850",
+        "id": 283258314,
+        "name": "家庭房（智能小度管家＋手机投屏）",
+        "areaTitle": "27–35平方米",
+        "bedTitle": "1张大床 及 1张双人床",
+        "windowTitle": "有窗",
+        "floorTitle": "6层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc5512000fo7bf3m1066.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4s12000fo7bym0BB58.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4612000fo7bwbm4A21.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6o12000fo7brbi52B0.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5w12000fo7byps2E67.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "衣柜/衣橱",
+                "书桌",
+                "茶几",
+                "餐桌",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "媒体科技": [
+                "智能客控",
+                "电视机",
+                "音响",
+                "智能门锁"
+            ],
+            "客房设施": [
+                "空调",
+                "电风扇",
+                "自动窗帘",
+                "遮光窗帘",
+                "床具：鸭绒被",
+                "床具：毯子或被子",
+                "空气净化器"
+            ],
+            "便利设施": [
+                "管家服务",
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "110V电压插座",
+                "220V电压插座"
+            ],
+            "无障碍设施": [
+                "门铃/电话提示",
+                "无障碍电话工具"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 908860977,
+                "guestCount": 3,
+                "childCount": 0,
+                "price": 345,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "6868909",
+        "id": 73923158,
+        "name": "高级大床房",
+        "areaTitle": "23平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "无窗",
+        "floorTitle": "2-3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/200c0r000000h3rjn5D9E.jpg",
+            "https://dimg04.c-ctrip.com/images/20030r000000h2ul275D9.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫",
+                "洗衣用品",
+                "熨衣设备",
+                "熨裤机"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子",
+                "备用床具"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "电影服务"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "110V电压插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1768045696,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 222,
+                "deletePrice": 266,
+                "hasDiscount": true,
+                "discount": 0.83
+            },
+            {
+                "saleRoomId": 1766670307,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 287,
+                "deletePrice": 307,
+                "hasDiscount": true,
+                "discount": 0.93
+            },
+            {
+                "saleRoomId": 1766670303,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 352,
+                "deletePrice": 375,
+                "hasDiscount": true,
+                "discount": 0.94
+            }
+        ]
+    },
+    {
+        "hotelId": "6868909",
+        "id": 73923167,
+        "name": "高级双床房",
+        "areaTitle": "23平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "装饰性假窗",
+        "floorTitle": "2-3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/20030r000000h2ule9FCB.jpg",
+            "https://dimg04.c-ctrip.com/images/20030r000000h2ul275D9.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫",
+                "洗衣用品",
+                "熨衣设备",
+                "熨裤机"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子",
+                "备用床具"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "电影服务"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "110V电压插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1742806656,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 241,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            },
+            {
+                "saleRoomId": 1766670358,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 375,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "6868909",
+        "id": 73923177,
+        "name": "豪华大床房",
+        "areaTitle": "23平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "2-12层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/200p0r000000gzn7o89D3.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD4p12000axe8gxlD67D.jpg",
+            "https://dimg04.c-ctrip.com/images/20030r000000h2ul275D9.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫",
+                "洗衣用品",
+                "熨衣设备",
+                "熨裤机"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "衣柜/衣橱",
+                "书桌",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子",
+                "备用床具"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "电影服务"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "110V电压插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1768045700,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 262,
+                "deletePrice": 314,
+                "hasDiscount": true,
+                "discount": 0.83
+            },
+            {
+                "saleRoomId": 1766670342,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 328,
+                "deletePrice": 350,
+                "hasDiscount": true,
+                "discount": 0.94
+            },
+            {
+                "saleRoomId": 1766670341,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 392,
+                "deletePrice": 418,
+                "hasDiscount": true,
+                "discount": 0.94
+            }
+        ]
+    },
+    {
+        "hotelId": "6868909",
+        "id": 73923179,
+        "name": "豪华双床房",
+        "areaTitle": "23平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "2-12层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/200s1700000123r5i4823.jpg",
+            "https://dimg04.c-ctrip.com/images/200p0r000000gzn7w16CC.jpg",
+            "https://dimg04.c-ctrip.com/images/200r0v000000jkmghBF30.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫",
+                "洗衣用品",
+                "熨衣设备",
+                "熨裤机"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "衣柜/衣橱",
+                "书桌",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子",
+                "备用床具"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "电影服务"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "110V电压插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1768045698,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 262,
+                "deletePrice": 314,
+                "hasDiscount": true,
+                "discount": 0.83
+            },
+            {
+                "saleRoomId": 1766670324,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 328,
+                "deletePrice": 350,
+                "hasDiscount": true,
+                "discount": 0.94
+            },
+            {
+                "saleRoomId": 1766670322,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 392,
+                "deletePrice": 418,
+                "hasDiscount": true,
+                "discount": 0.94
+            }
+        ]
+    },
+    {
+        "hotelId": "6868909",
+        "id": 73923182,
+        "name": "行政大床房",
+        "areaTitle": "35平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "2-12层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/200u0r000000h13962C5F.jpg",
+            "https://dimg04.c-ctrip.com/images/200p0r000000gzn7o89D3.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0p12000l4v88x8070F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5g12000l4v8od75373.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6612000l4v8kzdA3E7.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD5312000axp1zcd07A9.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫",
+                "洗衣用品",
+                "熨衣设备",
+                "熨裤机"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "衣柜/衣橱",
+                "书桌",
+                "茶几",
+                "休闲椅",
+                "挂墙装饰画/字画"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "浴室化妆放大镜",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子",
+                "备用床具"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "电影服务"
+            ],
+            "便利设施": [
+                "房内保险箱",
+                "针线包",
+                "衣架",
+                "110V电压插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1768045694,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 358,
+                "deletePrice": 428,
+                "hasDiscount": true,
+                "discount": 0.84
+            },
+            {
+                "saleRoomId": 1766670290,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 425,
+                "deletePrice": 453,
+                "hasDiscount": true,
+                "discount": 0.94
+            },
+            {
+                "saleRoomId": 1766670288,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 488,
+                "deletePrice": 521,
+                "hasDiscount": true,
+                "discount": 0.94
+            }
+        ]
+    },
+    {
+        "hotelId": "1293179",
+        "id": 449499389,
+        "name": "青奢大床房（舒睡床品+速干吹风机+酒店公区提供洗衣房）",
+        "areaTitle": "10平方米",
+        "bedTitle": "1张1.51米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "None",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc6f12000dv67hlw1A51.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5k12000dtzyjz2D0A8.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6m12000duxqh5h4627.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5512000dv67b296C6E.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫",
+                "干衣机",
+                "洗衣用品",
+                "熨衣设备"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "食品饮品": [
+                "小食",
+                "咖啡机",
+                "咖啡壶/茶壶",
+                "茶包",
+                "软饮",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "厨房用品": [
+                "微波炉"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：鸭绒被",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁",
+                "视频流服务"
+            ],
+            "客房布局和家具": [
+                "挂墙装饰画/字画"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "雨伞"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1429722812,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 157,
+                "deletePrice": 269,
+                "hasDiscount": true,
+                "discount": 0.58
+            }
+        ]
+    },
+    {
+        "hotelId": "1293179",
+        "id": 449499913,
+        "name": "青馨大床房（舒睡床品+速干吹风机+酒店公区提供洗衣房）",
+        "areaTitle": "10平方米",
+        "bedTitle": "1张1.35米双人床",
+        "windowTitle": "部分有窗且位于走廊或过道",
+        "floorTitle": "None",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc5n12000dv68jbs3AD3.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1j12000dv68nya0A68.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1612000dv68uayE68C.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5h12000dv6922y9B1A.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫",
+                "干衣机",
+                "洗衣用品",
+                "熨衣设备"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "食品饮品": [
+                "小食",
+                "咖啡机",
+                "咖啡壶/茶壶",
+                "茶包",
+                "软饮",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "厨房用品": [
+                "微波炉"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：鸭绒被",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁",
+                "视频流服务"
+            ],
+            "客房布局和家具": [
+                "挂墙装饰画/字画"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "雨伞"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1429722814,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 122,
+                "deletePrice": 209,
+                "hasDiscount": true,
+                "discount": 0.58
+            }
+        ]
+    },
+    {
+        "hotelId": "1293179",
+        "id": 449500086,
+        "name": "青雅双床房（舒睡床品+速干吹风机+酒店公区提供洗衣房）",
+        "areaTitle": "12平方米",
+        "bedTitle": "2张1米单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "None",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc3312000dv68pdwB3A1.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0c12000dv68n0z4875.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3c12000dv696ye7BAD.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4712000dv68spz98EC.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2o12000duxrn1jDE38.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫",
+                "干衣机",
+                "洗衣用品",
+                "熨衣设备"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "食品饮品": [
+                "小食",
+                "咖啡机",
+                "咖啡壶/茶壶",
+                "茶包",
+                "软饮",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "厨房用品": [
+                "微波炉"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：鸭绒被",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁",
+                "视频流服务"
+            ],
+            "客房布局和家具": [
+                "挂墙装饰画/字画"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "雨伞"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1429722816,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 157,
+                "deletePrice": 269,
+                "hasDiscount": true,
+                "discount": 0.58
+            }
+        ]
+    },
+    {
+        "hotelId": "1293179",
+        "id": 449501285,
+        "name": "青馨单人房（舒睡床品+速干吹风机+酒店公区提供洗衣房）",
+        "areaTitle": "10平方米",
+        "bedTitle": "1张1.2米地面床铺",
+        "windowTitle": "部分有窗且位于走廊或过道",
+        "floorTitle": "None",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc2x12000dv693z759FF.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1w12000dv697u66687.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2u12000dv698g5CDC8.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3012000dv69ctu731F.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫",
+                "干衣机",
+                "洗衣用品",
+                "熨衣设备"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "食品饮品": [
+                "小食",
+                "咖啡机",
+                "咖啡壶/茶壶",
+                "茶包",
+                "软饮",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "厨房用品": [
+                "微波炉"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：鸭绒被",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁",
+                "视频流服务"
+            ],
+            "客房布局和家具": [
+                "挂墙装饰画/字画"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "雨伞"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1429722819,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 105,
+                "deletePrice": 179,
+                "hasDiscount": true,
+                "discount": 0.59
+            }
+        ]
+    },
+    {
+        "hotelId": "1293179",
+        "id": 449501816,
+        "name": "青雅大床房（舒睡床品+速干吹风机+酒店公区提供洗衣房）",
+        "areaTitle": "12平方米",
+        "bedTitle": "1张1.51米大床",
+        "windowTitle": "部分有窗且位于走廊或过道",
+        "floorTitle": "None",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc0b12000dv69ecs944F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1q12000dv69chuF519.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1612000dv68uayE68C.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6512000dv68zx6365C.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫",
+                "干衣机",
+                "洗衣用品",
+                "熨衣设备"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "食品饮品": [
+                "小食",
+                "咖啡机",
+                "咖啡壶/茶壶",
+                "茶包",
+                "软饮",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "厨房用品": [
+                "微波炉"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：鸭绒被",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道",
+                "智能门锁",
+                "视频流服务"
+            ],
+            "客房布局和家具": [
+                "挂墙装饰画/字画"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "雨伞"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1429722820,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 140,
+                "deletePrice": 239,
+                "hasDiscount": true,
+                "discount": 0.59
+            }
+        ]
+    },
+    {
+        "hotelId": "6404804",
+        "id": 30283225,
+        "name": "商务标准双床房",
+        "areaTitle": "24平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "无窗",
+        "floorTitle": "3-4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0205r12000rcfylr7385A.jpg",
+            "https://dimg04.c-ctrip.com/images/0201v12000rch4jrz353D.jpg",
+            "https://dimg04.c-ctrip.com/images/0203l1200083tet3cE591.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD0o12000axagz3m9B5F.jpg",
+            "https://dimg04.c-ctrip.com/images/220b12000000t1nhqD0B7.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD3b12000ay3wu9iAE49.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD4x12000axwmorc8FD8.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "欢迎礼品"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1034132915,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 248,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "6404804",
+        "id": 30283226,
+        "name": "商旅高级大床房",
+        "areaTitle": "24平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "3-4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0202p1200083teuw1F0D2.jpg",
+            "https://dimg04.c-ctrip.com/images/0205d1200083tetc4D1CA.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD1s12000axvft9h4413.jpg",
+            "https://dimg04.c-ctrip.com/images/220112000000tc6sv8905.jpg",
+            "https://dimg04.c-ctrip.com/images/220312000000t0zqjD85F.jpg",
+            "https://dimg04.c-ctrip.com/images/220a12000000t0l29B8D1.jpg",
+            "https://dimg04.c-ctrip.com/images/0202p1200083tetcx4B28.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD6w12000ax9qb157318.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD5v12000axtdmgi4713.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD4s12000axzqa0i4DDE.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD5j12000ayb73fh5FA0.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD1i12000ay2xbiy3D7C.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD6p12000ayom323186C.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD1e12000ayf7e9zFE17.jpg",
+            "https://dimg04.c-ctrip.com/images/0205l12000rcgp7ppBB77.jpg",
+            "https://dimg04.c-ctrip.com/images/0204d12000reefn5q5368.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "欢迎礼品"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1034132635,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 222,
+                "deletePrice": 290,
+                "hasDiscount": true,
+                "discount": 0.77
+            }
+        ]
+    },
+    {
+        "hotelId": "6404804",
+        "id": 30283230,
+        "name": "商务大床房",
+        "areaTitle": "18–22平方米",
+        "bedTitle": "1张1.51米大床",
+        "windowTitle": "无窗",
+        "floorTitle": "3-4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0AD1n12000aymtmdmBFA2.jpg",
+            "https://dimg04.c-ctrip.com/images/0204h1200083teqtl433F.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD2412000aym3o1r4B8E.jpg",
+            "https://dimg04.c-ctrip.com/images/0201t1200083tcu5mA8C1.jpg",
+            "https://dimg04.c-ctrip.com/images/020011200083teqju869D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2e12000aj9wbzy2A8A.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD6w12000axlcobp6C75.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD6c12000ayb4ujo92C1.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD5d12000aybick76596.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子",
+                "空气净化器"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "欢迎礼品"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1034133564,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 159,
+                "deletePrice": 209,
+                "hasDiscount": true,
+                "discount": 0.76
+            }
+        ]
+    },
+    {
+        "hotelId": "6404804",
+        "id": 479491264,
+        "name": "商旅高级双床房",
+        "areaTitle": "24平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "3-4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0204612000rch7qufEE24.jpg",
+            "https://dimg04.c-ctrip.com/images/0206l12000rchm57jB7E2.jpg",
+            "https://dimg04.c-ctrip.com/images/200o0i0000009cgpuADD2.jpg",
+            "https://dimg04.c-ctrip.com/images/0204312000rcghvte2B87.jpg",
+            "https://dimg04.c-ctrip.com/images/0203z12000rcgxrqk8468.jpg",
+            "https://dimg04.c-ctrip.com/images/0200412000rcoiz8gC65A.jpg",
+            "https://dimg04.c-ctrip.com/images/0201c12000rcofzqiFCA2.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "欢迎礼品"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1553664182,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 335,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "6404804",
+        "id": 495239720,
+        "name": "商旅商务大床房",
+        "areaTitle": "23平方米",
+        "bedTitle": "1张1.5米双人床",
+        "windowTitle": "部分有窗",
+        "floorTitle": "3-4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0201h12000rcgw6cs6E44.jpg",
+            "https://dimg04.c-ctrip.com/images/0204712000rcglxnfAD1B.jpg",
+            "https://dimg04.c-ctrip.com/images/0202p12000rcg1nprB5FD.jpg",
+            "https://dimg04.c-ctrip.com/images/0200t12000rch0rgvA286.jpg",
+            "https://dimg04.c-ctrip.com/images/0202w12000rchdax2B371.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4312000r9rns2x3202.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2x12000r9ro8z68A97.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "欢迎礼品"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1564653763,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 181,
+                "deletePrice": 237,
+                "hasDiscount": true,
+                "discount": 0.76
+            }
+        ]
+    },
+    {
+        "hotelId": "6404804",
+        "id": 507661369,
+        "name": "行政套房",
+        "areaTitle": "35平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "3层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc4g12000gw2j1px6425.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc2412000r9rmfs5B6C0.jpg",
+            "https://dimg04.c-ctrip.com/images/0202r12000rchcljnF9FA.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4312000r9rns2x3202.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD6m120008w5ix4uB7A0.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD1d120008w5ign651E0.jpg",
+            "https://dimg04.c-ctrip.com/images/0205r12000rcofzqfAFDB.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "沙发",
+                "衣柜/衣橱",
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "欢迎礼品"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1605917862,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 327,
+                "deletePrice": 382,
+                "hasDiscount": true,
+                "discount": 0.86
+            }
+        ]
+    },
+    {
+        "hotelId": "6404804",
+        "id": 533937106,
+        "name": "特惠房",
+        "areaTitle": "16–20平方米",
+        "bedTitle": "1张1.3米单人床",
+        "windowTitle": "无窗",
+        "floorTitle": "None",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0203412000rcgr6x85F9C.jpg",
+            "https://dimg04.c-ctrip.com/images/0200m12000rch3l9f6AAB.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1912000mgn8pbkF8CF.jpg",
+            "https://dimg04.c-ctrip.com/images/0201w12000rcgt5ieBF5D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3g12000mgn939wDB55.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "淋浴",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋",
+                "雨淋花洒喷头"
+            ],
+            "客房设施": [
+                "空调",
+                "手动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座",
+                "220V电压插座",
+                "欢迎礼品"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1694668027,
+                "guestCount": 1,
+                "childCount": 0,
+                "price": 174,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "2302269",
+        "id": 18335639,
+        "name": "精选大床房",
+        "areaTitle": "16平方米",
+        "bedTitle": "1张1.3米单人床",
+        "windowTitle": "无窗",
+        "floorTitle": "4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc2d12000e2thh63FE25.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0p12000eqo4b7u6265.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6212000eqo6tpe45A9.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1f12000eqo3y5qFB96.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1517026889,
+                "guestCount": 1,
+                "childCount": 0,
+                "price": 213,
+                "deletePrice": 0,
+                "hasDiscount": false,
+                "discount": 0
+            }
+        ]
+    },
+    {
+        "hotelId": "2302269",
+        "id": 106064661,
+        "name": "商务大床房",
+        "areaTitle": "15–19平方米",
+        "bedTitle": "1张1.51米大床",
+        "windowTitle": "部分有窗",
+        "floorTitle": "4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/200j1g000001gyhl08742.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1b12000eqo8766CF2B.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0d12000eqo9l6fEF67.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0p12000eqo4b7u6265.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1517027551,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 130,
+                "deletePrice": 231,
+                "hasDiscount": true,
+                "discount": 0.56
+            }
+        ]
+    },
+    {
+        "hotelId": "2302269",
+        "id": 477310699,
+        "name": "高级大床房",
+        "areaTitle": "18–20平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "部分有窗",
+        "floorTitle": "4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc0l12000d43sgpjE668.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc4o12000d43suqmFC44.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3u12000d43spt09D3D.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3912000d43spbt9F77.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6t12000d43so0x3C8A.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1517135003,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 140,
+                "deletePrice": 248,
+                "hasDiscount": true,
+                "discount": 0.56
+            }
+        ]
+    },
+    {
+        "hotelId": "2302269",
+        "id": 477310878,
+        "name": "豪华圆床房",
+        "areaTitle": "20–23平方米",
+        "bedTitle": "1张1.51米大床",
+        "windowTitle": "无窗",
+        "floorTitle": "4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc0j12000d43w7zv539E.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc5u12000d43vwgm4176.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6w12000d43wkxsE7D3.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3i12000d43w87o0F93.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0212000d43wan3B346.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1517135005,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 159,
+                "deletePrice": 283,
+                "hasDiscount": true,
+                "discount": 0.56
+            }
+        ]
+    },
+    {
+        "hotelId": "2302269",
+        "id": 477311317,
+        "name": "精选家庭房",
+        "areaTitle": "18–20平方米",
+        "bedTitle": "1张单人床 及 1张大床",
+        "windowTitle": "部分有窗",
+        "floorTitle": "4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc2x12000d442wyaA1E8.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1p12000d442kwu3651.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6712000d4428t248AF.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc0z12000d443jfeE43F.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc7012000d442yd90B8F.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1517135010,
+                "guestCount": 1,
+                "childCount": 0,
+                "price": 149,
+                "deletePrice": 266,
+                "hasDiscount": true,
+                "discount": 0.56
+            }
+        ]
+    },
+    {
+        "hotelId": "2302269",
+        "id": 477311384,
+        "name": "精选高级双床房1",
+        "areaTitle": "18–20平方米",
+        "bedTitle": "2张0.8米单人床",
+        "windowTitle": "部分有窗且位于走廊或过道",
+        "floorTitle": "4层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/1mc5112000d43nirj0E6E.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc6g12000eqoas7h5A26.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc3q12000eqobmqm6647.jpg",
+            "https://dimg04.c-ctrip.com/images/1mc1312000eqobte9EED4.jpg"
+        ],
+        "facilities": {
+            "清洁服务": [
+                "每日打扫"
+            ],
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "客房布局和家具": [
+                "衣柜/衣橱",
+                "书桌",
+                "餐桌"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "客房有线宽带",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "客房设施": [
+                "空调",
+                "暖气",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "媒体科技": [
+                "液晶电视机",
+                "有线频道"
+            ],
+            "便利设施": [
+                "衣架",
+                "单一规格电源插座",
+                "多种规格电源插座",
+                "220V电压插座"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1517135000,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 140,
+                "deletePrice": 248,
+                "hasDiscount": true,
+                "discount": 0.56
+            }
+        ]
+    },
+    {
+        "hotelId": "78562324",
+        "id": 323957385,
+        "name": "大床房",
+        "areaTitle": "10–15平方米",
+        "bedTitle": "1张1.5米双人床",
+        "windowTitle": "窗外有墙体或遮挡",
+        "floorTitle": "4-7层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0203e1200093j8nl1DF2C.jpg",
+            "https://dimg04.c-ctrip.com/images/0202c1200093j8baq6BF0.jpg",
+            "https://dimg04.c-ctrip.com/images/02068120008wc4o2y98E5.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD0s120009f22s5y258A.jpg",
+            "https://dimg04.c-ctrip.com/images/0204c1200093j8p8xDF4D.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具",
+                "洗衣机",
+                "洗衣用品"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "儿童设施服务": [
+                "儿童洗漱用品",
+                "儿童餐椅",
+                "儿童拖鞋"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "智能马桶",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "媒体科技": [
+                "智能客控",
+                "电视机",
+                "有线频道"
+            ],
+            "客房设施": [
+                "空调",
+                "自动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "客房布局和家具": [
+                "挂墙装饰画/字画"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ],
+            "无障碍设施": [
+                "视觉火灾报警器"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1488234616,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 213,
+                "deletePrice": 232,
+                "hasDiscount": true,
+                "discount": 0.92
+            },
+            {
+                "saleRoomId": 1488380221,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 236,
+                "deletePrice": 257,
+                "hasDiscount": true,
+                "discount": 0.92
+            },
+            {
+                "saleRoomId": 1488380223,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 259,
+                "deletePrice": 282,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "78562324",
+        "id": 323957486,
+        "name": "高级大床房",
+        "areaTitle": "15–20平方米",
+        "bedTitle": "1张1.8米大床",
+        "windowTitle": "有窗",
+        "floorTitle": "4-7层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0200j1200093j8cy23EA1.jpg",
+            "https://dimg04.c-ctrip.com/images/0204q1200093j8a4x5559.jpg",
+            "https://dimg04.c-ctrip.com/images/0206y1200093j7me8E4FC.jpg",
+            "https://dimg04.c-ctrip.com/images/0200f1200093j8b9kCEA4.jpg",
+            "https://dimg04.c-ctrip.com/images/020741200093j7c8e29E5.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具",
+                "洗衣机",
+                "洗衣用品"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "客房布局和家具": [
+                "书桌",
+                "挂墙装饰画/字画"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "儿童设施服务": [
+                "儿童洗漱用品",
+                "儿童餐椅",
+                "儿童拖鞋"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "智能马桶",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "媒体科技": [
+                "智能客控",
+                "电视机",
+                "有线频道"
+            ],
+            "客房设施": [
+                "空调",
+                "自动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ],
+            "无障碍设施": [
+                "视觉火灾报警器"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1488234607,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 239,
+                "deletePrice": 260,
+                "hasDiscount": true,
+                "discount": 0.92
+            },
+            {
+                "saleRoomId": 1488380212,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 262,
+                "deletePrice": 285,
+                "hasDiscount": true,
+                "discount": 0.92
+            },
+            {
+                "saleRoomId": 1488380218,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 285,
+                "deletePrice": 310,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    },
+    {
+        "hotelId": "78562324",
+        "id": 323957558,
+        "name": "高级双人房",
+        "areaTitle": "15–22平方米",
+        "bedTitle": "2张1.2米单人床",
+        "windowTitle": "有窗",
+        "floorTitle": "4-7层",
+        "smokeTitle": "禁烟",
+        "wifiInfo": "Wi-Fi免费",
+        "pictureUrl": [
+            "https://dimg04.c-ctrip.com/images/0206a1200093j7hsm6F17.jpg",
+            "https://dimg04.c-ctrip.com/images/0202t1200093j83ez216F.jpg",
+            "https://dimg04.c-ctrip.com/images/0204a1200093j7znhD61C.jpg",
+            "https://dimg04.c-ctrip.com/images/0AD35120009f236k596C0.jpg",
+            "https://dimg04.c-ctrip.com/images/020431200093j80afD990.jpg"
+        ],
+        "facilities": {
+            "洗浴用品": [
+                "牙刷",
+                "牙膏",
+                "沐浴露",
+                "洗发水",
+                "护发素",
+                "香皂",
+                "浴帽",
+                "梳子",
+                "剃须刀"
+            ],
+            "清洁服务": [
+                "每日打扫",
+                "打扫工具",
+                "洗衣机",
+                "洗衣用品"
+            ],
+            "网络与通讯": [
+                "客房WIFI",
+                "电话"
+            ],
+            "客房布局和家具": [
+                "书桌",
+                "挂墙装饰画/字画"
+            ],
+            "食品饮品": [
+                "茶包",
+                "瓶装水",
+                "电热水壶"
+            ],
+            "儿童设施服务": [
+                "儿童洗漱用品",
+                "儿童餐椅",
+                "儿童拖鞋"
+            ],
+            "卫浴设施": [
+                "私人浴室",
+                "私人卫生间",
+                "智能马桶",
+                "吹风机",
+                "毛巾",
+                "浴巾",
+                "24小时热水",
+                "拖鞋"
+            ],
+            "媒体科技": [
+                "智能客控",
+                "电视机",
+                "有线频道"
+            ],
+            "客房设施": [
+                "空调",
+                "自动窗帘",
+                "遮光窗帘",
+                "床具：毯子或被子"
+            ],
+            "便利设施": [
+                "针线包",
+                "衣架",
+                "多种规格电源插座"
+            ],
+            "无障碍设施": [
+                "视觉火灾报警器"
+            ]
+        },
+        "saleInfo": [
+            {
+                "saleRoomId": 1488234614,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 256,
+                "deletePrice": 279,
+                "hasDiscount": true,
+                "discount": 0.92
+            },
+            {
+                "saleRoomId": 1488380216,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 279,
+                "deletePrice": 304,
+                "hasDiscount": true,
+                "discount": 0.92
+            },
+            {
+                "saleRoomId": 1488380222,
+                "guestCount": 2,
+                "childCount": 0,
+                "price": 302,
+                "deletePrice": 329,
+                "hasDiscount": true,
+                "discount": 0.92
+            }
+        ]
+    }
+]
