@@ -59,7 +59,8 @@
     "@tarojs/taro": "4.1.11",
     "antd-mobile": "^5.42.3",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "zustand": "^4.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",

@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+import create from "zustand";
+import React from "react";
 
 export type SharedFilterState = {
   city: string;
@@ -49,39 +50,27 @@ const defaultFilterState: SharedFilterState = {
   userLng: undefined,
 };
 
-const SharedFilterContext = createContext<SharedFilterContextValue | null>(
-  null,
-);
+type FilterStore = {
+  filter: SharedFilterState;
+  setFilter: (next: Partial<SharedFilterState>) => void;
+  resetFilter: () => void;
+};
 
-export function SharedFilterProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [filter, setFilterState] =
-    useState<SharedFilterState>(defaultFilterState);
+const useFilterStore = create<FilterStore>((set) => ({
+  filter: defaultFilterState,
+  setFilter: (next) =>
+    set((state) => ({ filter: { ...state.filter, ...(next || {}) } })),
+  resetFilter: () => set({ filter: defaultFilterState }),
+}));
 
-  const setFilter = (next: Partial<SharedFilterState>) => {
-    setFilterState((current) => ({ ...current, ...next }));
-  };
-
-  const resetFilter = () => {
-    setFilterState(defaultFilterState);
-  };
-
-  const value = useMemo(() => ({ filter, setFilter, resetFilter }), [filter]);
-
-  return (
-    <SharedFilterContext.Provider value={value}>
-      {children}
-    </SharedFilterContext.Provider>
-  );
+export function SharedFilterProvider({ children }: { children: React.ReactNode }) {
+  // keep provider in place for compatibility; zustand store is global
+  return <>{children}</>;
 }
 
-export function useSharedFilter() {
-  const context = useContext(SharedFilterContext);
-  if (!context) {
-    throw new Error("useSharedFilter must be used within SharedFilterProvider");
-  }
-  return context;
+export function useSharedFilter(): SharedFilterContextValue {
+  const filter = useFilterStore((s) => s.filter);
+  const setFilter = useFilterStore((s) => s.setFilter);
+  const resetFilter = useFilterStore((s) => s.resetFilter);
+  return { filter, setFilter, resetFilter };
 }
