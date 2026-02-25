@@ -1,4 +1,5 @@
 import { useAppSelector } from '@/hooks/hooks';
+import { AdminLayout } from '@/layout/AdminLayout';
 import { AuthLayout } from '@/layout/AuthLayout';
 import { MerchantLayout } from '@/layout/MerchantLayout';
 import { LoginPage } from '@/pages/auth/LoginPage';
@@ -51,17 +52,26 @@ const RoleGaurd = ({ allowedRoles }: RoleGaurdProps) => {
         return <div>loading@@</div>;
     }
     if (!isAuthorized) {
-        return <Navigate to="/auth/login" replace />;
-    }
-    if (!(userobj?.role) || !(allowedRoles.includes(userobj.role))) {
         // msg.open({
-        //     content: '用户权限不匹配',
+        //     content: '用户未登录',
         //     type: 'error',
         //     key: msgLoadingKey,
         //     duration: 2,
         // });
-        // return <Navigate to="/" replace />;
+        return <Navigate to="/auth/login" replace />;
+    }
+    if (!userobj) {
         return <div>uuu</div>;
+    }
+    if (!(userobj?.role) || !(allowedRoles.includes(userobj.role))) {
+        msg.open({
+            content: '用户权限不匹配',
+            type: 'error',
+            key: msgLoadingKey,
+            duration: 2,
+        });
+        return <Navigate to="/" replace />;
+        // return <div>uuu</div>;
     }
     msg.destroy(msgLoadingKey);
 
@@ -133,6 +143,20 @@ export const AppRouter = createBrowserRouter([
                 },
             ],
         },]
+    },
+    {
+        element: <RoleGaurd allowedRoles={['ADMIN']} />,
+        children: [{
+            path: '/admin',
+            element: <AdminLayout />,
+            children: [
+                {index:true, element: <Navigate to="/admin/hotels" replace />},
+                {
+                    path: 'hotels',
+                    element: <HotelsPage/>,
+                },
+                
+            ],
+        },]
     }
-    // todo: merchant and admin
 ])
