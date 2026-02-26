@@ -35,7 +35,9 @@ export default defineAppConfig({
       desc: '用于获取您附近的酒店位置'
     }
   },
+
   lazyCodeLoading: 'requiredComponents',
+  
   requiredPrivateInfos: [
     'getLocation'
   ]

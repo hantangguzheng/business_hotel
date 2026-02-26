@@ -196,7 +196,7 @@ function Index() {
   }, [checkIn, checkOut]);
 
   const handleOpenCity = () => {
-    Taro.navigateTo({ url: "/package-common/pages/city/index" });
+    Taro.navigateTo({ url: "/package-common/city/index" });
   };
 
   const locateUser = (options?: { silent?: boolean }) => {
