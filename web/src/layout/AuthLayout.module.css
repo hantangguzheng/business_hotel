@@ -1,0 +1,37 @@
+.background {
+    position:fixed;
+    inset: 0;
+    background: linear-gradient(70deg, #2144e0 0%, #3f6fc1 46%, #d94346 61%, #ed9b28 82%, #ecc116 100%);
+    background-size: 250%;
+    z-index: -1;
+    transition: background-position .5s;
+}
+
+.container {
+    position: relative;
+    min-height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+    display: block;
+    z-index: 1;
+    margin-bottom: 10px;
+    margin-left: -30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #f7f7f7;
+}
