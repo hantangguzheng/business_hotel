@@ -65,12 +65,10 @@ function GuestSelector(props: GuestSelectorProps) {
     onChangeChild,
   } = props;
 
-  // ensure room count never exceeds adult count; when adults increase
-  // and there aren't enough rooms we bump rooms automatically
-  const handleAdultChange = (next: number) => {
-    onChangeAdult(next);
-    if (next > roomCount) {
-      onChangeRoom(next);
+  const handleRoomChange = (next: number) => {
+    onChangeRoom(next);
+    if (next > adultCount) {
+      onChangeAdult(adultCount + 1);
     }
   };
 
@@ -80,13 +78,13 @@ function GuestSelector(props: GuestSelectorProps) {
         label="房间"
         value={roomCount}
         min={1}
-        onChange={onChangeRoom}
+        onChange={handleRoomChange}
       />
       <GuestStepper
         label="成人"
         value={adultCount}
         min={1}
-        onChange={handleAdultChange}
+        onChange={onChangeAdult}
       />
       <GuestStepper
         label="儿童"

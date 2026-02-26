@@ -30,9 +30,9 @@
 入口路由配置在 `src/app.config.ts`：
 
 - `pages/index/index`（首页）
-- `pages/city/index`（城市页）
-- `pages/list/index`（列表页）
-- `pages/detail/index`（详情页）
+- `package-common/city/index`（城市页）
+- `package-hotel/list/index`（列表页）
+- `package-hotel/detail/index`（详情页）
 
 ### 2.3 全局共享筛选状态
 
@@ -73,13 +73,13 @@
 
 - 实现：`Swiper + SwiperItem` 轮播 `BANNER_ITEMS`
 - 交互：点击 Banner -> 先尝试拉取酒店详情更新城市信息 -> 跳转详情页
-- 跳转：`/pages/detail/index?id={hotelId}`
+- 跳转：`/package-hotel/detail/index?id={hotelId}`
 
 #### 2) 核心查询区域
 
 **a. 当前地点（支持定位）**
 
-- 城市选择入口：跳转城市页 `pages/city`
+- 城市选择入口：跳转城市页 `package-common/city`
 - 定位逻辑：`Taro.authorize + Taro.getLocation + 腾讯逆地理`
 - 存储键：
   - `CITY_STORAGE_KEY`
@@ -118,7 +118,7 @@
 
 - 查询前校验：城市、日期、房间数
 - 构造参数：城市、关键词、日期、价格、星级、人数、快捷标签
-- 跳转：`/pages/list/index?...`
+- 跳转：`/package-hotel/list/index?...`
 
 ### 4.1.2 与需求备注匹配
 
@@ -129,7 +129,7 @@
 
 ## 4.2 酒店列表页
 
-页面文件：`src/pages/list/index.tsx`
+页面文件：`src/package-hotel/list/index.tsx`
 
 ### 4.2.1 功能点对照
 
@@ -166,7 +166,7 @@
 
 #### 3) 酒店列表
 
-组件：`src/components/hotel-list/index.tsx`
+组件：`src/package-hotel/hotel-list/components/index.tsx`
 
 卡片信息维度包含：
 
@@ -218,7 +218,7 @@ API：`searchHotels` (`src/apis/hotels.ts`)
 
 ## 4.3 酒店详情页
 
-页面文件：`src/pages/detail/index.tsx`
+页面文件：`src/package-hotel/detail/index.tsx`
 
 ### 4.3.1 功能点对照
 
@@ -254,7 +254,7 @@ API：`searchHotels` (`src/apis/hotels.ts`)
 
 #### 5) 酒店当前房型价格列表
 
-组件：`src/components/room-list/index.tsx`
+组件：`src/package-hotel/detail/components/room-list/index.tsx`
 
 房型信息包含：
 
