@@ -894,6 +894,42 @@ function ListPage() {
     return `${year}-${month}-${day}`;
   };
 
+  const formatToMonthDay = (value?: unknown) => {
+    if (!value) return "--";
+    // strings like "YYYY-MM-DD" or "YYYY/MM/DD"
+    if (typeof value === "string") {
+      const normalized = value.replace(/\//g, "-").trim();
+      const parts = normalized.split("-");
+      if (parts.length === 3) {
+        const mm = String(parts[1]).padStart(2, "0");
+        const dd = String(parts[2]).padStart(2, "0");
+        return `${mm}-${dd}`;
+      }
+      const d = new Date(normalized);
+      if (!Number.isNaN(d.getTime())) {
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        return `${mm}-${dd}`;
+      }
+      return normalized;
+    }
+    if (typeof value === "number") {
+      const d = new Date(value);
+      if (!Number.isNaN(d.getTime())) {
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        return `${mm}-${dd}`;
+      }
+      return "--";
+    }
+    if (value instanceof Date) {
+      const mm = String(value.getMonth() + 1).padStart(2, "0");
+      const dd = String(value.getDate()).padStart(2, "0");
+      return `${mm}-${dd}`;
+    }
+    return String(value);
+  };
+
   const resolveRange = (param) => {
     if (Array.isArray(param) && Array.isArray(param[0])) {
       return [param[0][3], param[1][3]];
@@ -926,13 +962,7 @@ function ListPage() {
 
   const cityLabel = city || DEFAULT_CITY;
   const compactDateLabel = useMemo(() => {
-    const formatDate = (value?: string) => {
-      if (!value) return "--";
-      const parts = value.split("-");
-      if (parts.length !== 3) return value;
-      return `${parts[1]}-${parts[2]}`;
-    };
-    return `${formatDate(checkIn)} ${formatDate(checkOut)}`;
+    return `${formatToMonthDay(checkIn)} ${formatToMonthDay(checkOut)}`;
   }, [checkIn, checkOut]);
 
   const staySummary = useMemo(() => {
@@ -943,12 +973,8 @@ function ListPage() {
 
   const tripDateLabel = useMemo(() => {
     const [tripCheckIn, tripCheckOut] = tripDraftDateRange;
-    const formatDate = (value?: string) => {
-      if (!value) return "--";
-      const parts = value.split("-");
-      if (parts.length !== 3) return value;
-      return `${parts[1]}-${parts[2]}`;
-    };
+    const formatDate = (value?: string | Date | number) =>
+      formatToMonthDay(value);
 
     const calcNights = (startDate?: string, endDate?: string) => {
       if (!startDate || !endDate) return 0;
@@ -1083,13 +1109,11 @@ function ListPage() {
               ? String(address)
               : `${res.latitude.toFixed(4)}, ${res.longitude.toFixed(4)}`;
 
+            // update trip draft values only; do NOT update the shared filter
+            // or fetch the list yet — the user must click 确认 to apply.
             setTripDraftCity(resolvedCityInfo.name);
             setTripDraftCityCode(String(resolvedCityInfo.cityCode || ""));
             setTripDraftCityLabel(rawAddress || "我的位置");
-            setFilter({
-              userLat: res.latitude,
-              userLng: res.longitude,
-            });
 
             Taro.setStorageSync(CITY_STORAGE_KEY, MY_LOCATION_KEY);
             Taro.setStorageSync(CITY_LOCATION_INFO_KEY, resolvedCityInfo);

@@ -196,11 +196,11 @@ function DetailPage() {
         return;
       }
 
-      Taro.showToast({
-        title: "缺少酒店ID",
-        icon: "none",
-        duration: 1500,
-      });
+      // Taro.showToast({
+      //   title: "缺少酒店ID",
+      //   icon: "none",
+      //   duration: 1500,
+      // });
       return;
     }
 
